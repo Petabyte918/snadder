@@ -33,7 +33,7 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
-    this.load.image('tile', 'assets/tile.png');
+    this.load.image('tile', 'assets/images/tile.png');
     this.load.spritesheet('male', 
         'assets/male.png',
         { frameWidth: 32, frameHeight: 42.6 }
@@ -90,8 +90,7 @@ function createTiles(){
   let y = (ROWS - 1) * RESOLUTION;
   let dir = 1;
   for (let i = 0; i < COLS * ROWS; i++) {
-    let tile = new Tile(x, y, RESOLUTION, i, i + 1);
-    console.log(tile);
+    let tile = new Tile(x+100, y + 80, RESOLUTION, i, i + 1);
     tiles.push(tile);
     x = x + RESOLUTION * dir;
     // Move along a winding path up the ROWS
