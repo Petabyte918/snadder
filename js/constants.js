@@ -16,6 +16,9 @@ let RESOLUTION = 50;
 let WIDTH = 500;
 let HEIGHT = 500;
 
+/** translate board */
+let TRANSLATE_X = 100, TRANSLATE_Y = 50; 
+
 /** dimentions of the board */
 let COLS = WIDTH/ RESOLUTION;
 let ROWS = HEIGHT / RESOLUTION;
@@ -31,3 +34,12 @@ let LADDERS = 8;
 
 /** number of questions */
 let QUESTIONS = 100;
+
+/** game state */
+let STATES = {
+    rolling:0, /** Rolling the die */
+    moving:1,  /** Moving to next spot */
+    snadder:2, /** Moving along a snake or ladder */
+    gameover:3,/** Game over */
+    won:4,     /** Game won */
+}

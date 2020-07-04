@@ -11,13 +11,10 @@ class Tile{
         // TODO: (next is probably redundant?)
         this.index = index;
         this.next = next;
-        this.snadder = 0;
-        // Checkboard pattern
-        if (this.index % 2 == 0) {
-            this.color = 200;
-        } else {
-            this.color = 100;
-        }
+        // this.snadder = 0;
+        this.tileFeature = null;
+        this.center1 = {x:this.x+this.wh/2,
+            y:this.y-this.wh/2}
     }
 
     setup(){
@@ -26,5 +23,12 @@ class Tile{
 
     show(){
 
+    }
+    
+    center(){
+        return {
+            x:this.x+this.wh/2,
+            y:this.y-this.wh/2
+        }
     }
 }
