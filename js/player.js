@@ -1,16 +1,26 @@
+
 class Player{
-    constructor(){
-        this.x;
-        this.y;
-        this.width;
-        this.height;
+    constructor(pos,body){
+        this.pos = pos;
+        this.body = body;
+        this.health = 0;
+        this.bullets = 0;
+        this.coins = 0; 
+        this.hearts = 0;
     }
 
-    setup(){
-
+    setBody(body){
+        this.body = body;
+    }
+    setHealth(health){
+        this.health = health;
+    }
+    setCoins(coins){
+        this.coins = coins;
+    }
+    setHearts(hearts){
+        this.hearts = hearts;
     }
 
-    show(){
 
-    }
 }

@@ -21,11 +21,16 @@ var config = {
 
 let game = new Phaser.Game(config);
 let plateform = null;
-let player = null;
+let player = new Player(0,null);
 let tiles = []; 
-let dieNumber = 0;
-let state = STATE.rolling;
+let diceNumber = 0;
+let state = STATES.rolling;
+let snakes = array();
+let ladders = array();
 
+/**
+ * Preload all the assets required of game.
+ */
 function preload ()
 {
     // this.load.setBaseURL('http://labs.phaser.io');
@@ -36,21 +41,25 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('glow', 'assets/images/glowtile.png');
     this.load.image('tile', 'assets/images/tile.png');
-    this.load.image('die', 'assets/images/die.png');
+    this.load.image('dice', 'assets/images/dice.png');
     this.load.image('snakes', 'assets/images/snakes.png');
     this.load.image('ladders', 'assets/images/ladders.png');
     // this.load.spritesheet('snakes', 'assets/images/snakesheet.png',
     //     {frameWidth:72,frameHeight:147}
     // );
     this.load.spritesheet('male', 
-        'assets/male.png',
-        { frameWidth: 32, frameHeight: 42.6 }
+        'assets/images/male.png',
+        { frameWidth: 32, frameHeight: 32 }
     );
 
     this.load.json('levels', 'assets/levels/level.json');
 }
 
+/**
+ * Setup all the environment and configs
+ */
 function create ()
 {   
     let data = this.cache.json.get('levels')
@@ -71,17 +80,26 @@ function create ()
     this.add.image(325, 275, 'snakes');
 
     loadLevel(data,1,this);
-    /** Die */
-    let die = plateforms.create(650,500,'die');
-    die.setInteractive();
-    die.on('click',dieHandler,this);
+    
+    /** Dice */
+    let dice = plateforms.create(650,500,'dice');
+    dice.setInteractive();
+    dice.on('click',diceHandler,this);
 
     /** player */
-    player = this.physics.add.sprite(100,450,'dude');
-    player.setBounce(0.2);
-    player.setCollideWorldBounds(true);
-    player.body.setGravityY(300);
-    this.physics.add.collider(player,plateform);
+    player = this.add.sprite(TRANSLATE_X,HEIGHT,'male');
+    this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('male', { start: 3, end: 5 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('male', { start: 6, end: 8 }),
+        frameRate: 10,
+        repeat: -1
+    });
 
     //  If a Game Object is clicked on, this event is fired.
     //  We can use it to emit the 'clicked' event on the game object itself.
@@ -96,19 +114,28 @@ function create ()
     // timer = this.time.addEvent({ delay: 10000, callback: gameOver, callbackScope: this });
 }
 
+/**
+ * for debuging
+ */
 function render() {
 
-    game.debug.geom(line1);
-    game.debug.lineInfo(line1, 32, 32);
+    game.debug.geom(player);
+    // game.debug.lineInfo(line1, 32, 32);
 
     game.debug.text("Drag the handles", 32, 550);
 
 }
 
+/**
+ * Update the screen refresh
+ * @param {*} time 
+ * @param {*} delta 
+ */
 function update(time,delta){
-    // info.setText('Die: ' + dieNumber + '\nTime: ' + Math.floor(10000 - timer.getElapsed()));
-    info.setText('Die: ' + dieNumber);
-
+    // info.setText('Die: ' + diceNumber + '\nTime: ' + Math.floor(10000 - timer.getElapsed()));
+    info.setText('Dice: ' + diceNumber);
+    if(diceNumber>0)
+        player.anims.play('right',true);
 }
 
 function createTiles(){
@@ -129,9 +156,9 @@ function createTiles(){
   }
 }
 
-function dieHandler (die)
+function diceHandler (dice)
 {
-    dieNumber = getRandom(1,6);
+    diceNumber = getRandom(1,6);
     // die.off('clicked', dieHandler);
     // die.input.enabled = false;
     // die.setVisible(false);
@@ -145,17 +172,12 @@ function gameOver (){
     }
 }
 
-function getRandom(min,max){
-    return Math.floor(Math.random() * (max-min+1)) + min;
-}
-
 function loadLevel(data,number,context){
-    let snakes = data.levels[number-1].snakes;
-    let ladders = data.levels[number-1].ladders;
+    // snakes = data.levels[number-1].snakes;
+    // ladders = data.levels[number-1].ladders;
     // createSnakes(snakes,context);
     // createLadders(ladders,context);
-
-}
+} 
 
 function createSnakes(snakes,context){
    for(let i=0;i<snakes.length;i++){
@@ -164,7 +186,7 @@ function createSnakes(snakes,context){
        console.log(pos1,pos2,cartesian2Polar(pos1,pos2));
        var d =cartesian2Polar(pos1,pos2);
        context.add.line(pos1.x, pos1.y, d.distance, d.radians, 140, 0, 0x6666ff);
-   }
+   } 
  
 } 
 
@@ -175,11 +197,7 @@ function createLadders(ladders,context){
  
 }
 
-function cartesian2Polar(pos1,pos2){
-    distance = Math.sqrt( (pos2.x-pos1.x)*(pos2.x-pos1.x) + (pos2.y-pos1.y)*(pos2.y-pos1.y) )
-    radians = Math.tan((pos2.y-pos1.y)/(pos2.x-pos1.x)) / (180/Math.PI);
-    // radians = Math.atan2(y,x) //This takes y first
-    polarCoor = { distance:distance, radians:radians }
-    return polarCoor
-}
 
+function movePlayer(current,steps){
+
+}

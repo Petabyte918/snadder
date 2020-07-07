@@ -27,13 +27,13 @@ let ROWS = HEIGHT / RESOLUTION;
 let DIE_NUMBERS = [1,2,3,4,5,6]
 
 /** number of snakes  */
-let SNAKES = 8;
+let SNAKES_COUNT = 8;
 
 /** number of Ladders */
-let LADDERS = 8;
+let LADDERS_COUNT = 8;
 
 /** number of questions */
-let QUESTIONS = 100;
+let QUESTIONS_COUNT = 100;
 
 /** game state */
 let STATES = {
