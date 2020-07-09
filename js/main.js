@@ -87,7 +87,8 @@ function create ()
     dice.on('click',diceHandler,this);
 
     /** player */
-    player = this.add.sprite(TRANSLATE_X,HEIGHT,'male');
+    p = this.add.sprite(TRANSLATE_X-50,HEIGHT,'male');
+    player.setBody(p);
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('male', { start: 3, end: 5 }),
@@ -134,8 +135,18 @@ function render() {
 function update(time,delta){
     // info.setText('Die: ' + diceNumber + '\nTime: ' + Math.floor(10000 - timer.getElapsed()));
     info.setText('Dice: ' + diceNumber);
-    if(diceNumber>0)
-        player.anims.play('right',true);
+    if(diceNumber>0 && state == STATES.moving ){
+        player.pos += diceNumber;
+        if(player.body.x < WIDTH  ){
+            player.body.anims.play('right',true);
+            player.body.x += (diceNumber*RESOLUTION);
+        }
+        else{
+            player.body.anims.play('left',true);
+            player.body.x -= (diceNumber*RESOLUTION);
+        }
+        state = STATES.rolling;
+    }
 }
 
 function createTiles(){
@@ -158,7 +169,10 @@ function createTiles(){
 
 function diceHandler (dice)
 {
-    diceNumber = getRandom(1,6);
+    if(state == STATES.rolling){
+        diceNumber = getRandom(1,6);
+        state = STATES.moving;
+    }
     // die.off('clicked', dieHandler);
     // die.input.enabled = false;
     // die.setVisible(false);

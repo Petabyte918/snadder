@@ -13,8 +13,7 @@ class Tile{
         this.next = next;
         // this.snadder = 0;
         this.tileFeature = null;
-        this.center1 = {x:this.x+this.wh/2,
-            y:this.y-this.wh/2}
+        
     }
 
     setup(){
