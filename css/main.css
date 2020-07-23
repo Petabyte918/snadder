@@ -4,17 +4,26 @@
     padding: 0;
     border: 0;
 }
-.container{
-    display: flex;
+.header{
+    min-height: 50px;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 1em;
+}
+.dialog{
+    position: absolute;
     background: #ccc;
-    position: fixed;
-    top:0;left: 0;
-    right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    width: 100%;
 }
 .app{
-    display: absolute;
     align-content: center;
     justify-content: center;
-    width:80%;
+    width:95%;
     background: #000;
+    margin: auto;
 }

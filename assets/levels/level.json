@@ -1,6 +1,16 @@
 {
     "levels":[
-        {
+        {   "tiles":[
+                {   "x":0,
+                    "y":0,
+                    "wh":0,
+                    "index":0,
+                    "next":0,
+                    "tileType":"normal",
+                    "tileFeature":null,
+                    "featureType":"none"
+                }
+            ],
             "snakes":[{
                     "start":98,
                     "end":75
@@ -14,11 +24,11 @@
                     "end":19
                 },
                 {
-                    "start":64,
+                    "start":66,
                     "end":6
                 },
                 {
-                    "start":84,
+                    "start":35,
                     "end":45
                 }
             ],
@@ -44,7 +54,16 @@
                     "end":59
                 }
             ],
-            "fairies":[]
+            "fairies":[
+                {"start":36},
+                {"start":71},
+                {"start":11}
+            ],
+            "demons":[
+                {"start":55},
+                {"start":19},
+                {"start":80}
+            ]
         },
         {
             "Snakes":[{

@@ -13,17 +13,10 @@ class Tile{
         this.next = next;
         // this.snadder = 0;
         this.tileFeature = null;
-        
+        this.featureType = null;
+        this.featureBody=null;
     }
 
-    setup(){
-
-    }   
-
-    show(){
-
-    }
-    
     center(){
         return {
             x:this.x+this.wh/2,

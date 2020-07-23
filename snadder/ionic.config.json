@@ -1,0 +1,7 @@
+{
+  "name": "snadder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

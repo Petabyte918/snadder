@@ -7,9 +7,10 @@ class Player{
         this.bullets = 0;
         this.coins = 0; 
         this.hearts = 0;
+        this.direction = 1;
     }
 
-    setBody(body){
+    setBody(body){ 
         this.body = body;
     }
     setHealth(health){

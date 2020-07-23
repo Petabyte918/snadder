@@ -1,9 +1,13 @@
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
     backgroundColor:'#000',
-    // parent:'app',
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        parent: 'phaser',
+        width: 800,
+        height: 800
+    },
     physics: {
         default: 'arcade',
         arcade: {
@@ -16,7 +20,8 @@ var config = {
         create: create,
         update :update,
         render: render
-    }
+    },
+    title: 'Snadder'
 }; 
 
 let game = new Phaser.Game(config);
@@ -24,10 +29,14 @@ let plateform = null;
 let player = new Player(0,null);
 let tiles = []; 
 let diceNumber = 0;
+let step = 0;
 let state = STATES.rolling;
-let snakes = array();
-let ladders = array();
-
+let snakes = [];
+let ladders = [];
+let fairies = [];
+let demons = [];
+let avator = 5;
+let message = "";
 /**
  * Preload all the assets required of game.
  */
@@ -38,20 +47,31 @@ function preload ()
     this.load.image('sky', 'assets/images/background0.png');
     // this.load.image('logo', 'assets/sprites/phaser3-logo.png');
     // this.load.image('red', 'assets/particles/red.png');
-    this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.image('bomb', 'assets/bomb.png');
+    // this.load.image('ground', 'assets/platform.png');
+    // this.load.image('star', 'assets/star.png');
+    // this.load.image('bomb', 'assets/bomb.png');
     this.load.image('glow', 'assets/images/glowtile.png');
     this.load.image('tile', 'assets/images/tile.png');
     this.load.image('dice', 'assets/images/dice.png');
     this.load.image('snakes', 'assets/images/snakes.png');
     this.load.image('ladders', 'assets/images/ladders.png');
-    // this.load.spritesheet('snakes', 'assets/images/snakesheet.png',
-    //     {frameWidth:72,frameHeight:147}
-    // );
+    
     this.load.spritesheet('male', 
-        'assets/images/male.png',
-        { frameWidth: 32, frameHeight: 32 }
+        'assets/images/avators.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
+
+    this.load.spritesheet('fairy', 
+        'assets/images/fairy.png',
+        { frameWidth: 48, frameHeight: 48 }
+    );
+    this.load.spritesheet('cobra', 
+        'assets/images/cobras.png',
+        { frameWidth: 48, frameHeight: 48 }
+    );
+    this.load.spritesheet('demon', 
+        'assets/images/demons.png',
+        { frameWidth: 48, frameHeight: 48 }
     );
 
     this.load.json('levels', 'assets/levels/level.json');
@@ -62,12 +82,13 @@ function preload ()
  */
 function create ()
 {   
-    let data = this.cache.json.get('levels')
+    let data = this.cache.json.get('levels');
     /** game Background  */
     this.add.image(400, 300, 'sky');
 
     //  Event Emitter instance
     var emitter = new Phaser.Events.EventEmitter();
+    loadLevel(data,1,this);
 
     /** plateforms  */
     plateforms = this.physics.add.staticGroup();
@@ -75,33 +96,64 @@ function create ()
     for(let tile of tiles){
         plateforms.create(tile.x,tile.y,'tile');
     }
-
     this.add.image(325, 275, 'ladders');
-    this.add.image(325, 275, 'snakes');
+    // this.add.image(325, 275, 'snakes');
 
-    loadLevel(data,1,this);
-    
+    addFeaturesToTiles(this);
+    /** fairies */
+    this.anims.create({
+        key: 'hover',
+        frames: this.anims.generateFrameNumbers('fairy', { start: 3, end: 6 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    /** snakes */
+    this.anims.create({
+        key: 'cobraHover',
+        frames: this.anims.generateFrameNumbers('cobra', { start: 12, end: 35 }),
+        frameRate: 8,
+        repeat: -1
+    });
+    /** demon */
+    this.anims.create({
+        key: 'demonHover',
+        frames: this.anims.generateFrameNumbers('demon', { start: 12, end: 35 }),
+        frameRate: 8,
+        repeat: -1
+    });
     /** Dice */
     let dice = plateforms.create(650,500,'dice');
     dice.setInteractive();
     dice.on('click',diceHandler,this);
 
     /** player */
-    p = this.add.sprite(TRANSLATE_X-50,HEIGHT,'male');
+    p = this.add.sprite(TRANSLATE_X,HEIGHT,'male');
+    p.setScale(0.8);
     player.setBody(p);
     this.anims.create({
-        key: 'left',
-        frames: this.anims.generateFrameNumbers('male', { start: 3, end: 5 }),
+        key: 'won',
+        frames: this.anims.generateFrameNumbers('male', { start: 68, end: 71 }),
         frameRate: 10,
         repeat: -1
     });
     this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('male', { start: 6, end: 8 }),
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('male', { start: 84, end: 86 }),
         frameRate: 10,
         repeat: -1
     });
-
+    this.anims.create({ 
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('male', { start: 100, end: 103 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    this.anims.create({
+        key: 'stand',
+        frames: this.anims.generateFrameNumbers('male', { start: 68, end: 68 }),
+        frameRate: 10,
+        repeat: -1
+    });
     //  If a Game Object is clicked on, this event is fired.
     //  We can use it to emit the 'clicked' event on the game object itself.
     this.input.on('gameobjectup', function (pointer, gameObject)
@@ -110,8 +162,9 @@ function create ()
     }, this);
 
     //  Display the game status 
-    info = this.add.text(600, 10, '', { font: '30px Arial', fill: '#333' });
-
+    diceNumberText  = this.add.text(600, 10, '', { font: '30px Arial', fill: '#333' });
+    currentStepText = this.add.text(600, 70, '', { font: '30px Arial', fill: '#333' });
+    messageText     = this.add.text(200, 600,'', { font: '40px Arial', fill: '#3f527b'});
     // timer = this.time.addEvent({ delay: 10000, callback: gameOver, callbackScope: this });
 }
 
@@ -134,18 +187,63 @@ function render() {
  */
 function update(time,delta){
     // info.setText('Die: ' + diceNumber + '\nTime: ' + Math.floor(10000 - timer.getElapsed()));
-    info.setText('Dice: ' + diceNumber);
+    diceNumberText.setText('Dice: ' + diceNumber);
+    currentStepText.setText('Current pos: ' + (player.pos+1));
+    messageText.setText("!! "+message + " !!");
+    for(tile of tiles){
+        if(tile.tileFeature != null){
+            if(tile.featureType == 'fairy'){
+                tile.featureBody.anims.play('hover',true);
+            }
+            if(tile.featureType == 'snake'){
+                tile.featureBody.anims.play('cobraHover',true);
+            }
+            if(tile.featureType == 'demon'){
+                tile.featureBody.anims.play('demonHover',true);
+            }
+        }
+    }
+    if(state == STATES.rolling && player.pos ==0){
+        player.body.anims.play('stand',true);
+    }
     if(diceNumber>0 && state == STATES.moving ){
-        player.pos += diceNumber;
-        if(player.body.x < WIDTH  ){
-            player.body.anims.play('right',true);
-            player.body.x += (diceNumber*RESOLUTION);
+        if(tiles[player.pos +diceNumber] != 'undefined' && tiles[player.pos +diceNumber] != null){
+            if(tiles[player.pos].y != tiles[player.pos +diceNumber].y){
+                player.direction *= -1;
+            }
+            player.pos += diceNumber;
+            if(player.direction>0){
+                player.body.anims.play('right',true);
+            }
+            else{
+                player.body.anims.play('left',true);
+            }
+            player.body.x = tiles[player.pos].x;
+            player.body.y = tiles[player.pos].y;
+            state = STATES.rolling;
+
+            if(player.pos+1 == 100){
+                message = "You Won the game";
+                console.log("You Won the game !!")
+                state = STATES.won;
+                player.body.anims.play('won',true);
+
+            }
         }
         else{
-            player.body.anims.play('left',true);
-            player.body.x -= (diceNumber*RESOLUTION);
+            message = "Wait for next turn"
+            console.log('wait for next turn !!');
+            state = STATES.rolling;
+            if(player.pos+1 == 100){
+                message = "You Won the game";
+                console.log("You Won the game !!")
+                state = STATES.won;
+
+            }
+
+
         }
-        state = STATES.rolling;
+        
     }
 }
 
@@ -185,33 +283,48 @@ function gameOver (){
         }
     }
 }
-
+ 
 function loadLevel(data,number,context){
-    // snakes = data.levels[number-1].snakes;
-    // ladders = data.levels[number-1].ladders;
+    snakes = data.levels[number-1].snakes;
+    ladders = data.levels[number-1].ladders;
+    fairies = data.levels[number-1].fairies;
+    demons = data.levels[number-1].demons;
     // createSnakes(snakes,context);
     // createLadders(ladders,context);
 } 
 
-function createSnakes(snakes,context){
-   for(let i=0;i<snakes.length;i++){
-       var pos1 = tiles[snakes[i].start].center();
-       var pos2 = tiles[snakes[i].end].center();
-       console.log(pos1,pos2,cartesian2Polar(pos1,pos2));
-       var d =cartesian2Polar(pos1,pos2);
-       context.add.line(pos1.x, pos1.y, d.distance, d.radians, 140, 0, 0x6666ff);
-   } 
- 
-} 
+function addFeaturesToTiles(contex){
+    for(tile of tiles){
+        for(snake of snakes){
+            if(snake.start == tile.index+1){
+                tile.tileFeature = snake;
+                tile.featureType = 'snake';
+                tile.featureBody = contex.add.sprite(tile.x,tile.y ,'cobra');
+                tile.featureBody.setScale(0.7);
 
-function createLadders(ladders,context){
-    for(let i=0;i<ladders.length;i++){
-        // console.log(ladders[i]);
+            }
+        }
+        for(ladder of ladders){
+            if(ladder.start == tile.index+1){
+                tile.tileFeature = ladder;
+                tile.featureType = 'ladder';
+            }
+        }
+        for(fairy of fairies){
+            if(fairy.start == tile.index+1){
+                tile.tileFeature = fairy;
+                tile.featureType = 'fairy';
+                tile.featureBody = contex.add.sprite(tile.x,tile.y ,'fairy');
+                tile.featureBody.setScale(0.5);
+            }
+        }
+        for(demon of demons){
+            if(demon.start == tile.index+1){
+                tile.tileFeature = demon;
+                tile.featureType = 'demon';
+                tile.featureBody = contex.add.sprite(tile.x,tile.y ,'demon');
+                tile.featureBody.setScale(1.3);
+            }
+        }
     }
- 
-}
-
-
-function movePlayer(current,steps){
-
 }

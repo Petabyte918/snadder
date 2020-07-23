@@ -42,4 +42,5 @@ let STATES = {
     snadder:2, /** Moving along a snake or ladder */
     gameover:3,/** Game over */
     won:4,     /** Game won */
+
 }
