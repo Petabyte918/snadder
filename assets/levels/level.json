@@ -12,12 +12,12 @@
                 }
             ],
             "snakes":[{
-                    "start":98,
+                    "start":99,
                     "end":75
                 },
                 {
                     "start":58,
-                    "end":30
+                    "end":21
                 },
                 {
                     "start":89,
@@ -25,44 +25,56 @@
                 },
                 {
                     "start":66,
-                    "end":6
+                    "end":32
                 },
                 {
                     "start":35,
-                    "end":45
+                    "end":8
                 }
             ],
             "ladders":[
                 {
-                    "start":8,
-                    "end":43
+                    "start":5,
+                    "end":26
                 },
                 {
-                    "start":24,
-                    "end":36
+                    "start":14,
+                    "end":71
                 },
                 {
-                    "start":69,
+                    "start":20,
+                    "end":65
+                },
+                {
+                    "start":50,
                     "end":95
                 },
                 {
-                    "start":49,
-                    "end":61
-                },
-                {
-                    "start":15,
-                    "end":59
+                    "start":61,
+                    "end":83
                 }
             ],
             "fairies":[
                 {"start":36},
-                {"start":71},
+                {"start":74},
                 {"start":11}
             ],
             "demons":[
                 {"start":55},
                 {"start":19},
                 {"start":80}
+            ],
+            "tasks":[
+                {
+                    "taskType":"question",
+                    "question":"this is question",
+                    "options":[
+                        "a","b","c","d"
+                    ],
+                    "answers":[
+                        "a","d"
+                    ]
+                }
             ]
         },
         {

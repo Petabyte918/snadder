@@ -14,7 +14,7 @@ class Tile{
         // this.snadder = 0;
         this.tileFeature = null;
         this.featureType = null;
-        this.featureBody=null;
+        this.featureBody = null;
     }
 
     center(){

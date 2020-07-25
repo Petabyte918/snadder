@@ -35,8 +35,10 @@ let snakes = [];
 let ladders = [];
 let fairies = [];
 let demons = [];
+let tasks = [];
 let avator = 5;
 let message = "";
+
 /**
  * Preload all the assets required of game.
  */
@@ -60,7 +62,6 @@ function preload ()
         'assets/images/avators.png',
         { frameWidth: 32, frameHeight: 48 }
     );
-
     this.load.spritesheet('fairy', 
         'assets/images/fairy.png',
         { frameWidth: 48, frameHeight: 48 }
@@ -96,10 +97,14 @@ function create ()
     for(let tile of tiles){
         plateforms.create(tile.x,tile.y,'tile');
     }
-    this.add.image(325, 275, 'ladders');
-    // this.add.image(325, 275, 'snakes');
 
+    this.add.image(325, 275, 'ladders');
+    this.add.image(325, 275, 'snakes');
     addFeaturesToTiles(this);
+    for(let tile of tiles){
+        console.log(tile.index,tile.featureType);
+    }
+
     /** fairies */
     this.anims.create({
         key: 'hover',
@@ -208,10 +213,27 @@ function update(time,delta){
     }
     if(diceNumber>0 && state == STATES.moving ){
         if(tiles[player.pos +diceNumber] != 'undefined' && tiles[player.pos +diceNumber] != null){
-            if(tiles[player.pos].y != tiles[player.pos +diceNumber].y){
+            
+            let current = tiles[player.pos];
+            if(tiles[player.pos +diceNumber].tileFeature !=null 
+                && tiles[player.pos +diceNumber].featureType != 'fairy' 
+                && tiles[player.pos +diceNumber].featureType != 'demon'){
+
+                if(tiles[player.pos +diceNumber].featureType == 'snake'){
+                    player.pos = tiles[player.pos +diceNumber].tileFeature.end  -1;
+                }
+                else if(tiles[player.pos +diceNumber].featureType == 'ladder'){
+                    player.pos += (tiles[player.pos +diceNumber].tileFeature.end - player.pos) -1;
+                }
+            }
+            else{
+                next =  tiles[player.pos +diceNumber];
+                player.pos += diceNumber;
+            } 
+            
+            if(current.y != tiles[player.pos].y){
                 player.direction *= -1;
             }
-            player.pos += diceNumber;
             if(player.direction>0){
                 player.body.anims.play('right',true);
             }
@@ -220,7 +242,7 @@ function update(time,delta){
             }
             player.body.x = tiles[player.pos].x;
             player.body.y = tiles[player.pos].y;
-            state = STATES.rolling;
+            state = STATES.rolling; 
 
             if(player.pos+1 == 100){
                 message = "You Won the game";
@@ -252,7 +274,7 @@ function createTiles(){
   let x = 0;
   let y = (ROWS - 1) * RESOLUTION;
   let dir = 1;
-  for (let i = 0; i < COLS * ROWS; i++) {
+  for (let i = 1; i <= COLS * ROWS; i++) {
     let tile = new Tile(x + TRANSLATE_X, y + TRANSLATE_Y, RESOLUTION, i, i + 1);
     tiles.push(tile);
     x = x + RESOLUTION * dir;
@@ -285,10 +307,11 @@ function gameOver (){
 }
  
 function loadLevel(data,number,context){
-    snakes = data.levels[number-1].snakes;
+    snakes  = data.levels[number-1].snakes;
     ladders = data.levels[number-1].ladders;
     fairies = data.levels[number-1].fairies;
-    demons = data.levels[number-1].demons;
+    demons  = data.levels[number-1].demons;
+    tasks   = data.levels[number-1].tasks;
     // createSnakes(snakes,context);
     // createLadders(ladders,context);
 } 
@@ -296,22 +319,28 @@ function loadLevel(data,number,context){
 function addFeaturesToTiles(contex){
     for(tile of tiles){
         for(snake of snakes){
-            if(snake.start == tile.index+1){
+            if(snake.start == tile.index){
                 tile.tileFeature = snake;
                 tile.featureType = 'snake';
                 tile.featureBody = contex.add.sprite(tile.x,tile.y ,'cobra');
-                tile.featureBody.setScale(0.7);
+                tile.featureBody.setScale(1.1);
 
+            }
+            if(snake.end == tile.index){
+                tile.tileFeature = snake;
+                tile.featureType = 'snakeend';
+                tile.featureBody = contex.add.image(tile.x,tile.y, 'glow');
+                tile.featureBody.setScale(1.1);
             }
         }
         for(ladder of ladders){
-            if(ladder.start == tile.index+1){
+            if(ladder.start == tile.index){
                 tile.tileFeature = ladder;
                 tile.featureType = 'ladder';
             }
         }
         for(fairy of fairies){
-            if(fairy.start == tile.index+1){
+            if(fairy.start == tile.index){
                 tile.tileFeature = fairy;
                 tile.featureType = 'fairy';
                 tile.featureBody = contex.add.sprite(tile.x,tile.y ,'fairy');
@@ -319,7 +348,7 @@ function addFeaturesToTiles(contex){
             }
         }
         for(demon of demons){
-            if(demon.start == tile.index+1){
+            if(demon.start == tile.index){
                 tile.tileFeature = demon;
                 tile.featureType = 'demon';
                 tile.featureBody = contex.add.sprite(tile.x,tile.y ,'demon');
