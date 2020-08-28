@@ -99,7 +99,7 @@ function create ()
     }
 
     this.add.image(325, 275, 'ladders');
-    this.add.image(325, 275, 'snakes');
+    // this.add.image(325, 275, 'snakes');
     addFeaturesToTiles(this);
     for(let tile of tiles){
         console.log(tile.index,tile.featureType);
@@ -326,12 +326,12 @@ function addFeaturesToTiles(contex){
                 tile.featureBody.setScale(1.1);
 
             }
-            if(snake.end == tile.index){
-                tile.tileFeature = snake;
-                tile.featureType = 'snakeend';
-                tile.featureBody = contex.add.image(tile.x,tile.y, 'glow');
-                tile.featureBody.setScale(1.1);
-            }
+            // if(snake.end == tile.index){
+            //     tile.tileFeature = snake;
+            //     tile.featureType = 'snakeend';
+            //     tile.featureBody = contex.add.image(tile.x,tile.y, 'glow');
+            //     tile.featureBody.setScale(1.1);
+            // }
         }
         for(ladder of ladders){
             if(ladder.start == tile.index){
