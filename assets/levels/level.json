@@ -57,7 +57,8 @@
             "fairies":[
                 {"start":36},
                 {"start":74},
-                {"start":11}
+                {"start":11},
+                {"start":40}
             ],
             "demons":[
                 {"start":55},
