@@ -11,7 +11,7 @@ var Splash = new Phaser.Class({
 
     preload: function ()
     {
-        this.load.image('face', 'assets/images/background2.png');
+        this.load.image('face', 'assets/images/background0.png');
         
     },
 
