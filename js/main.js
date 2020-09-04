@@ -2,11 +2,12 @@ var config = {
     type: Phaser.AUTO,
     backgroundColor:'#000',
     scale: {
+        // mode: Phaser.Scale.RESIZE,
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         parent: 'phaser',
-        width: 800,
-        height: 800
+        width: '100%',
+        height: '100%'
     },
     physics: {
         default: 'arcade',

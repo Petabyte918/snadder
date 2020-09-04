@@ -12,14 +12,18 @@ var Splash = new Phaser.Class({
     preload: function ()
     {
         this.load.image('face', 'assets/images/background0.png');
+        this.load.image('tile', 'assets/images/tile.png');
+        this.load.image('snakes', 'assets/images/snakes0.png');
         
     },
 
     create: function ()
     {
 
-        this.face = this.add.image(400, 300, 'face');
-        this.add.text(0, 0, 'Click to add new Scene');
+        this.face = this.add.image(400, 300, 'face').setScale(3);
+        this.snake = this.add.image(400, 300, 'snakes').setScale(0.5);
+        this.tile = this.add.image(800, 1000, 'tile').setScale(0.5);
+        this.add.text(380,430, 'Start');
 
         this.input.once('pointerdown', function () {
         
