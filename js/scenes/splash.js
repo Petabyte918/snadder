@@ -133,7 +133,7 @@ var Splash = new Phaser.Class({
         
         this.input.once('pointerdown', function () {
         
-            this.scene.add('Dashboard', Dashboard, true, { x: 400, y: 300 });
+            this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
 
         }, this);
 

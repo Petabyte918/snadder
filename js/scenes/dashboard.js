@@ -35,7 +35,6 @@ var Dashboard = new Phaser.Class({
         this.load.image('love_potion','assets/images/icons/potions5.png');
         this.load.image('hammer','assets/images/icons/10.png');
 
-
     },
 
     create: function ()
@@ -67,14 +66,24 @@ var Dashboard = new Phaser.Class({
         this.add.image(900,1700,'hammer').setScale(0.2);
 
 
-      
-
-
-        this.add.image(500,770,'popupBG').setScale(0.6,0.8);
-        this.add.image(500,770,'popupBG0').setScale(0.6,0.8);
+        this.add.image(500,800,'popupBG').setScale(0.6,0.9);
+        this.add.image(500,800,'popupBG0').setScale(0.6,0.9);
         
         this.add.image(500,450,'popupBG3').setScale(0.6);
+        this.game = this.add.image(350,650,'wood_table').setScale(1,3);
+        this.game.setInteractive();
+        this.game.on('click',this.selectLevel,this);
+        
+        this.add.image(650,650,'wood_table').setScale(1,3);
+        this.add.image(350,930,'wood_table').setScale(1,3);
+        this.add.image(650,930,'wood_table').setScale(1,3);
 
+        this.add.dynamicBitmapText(280,770,'green','Game',35);
+        
+
+        this.add.dynamicBitmapText(600,770,'green','Match',35);
+        this.add.dynamicBitmapText(250,1050,'green','Upgrades',35);
+        this.add.dynamicBitmapText(600,1050,'green','shop',35);
 
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
@@ -90,13 +99,13 @@ var Dashboard = new Phaser.Class({
         // window.splashScene = this;
         // window.splashScene.get('Splash').myMethod();
     },
-    selectFemale:function(){
+    selectLevel:function(){
         this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
 
     },
-    selectMale:function(){
-        this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
-    }
+    // selectMale:function(){
+    //     this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
+    // }
 
 });
 

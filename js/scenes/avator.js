@@ -62,11 +62,11 @@ var Avator = new Phaser.Class({
         // window.splashScene.get('Splash').myMethod();
     },
     selectFemale:function(){
-        this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
+        this.scene.add('Dashboard', Dashboard, true, { x: 100, y: 300 });
 
     },
     selectMale:function(){
-        this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
+        this.scene.add('Dashboard', Dashboard, true, { x: 100, y: 300 });
     }
 
 });
