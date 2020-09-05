@@ -6,8 +6,8 @@ var config = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         parent: 'phaser',
-        width: '100%',
-        height: '100%'
+        width: 980,
+        height: 1750
     },
     physics: {
         default: 'arcade',
@@ -19,6 +19,24 @@ var config = {
     scene: [ Splash ],
     title: 'Snadder'
 }; 
+
+
+// //  The Google WebFont Loader will look for this object, so create it before loading the script.
+// WebFontConfig = {
+
+//     //  'active' means all requested fonts have finished loading
+//     //  We set a 1 second delay before calling 'createText'.
+//     //  For some reason if we don't the browser cannot render the text the first time it's created.
+//     active: function() { game.time.events.add(Phaser.Timer.SECOND, createText, this); },
+
+//     //  The Google Fonts we want to load (specify as many as you like in the array)
+//     google: {
+//       families: ['Revalia']
+//     }
+
+// };
+
+
 
 
 let game = new Phaser.Game(config);

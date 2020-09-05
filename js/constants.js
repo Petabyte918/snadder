@@ -2,7 +2,7 @@
  * Global constants 
  */
 
-
+ 
 /** Game keys */
 let LEFT = 0;
 let RIGHT = 1;
