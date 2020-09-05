@@ -12,18 +12,6 @@ var Avator = new Phaser.Class({
     preload: function ()
     {
         
-        // this.load.image('sky', 'assets/images/sky.png');
-        // this.load.image('bg0','assets/images/BG_Decor.png');
-        // this.load.image('bg1','assets/images/Middle_Decor.png');
-        // this.load.image('bg2','assets/images/Foreground.png');
-        // this.load.image('bg3','assets/images/Ground.png');
-
-        this.load.image('close','assets/images/UI/btn/close.png');
-        this.load.image('close1','assets/images/UI/btn/misic.png');
-        this.load.image('close1','assets/images/UI/btn/misic_off.png');
-        this.load.image('menu','assets/images/UI/btn/menu.png');
-
-
         this.load.image('popupBG','assets/images/UI/settings/bg.png');
         this.load.image('popupBG0','assets/images/UI/settings/table.png');
         this.load.image('popupBG1','assets/images/UI/settings/92.png');
@@ -41,8 +29,8 @@ var Avator = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
 
-        this.close = this.add.image(900,80,'close').setScale(0.4);
-        this.close = this.add.image(80,80,'menu').setScale(0.4);
+        this.close = this.add.image(900,80,'btn_close').setScale(0.4);
+        this.close = this.add.image(80,80,'btn_menu').setScale(0.4);
         this.add.dynamicBitmapText(190,100,'fire','SELECT AVATOR',60);
 
         this.add.image(500,770,'popupBG').setScale(0.6,0.8);

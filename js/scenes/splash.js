@@ -59,10 +59,9 @@ var Splash = new Phaser.Class({
         this.load.image('bg2','assets/images/Foreground.png');
         this.load.image('bg3','assets/images/Ground.png');
 
-        this.load.image('tile', 'assets/images/tile.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
 
-        this.load.image('btn_play','assets/images/UI/btn/play.png');
+        this.load.image('btn_blank','assets/images/UI/btn/01.png');
         this.load.image('btn_about','assets/images/UI/btn/about.png');
         this.load.image('btn_close','assets/images/UI/btn/close.png');
         this.load.image('btn_close1','assets/images/UI/btn/close_2.png');
@@ -70,7 +69,7 @@ var Splash = new Phaser.Class({
         this.load.image('btn_leader','assets/images/UI/btn/leader.png');
         this.load.image('btn_menu','assets/images/UI/btn/menu.png');
         this.load.image('btn_misic','assets/images/UI/btn/misic.png');
-        this.load.image('btn_misic_off','assets/images/UI/btn/misic_off.png');
+        // this.load.image('btn_misic_off','assets/images/UI/btn/misic_off.png');
         this.load.image('btn_next','assets/images/UI/btn/next.png');
         this.load.image('btn_ok','assets/images/UI/btn/ok.png');
         this.load.image('btn_pause','assets/images/UI/btn/pause.png');
@@ -120,11 +119,11 @@ var Splash = new Phaser.Class({
         };
         this.phase = 90;
 
-        this.face = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'sky').setScale(1.7);
-        this.face = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg0').setScale(1.7);
-        this.face = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
-        this.face = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg2').setScale(1.7);
-        this.face = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
+        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'sky').setScale(1.7);
+        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg0').setScale(1.7);
+        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
+        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg2').setScale(1.7);
+        this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
 
         this.snake = this.add.image(480, 900, 'snakes').setScale(0.7);
         // this.add.text(330, 1100,'START', { font: '100px Arial', fill: '#fff'});
@@ -134,7 +133,7 @@ var Splash = new Phaser.Class({
         
         this.input.once('pointerdown', function () {
         
-            this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
+            this.scene.add('Dashboard', Dashboard, true, { x: 400, y: 300 });
 
         }, this);
 
