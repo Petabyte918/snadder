@@ -51,7 +51,12 @@ var Splash = new Phaser.Class({
             }
         });
         assetText.setOrigin(0.5, 0.5);
-
+        window.gameDescriptor = {
+            WIDTH:document.documentElement.clientWidth,
+            HEIGHT:document.documentElement.clientHeight,
+            camWidth:width,
+            camHeight:height,
+        };
 
         this.load.image('sky', 'assets/images/sky.png');
         this.load.image('bg0','assets/images/BG_Decor.png');
@@ -113,11 +118,7 @@ var Splash = new Phaser.Class({
 
     create: function ()
     {
-        window.gameDescriptor = {
-            WIDTH:document.documentElement.clientWidth,
-            HEIGHT:document.documentElement.clientHeight,
-        };
-        this.phase = 90;
+        
 
         this.add.image(window.gameDescriptor.WIDTH/2, 900, 'sky').setScale(1.7);
         this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg0').setScale(1.7);

@@ -16,7 +16,6 @@ var Dashboard = new Phaser.Class({
         this.load.image('popupBG0','assets/images/UI/settings/table.png');
         this.load.image('popupBG1','assets/images/UI/settings/92.png');
         this.load.image('popupBG3','assets/images/UI/level_select/header.png');
-        this.load.image('face','assets/images/UI/rating/face.png');
         
         this.load.image('wood_down','assets/images/UI/bubble/down.png');
         this.load.image('wood_up','assets/images/UI/bubble/up.png');
@@ -68,15 +67,23 @@ var Dashboard = new Phaser.Class({
 
         this.add.image(500,800,'popupBG').setScale(0.6,0.9);
         this.add.image(500,800,'popupBG0').setScale(0.6,0.9);
-        
         this.add.image(500,450,'popupBG3').setScale(0.6);
+        
         this.game = this.add.image(350,650,'wood_table').setScale(1,3);
         this.game.setInteractive();
         this.game.on('click',this.selectLevel,this);
         
-        this.add.image(650,650,'wood_table').setScale(1,3);
-        this.add.image(350,930,'wood_table').setScale(1,3);
-        this.add.image(650,930,'wood_table').setScale(1,3);
+        this.match = this.add.image(650,650,'wood_table').setScale(1,3);
+        this.match.setInteractive();
+        this.match.on('click',this.selectMatch,this);
+
+        this.upgrades = this.add.image(350,930,'wood_table').setScale(1,3);
+        this.upgrades.setInteractive();
+        this.upgrades.on('click',this.selectUpgrades,this);
+
+        this.shop = this.add.image(650,930,'wood_table').setScale(1,3);
+        this.shop.setInteractive();
+        this.shop.on('click',this.selectShop,this);
 
         this.add.dynamicBitmapText(280,770,'green','Game',35);
         
@@ -101,11 +108,16 @@ var Dashboard = new Phaser.Class({
     },
     selectLevel:function(){
         this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
-
     },
-    // selectMale:function(){
-    //     this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
-    // }
+    selectShop:function(){
+        this.scene.add('Shop', Shop, true, { x: 100, y: 300 });
+    },
+    selectUpgrades:function(){
+        this.scene.add('Upgrades', Upgrades, true, { x: 100, y: 300 });
+    },
+    selectMatch:function(){
+        this.scene.add('Match', Match, true, { x: 100, y: 300 });
+    }
 
 });
 

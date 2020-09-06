@@ -30,7 +30,7 @@ var Avator = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
 
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
-        this.close = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
         this.add.dynamicBitmapText(190,100,'fire','SELECT AVATOR',60);
 
         this.add.image(500,770,'popupBG').setScale(0.6,0.8);

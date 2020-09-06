@@ -1,12 +1,12 @@
-var Levels = new Phaser.Class({
+var Upgrades = new Phaser.Class({
 
     Extends: Phaser.Scene,
-    key:'Levels',
+    key:'Upgrades',
     initialize:
 
-    function Levels ()
+    function Upgrades()
     {
-        Phaser.Scene.call(this, { key: 'Levels', active: false });
+        Phaser.Scene.call(this, { key: 'Upgrades', active: false });
     },
 
     preload: function ()
@@ -16,9 +16,9 @@ var Levels = new Phaser.Class({
         this.load.image('popupBG0','assets/images/UI/level_select/table2.png');
         this.load.image('popupBG1','assets/images/UI/settings/92.png');
         this.load.image('popupBG2','assets/images/UI/rating/face.png');
-        this.load.image('popupBG3','assets/images/UI/level_select/header.png');
-        this.load.image('popupBG4','assets/images/UI/level_select/table.png');
-        this.load.image('popupBG5','assets/images/UI/level_select/dot_d.png');
+        this.load.image('popupBG30','assets/images/UI/shop/header.png');
+        this.load.image('popupBG40','assets/images/UI/shop/4.png');
+        this.load.image('popupBG50','assets/images/UI/shop/btn.png');
         this.load.image('lock','assets/images/UI/level_select/lock.png');
         this.load.image('dotGreen','assets/images/UI/level_select/dot_a.png');
         this.load.image('dotGrey','assets/images/UI/level_select/dot_d.png');
@@ -36,19 +36,21 @@ var Levels = new Phaser.Class({
 
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
         this.close = this.add.image(80,80,'btn_menu').setScale(0.4);
-        this.add.dynamicBitmapText(250,100,'ice','SELECT LEVEL',60);
 
         this.add.image(500,870,'popupBG').setScale(0.6,1);
         this.add.image(500,820,'popupBG0').setScale(0.6,0.85);
       
-        for(let i = 0,j=0,k=0;i<9;i++){
+        for(let i = 0,j=0,k=0;i<6;i++){
             if(i%3 == 0){
-                j +=200;
+                j +=290;
                 k=0;
             }
             k++;
-            this.add.image(100+ (k*200),400+j,'popupBG4').setScale(0.5);
-            this.add.image(100+ (k*200),400+j,'lock').setScale(0.5);
+            this.add.image(100+ (k*200),360+j,'popupBG40').setScale(0.5);
+            this.add.image(100+ (k*200),360+j,'love_potion').setScale(0.3);
+            this.add.image(100+(k*200),510+j,'popupBG50').setScale(0.5);
+            // this.add.dynamicBitmapText(50+ (k*200),490+j,'fire','$ 1.9',30);
+            this.add.text(50+ (k*200),490+j,'$ 1.9', { font: '30px Arial', fill: '#fff' })
         }
 
         this.add.image(300,1220,'btn_prew').setScale(0.5);
@@ -58,7 +60,7 @@ var Levels = new Phaser.Class({
         this.add.image(700,1220,'btn_next').setScale(0.5);
 
 
-        this.add.image(500,450,'popupBG3').setScale(0.6);
+        this.add.image(500,450,'popupBG30').setScale(0.6);
 
         // this.add.dynamicBitmapText(300,800,'ice','Male',30);
         // this.add.dynamicBitmapText(590,800,'ice','Female',30);
