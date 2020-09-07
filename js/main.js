@@ -16,7 +16,14 @@ var config = {
             debug:false
         }
     },
-    scene: [ Splash ],
+    scene: [ 
+        Splash,
+        Avator,
+        Dashboard,
+        Shop,
+        Upgrades,
+        Levels,
+    ],
     title: 'Snadder'
 }; 
 
@@ -37,6 +44,17 @@ var config = {
 // };
 
 
+window.gameDescriptor = {
+    avator:'',
+    score:0,
+    lifes:3,
+    coins:100,
+    hearts:3,
+    
+    activeSenene:'',
+    screenWidth:document.documentElement.clientWidth,
+    screenHeight:document.documentElement.clientHeight,
+}
 
 
 let game = new Phaser.Game(config);

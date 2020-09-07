@@ -35,10 +35,11 @@ var Shop = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
 
         this.shop_close = this.add.image(900,80,'btn_close').setScale(0.4);
+        
         this.shop_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
         this.shop_menu.setInteractive();
         // this.shop_menu.on('click',this.gotoMenu,this);
-        this.shop_menu.on('click',this.selectMale,this);
+        this.shop_menu.on('click',this.gotoMenu,this);
 
         this.add.image(500,870,'popupBG').setScale(0.6,1);
         this.add.image(500,820,'popupBG0').setScale(0.6,0.85);
@@ -53,7 +54,7 @@ var Shop = new Phaser.Class({
             this.add.image(100+ (k*200),360+j,'love_potion').setScale(0.3);
             this.shop_buy = this.add.image(100+(k*200),510+j,'popupBG50').setScale(0.5);
             this.shop_buy.setInteractive();
-            this.shop_buy.on('click',this.selectMale,this);
+            this.shop_buy.on('click',this.gotoMenu,this);
             // this.add.dynamicBitmapText(50+ (k*200),490+j,'fire','$ 1.9',30);
             this.add.text(50+ (k*200),490+j,'$ 1.9', { font: '30px Arial', fill: '#fff' })
         }
@@ -67,26 +68,18 @@ var Shop = new Phaser.Class({
 
         this.add.image(500,450,'popupBG30').setScale(0.6);
 
-        // this.add.dynamicBitmapText(300,800,'ice','Male',30);
-        // this.add.dynamicBitmapText(590,800,'ice','Female',30);
 
-        // this.input.once('pointerdown', function () {
-        
-        //     this.scene.add('main', MainGame, true, { x: 400, y: 300 });
+        this.input.on('gameobjectup', function (pointer, gameObject)
+        {
+            gameObject.emit('click', gameObject);
+        }, this);
 
-        // }, this);
 
         // window.splashScene = this;
         // window.splashScene.get('Splash').myMethod();
     },
     gotoMenu:function(){
-        console.log("fucking b");
-
-        this.scene.add('Dashboard', Dashboard, true, { x: 100, y: 300 });
-        console.log("fucking a");
-    },
-    selectMale:function(){
-        console.log("fhsd");
+        this.scene.start('Dashboard');
     }
 
 });

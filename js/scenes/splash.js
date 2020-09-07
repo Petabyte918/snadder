@@ -51,12 +51,7 @@ var Splash = new Phaser.Class({
             }
         });
         assetText.setOrigin(0.5, 0.5);
-        window.gameDescriptor = {
-            WIDTH:document.documentElement.clientWidth,
-            HEIGHT:document.documentElement.clientHeight,
-            camWidth:width,
-            camHeight:height,
-        };
+        
 
         this.load.image('sky', 'assets/images/sky.png');
         this.load.image('bg0','assets/images/BG_Decor.png');
@@ -87,6 +82,28 @@ var Splash = new Phaser.Class({
         this.load.image('btn_sound','assets/images/UI/btn/sound.png');
         this.load.image('btn_sound_off','assets/images/UI/btn/sound_off.png');
         this.load.image('btn_upgrade','assets/images/UI/btn/upgrade.png');
+
+        this.load.image('popupBG','assets/images/UI/settings/bg.png');
+        this.load.image('popupBG0','assets/images/UI/settings/table.png');
+        this.load.image('popupBG1','assets/images/UI/settings/92.png');
+        this.load.image('popupBG3','assets/images/UI/level_select/header.png');
+        
+        this.load.image('wood_down','assets/images/UI/bubble/down.png');
+        this.load.image('wood_up','assets/images/UI/bubble/up.png');
+        this.load.image('wood_table','assets/images/UI/bubble/table.png');
+        this.load.image('wood_level_text','assets/images/UI/bubble/level.png');
+        this.load.image('wood_clock','assets/images/UI/bubble/clock.png');
+        this.load.image('wood_bgload','assets/images/UI/bubble/bgload.png');
+        this.load.image('wood_load','assets/images/UI/bubble/load.png');
+        this.load.image('wood_star1','assets/images/UI/bubble/star_1.png');
+        this.load.image('wood_star2','assets/images/UI/bubble/star_2.png');
+        this.load.image('wood_star3','assets/images/UI/bubble/star_3.png');
+        this.load.image('wood_btn','assets/images/UI/bubble/btn_1.png');
+
+        this.load.image('coins','assets/images/icons/3.png');
+        this.load.image('cup','assets/images/icons/4.png');
+        this.load.image('love_potion','assets/images/icons/potions5.png');
+        this.load.image('hammer','assets/images/icons/10.png');
 
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');
         this.load.bitmapFont('green','assets/fonts/bitmap/shortStack.png','assets/fonts/bitmap/shortStack.xml');
@@ -120,11 +137,12 @@ var Splash = new Phaser.Class({
     {
         
 
-        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'sky').setScale(1.7);
-        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg0').setScale(1.7);
-        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
-        this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg2').setScale(1.7);
-        this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
+
+        this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
+        this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
+        this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
+        this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg2').setScale(1.7);
+        this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         this.snake = this.add.image(480, 900, 'snakes').setScale(0.7);
         // this.add.text(330, 1100,'START', { font: '100px Arial', fill: '#fff'});
@@ -133,9 +151,13 @@ var Splash = new Phaser.Class({
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         
         this.input.once('pointerdown', function () {
-        
-            this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
-
+            
+            if(window.gameDescriptor.avator == '' || window.gameDescriptor.avator == null){
+                // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
+                this.scene.start('Avator');
+            }else{
+                this.scene.start('Dashboard');
+            }
         }, this);
 
 

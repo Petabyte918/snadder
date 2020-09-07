@@ -11,26 +11,24 @@ var Avator = new Phaser.Class({
 
     preload: function ()
     {
-        
         this.load.image('popupBG','assets/images/UI/settings/bg.png');
         this.load.image('popupBG0','assets/images/UI/settings/table.png');
         this.load.image('popupBG1','assets/images/UI/settings/92.png');
         this.load.image('popupBG3','assets/images/UI/level_select/header.png');
         this.load.image('face','assets/images/UI/rating/face.png');
-        
 
     },
 
     create: function ()
     {
 
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'sky').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg0').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
-        this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        // this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
         this.add.dynamicBitmapText(190,100,'fire','SELECT AVATOR',60);
 
         this.add.image(500,770,'popupBG').setScale(0.6,0.8);
@@ -52,21 +50,19 @@ var Avator = new Phaser.Class({
             gameObject.emit('click', gameObject);
         }, this);
 
-        // this.input.once('pointerdown', function () {
-        
-        //     this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
-
-        // }, this);
-
-        // window.splashScene = this;
-        // window.splashScene.get('Splash').myMethod();
     },
     selectFemale:function(){
-        this.scene.add('Dashboard', Dashboard, true, { x: 100, y: 300 });
+        window.gameDescriptor.avator = 'female';
+        this.registry.set('avator','female');
 
+        this.scene.start('Dashboard');
     },
     selectMale:function(){
-        this.scene.add('Dashboard', Dashboard, true, { x: 100, y: 300 });
+        window.gameDescriptor.avator = 'female';
+        this.registry.set('avator','male');
+
+        this.scene.start('Dashboard');
+        
     }
 
 });
