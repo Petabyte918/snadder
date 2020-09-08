@@ -29,16 +29,15 @@ var Shop = new Phaser.Class({
     create: function ()
     {
 
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'sky').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg0').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         this.shop_close = this.add.image(900,80,'btn_close').setScale(0.4);
         
         this.shop_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
         this.shop_menu.setInteractive();
-        // this.shop_menu.on('click',this.gotoMenu,this);
         this.shop_menu.on('click',this.gotoMenu,this);
 
         this.add.image(500,870,'popupBG').setScale(0.6,1);

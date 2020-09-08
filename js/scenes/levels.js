@@ -34,21 +34,35 @@ var Levels = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
 
-        this.close = this.add.image(900,80,'btn_close').setScale(0.4);
-        this.close = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.level_close = this.add.image(900,80,'btn_close').setScale(0.4);
+        this.level_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.level_menu.setInteractive();
+        this.level_menu.on('click',this.gotoMenu,this);
+        
         this.add.dynamicBitmapText(250,100,'fire','SELECT LEVEL',60);
 
         this.add.image(500,870,'popupBG').setScale(0.6,1);
         this.add.image(500,820,'popupBG0').setScale(0.6,0.85);
       
-        for(let i = 0,j=0,k=0;i<9;i++){
+        this.levels = [];
+        for(let i = 0,j=0,k=0;i<window.gameDescriptor.levels.length;i++){
             if(i%3 == 0){
                 j +=200;
                 k=0;
             }
             k++;
-            this.add.image(100+ (k*200),400+j,'popupBG4').setScale(0.5);
-            this.add.image(100+ (k*200),400+j,'lock').setScale(0.5);
+            this.level_num =  this.add.image(100+ (k*200),400+j,'popupBG4').setScale(0.5);
+            this.level_num.setInteractive();
+            this.level_num.on('click',this.startLevel,this,window.gameDescriptor.levels[i].id);
+            this.levels.push(this.level_num);
+            
+            if(window.gameDescriptor.levels[i].state == 'locked'){
+                this.add.image(100+ (k*200),400+j,'lock').setScale(0.5);
+            }
+            else{
+                 this.add.dynamicBitmapText(75+(k*200),350+j,'fire',window.gameDescriptor.levels[i].id,75);
+                // window.gameDescriptor.selectedLevel = window.gameDescriptor.levels[i].id;
+            }
         }
 
         this.add.image(300,1220,'btn_prew').setScale(0.5);
@@ -60,17 +74,13 @@ var Levels = new Phaser.Class({
 
         this.add.image(500,450,'popupBG3').setScale(0.6);
 
-        // this.add.dynamicBitmapText(300,800,'ice','Male',30);
-        // this.add.dynamicBitmapText(590,800,'ice','Female',30);
-
-        // this.input.once('pointerdown', function () {
-        
-        //     this.scene.add('main', MainGame, true, { x: 400, y: 300 });
-
-        // }, this);
-
-        // window.splashScene = this;
-        // window.splashScene.get('Splash').myMethod();
+    },
+    startLevel:function(){
+        console.log("Level started");
+        // this.scene.start('MainGame');
+    },
+    gotoMenu:function(){
+        this.scene.start('Dashboard');
     }
 
 });

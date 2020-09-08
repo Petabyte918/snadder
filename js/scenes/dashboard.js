@@ -24,7 +24,7 @@ var Dashboard = new Phaser.Class({
 
         this.add.image(500,100,'wood_up').setScale(0.65,1);
         this.close = this.add.image(880,80,'btn_close').setScale(0.4);
-        this.close = this.add.image(100,80,'btn_menu').setScale(0.4);
+        this.close = this.add.image(100,80,'btn_settings').setScale(0.4);
 
         this.add.dynamicBitmapText(270,30,'fire','DASHBOARD',60);
 
@@ -32,7 +32,7 @@ var Dashboard = new Phaser.Class({
         
         this.add.image(170,1700,'wood_table').setScale(1,0.8);
         this.add.image(100,1700,'coins').setScale(0.15);
-        this.add.dynamicBitmapText(150,1675,'fire','99999',35);
+        this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35);
 
 
         this.add.image(700,1700,'wood_btn').setScale(0.6);
@@ -64,8 +64,6 @@ var Dashboard = new Phaser.Class({
         this.shop.on('click',this.selectShop,this);
 
         this.add.dynamicBitmapText(280,770,'green','Game',35);
-        
-
         this.add.dynamicBitmapText(600,770,'green','Match',35);
         this.add.dynamicBitmapText(250,1050,'green','Upgrades',35);
         this.add.dynamicBitmapText(600,1050,'green','shop',35);
@@ -75,26 +73,19 @@ var Dashboard = new Phaser.Class({
             gameObject.emit('click', gameObject);
         }, this);
 
-        // this.input.once('pointerdown', function () {
-        
-        //     this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
-
-        // }, this);
-
-        // window.splashScene = this;
-        // window.splashScene.get('Splash').myMethod();
     },
+
     selectLevel:function(){
-        this.scene.add('Levels', Levels, true, { x: 100, y: 300 });
+        this.scene.start('Levels');
     },
     selectShop:function(){
-        this.scene.add('Shop', Shop, true, { x: 100, y: 300 });
+        this.scene.start('Shop');
     },
     selectUpgrades:function(){
-        this.scene.add('Upgrades', Upgrades, true, { x: 100, y: 300 });
+        this.scene.start('Upgrades');
     },
     selectMatch:function(){
-        this.scene.add('Match', Match, true, { x: 100, y: 300 });
+        this.scene.start('Match');
     }
 
 });
