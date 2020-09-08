@@ -58,7 +58,13 @@ var Splash = new Phaser.Class({
         this.load.image('bg1','assets/images/Middle_Decor.png');
         this.load.image('bg2','assets/images/Foreground.png');
         this.load.image('bg3','assets/images/Ground.png');
+        
+        this.load.image('gamebg1','assets/images/bg_1.png');
+        this.load.image('gamebg2','assets/images/bg_2.png');
+        this.load.image('gamebg3','assets/images/bg_3.png');
+        this.load.image('gamebg4','assets/images/bg_4.png');
 
+        this.load.image('dice','assets/images/dice.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
 
         this.load.image('btn_blank','assets/images/UI/btn/01.png');
@@ -87,7 +93,7 @@ var Splash = new Phaser.Class({
         this.load.image('popupBG0','assets/images/UI/settings/table.png');
         this.load.image('popupBG1','assets/images/UI/settings/92.png');
         this.load.image('popupBG3','assets/images/UI/level_select/header.png');
-        
+
         this.load.image('wood_down','assets/images/UI/bubble/down.png');
         this.load.image('wood_up','assets/images/UI/bubble/up.png');
         this.load.image('wood_table','assets/images/UI/bubble/table.png');
@@ -151,7 +157,7 @@ var Splash = new Phaser.Class({
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         
         this.input.once('pointerdown', function () {
-            
+            this.scene.start("GameMain");
             if(window.gameDescriptor.avator == '' || window.gameDescriptor.avator == null){
                 // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
                 this.scene.start('Avator');

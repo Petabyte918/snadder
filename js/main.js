@@ -24,6 +24,7 @@ var config = {
         Upgrades,
         Levels,
         Match,
+        GameMain,
     ],
     title: 'Snadder'
 }; 

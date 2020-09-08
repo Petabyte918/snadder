@@ -44,7 +44,6 @@ var Levels = new Phaser.Class({
         this.add.image(500,870,'popupBG').setScale(0.6,1);
         this.add.image(500,820,'popupBG0').setScale(0.6,0.85);
       
-        this.levels = [];
         for(let i = 0,j=0,k=0;i<window.gameDescriptor.levels.length;i++){
             if(i%3 == 0){
                 j +=200;
@@ -54,8 +53,10 @@ var Levels = new Phaser.Class({
             this.level_num =  this.add.image(100+ (k*200),400+j,'popupBG4').setScale(0.5);
             this.level_num.setInteractive();
             this.level_num.on('click',this.startLevel,this,window.gameDescriptor.levels[i].id);
-            this.levels.push(this.level_num);
-            
+            this.level_num.setDataEnabled();
+            this.level_num.data.set('id',window.gameDescriptor.levels[i].id);
+            this.level_num.data.set('state',window.gameDescriptor.levels[i].state);
+
             if(window.gameDescriptor.levels[i].state == 'locked'){
                 this.add.image(100+ (k*200),400+j,'lock').setScale(0.5);
             }
@@ -74,9 +75,21 @@ var Levels = new Phaser.Class({
 
         this.add.image(500,450,'popupBG3').setScale(0.6);
 
+        this.input.on('gameobjectup', function (pointer, gameObject)
+        {
+            
+            if(gameObject.data){
+                if(gameObject.data.get('state') != 'locked'){
+                    window.gameDescriptor.selectedLevel = gameObject.data.get('id');
+                    this.scene.start("GameMain");
+                }
+            }else{
+                gameObject.emit('click', gameObject);
+            }
+        }, this);
     },
-    startLevel:function(){
-        console.log("Level started");
+    startLevel:function(a,b){
+        console.log("Level started",this);
         // this.scene.start('MainGame');
     },
     gotoMenu:function(){
