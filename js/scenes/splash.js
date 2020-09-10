@@ -64,8 +64,21 @@ var Splash = new Phaser.Class({
         this.load.image('gamebg3','assets/images/bg_3.png');
         this.load.image('gamebg4','assets/images/bg_4.png');
 
-        this.load.image('dice','assets/images/dice.png');
+        this.load.spritesheet('dice',
+                        'assets/images/sprites/dice.png',
+                        {frameWidth:99,frameHeight:80}
+        );
+
+        this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
+
+        this.load.image('icon_back1', 'assets/images/UI/icon_back/1.png');
+        this.load.image('icon_back2', 'assets/images/UI/icon_back/2.png');
+        this.load.image('icon_back3', 'assets/images/UI/icon_back/3.png');
+        this.load.image('icon_back4', 'assets/images/UI/icon_back/4.png');
+        this.load.image('icon_back5', 'assets/images/UI/icon_back/5.png');
+        this.load.image('icon_back6', 'assets/images/UI/icon_back/6.png');
+        this.load.image('icon_back7', 'assets/images/UI/icon_back/7.png');
 
         this.load.image('btn_blank','assets/images/UI/btn/01.png');
         this.load.image('btn_about','assets/images/UI/btn/about.png');

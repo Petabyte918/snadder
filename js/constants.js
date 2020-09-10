@@ -37,10 +37,14 @@ let QUESTIONS_COUNT = 100;
 
 /** game state */
 let STATES = {
+
     rolling:0, /** Rolling the die */
     moving:1,  /** Moving to next spot */
     snadder:2, /** Moving along a snake or ladder */
     gameover:3,/** Game over */
     won:4,     /** Game won */
+    ideal:5,
+    task:6,
+
 
 }
