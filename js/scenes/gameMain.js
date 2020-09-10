@@ -116,6 +116,8 @@ var GameMain = new Phaser.Class({
             this.userPin.y = window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y;
             window.gameDescriptor.state = STATES.ideal;
             this.dice.input.enabled = true;
+
+            this.scene.add('Task',Task,true,{x:100,y:100});
         }else{
             this.dice.input.enabled = true;
 
