@@ -124,7 +124,47 @@ window.gameDescriptor = {
             
         }
     ],
-    questions:[],
+    questions:[
+        {
+            qid:'123456',
+            q:'This is my first question \nanswer it or die',
+            options:[
+                {
+                    opid:1234556,
+                    img:'',
+                    txt:'apple'
+                },
+                {
+                    opid:1234556,
+                    img:'',
+                    txt:'ball'
+                },
+                {
+                    opid:1234556,
+                    img:'',
+                    txt:'cat'
+                },
+                {
+                    opid:1234556,
+                    img:'',
+                    txt:'dog'
+                },
+                {
+                    opid:1234556,
+                    img:'',
+                    txt:'elephant'
+                },
+                {
+                    opid:1234556,
+                    img:'',
+                    txt:'fish'
+                }
+            ],
+            answers:[
+                '1','2',
+            ]
+        }
+    ],
     diceNums:[1,2,3,4,5,6],
     blockedDiceNums:[],
     diceNumber:0,
