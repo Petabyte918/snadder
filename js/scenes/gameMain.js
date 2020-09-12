@@ -65,8 +65,38 @@ var GameMain = new Phaser.Class({
             repeat: -1
         });
         this.anims.create({
-            key: 'diceStop',
+            key: 'diceStop6',
             frames: [{key:'dice',frame:0 }],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'diceStop5',
+            frames: [{key:'dice',frame:5 }],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'diceStop4',
+            frames: [{key:'dice',frame:10 }],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'diceStop3',
+            frames: [{key:'dice',frame:16 }],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'diceStop2',
+            frames: [{key:'dice',frame:22 }],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'diceStop1',
+            frames: [{key:'dice',frame:28 }],
             frameRate: 10,
             repeat: -1
         });
@@ -96,7 +126,7 @@ var GameMain = new Phaser.Class({
             //     dragon.anims.play('dragon-fly');
             // });
             this.dice.once("animationrepeat", () => {
-                this.dice.anims.play('diceStop');
+                this.dice.anims.play('diceStop'+window.gameDescriptor.diceNumber);
                 window.gameDescriptor.state = STATES.moving;
                 window.gameDescriptor.playerPos += window.gameDescriptor.diceNumber;
                 console.log(window.gameDescriptor.diceNumber);
@@ -116,8 +146,12 @@ var GameMain = new Phaser.Class({
             this.userPin.y = window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y;
             window.gameDescriptor.state = STATES.ideal;
             this.dice.input.enabled = true;
-
-            this.scene.add('Task',Task,true,{x:100,y:100});
+            if(this.scene.get('Task')){
+                this.scene.get('Task').refresh();
+                this.scene.setVisible(true,'Task');
+            }else{
+                this.scene.add('Task',Task,true,{x:100,y:100});
+            }
         }else{
             this.dice.input.enabled = true;
 

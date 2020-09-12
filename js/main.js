@@ -127,41 +127,41 @@ window.gameDescriptor = {
     questions:[
         {
             qid:'123456',
-            q:'This is my first question \nanswer it or die',
+            q:'Which of them are memals \nanswer it or die',
             options:[
                 {
-                    opid:1234556,
+                    opid:6,
                     img:'',
                     txt:'apple'
                 },
                 {
-                    opid:1234556,
+                    opid:1,
                     img:'',
                     txt:'ball'
                 },
                 {
-                    opid:1234556,
+                    opid:2,
                     img:'',
                     txt:'cat'
                 },
                 {
-                    opid:1234556,
+                    opid:3,
                     img:'',
                     txt:'dog'
                 },
                 {
-                    opid:1234556,
+                    opid:4,
                     img:'',
                     txt:'elephant'
                 },
                 {
-                    opid:1234556,
+                    opid:5,
                     img:'',
                     txt:'fish'
                 }
             ],
             answers:[
-                '1','2',
+                '2','3','4'
             ]
         }
     ],
