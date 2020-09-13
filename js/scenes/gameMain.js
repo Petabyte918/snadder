@@ -116,6 +116,9 @@ var GameMain = new Phaser.Class({
     
     },
     update:function(){
+        // if(window.gameDescriptor.debug){
+        //     console.log("state:"+window.gameDescriptor.state)
+        // }
 
         this.coins.setText(window.gameDescriptor.coins);
         if(window.gameDescriptor.state == STATES.taskPass){
@@ -124,14 +127,7 @@ var GameMain = new Phaser.Class({
         if(window.gameDescriptor.state == STATES.taskFail){
             this.dice.input.enabled = true;
         }
-        if(window.gameDescriptor.state == STATES.moving){
-            if(!this.userPin.isFollowing()){
-                window.gameDescriptor.state = STATES.task;
-                // this.startTask();
-                console.log("state:"+window.gameDescriptor.state)
-            }
-            
-        }
+        
     },
     gotoMenu:function(){
         this.scene.start('Dashboard');
@@ -161,7 +157,7 @@ var GameMain = new Phaser.Class({
 
         var points = [];
         var tiles = window.gameDescriptor.tiles;
-        for(let i=window.gameDescriptor.playerLastPos;i<window.gameDescriptor.playerPos;i++){
+        for(let i=window.gameDescriptor.playerLastPos;i<=window.gameDescriptor.playerPos;i++){
             points.push(new Phaser.Math.Vector2(tiles[i].x,tiles[i].y));
         }
         this.curve = new Phaser.Curves.Spline(points);
@@ -186,6 +182,10 @@ var GameMain = new Phaser.Class({
             repeat: 0,
             rotateToPath: false
         });
+        setTimeout(function(context){
+            window.gameDescriptor.state = STATES.task;
+            context.startTask();
+        }, 3000,this);
         
     },
     startTask:function(){
