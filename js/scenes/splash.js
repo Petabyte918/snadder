@@ -65,8 +65,24 @@ var Splash = new Phaser.Class({
         this.load.image('gamebg4','assets/images/bg_4.png');
 
         this.load.spritesheet('dice',
-                        'assets/images/sprites/dice.png',
-                        {frameWidth:99,frameHeight:80}
+            'assets/images/sprites/dice.png',
+            {frameWidth:99,frameHeight:80}
+        );
+        this.load.spritesheet('male', 
+            'assets/images/avators.png',
+            { frameWidth: 32, frameHeight: 48 }
+        );
+        this.load.spritesheet('fairy', 
+            'assets/images/fairy.png',
+            { frameWidth: 48, frameHeight: 48 }
+        );
+        this.load.spritesheet('cobra', 
+            'assets/images/cobras.png',
+            { frameWidth: 48, frameHeight: 48 }
+        );
+        this.load.spritesheet('demon', 
+            'assets/images/demons.png',
+            { frameWidth: 48, frameHeight: 48 }
         );
 
         this.load.image('user_pin','assets/images/userpin.png');
@@ -170,7 +186,7 @@ var Splash = new Phaser.Class({
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         
         this.input.once('pointerdown', function () {
-            this.scene.start("GameMain");
+            // this.scene.start("GameMain");
             if(window.gameDescriptor.avator == '' || window.gameDescriptor.avator == null){
                 // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
                 this.scene.start('Avator');

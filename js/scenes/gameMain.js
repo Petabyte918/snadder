@@ -59,6 +59,8 @@ var GameMain = new Phaser.Class({
         this.dice.on('click',this.rollDice,this);
         // this.dice.data.set('objectType','dice');
 
+       
+        /** dice */
         this.anims.create({
             key: 'diceRoll',
             frames: this.anims.generateFrameNumbers('dice', { start: 0, end:5 }),
@@ -101,6 +103,27 @@ var GameMain = new Phaser.Class({
             frameRate: 10,
             repeat: -1
         });
+         /** fairies */
+         this.anims.create({
+            key: 'fairyHover',
+            frames: this.anims.generateFrameNumbers('fairy', { start: 3, end: 6 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        /** cobras */
+        this.anims.create({
+            key: 'cobraHover',
+            frames: this.anims.generateFrameNumbers('cobra', { start: 12, end: 35 }),
+            frameRate: 8,
+            repeat: -1
+        });
+        /** demons */
+        this.anims.create({
+            key: 'demonHover',
+            frames: this.anims.generateFrameNumbers('demon', { start: 0, end: 11 }),
+            frameRate: 8,
+            repeat: -1
+        });
         this.input.on('pointerdown', function (pointer) {
             console.log(pointer.downX,pointer.downY);
         }, this);
@@ -113,21 +136,31 @@ var GameMain = new Phaser.Class({
         
         //         lemming.pauseFollow();
         //         lemming.resumeFollow();
-    
+        /** Adding features to the tiles */
+        this.addFeaturesToTile();
+
     },
     update:function(){
         // if(window.gameDescriptor.debug){
         //     console.log("state:"+window.gameDescriptor.state)
         // }
 
+        
         this.coins.setText(window.gameDescriptor.coins);
         if(window.gameDescriptor.state == STATES.taskPass){
+            window.gameDescriptor.state = STATES.ideal;
             this.dice.input.enabled = true;
         }
         if(window.gameDescriptor.state == STATES.taskFail){
+            window.gameDescriptor.state = STATES.ideal;
+
             this.dice.input.enabled = true;
         }
         
+
+
+
+
     },
     gotoMenu:function(){
         this.scene.start('Dashboard');
@@ -173,15 +206,21 @@ var GameMain = new Phaser.Class({
                 this.graphics.fillCircle(points[i].x, points[i].y, 4);
             }
         }
-        
-        this.userPin = this.add.follower(this.curve, tiles[0].x, tiles[0].y, 'user_pin').setOrigin(0.5,1);
+        if(this.userPin){
+            this.userPin.setPath(this.curve);
+        }
+        else{
+            this.userPin = this.add.follower(this.curve, tiles[window.gameDescriptor.playerLastPos].x, tiles[window.gameDescriptor.playerLastPos].y, 'user_pin').setOrigin(0.5,1);
+        }
         this.userPinFake.setVisible(false);
         this.userPin.startFollow({
             duration: 3000,
             yoyo: false,
             repeat: 0,
-            rotateToPath: false
+            rotateToPath: false,
+            verticalAdjust: true
         });
+        window.gameDescriptor.playerLastPos = window.gameDescriptor.playerPos;
         setTimeout(function(context){
             window.gameDescriptor.state = STATES.task;
             context.startTask();
@@ -198,6 +237,33 @@ var GameMain = new Phaser.Class({
             }
         }
         
+    },
+    updateCoins:function(){
+        this.coins.setText(''+window.gameDescriptor.coins);
+    },
+    addFeaturesToTile:function(){
+        for(let tile of window.gameDescriptor.tiles){
+            if(tile.tileType == 1){
+                if(tile.featureType == 'fairy'){
+                    tile.feature = this.add.sprite(tile.x,tile.y,'fairy');
+                    tile.feature.setScale(1.3);
+                    tile.feature.setOrigin(0.5,1.3);
+                    tile.feature.anims.play('fairyHover',true);
+                }
+                if(tile.featureType == 'demon'){
+                    tile.feature = this.add.sprite(tile.x,tile.y,'demon');
+                    tile.feature.setScale(2.4);
+                    tile.feature.setOrigin(0.5,1);
+                    tile.feature.anims.play('demonHover',true);
+                }
+                if(tile.featureType == 'cobra'){
+                    tile.feature = this.add.sprite(tile.x,tile.y,'cobra');
+                    tile.feature.setScale(2);
+                    tile.feature.setOrigin(0.5,1);
+                    tile.feature.anims.play('cobraHover',true);
+                }
+            }
+        }
     }
 
 
