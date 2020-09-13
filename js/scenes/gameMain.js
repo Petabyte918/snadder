@@ -2,6 +2,7 @@ var GameMain = new Phaser.Class({
 
     Extends: Phaser.Scene,
     key:'GameMain',
+    userPin:null,
     initialize:
 
     function GameMain ()
@@ -35,7 +36,7 @@ var GameMain = new Phaser.Class({
         
         this.add.image(170,1700,'wood_table').setScale(1,0.8);
         this.add.image(100,1700,'coins').setScale(0.15);
-        this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35);
+        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35);
 
 
         this.add.image(700,1700,'wood_btn').setScale(0.6);
@@ -46,7 +47,7 @@ var GameMain = new Phaser.Class({
         this.add.image(900,1700,'hammer').setScale(0.2);
 
         
-        this.userPin = this.add.image(
+        this.userPinFake = this.add.image(
             window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
             window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,
             'user_pin'
@@ -109,7 +110,28 @@ var GameMain = new Phaser.Class({
             gameObject.emit('click', gameObject);
         }, this);
 
+        
+        //         lemming.pauseFollow();
+        //         lemming.resumeFollow();
+    
+    },
+    update:function(){
 
+        this.coins.setText(window.gameDescriptor.coins);
+        if(window.gameDescriptor.state == STATES.taskPass){
+            this.dice.input.enabled = true;
+        }
+        if(window.gameDescriptor.state == STATES.taskFail){
+            this.dice.input.enabled = true;
+        }
+        if(window.gameDescriptor.state == STATES.moving){
+            if(!this.userPin.isFollowing()){
+                window.gameDescriptor.state = STATES.task;
+                // this.startTask();
+                console.log("state:"+window.gameDescriptor.state)
+            }
+            
+        }
     },
     gotoMenu:function(){
         this.scene.start('Dashboard');
@@ -132,30 +154,50 @@ var GameMain = new Phaser.Class({
                 console.log(window.gameDescriptor.diceNumber);
                 this.movePlayer();
             });
-            // setTimeout(function(dice){
-            //     window.gameDescriptor.state = STATES.moving;
-            //     dice.input.enabled = true;
-            //     console.log(window.gameDescriptor.diceNumber);
-            // },1000,this.dice);
+            
         }
     },
     movePlayer:function(){
-        console.log("moving");
-        if(window.gameDescriptor.playerPos < window.gameDescriptor.tiles.length){
-            this.userPin.x = window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x;
-            this.userPin.y = window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y;
-            window.gameDescriptor.state = STATES.ideal;
-            this.dice.input.enabled = true;
+
+        var points = [];
+        var tiles = window.gameDescriptor.tiles;
+        for(let i=window.gameDescriptor.playerLastPos;i<window.gameDescriptor.playerPos;i++){
+            points.push(new Phaser.Math.Vector2(tiles[i].x,tiles[i].y));
+        }
+        this.curve = new Phaser.Curves.Spline(points);
+
+        if(window.gameDescriptor.debug){
+            this.graphics =  this.add.graphics();
+            this.graphics.lineStyle(1, 0xffffff, 1);
+            this.curve.draw(this.graphics, 64);
+    
+            this.graphics.fillStyle(0x00ff00, 1);
+            for (var i = 0; i < points.length; i++)
+            {
+                this.graphics.fillCircle(points[i].x, points[i].y, 4);
+            }
+        }
+        
+        this.userPin = this.add.follower(this.curve, tiles[0].x, tiles[0].y, 'user_pin').setOrigin(0.5,1);
+        this.userPinFake.setVisible(false);
+        this.userPin.startFollow({
+            duration: 3000,
+            yoyo: false,
+            repeat: 0,
+            rotateToPath: false
+        });
+        
+    },
+    startTask:function(){
+        if(window.gameDescriptor.state == STATES.task){
             if(this.scene.get('Task')){
                 this.scene.get('Task').refresh();
                 this.scene.setVisible(true,'Task');
             }else{
                 this.scene.add('Task',Task,true,{x:100,y:100});
             }
-        }else{
-            this.dice.input.enabled = true;
-
         }
+        
     }
 
 

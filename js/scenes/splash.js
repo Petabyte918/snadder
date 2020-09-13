@@ -166,7 +166,7 @@ var Splash = new Phaser.Class({
         this.snake = this.add.image(480, 900, 'snakes').setScale(0.7);
         // this.add.text(330, 1100,'START', { font: '100px Arial', fill: '#fff'});
         this.add.image(480,1200,'btn_play');
-        this.snadder = this.add.dynamicBitmapText(150,500,'fire','SNADDER',128);
+        this.snadder = this.add.dynamicBitmapText(100,500,'fire','LOVELUDO',128);
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         
         this.input.once('pointerdown', function () {

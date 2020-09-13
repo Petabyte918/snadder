@@ -45,6 +45,8 @@ let STATES = {
     won:4,     /** Game won */
     ideal:5,
     task:6,
+    taskPass:7,
+    taskFail:8,
 
 
 }

@@ -70,6 +70,7 @@ var Task = new Phaser.Class({
         for(let op of this.options){
             op.input.enabled = true;
             op.setTint('0xffffff');
+            this.selectedOptions = [];
         }
     },
     makeSelected:function(object){
@@ -107,11 +108,12 @@ var Task = new Phaser.Class({
         console.log("jdka");
         task.scene.setVisible(false,'Task');
         window.gameDescriptor.coins += 100;
-
+        window.gameDescriptor.state = STATES.taskPass;
     },
     punish:function(task){
         task.scene.setVisible(false,'Task');
         window.gameDescriptor.coins -= 50;
+        window.gameDescriptor.state = STATES.taskFail;
     }
 
 });

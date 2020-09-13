@@ -47,7 +47,9 @@ var config = {
 
 
 window.gameDescriptor = {
+    debug:true,
     state:STATES.ideal,
+    playerLastPos:0,
     playerPos:0,
     avator:'',
     score:0,
@@ -280,7 +282,6 @@ window.gameDescriptor = {
 
 
 let game = new Phaser.Game(config);
-
 
 
 // class MyScene extends Phaser.Scene {
