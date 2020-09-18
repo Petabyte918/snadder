@@ -18,7 +18,10 @@ function getQuestion(){
         "qid":window.gameDescriptor.questions[rand].qid
     };
 }
-
+function getQuestionData(){
+    let rand = getRandom(0,window.gameDescriptor.questions.length-1);
+    return window.gameDescriptor.questions[rand];
+}
 function getOptions(qid){
     let questions = window.gameDescriptor.questions;
     let options = null;

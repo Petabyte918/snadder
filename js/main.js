@@ -128,7 +128,7 @@ window.gameDescriptor = {
     ],
     questions:[
         {
-            qid:'123456',
+            qid:1,
             q:'Which of them are memals \nanswer it or die',
             options:[
                 {
@@ -163,11 +163,11 @@ window.gameDescriptor = {
                 }
             ],
             answers:[
-                '2','3','4'
+                2,3,4
             ]
         },
         {
-            qid:'123456',
+            qid:2,
             q:'Is Education neccessary \nanswer it or die',
             options:[
                 {
@@ -202,7 +202,7 @@ window.gameDescriptor = {
                 }
             ],
             answers:[
-                '3','4'
+                3,4
             ]
         }
     ],
