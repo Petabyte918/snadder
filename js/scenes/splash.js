@@ -69,19 +69,19 @@ var Splash = new Phaser.Class({
             {frameWidth:99,frameHeight:80}
         );
         this.load.spritesheet('male', 
-            'assets/images/avators.png',
+            'assets/images/sprites/avators.png',
             { frameWidth: 32, frameHeight: 48 }
         );
         this.load.spritesheet('fairy', 
-            'assets/images/fairy.png',
+            'assets/images/sprites/fairy.png',
             { frameWidth: 48, frameHeight: 48 }
         );
         this.load.spritesheet('cobra', 
-            'assets/images/cobras.png',
+            'assets/images/sprites/cobras.png',
             { frameWidth: 48, frameHeight: 48 }
         );
         this.load.spritesheet('demon', 
-            'assets/images/demons.png',
+            'assets/images/sprites/demons.png',
             { frameWidth: 48, frameHeight: 48 }
         );
 

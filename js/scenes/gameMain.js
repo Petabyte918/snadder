@@ -156,10 +156,6 @@ var GameMain = new Phaser.Class({
 
             this.dice.input.enabled = true;
         }
-        
-
-
-
 
     },
     gotoMenu:function(){
