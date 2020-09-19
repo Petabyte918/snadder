@@ -143,6 +143,14 @@ var Splash = new Phaser.Class({
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');
         this.load.bitmapFont('green','assets/fonts/bitmap/shortStack.png','assets/fonts/bitmap/shortStack.xml');
     
+        // audios
+        this.load.audio('music0',['assets/audio/music/music0.mp3']);
+        this.load.audioSprite('ui_sfx','assets/audio/UI_sounds/sounds.json',['assets/audio/UI_sounds/sounds.mp3']);
+        this.load.audioSprite('ui_button','assets/audio/UI_sounds/button.json',['assets/audio/UI_sounds/button.mp3']);
+
+
+
+
         this.load.on('progress', function (value) {
             // console.log(value);
             progressBar.clear();
@@ -171,8 +179,8 @@ var Splash = new Phaser.Class({
     create: function ()
     {
         
-
-
+        var spritemap = this.cache.json.get('ui_sfx').spritemap;
+        // console.log(spritemap);
         this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
         this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
         this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
@@ -187,6 +195,7 @@ var Splash = new Phaser.Class({
         
         this.input.once('pointerdown', function () {
             // this.scene.start("GameMain");
+            this.sound.playAudioSprite('ui_sfx', 'game-start');
             if(window.gameDescriptor.avator == '' || window.gameDescriptor.avator == null){
                 // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
                 this.scene.start('Avator');

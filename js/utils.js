@@ -48,7 +48,7 @@ function checkOptAnswers(qid,answers){
     let questions = window.gameDescriptor.questions;
     let isMatched = false;
     for(question of questions){
-        if(question.qid = qid){
+        if(question.qid == qid){
             isMatched = arrayEquals(answers,question.answers);
         }
     }

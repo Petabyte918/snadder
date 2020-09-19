@@ -1,0 +1,35 @@
+{
+    "resources": [
+        "./assets/audio/UI_sounds/button.mp3"
+      ],
+    "spritemap": {
+        "button0":{
+            "start":0.5,
+            "end":1,
+            "loop":false
+        },
+        "button1":{
+            "start":2.5,
+            "end":3,
+            "loop":false
+        },
+        "button2":{
+            "start":4.5,
+            "end":5,
+            "loop":false
+        },
+        "button3":{
+            "start":6.5,
+            "end":7,
+            "loop":false
+        },
+        "button4":{
+            "start":9.2,
+            "end":10,
+            "loop":false,
+            "volume":1
+        }
+        
+        
+    }
+}

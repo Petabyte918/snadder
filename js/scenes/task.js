@@ -43,13 +43,14 @@ var Task = new Phaser.Class({
             }
             k++;
             let op = this.add.image(100+ (k*260),400+j,'popupBG4').setScale(0.8);
-            op.setInteractive();
-            op.on('click',this.makeSelected,this);
-            op.setDataEnabled();
-            op.data.set('opid',this.task.options[i].opid);
+                op.setInteractive();
+                op.on('click',this.makeSelected,this);
+                op.setDataEnabled();
+                op.data.set('opid',this.task.options[i].opid);
             this.task.optionBlocks.push(op);
+            
             let optxt = this.add.dynamicBitmapText(60+ (k*270),495+j,'green','',35);
-            optxt.setText(this.task.options[i].txt);
+                optxt.setText(this.task.options[i].txt);
             this.task.optionTexts.push(optxt);
         }
         this.add.image(500,280,'popupBG3').setScale(0.6);
@@ -62,25 +63,26 @@ var Task = new Phaser.Class({
             gameObject.emit('click', gameObject);
         }, this);
         
-
+        console.log(this.task);
 
     },
     refresh:function(){
-        this.task = null;
-        this.task = getQuestionData();
-        this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
+        let question = getQuestionData();
+        this.task.qid = question.qid;
+        this.task.q = question.q;
+        this.task.options = question.options;
+        this.task.answers = question.answers;
         this.task['questionText'].setText(this.task.q);
         this.task['selectedOptions'] = [];
-        this.task['optionTexts'] = [];
-        this.task['optionBlocks'] = [];
-        // for(let i = 0;i<(options != null?options.length:0);i++){
-        //     this.optionText[i].setText(options[i].txt);
-        // }
-        // for(let op of this.options){
-        //     op.input.enabled = true;
-        //     op.setTint('0xffffff');
-        //     this.selectedOptions = [];
-        // }
+        for(let i = 0;i<(this.task.options != null?this.task.options.length:0);i++){
+            this.task.optionTexts[i].setText(this.task.options[i].txt);
+        }
+        for(let opb of this.task.optionBlocks){
+            opb.input.enabled = true;
+            opb.setTint('0xffffff');
+        }
+        console.log(this.task);
+
     },
     makeSelected:function(object){
         if(!this.task.selectedOptions.includes(object.data.get('opid')) ){
@@ -113,12 +115,13 @@ var Task = new Phaser.Class({
         }
     },
     reward:function(task){
-        console.log("jdka");
+        console.log("Correct answer");
         task.scene.setVisible(false,'Task');
         window.gameDescriptor.coins += 100;
         window.gameDescriptor.state = STATES.taskPass;
     },
     punish:function(task){
+        console.log("InCorrect answer");
         task.scene.setVisible(false,'Task');
         window.gameDescriptor.coins -= 50;
         window.gameDescriptor.state = STATES.taskFail;

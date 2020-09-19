@@ -12,6 +12,14 @@ Array.prototype.remove = function() {
     return this;
 };
 
+Array.prototype.isArrayEqual = function(SecondaryArray){
+    if(this.sort().join(',')=== SecondaryArray.sort().join(',')){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 /**
  * String prototypes
  */

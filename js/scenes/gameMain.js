@@ -134,10 +134,23 @@ var GameMain = new Phaser.Class({
         }, this);
 
         
-        //         lemming.pauseFollow();
-        //         lemming.resumeFollow();
+        //   lemming.pauseFollow();
+        //   lemming.resumeFollow();
         /** Adding features to the tiles */
         this.addFeaturesToTile();
+        var music = this.sound.add('music0', {
+            volume: 0.3
+        });
+        music.play();
+        // music.on('ended', function (sound) {
+        //     setTimeout(function () {
+        //         this.sys.game.destroy(true);
+        //         document.addEventListener('mousedown', function newGame () {
+        //             game = new Phaser.Game(config);
+        //             document.removeEventListener('mousedown', newGame);
+        //         });
+        //     }.bind(this));
+        // }, this);
 
     },
     update:function(){
@@ -220,7 +233,7 @@ var GameMain = new Phaser.Class({
         setTimeout(function(context){
             window.gameDescriptor.state = STATES.task;
             context.startTask();
-        }, 3000,this);
+        }, 3200,this);
         
     },
     startTask:function(){

@@ -45,24 +45,33 @@ var Avator = new Phaser.Class({
         this.add.dynamicBitmapText(300,800,'green','Male',30);
         this.add.dynamicBitmapText(590,800,'green','Female',30);
 
+        this.input.on('gameobjectdown', function (pointer, gameObject)
+        {
+            this.sound.playAudioSprite('ui_button', 'button4');
+        }, this);
+        this.input.on('gameobjectover', function (pointer, gameObject)
+        {
+            gameObject.setTint('0x56f787');
+        });
+        this.input.on('gameobjectout', function (pointer, gameObject)
+        {
+            gameObject.setTint('0xffffff');
+        });
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
             gameObject.emit('click', gameObject);
-        }, this);
+        });
 
     },
     selectFemale:function(){
         window.gameDescriptor.avator = 'female';
         this.registry.set('avator','female');
-
         this.scene.start('Dashboard');
     },
     selectMale:function(){
-        window.gameDescriptor.avator = 'female';
+        window.gameDescriptor.avator = 'male';
         this.registry.set('avator','male');
-
         this.scene.start('Dashboard');
-        
     }
 
 });
