@@ -75,9 +75,12 @@ var Levels = new Phaser.Class({
 
         this.add.image(500,450,'popupBG3').setScale(0.6);
 
+        this.input.on('gameobjectdown', function (pointer, gameObject)
+        {
+            this.sound.playAudioSprite('ui_button', 'button4');
+        }, this);
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
-            
             if(gameObject.data){
                 if(gameObject.data.get('state') != 'locked'){
                     window.gameDescriptor.selectedLevel = gameObject.data.get('id');
@@ -87,6 +90,16 @@ var Levels = new Phaser.Class({
                 gameObject.emit('click', gameObject);
             }
         }, this);
+        
+        this.input.on('gameobjectover', function (pointer, gameObject)
+        {
+            gameObject.setTint('0x56f787');
+        });
+        this.input.on('gameobjectout', function (pointer, gameObject)
+        {
+            gameObject.setTint('0xffffff');
+        });
+        
     },
     startLevel:function(a,b){
         console.log("Level started",this);

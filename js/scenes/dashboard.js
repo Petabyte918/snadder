@@ -68,10 +68,22 @@ var Dashboard = new Phaser.Class({
         this.add.dynamicBitmapText(250,1050,'green','Upgrades',35);
         this.add.dynamicBitmapText(600,1050,'green','shop',35);
 
+        this.input.on('gameobjectdown', function (pointer, gameObject)
+        {
+            this.sound.playAudioSprite('ui_button', 'button4');
+        }, this);
+        this.input.on('gameobjectover', function (pointer, gameObject)
+        {
+            gameObject.setTint('0x56f787');
+        });
+        this.input.on('gameobjectout', function (pointer, gameObject)
+        {
+            gameObject.setTint('0xffffff');
+        });
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
             gameObject.emit('click', gameObject);
-        }, this);
+        });
 
     },
 
