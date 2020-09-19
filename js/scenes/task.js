@@ -62,6 +62,18 @@ var Task = new Phaser.Class({
         {
             gameObject.emit('click', gameObject);
         }, this);
+        this.input.on('gameobjectdown', function (pointer, gameObject)
+        {
+            this.sound.playAudioSprite('ui_button', 'button4');
+        }, this);
+        this.input.on('gameobjectover', function (pointer, gameObject)
+        {
+            gameObject.setTint('0x56f787');
+        });
+        this.input.on('gameobjectout', function (pointer, gameObject)
+        {
+            gameObject.setTint('0xffffff');
+        });
         
         console.log(this.task);
 
