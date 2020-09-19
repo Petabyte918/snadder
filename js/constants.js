@@ -50,3 +50,12 @@ let STATES = {
 
 
 }
+
+let MUTE = 1;
+let UNMUTE = 0;
+
+let MUSIC_STATES = {
+    playing:0,
+    stoped:1,
+}
+

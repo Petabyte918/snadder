@@ -68,11 +68,27 @@ var Task = new Phaser.Class({
         }, this);
         this.input.on('gameobjectover', function (pointer, gameObject)
         {
-            gameObject.setTint('0x56f787');
+            if(gameObject.data){
+                if(!gameObject.data.get('isSelected')){
+                    gameObject.setTint('0x56f787');
+                }
+            }
+            else{
+                gameObject.setTint('0x56f787');
+            }
         });
         this.input.on('gameobjectout', function (pointer, gameObject)
         {
-            gameObject.setTint('0xffffff');
+            if(gameObject.data){
+                if(gameObject.data.get('isSelected')){
+
+                }else{
+                    gameObject.setTint('0xffffff');
+                }
+            }
+            else{
+                gameObject.setTint('0xffffff');
+            }
         });
         
         console.log(this.task);
@@ -100,8 +116,10 @@ var Task = new Phaser.Class({
         if(!this.task.selectedOptions.includes(object.data.get('opid')) ){
             this.task.selectedOptions.push(object.data.get('opid'));
             object.setTint('0x00ff00');
+            object.data.set('isSelected',true);
         }else{
             object.setTint('0xffffff');
+            object.data.set('isSelected',false);
             this.task.selectedOptions.remove(object.data.get('opid'));
         }
         console.log(this.task.selectedOptions);

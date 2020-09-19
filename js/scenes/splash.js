@@ -84,6 +84,10 @@ var Splash = new Phaser.Class({
             'assets/images/sprites/demons.png',
             { frameWidth: 48, frameHeight: 48 }
         );
+        this.load.spritesheet('coin_sprite', 
+            'assets/images/sprites/coin_sprite.png',
+            { frameWidth: 50, frameHeight: 50 }
+        );
 
         this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
@@ -189,12 +193,18 @@ var Splash = new Phaser.Class({
 
         this.snake = this.add.image(480, 900, 'snakes').setScale(0.7);
         // this.add.text(330, 1100,'START', { font: '100px Arial', fill: '#fff'});
-        this.add.image(480,1200,'btn_play');
+        this.play = this.add.image(480,1200,'btn_play');
+        this.play.setInteractive();
         this.snadder = this.add.dynamicBitmapText(100,500,'fire','LOVELUDO',128);
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         
         this.input.once('pointerdown', function () {
             // this.scene.start("GameMain");
+            
+        }, this);
+
+        this.input.on('gameobjectup', function (pointer, gameObject)
+        {
             this.sound.playAudioSprite('ui_sfx', 'game-start');
             if(window.gameDescriptor.avator == '' || window.gameDescriptor.avator == null){
                 // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
@@ -203,7 +213,18 @@ var Splash = new Phaser.Class({
                 this.scene.start('Dashboard');
             }
         }, this);
-
+        this.input.on('gameobjectdown', function (pointer, gameObject)
+        {
+            this.sound.playAudioSprite('ui_button', 'button4');
+        }, this);
+        this.input.on('gameobjectover', function (pointer, gameObject)
+        {
+            gameObject.setTint('0x56f787');
+        });
+        this.input.on('gameobjectout', function (pointer, gameObject)
+        {
+            gameObject.setTint('0xffffff');
+        });
 
         // window.splashScene = this;
         // window.splashScene.get('Splash').myMethod();

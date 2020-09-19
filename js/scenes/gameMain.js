@@ -124,6 +124,13 @@ var GameMain = new Phaser.Class({
             frameRate: 8,
             repeat: -1
         });
+        /** Coins */
+        this.anims.create({
+            key: 'coin_rotate',
+            frames: this.anims.generateFrameNumbers('coin_sprite', { start: 0, end: 8 }),
+            frameRate: 8,
+            repeat: -1
+        });
         this.input.on('pointerdown', function (pointer) {
             console.log(pointer.downX,pointer.downY);
         }, this);
@@ -150,10 +157,33 @@ var GameMain = new Phaser.Class({
         //   lemming.resumeFollow();
         /** Adding features to the tiles */
         this.addFeaturesToTile();
-        var music = this.sound.add('music0', {
-            volume: 0.3
+        this.music = this.sound.add('music0', {
+            mute: false,
+            volume: 0.3,
+            rate: 0.8,
+            detune: -900,
+            seek: 0,
+            loop: false,
+            delay: 0
         });
-        music.play();
+        this.music.play();
+
+        var cursors = this.input.keyboard.createCursorKeys();
+        var controlConfig = {
+            camera: this.cameras.main,
+            left: cursors.left,
+            right: cursors.right,
+            up: cursors.up,
+            down: cursors.down,
+            zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
+            zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
+            acceleration: 0.06,
+            drag: 0.0005,
+            maxSpeed: 1.0
+        };
+    
+        this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
+    
         // music.on('ended', function (sound) {
         //     setTimeout(function () {
         //         this.sys.game.destroy(true);
@@ -164,27 +194,42 @@ var GameMain = new Phaser.Class({
         //     }.bind(this));
         // }, this);
 
+        
     },
-    update:function(){
+    update:function(time,delta){
         // if(window.gameDescriptor.debug){
         //     console.log("state:"+window.gameDescriptor.state)
         // }
-
+        this.controls.update(delta);
         
         this.coins.setText(window.gameDescriptor.coins);
         if(window.gameDescriptor.state == STATES.taskPass){
             window.gameDescriptor.state = STATES.ideal;
+            if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
+                window.gameDescriptor.tiles[window.gameDescriptor.playerPos].feature.destroy();
+                if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos].number){
+                    window.gameDescriptor.tiles[window.gameDescriptor.playerPos].number.setOrigin(0.5,1);
+
+                }
+            }
             this.dice.input.enabled = true;
+            this.music.setMute(UNMUTE);
+            
+
         }
         if(window.gameDescriptor.state == STATES.taskFail){
             window.gameDescriptor.state = STATES.ideal;
-
             this.dice.input.enabled = true;
+            this.music.setMute(UNMUTE);
+
         }
 
     },
     gotoMenu:function(){
-        this.scene.start('Dashboard');
+        if(window.gameDescriptor.state == STATES.ideal){
+            this.music.setMute(MUTE);
+            this.scene.start('Dashboard');
+        }
     },
     rollDice:function(){
         
@@ -227,6 +272,7 @@ var GameMain = new Phaser.Class({
                 this.graphics.fillCircle(points[i].x, points[i].y, 4);
             }
         }
+
         if(this.userPin){
             this.userPin.setPath(this.curve);
         }
@@ -250,6 +296,7 @@ var GameMain = new Phaser.Class({
     },
     startTask:function(){
         if(window.gameDescriptor.state == STATES.task){
+            this.music.setMute(MUTE);
             if(this.scene.get('Task')){
                 this.scene.get('Task').refresh();
                 this.scene.setVisible(true,'Task');
@@ -263,6 +310,7 @@ var GameMain = new Phaser.Class({
         this.coins.setText(''+window.gameDescriptor.coins);
     },
     addFeaturesToTile:function(){
+        let i=0;
         for(let tile of window.gameDescriptor.tiles){
             if(tile.tileType == 1){
                 if(tile.featureType == 'fairy'){
@@ -284,6 +332,20 @@ var GameMain = new Phaser.Class({
                     tile.feature.anims.play('cobraHover',true);
                 }
             }
+            else{
+                if(i >0){
+                    tile.feature = this.add.sprite(tile.x+5,tile.y,'coin_sprite');
+                    tile.feature.anims.play('coin_rotate',true);
+                    tile.feature.setOrigin(0.5,1.3);
+                    tile['number'] = this.add.dynamicBitmapText(tile.x,tile.y,'fire',i,35)
+                        .setOrigin(0.5,2.2)
+                        .setTint('0xd0733144');
+
+                }
+                
+            }
+
+            i++;
         }
     }
 
