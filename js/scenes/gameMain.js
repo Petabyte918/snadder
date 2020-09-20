@@ -194,11 +194,11 @@ var GameMain = new Phaser.Class({
         //     }.bind(this));
         // }, this);
 
-        console.log(this.cameras.main._x)
     },
     update:function(time,delta){
         
         this.controls.update(delta);
+        // console.log(this.cameras.main._x)
         
         this.coins.setText(window.gameDescriptor.coins);
         if(window.gameDescriptor.state == STATES.taskPass){

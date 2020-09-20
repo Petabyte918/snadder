@@ -95,6 +95,7 @@ var Task = new Phaser.Class({
 
     },
     refresh:function(){
+        this.submit.input.enabled = true;
         let question = getQuestionData();
         this.task.qid = question.qid;
         this.task.q = question.q;
@@ -126,6 +127,7 @@ var Task = new Phaser.Class({
 
     },
     checkSubmit:function(object){
+        this.submit.input.enabled = false;
         for(let opb of this.task.optionBlocks){
             opb.input.enabled = false;
         }
