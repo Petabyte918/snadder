@@ -63,7 +63,7 @@ var GameMain = new Phaser.Class({
         /** dice */
         this.anims.create({
             key: 'diceRoll',
-            frames: this.anims.generateFrameNumbers('dice', { start: 0, end:5 }),
+            frames: this.anims.generateFrameNumbers('dice', { start: 0, end:29 }),
             frameRate: 10,
             repeat: -1
         });
@@ -87,19 +87,19 @@ var GameMain = new Phaser.Class({
         });
         this.anims.create({
             key: 'diceStop3',
-            frames: [{key:'dice',frame:16 }],
+            frames: [{key:'dice',frame:15 }],
             frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: 'diceStop2',
-            frames: [{key:'dice',frame:22 }],
+            frames: [{key:'dice',frame:20 }],
             frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: 'diceStop1',
-            frames: [{key:'dice',frame:28 }],
+            frames: [{key:'dice',frame:25 }],
             frameRate: 10,
             repeat: -1
         });
@@ -163,7 +163,7 @@ var GameMain = new Phaser.Class({
             rate: 0.8,
             detune: -900,
             seek: 0,
-            loop: false,
+            loop: true,
             delay: 0
         });
         this.music.play();
@@ -194,12 +194,10 @@ var GameMain = new Phaser.Class({
         //     }.bind(this));
         // }, this);
 
-        
+        console.log(this.cameras.main._x)
     },
     update:function(time,delta){
-        // if(window.gameDescriptor.debug){
-        //     console.log("state:"+window.gameDescriptor.state)
-        // }
+        
         this.controls.update(delta);
         
         this.coins.setText(window.gameDescriptor.coins);
@@ -214,7 +212,34 @@ var GameMain = new Phaser.Class({
             }
             this.dice.input.enabled = true;
             this.music.setMute(UNMUTE);
+            this.sound.playAudioSprite('ui_sfx', 'coins-gain');
             
+            var points = [
+                new Phaser.Math.Vector2(508.83813145825104, 853.9514456913603),
+                new Phaser.Math.Vector2(479.0827210239393, 958.0918658976237),
+                new Phaser.Math.Vector2(440.40068745933405, 1050.3305237946),
+                new Phaser.Math.Vector2(380.88986659071054, 1130.667419382289),
+                new Phaser.Math.Vector2(276.74593007061947, 1211.004314969978),
+                new Phaser.Math.Vector2(175.5775345939596, 1264.5622453617705),
+                new Phaser.Math.Vector2(89.28684433445555, 1374.6535467226774),
+                new Phaser.Math.Vector2(44.65372868298795, 1520.4501350114465),
+                new Phaser.Math.Vector2(92.26238537788673, 1657.3204015682497),
+                new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
+            ];
+            var curve = new Phaser.Curves.Spline(points);
+            var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603, 'coin_sprite').setOrigin(0.5).setScale(2);
+            // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
+            coinEarned.anims.play('coin_rotate',true);
+            coinEarned.startFollow({
+                duration: 1000,
+                yoyo: false,
+                repeat: 0,
+                rotateToPath: false,
+                verticalAdjust: true
+            });
+            setTimeout((object)=>{
+                object.setVisible(false);
+            },1100,coinEarned)
 
         }
         if(window.gameDescriptor.state == STATES.taskFail){

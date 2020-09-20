@@ -66,7 +66,7 @@ var Splash = new Phaser.Class({
 
         this.load.spritesheet('dice',
             'assets/images/sprites/dice.png',
-            {frameWidth:99,frameHeight:80}
+            {frameWidth:100,frameHeight:100}
         );
         this.load.spritesheet('male', 
             'assets/images/sprites/avators.png',
