@@ -28,9 +28,9 @@ var GameMain = new Phaser.Class({
         
         // this.add.image(500,100,'wood_up').setScale(0.65,1);
         this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4);
-        this.shop_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
-        this.shop_menu.setInteractive();
-        this.shop_menu.on('click',this.gotoMenu,this);
+        this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.menu.setInteractive();
+        this.menu.on('click',this.gotoMenu,this);
 
         this.add.image(500,1680,'wood_down').setScale(0.65);
         
@@ -239,7 +239,7 @@ var GameMain = new Phaser.Class({
             });
             setTimeout((object)=>{
                 object.setVisible(false);
-            },1100,coinEarned)
+            },1100,coinEarned);
 
         }
         if(window.gameDescriptor.state == STATES.taskFail){
