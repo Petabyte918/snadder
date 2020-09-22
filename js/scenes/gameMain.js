@@ -13,39 +13,43 @@ var GameMain = new Phaser.Class({
     preload: function ()
     {
         
+        this.load.image('snake_large','assets/images/snake-large.png');
+        this.load.image('failbg','assets/images/failbg.jpg');
 
     },
 
     create: function ()
     {
 
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
-        this.bg = this.add.image(980/2, 1742/2, 'gamebg3').setScale(2.06,2.2);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
+        this.bg0 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
+        this.bg1 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
+        this.bg2 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
+        this.bg3 = this.add.image(980/2, 1742/2, 'gamebg3').setScale(2.06,2.2);
+        this.bg4 = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         
         // this.add.image(500,100,'wood_up').setScale(0.65,1);
-        this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4);
+        this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4).setScrollFactor(0);
         this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
         this.menu.setInteractive();
         this.menu.on('click',this.gotoMenu,this);
+        this.menu.setScrollFactor(0);
 
-        this.add.image(500,1680,'wood_down').setScale(0.65);
+        this.add.image(500,1680,'wood_down').setScale(0.65).setScrollFactor(0);
         
-        this.add.image(170,1700,'wood_table').setScale(1,0.8);
-        this.add.image(100,1700,'coins').setScale(0.15);
-        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35);
+        this.add.image(170,1700,'wood_table').setScale(1,0.8).setScrollFactor(0);
+        this.add.image(100,1700,'coins').setScale(0.15).setScrollFactor(0);
+        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35).setScrollFactor(0);
 
 
-        this.add.image(700,1700,'wood_btn').setScale(0.6);
-        this.add.image(800,1700,'wood_btn').setScale(0.6);
-        this.add.image(900,1700,'wood_btn').setScale(0.6);
-        this.add.image(700,1700,'love_potion').setScale(0.2);
-        this.add.image(800,1700,'cup').setScale(0.2);
-        this.add.image(900,1700,'hammer').setScale(0.2);
+        this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(700,1700,'love_potion').setScale(0.2).setScrollFactor(0);
+        this.add.image(800,1700,'cup').setScale(0.2).setScrollFactor(0);
+        this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0);
 
+        
         
         this.userPinFake = this.add.image(
             window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
@@ -53,10 +57,11 @@ var GameMain = new Phaser.Class({
             'user_pin'
         ).setScale(0.9).setOrigin(0.5,1);
         
-        this.add.image(900,1500,'icon_back3').setScale(1);
+        this.add.image(900,1500,'icon_back3').setScale(1).setScrollFactor(0);
         this.dice = this.add.sprite(900,1505,'dice').setScale(2);
         this.dice.setInteractive();
         this.dice.on('click',this.rollDice,this);
+        this.dice.setScrollFactor(0);
         // this.dice.data.set('objectType','dice');
 
        
@@ -262,7 +267,7 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
             // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = getRandom(1,6);
+            window.gameDescriptor.diceNumber = 7;//getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -320,6 +325,60 @@ var GameMain = new Phaser.Class({
         
     },
     startTask:function(){
+        if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
+            let tileType = window.gameDescriptor.tiles[window.gameDescriptor.playerPos].featureType;
+            console.log(tileType);
+            switch(tileType){
+                case 'cobra':
+                        this.sound.playAudioSprite('ui_sfx', 'game-over');
+                        this.loadPunishment('cobra');
+                    break;
+                case 'fairy':
+                    break;
+                case 'demon':
+                    break;
+
+                default:
+
+                    if(window.gameDescriptor.state == STATES.task){
+                        this.music.setMute(MUTE);
+                        if(this.scene.get('Task')){
+                            this.scene.get('Task').refresh();
+                            this.scene.setVisible(true,'Task');
+                        }else{
+                            this.scene.add('Task',Task,true,{x:100,y:100});
+                        }
+                    }
+            }
+        }
+
+        
+        
+    },
+    loadPunishment:function(punishmentType){
+
+        this.punish_bg = this.add.image(980/2, 1742/2,'failbg').setScale(3.5,5.5);
+        this.punish_t1 = this.add.dynamicBitmapText(980/2-125,500,'green','Ooops..',80);
+        this.punish_t2 = this.add.dynamicBitmapText(980/2-420,600,'green','Take the punishment',70);
+        console.log(punishmentType);
+        if(punishmentType == 'cobra'){
+            this.punish_feature = this.add.image(980/2, 1742,'snake_large')
+                            .setOrigin(0.5,1);
+        }
+        this.punish_btn = this.add.image(980/2,950,'btn_ok').setOrigin(0.5,1);
+        this.punish_btn.setInteractive();
+        this.punish_btn.on('click',this.startPunishment);
+    },
+    startPunishment:function(args){
+
+        window.gameDescriptor.actionType = 'cobra';
+        this.punish_bg.setVisible(false);
+        this.punish_t1.setVisible(false);
+        this.punish_t2.setVisible(false);
+        this.punish_btn.setVisible(false);
+        this.punish_btn.input.enabled = false;
+        this.punish_feature.setVisible(false);
+
         if(window.gameDescriptor.state == STATES.task){
             this.music.setMute(MUTE);
             if(this.scene.get('Task')){
@@ -329,7 +388,8 @@ var GameMain = new Phaser.Class({
                 this.scene.add('Task',Task,true,{x:100,y:100});
             }
         }
-        
+
+
     },
     updateCoins:function(){
         this.coins.setText(''+window.gameDescriptor.coins);
