@@ -51,6 +51,7 @@ window.gameDescriptor = {
     state:STATES.ideal,
     playerLastPos:0,
     playerPos:0,
+    playerDirection:1,
     actionType:'task',
     avator:'',
     score:0,
