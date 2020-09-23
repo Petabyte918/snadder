@@ -12,40 +12,45 @@ var GameMain = new Phaser.Class({
 
     preload: function ()
     {
-        
+        this.load.image('snake_large','assets/images/snake-large.png');
+        this.load.image('fairy_large','assets/images/fairy-large.png');
+        this.load.image('demon_large','assets/images/demon-large.png');
 
     },
 
     create: function ()
     {
-
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
-        this.bg = this.add.image(980/2, 1742/2, 'gamebg3').setScale(2.06,2.2);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
+        this.cameras.main.fadeFrom(2000, Phaser.Math.Between(50, 255), Phaser.Math.Between(50, 255), Phaser.Math.Between(50, 255));
+        
+        this.bg0 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
+        this.bg1 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
+        this.bg2 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
+        this.bg3 = this.add.image(980/2, 1742/2, 'gamebg3').setScale(2.06,2.2);
+        this.bg4 = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         
         // this.add.image(500,100,'wood_up').setScale(0.65,1);
-        this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4);
-        this.shop_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
-        this.shop_menu.setInteractive();
-        this.shop_menu.on('click',this.gotoMenu,this);
+        this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4).setScrollFactor(0);
+        this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.menu.setInteractive();
+        this.menu.on('click',this.gotoMenu,this);
+        this.menu.setScrollFactor(0);
 
-        this.add.image(500,1680,'wood_down').setScale(0.65);
+        this.add.image(500,1680,'wood_down').setScale(0.65).setScrollFactor(0);
         
-        this.add.image(170,1700,'wood_table').setScale(1,0.8);
-        this.add.image(100,1700,'coins').setScale(0.15);
-        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35);
+        this.add.image(170,1700,'wood_table').setScale(1,0.8).setScrollFactor(0);
+        this.add.image(100,1700,'coins').setScale(0.15).setScrollFactor(0);
+        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35).setScrollFactor(0);
 
 
-        this.add.image(700,1700,'wood_btn').setScale(0.6);
-        this.add.image(800,1700,'wood_btn').setScale(0.6);
-        this.add.image(900,1700,'wood_btn').setScale(0.6);
-        this.add.image(700,1700,'love_potion').setScale(0.2);
-        this.add.image(800,1700,'cup').setScale(0.2);
-        this.add.image(900,1700,'hammer').setScale(0.2);
+        this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(700,1700,'love_potion').setScale(0.2).setScrollFactor(0);
+        this.add.image(800,1700,'cup').setScale(0.2).setScrollFactor(0);
+        this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0);
 
+        
         
         this.userPinFake = this.add.image(
             window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
@@ -53,10 +58,11 @@ var GameMain = new Phaser.Class({
             'user_pin'
         ).setScale(0.9).setOrigin(0.5,1);
         
-        this.add.image(900,1500,'icon_back3').setScale(1);
+        this.add.image(900,1500,'icon_back3').setScale(1).setScrollFactor(0);
         this.dice = this.add.sprite(900,1505,'dice').setScale(2);
         this.dice.setInteractive();
         this.dice.on('click',this.rollDice,this);
+        this.dice.setScrollFactor(0);
         // this.dice.data.set('objectType','dice');
 
        
@@ -131,6 +137,7 @@ var GameMain = new Phaser.Class({
             frameRate: 8,
             repeat: -1
         });
+
         this.input.on('pointerdown', function (pointer) {
             console.log(pointer.downX,pointer.downY);
         }, this);
@@ -157,6 +164,7 @@ var GameMain = new Phaser.Class({
         //   lemming.resumeFollow();
         /** Adding features to the tiles */
         this.addFeaturesToTile();
+
         this.music = this.sound.add('music0', {
             mute: false,
             volume: 0.3,
@@ -167,6 +175,16 @@ var GameMain = new Phaser.Class({
             delay: 0
         });
         this.music.play();
+        // music.on('ended', function (sound) {
+        //     setTimeout(function () {
+        //         this.sys.game.destroy(true);
+        //         document.addEventListener('mousedown', function newGame () {
+        //             game = new Phaser.Game(config);
+        //             document.removeEventListener('mousedown', newGame);
+        //         });
+        //     }.bind(this));
+        // }, this);
+
 
         var cursors = this.input.keyboard.createCursorKeys();
         var controlConfig = {
@@ -184,21 +202,13 @@ var GameMain = new Phaser.Class({
     
         this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
     
-        // music.on('ended', function (sound) {
-        //     setTimeout(function () {
-        //         this.sys.game.destroy(true);
-        //         document.addEventListener('mousedown', function newGame () {
-        //             game = new Phaser.Game(config);
-        //             document.removeEventListener('mousedown', newGame);
-        //         });
-        //     }.bind(this));
-        // }, this);
+        
 
-        console.log(this.cameras.main._x)
     },
     update:function(time,delta){
         
         this.controls.update(delta);
+        // console.log(this.cameras.main._x)
         
         this.coins.setText(window.gameDescriptor.coins);
         if(window.gameDescriptor.state == STATES.taskPass){
@@ -239,7 +249,7 @@ var GameMain = new Phaser.Class({
             });
             setTimeout((object)=>{
                 object.setVisible(false);
-            },1100,coinEarned)
+            },1100,coinEarned);
 
         }
         if(window.gameDescriptor.state == STATES.taskFail){
@@ -272,6 +282,7 @@ var GameMain = new Phaser.Class({
                 window.gameDescriptor.state = STATES.moving;
                 window.gameDescriptor.playerPos += window.gameDescriptor.diceNumber;
                 console.log(window.gameDescriptor.diceNumber);
+                window.gameDescriptor.playerDirection = 1;
                 this.movePlayer();
             });
             
@@ -281,9 +292,18 @@ var GameMain = new Phaser.Class({
 
         var points = [];
         var tiles = window.gameDescriptor.tiles;
-        for(let i=window.gameDescriptor.playerLastPos;i<=window.gameDescriptor.playerPos;i++){
+        var dir = window.gameDescriptor.playerDirection;
+        
+        if(dir == 1){
+            for(let i = window.gameDescriptor.playerLastPos;i<=window.gameDescriptor.playerPos;i++){
             points.push(new Phaser.Math.Vector2(tiles[i].x,tiles[i].y));
+            }
+        }else{
+            for(let i = window.gameDescriptor.playerLastPos;i>= window.gameDescriptor.playerPos;i--){
+                points.push(new Phaser.Math.Vector2(tiles[i].x,tiles[i].y));
+            }
         }
+        
         this.curve = new Phaser.Curves.Spline(points);
 
         if(window.gameDescriptor.debug){
@@ -314,22 +334,212 @@ var GameMain = new Phaser.Class({
         });
         window.gameDescriptor.playerLastPos = window.gameDescriptor.playerPos;
         setTimeout(function(context){
-            window.gameDescriptor.state = STATES.task;
-            context.startTask();
+            if(window.gameDescriptor.playerDirection == 1){
+                window.gameDescriptor.state = STATES.task;
+                context.startTask();
+            }
+            else{
+                context.dice.input.enabled = true;
+                window.gameDescriptor.state = STATES.ideal;
+            }
+
         }, 3200,this);
         
     },
     startTask:function(){
-        if(window.gameDescriptor.state == STATES.task){
-            this.music.setMute(MUTE);
-            if(this.scene.get('Task')){
-                this.scene.get('Task').refresh();
-                this.scene.setVisible(true,'Task');
-            }else{
-                this.scene.add('Task',Task,true,{x:100,y:100});
+        if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
+            let tileType = window.gameDescriptor.tiles[window.gameDescriptor.playerPos].featureType;
+            console.log(tileType);
+            switch(tileType){
+                case 'cobra':
+                        this.sound.playAudioSprite('ui_sfx', 'game-over');
+                        this.popupSnakeContainer = this.add.container(960/2, 1780/2);
+                        
+                        var popup = this.add.image(0,0,'popupBG')
+                                        .setScale(0.6,0.8);
+                        var popup1 = this.add.image(0,0,'popupBG0')
+                                        .setScale(0.6,0.8);
+                        var feature = this.add.image(0,100,'snake_large')
+                                        .setScale(0.6)
+                                        .setOrigin(0.5,1);
+                        var popupClose = this.add.image(350,-350,'btn_close')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupSnakeClose,this);
+                        var popupOk = this.add.image(0,200,'btn_ok')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupSnakeOk,this);
+
+                        
+                        this.popupSnakeContainer.add(popup);
+                        this.popupSnakeContainer.add(popup1);
+                        this.popupSnakeContainer.add(feature);
+                        this.popupSnakeContainer.add(popupClose);
+                        this.popupSnakeContainer.add(popupOk);
+
+                        // this.tween = game.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+                        this.tweens.add({
+                            targets     : [ this.popupSnakeContainer ],
+                            scaleX: 1.2,
+                            scaleY: 1.2,
+                            ease        : 'Elastic',
+                            duration    : 3000,
+                            yoyo        : false,
+                            repeat      : 0,
+                            callbackScope   : this
+                          });
+                        break;
+                
+                case 'fairy':
+                    this.sound.playAudioSprite('ui_sfx', 'spell');
+                    this.popupFairyContainer = this.add.container(960/2, 1780/2);
+                    
+                    var popup = this.add.image(0,0,'popupBG')
+                                    .setScale(0.6,0.8);
+                    var popup1 = this.add.image(0,0,'popupBG0')
+                                    .setScale(0.6,0.8);
+                    var feature = this.add.image(0,100,'fairy_large')
+                                    .setScale(0.6)
+                                    .setOrigin(0.5,1);
+                    var popupClose = this.add.image(350,-350,'btn_close')
+                                    .setScale(0.5)
+                                    .setInteractive()
+                                    .on('click',this.popupFairyClose,this);
+                    var popupOk = this.add.image(0,200,'btn_ok')
+                                    .setScale(0.5)
+                                    .setInteractive()
+                                    .on('click',this.popupFairyOk,this);
+
+                    
+                    this.popupFairyContainer.add(popup);
+                    this.popupFairyContainer.add(popup1);
+                    this.popupFairyContainer.add(feature);
+                    this.popupFairyContainer.add(popupClose);
+                    this.popupFairyContainer.add(popupOk);
+
+                    this.tweens.add({
+                        targets     : [ this.popupFairyContainer ],
+                        scaleX: 1.2,
+                        scaleY: 1.2,
+                        ease        : 'Elastic',
+                        duration    : 3000,
+                        yoyo        : false,
+                        repeat      : 0,
+                        callbackScope   : this
+                      });
+
+
+                        break;
+                case 'demon':
+                        this.sound.playAudioSprite('ui_sfx', 'game-over');
+                        this.popupDemonContainer = this.add.container(960/2, 1780/2);
+                    
+                        var popup = this.add.image(0,0,'popupBG')
+                                        .setScale(0.6,0.8);
+                        var popup1 = this.add.image(0,0,'popupBG0')
+                                        .setScale(0.6,0.8);
+                        var feature = this.add.image(0,100,'demon_large')
+                                        .setScale(0.6)
+                                        .setOrigin(0.5,1);
+                        var popupClose = this.add.image(350,-350,'btn_close')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupDemonClose,this);
+                        var popupOk = this.add.image(0,200,'btn_ok')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupDemonOk,this);
+
+                        
+                        this.popupDemonContainer.add(popup);
+                        this.popupDemonContainer.add(popup1);
+                        this.popupDemonContainer.add(feature);
+                        this.popupDemonContainer.add(popupClose);
+                        this.popupDemonContainer.add(popupOk);
+
+                        this.tweens.add({
+                            targets     : [ this.popupDemonContainer ],
+                            scaleX: 1.2,
+                            scaleY: 1.2,
+                            ease        : 'Elastic',
+                            duration    : 3000,
+                            yoyo        : false,
+                            repeat      : 0,
+                            callbackScope   : this
+                        });
+
+                        break;
+
+                case 'task':
+
+                    if(window.gameDescriptor.state == STATES.task){
+                        this.music.setMute(MUTE);
+                        if(this.scene.get('Task')){
+                            this.scene.get('Task').refresh();
+                            this.scene.setVisible(true,'Task');
+                        }else{
+                                // let task = this.scene.get('Task');
+                                let task = this.scene.add('Task',Task,true,{x:100,y:100});
+
+                                this.tweens.add({
+                                    targets     : [ task ],
+                                    scaleX: 1.2,
+                                    scaleY: 1.2,
+                                    ease        : 'Elastic',
+                                    duration    : 3000,
+                                    yoyo        : false,
+                                    repeat      : 0,
+                                    callbackScope   : this
+                                });
+                            
+                            // this.scene.add('Task',Task,true,{x:100,y:100});
+                        }
+                    }
             }
         }
+
         
+        
+    },
+    popupSnakeClose:function(){
+        console.log('cobra popup closed');
+        this.popupSnakeContainer.destroy();
+        window.gameDescriptor.playerPos -= getRandom(1,6);
+        window.gameDescriptor.playerDirection = -1;
+        this.movePlayer();
+    },
+    popupSnakeOk:function(){
+        console.log('cobra popup closed');
+        this.popupSnakeContainer.destroy();
+        window.gameDescriptor.playerPos -= getRandom(1,6);
+        window.gameDescriptor.playerDirection = -1;
+        this.movePlayer();
+    },
+    popupFairyClose:function(){
+        console.log('fairy popup closed');
+        this.popupFairyContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+
+    },
+    popupFairyOk:function(){
+        console.log('fairy popup closed');
+        this.popupFairyContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+    },
+    popupDemonClose:function(){
+        console.log('demon popup closed');
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.popupDemonContainer.destroy();
+    },
+    popupDemonOk:function(){
+        console.log('demon popup closed');
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.popupDemonContainer.destroy();
     },
     updateCoins:function(){
         this.coins.setText(''+window.gameDescriptor.coins);

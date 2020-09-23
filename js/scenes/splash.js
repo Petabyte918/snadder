@@ -208,7 +208,14 @@ var Splash = new Phaser.Class({
             this.sound.playAudioSprite('ui_sfx', 'game-start');
             if(window.gameDescriptor.avator == '' || window.gameDescriptor.avator == null){
                 // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
-                this.scene.start('Avator');
+                this.scene.transition({
+                    target: 'Avator',
+                    duration: 2000,
+                    moveBelow: true,
+                    onUpdate: this.transitionOut,
+                    data: { x: 400, y: 300 }
+                });
+                // this.scene.start('Avator');
             }else{
                 this.scene.start('Dashboard');
             }
@@ -229,6 +236,10 @@ var Splash = new Phaser.Class({
         // window.splashScene = this;
         // window.splashScene.get('Splash').myMethod();
     },
+    transitionOut: function (progress)
+    {
+        // this.scene.y = (600 * progress);
+    }
     // waveAnimation:function(data,phase){
     //     console.log("d",data);
     //     data.y = parseInt(Math.cos(phase+0.5) *10);
