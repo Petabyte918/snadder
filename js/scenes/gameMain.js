@@ -13,12 +13,15 @@ var GameMain = new Phaser.Class({
     preload: function ()
     {
         this.load.image('snake_large','assets/images/snake-large.png');
+        this.load.image('fairy_large','assets/images/fairy-large.png');
+        this.load.image('demon_large','assets/images/demon-large.png');
 
     },
 
     create: function ()
     {
-
+        this.cameras.main.fadeFrom(2000, Phaser.Math.Between(50, 255), Phaser.Math.Between(50, 255), Phaser.Math.Between(50, 255));
+        
         this.bg0 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
         this.bg1 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
         this.bg2 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
@@ -269,7 +272,7 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
             // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = 7;//getRandom(1,6);
+            window.gameDescriptor.diceNumber = getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -336,6 +339,7 @@ var GameMain = new Phaser.Class({
                 context.startTask();
             }
             else{
+                context.dice.input.enabled = true;
                 window.gameDescriptor.state = STATES.ideal;
             }
 
@@ -385,47 +389,110 @@ var GameMain = new Phaser.Class({
                             repeat      : 0,
                             callbackScope   : this
                           });
-    
-
-                        // if(window.gameDescriptor.state == STATES.task){
-                        //     this.music.setMute(MUTE);
-                        //     if(this.scene.get('TileFeature')){
-                        //         this.scene.get('TileFeature').refresh();
-                        //         this.scene.setVisible(true,'TileFeature');
-                        //     }else{
-                        //         this.scene.add('TileFeature',TileFeature,true,{x:100,y:100});
-                        //     }
-                        // }
                         break;
+                
                 case 'fairy':
-                        this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.loadPunishment('fairy');
+                    this.sound.playAudioSprite('ui_sfx', 'spell');
+                    this.popupFairyContainer = this.add.container(960/2, 1780/2);
+                    
+                    var popup = this.add.image(0,0,'popupBG')
+                                    .setScale(0.6,0.8);
+                    var popup1 = this.add.image(0,0,'popupBG0')
+                                    .setScale(0.6,0.8);
+                    var feature = this.add.image(0,100,'fairy_large')
+                                    .setScale(0.6)
+                                    .setOrigin(0.5,1);
+                    var popupClose = this.add.image(350,-350,'btn_close')
+                                    .setScale(0.5)
+                                    .setInteractive()
+                                    .on('click',this.popupFairyClose,this);
+                    var popupOk = this.add.image(0,200,'btn_ok')
+                                    .setScale(0.5)
+                                    .setInteractive()
+                                    .on('click',this.popupFairyOk,this);
+
+                    
+                    this.popupFairyContainer.add(popup);
+                    this.popupFairyContainer.add(popup1);
+                    this.popupFairyContainer.add(feature);
+                    this.popupFairyContainer.add(popupClose);
+                    this.popupFairyContainer.add(popupOk);
+
+                    this.tweens.add({
+                        targets     : [ this.popupFairyContainer ],
+                        scaleX: 1.2,
+                        scaleY: 1.2,
+                        ease        : 'Elastic',
+                        duration    : 3000,
+                        yoyo        : false,
+                        repeat      : 0,
+                        callbackScope   : this
+                      });
+
+
                         break;
                 case 'demon':
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.loadPunishment('demon');
+                        this.popupDemonContainer = this.add.container(960/2, 1780/2);
+                    
+                        var popup = this.add.image(0,0,'popupBG')
+                                        .setScale(0.6,0.8);
+                        var popup1 = this.add.image(0,0,'popupBG0')
+                                        .setScale(0.6,0.8);
+                        var feature = this.add.image(0,100,'demon_large')
+                                        .setScale(0.6)
+                                        .setOrigin(0.5,1);
+                        var popupClose = this.add.image(350,-350,'btn_close')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupDemonClose,this);
+                        var popupOk = this.add.image(0,200,'btn_ok')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupDemonOk,this);
+
+                        
+                        this.popupDemonContainer.add(popup);
+                        this.popupDemonContainer.add(popup1);
+                        this.popupDemonContainer.add(feature);
+                        this.popupDemonContainer.add(popupClose);
+                        this.popupDemonContainer.add(popupOk);
+
+                        this.tweens.add({
+                            targets     : [ this.popupDemonContainer ],
+                            scaleX: 1.2,
+                            scaleY: 1.2,
+                            ease        : 'Elastic',
+                            duration    : 3000,
+                            yoyo        : false,
+                            repeat      : 0,
+                            callbackScope   : this
+                        });
+
                         break;
 
-                default:
+                case 'task':
 
                     if(window.gameDescriptor.state == STATES.task){
                         this.music.setMute(MUTE);
-                        // tween = game.add.tween(popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-                        // if (tween && tween.isRunning || popup.scale.x === 0.1)
-                        // {
-                        //     return;
-                        // }
-
-                        //  Create a tween that will close the window, but only if it's not already tweening or closed
-                        // tween = game.add.tween(popup.scale).to( { x: 0.1, y: 0.1 }, 500, Phaser.Easing.Elastic.In, true);
                         if(this.scene.get('Task')){
                             this.scene.get('Task').refresh();
                             this.scene.setVisible(true,'Task');
                         }else{
-                            if(this.scene.get('Task')){
-                                let task = this.scene.get('Task');
-                                this.add.tween(task.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-                            }
+                                // let task = this.scene.get('Task');
+                                let task = this.scene.add('Task',Task,true,{x:100,y:100});
+
+                                this.tweens.add({
+                                    targets     : [ task ],
+                                    scaleX: 1.2,
+                                    scaleY: 1.2,
+                                    ease        : 'Elastic',
+                                    duration    : 3000,
+                                    yoyo        : false,
+                                    repeat      : 0,
+                                    callbackScope   : this
+                                });
+                            
                             // this.scene.add('Task',Task,true,{x:100,y:100});
                         }
                     }
@@ -436,13 +503,43 @@ var GameMain = new Phaser.Class({
         
     },
     popupSnakeClose:function(){
-        this.popupSnakeContainer.destroy();
-    },
-    popupSnakeOk:function(){
+        console.log('cobra popup closed');
         this.popupSnakeContainer.destroy();
         window.gameDescriptor.playerPos -= getRandom(1,6);
         window.gameDescriptor.playerDirection = -1;
         this.movePlayer();
+    },
+    popupSnakeOk:function(){
+        console.log('cobra popup closed');
+        this.popupSnakeContainer.destroy();
+        window.gameDescriptor.playerPos -= getRandom(1,6);
+        window.gameDescriptor.playerDirection = -1;
+        this.movePlayer();
+    },
+    popupFairyClose:function(){
+        console.log('fairy popup closed');
+        this.popupFairyContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+
+    },
+    popupFairyOk:function(){
+        console.log('fairy popup closed');
+        this.popupFairyContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+    },
+    popupDemonClose:function(){
+        console.log('demon popup closed');
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.popupDemonContainer.destroy();
+    },
+    popupDemonOk:function(){
+        console.log('demon popup closed');
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.popupDemonContainer.destroy();
     },
     updateCoins:function(){
         this.coins.setText(''+window.gameDescriptor.coins);
