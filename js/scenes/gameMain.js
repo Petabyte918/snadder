@@ -332,11 +332,15 @@ var GameMain = new Phaser.Class({
                 case 'cobra':
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
                         this.loadPunishment('cobra');
-                    break;
+                        break;
                 case 'fairy':
-                    break;
+                        this.sound.playAudioSprite('ui_sfx', 'game-over');
+                        this.loadPunishment('fairy');
+                        break;
                 case 'demon':
-                    break;
+                        this.sound.playAudioSprite('ui_sfx', 'game-over');
+                        this.loadPunishment('demon');
+                        break;
 
                 default:
 
@@ -368,7 +372,9 @@ var GameMain = new Phaser.Class({
         this.punish_btn = this.add.image(980/2,950,'btn_ok').setOrigin(0.5,1);
         this.punish_btn.setInteractive();
         this.punish_btn.on('click',this.startPunishment);
-    },
+
+        this.punish_bg.addChild(this.punish_t1);
+    },  
     startPunishment:function(args){
 
         window.gameDescriptor.actionType = 'cobra';
@@ -377,7 +383,7 @@ var GameMain = new Phaser.Class({
         this.punish_t2.setVisible(false);
         this.punish_btn.setVisible(false);
         this.punish_btn.input.enabled = false;
-        this.punish_feature.setVisible(false);
+        // this.punish_feature.setVisible(false);
 
         if(window.gameDescriptor.state == STATES.task){
             this.music.setMute(MUTE);

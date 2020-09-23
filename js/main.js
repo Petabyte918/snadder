@@ -54,7 +54,7 @@ window.gameDescriptor = {
     actionType:'task',
     avator:'',
     score:0,
-    lifes:3,
+    lives:3,
     coins:100,
     hearts:3,
     lovePotions:1,
