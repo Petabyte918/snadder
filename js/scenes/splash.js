@@ -210,9 +210,9 @@ var Splash = new Phaser.Class({
                 // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
                 this.scene.transition({
                     target: 'Avator',
-                    duration: 2000,
+                    duration: 1000,
                     moveBelow: true,
-                    onUpdate: this.transitionOut,
+                    // onUpdate: this.transitionOut,
                     data: { x: 400, y: 300 }
                 });
                 // this.scene.start('Avator');

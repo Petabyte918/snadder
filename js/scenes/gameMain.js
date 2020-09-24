@@ -15,6 +15,7 @@ var GameMain = new Phaser.Class({
         this.load.image('snake_large','assets/images/snake-large.png');
         this.load.image('fairy_large','assets/images/fairy-large.png');
         this.load.image('demon_large','assets/images/demon-large.png');
+        this.load.image('stone','assets/images/stone.png');
 
     },
 
@@ -28,44 +29,6 @@ var GameMain = new Phaser.Class({
         this.bg3 = this.add.image(980/2, 1742/2, 'gamebg3').setScale(2.06,2.2);
         this.bg4 = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
-        
-        // this.add.image(500,100,'wood_up').setScale(0.65,1);
-        this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4).setScrollFactor(0);
-        this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
-        this.menu.setInteractive();
-        this.menu.on('click',this.gotoMenu,this);
-        this.menu.setScrollFactor(0);
-
-        this.add.image(500,1680,'wood_down').setScale(0.65).setScrollFactor(0);
-        
-        this.add.image(170,1700,'wood_table').setScale(1,0.8).setScrollFactor(0);
-        this.add.image(100,1700,'coins').setScale(0.15).setScrollFactor(0);
-        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35).setScrollFactor(0);
-
-
-        this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
-        this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
-        this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
-        this.add.image(700,1700,'love_potion').setScale(0.2).setScrollFactor(0);
-        this.add.image(800,1700,'cup').setScale(0.2).setScrollFactor(0);
-        this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0);
-
-        
-        
-        this.userPinFake = this.add.image(
-            window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
-            window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,
-            'user_pin'
-        ).setScale(0.9).setOrigin(0.5,1);
-        
-        this.add.image(900,1500,'icon_back3').setScale(1).setScrollFactor(0);
-        this.dice = this.add.sprite(900,1505,'dice').setScale(2);
-        this.dice.setInteractive();
-        this.dice.on('click',this.rollDice,this);
-        this.dice.setScrollFactor(0);
-        // this.dice.data.set('objectType','dice');
-
-       
         /** dice */
         this.anims.create({
             key: 'diceRoll',
@@ -138,8 +101,57 @@ var GameMain = new Phaser.Class({
             repeat: -1
         });
 
+        /** Adding features to the tiles */
+        this.addFeaturesToTile();
+        
+        // this.add.image(500,100,'wood_up').setScale(0.65,1);
+        this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4).setScrollFactor(0);
+        this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.menu.setInteractive();
+        this.menu.on('click',this.gotoMenu,this);
+        this.menu.setScrollFactor(0);
+
+        this.add.image(500,1680,'wood_down').setScale(0.65).setScrollFactor(0);
+        
+        this.add.image(170,1700,'wood_table').setScale(1,0.8).setScrollFactor(0);
+        this.add.image(100,1700,'coins').setScale(0.15).setScrollFactor(0);
+        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35).setScrollFactor(0);
+
+
+        this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(700,1700,'love_potion').setScale(0.2).setScrollFactor(0);
+        this.add.image(800,1700,'cup').setScale(0.2).setScrollFactor(0);
+        this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0);
+
+        
+        
+        this.userPinFake = this.add.image(
+            window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
+            window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,
+            'user_pin'
+        ).setScale(0.9).setOrigin(0.5,1);
+        
+        this.add.image(900,1500,'icon_back3').setScale(1).setScrollFactor(0);
+        this.dice = this.add.sprite(900,1505,'dice').setScale(2);
+        this.dice.setInteractive();
+        this.dice.on('click',this.rollDice,this);
+        this.dice.setScrollFactor(0);
+        // this.dice.data.set('objectType','dice');
+
+       
+        
         this.input.on('pointerdown', function (pointer) {
-            console.log(pointer.downX,pointer.downY);
+            this.worldPoint = this.input.activePointer.positionToCamera(this.cameras.main);
+            console.log(pointer.downX,pointer.downY,this.worldPoint,this.cameras.main.scrollX,this.cameras.main.scrollY);
+            if(window.gameDescriptor.debug){
+                this.graphics =  this.add.graphics();
+                this.graphics.fillStyle(0x00ff00, 1);
+                this.graphics.fillCircle(this.worldPoint.x, this.worldPoint.y, 4);
+                this.add.image(this.worldPoint.x, this.worldPoint.y,'stone').setScale(0.23);
+            }
+
         }, this);
 
         this.input.on('gameobjectup', function (pointer, gameObject)
@@ -162,8 +174,7 @@ var GameMain = new Phaser.Class({
         
         //   lemming.pauseFollow();
         //   lemming.resumeFollow();
-        /** Adding features to the tiles */
-        this.addFeaturesToTile();
+        
 
         this.music = this.sound.add('music0', {
             mute: false,
@@ -201,7 +212,6 @@ var GameMain = new Phaser.Class({
         };
     
         this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
-    
         
 
     },
@@ -546,6 +556,9 @@ var GameMain = new Phaser.Class({
     },
     addFeaturesToTile:function(){
         let i=0;
+        for(let tile of window.gameDescriptor.tiles){
+            tile['texture'] = this.add.image(tile.x,tile.y,'stone').setScale(0.23);
+        }
         for(let tile of window.gameDescriptor.tiles){
             if(tile.tileType == 1){
                 if(tile.featureType == 'fairy'){
