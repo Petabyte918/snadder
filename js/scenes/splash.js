@@ -207,15 +207,15 @@ var Splash = new Phaser.Class({
         {
             this.sound.playAudioSprite('ui_sfx', 'game-start');
             if(window.gameDescriptor.avator == '' || window.gameDescriptor.avator == null){
-                // this.scene.add('Avator', Avator, true, { x: 400, y: 300 });
-                this.scene.transition({
-                    target: 'Avator',
-                    duration: 1000,
-                    moveBelow: true,
-                    // onUpdate: this.transitionOut,
-                    data: { x: 400, y: 300 }
-                });
-                // this.scene.start('Avator');
+                // this.scene.add('RapidTask', RapidTask, true, { x: 400, y: 300 });
+                // this.scene.transition({
+                //     target: 'RapidTask',
+                //     duration: 1000,
+                //     moveBelow: true,
+                //     // onUpdate: this.transitionOut,
+                //     data: { x: 400, y: 300 }
+                // });
+                this.scene.start('Avator');
             }else{
                 this.scene.start('Dashboard');
             }

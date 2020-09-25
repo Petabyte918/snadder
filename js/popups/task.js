@@ -12,13 +12,12 @@ var Task = new Phaser.Class({
     preload: function ()
     {
         
-        this.load.image('popupBG','assets/images/UI/settings/bg.png');
-        this.load.image('popupBG0','assets/images/UI/level_select/table2.png');
-        this.load.image('popupBG1','assets/images/UI/settings/92.png');
-        this.load.image('popupBG2','assets/images/UI/rating/face.png');
-        this.load.image('popupBG3','assets/images/UI/level_select/header.png');
-        this.load.image('popupBG4','assets/images/UI/level_select/table.png');
-        
+        // this.load.image('popupBG','assets/images/UI/settings/bg.png');
+        // this.load.image('popupBG0','assets/images/UI/level_select/table2.png');
+        // this.load.image('popupBG1','assets/images/UI/settings/92.png');
+        // this.load.image('popupBG2','assets/images/UI/rating/face.png');
+        // this.load.image('popupBG3','assets/images/UI/level_select/header.png');
+        // this.load.image('popupBG4','assets/images/UI/level_select/table.png');
 
     },
 

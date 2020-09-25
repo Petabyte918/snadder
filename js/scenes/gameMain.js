@@ -247,7 +247,7 @@ var GameMain = new Phaser.Class({
                 new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
             ];
             var curve = new Phaser.Curves.Spline(points);
-            var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603, 'coin_sprite').setOrigin(0.5).setScale(2);
+            var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'coin_sprite').setOrigin(0.5).setScale(2);
             // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
             coinEarned.anims.play('coin_rotate',true);
             coinEarned.startFollow({
@@ -266,6 +266,47 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.ideal;
             this.dice.input.enabled = true;
             this.music.setMute(UNMUTE);
+
+        }
+        if(window.gameDescriptor.state == STATES.rapidTaskPass){
+            window.gameDescriptor.state = STATES.ideal;
+            if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
+                window.gameDescriptor.tiles[window.gameDescriptor.playerPos].feature.destroy();
+                if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos].number){
+                    window.gameDescriptor.tiles[window.gameDescriptor.playerPos].number.setOrigin(0.5,1);
+
+                }
+            }
+            this.dice.input.enabled = true;
+            this.music.setMute(UNMUTE);
+            this.sound.playAudioSprite('ui_sfx', 'coins-gain');
+            
+            var points = [
+                new Phaser.Math.Vector2(508.83813145825104, 853.9514456913603),
+                new Phaser.Math.Vector2(479.0827210239393, 958.0918658976237),
+                new Phaser.Math.Vector2(440.40068745933405, 1050.3305237946),
+                new Phaser.Math.Vector2(380.88986659071054, 1130.667419382289),
+                new Phaser.Math.Vector2(276.74593007061947, 1211.004314969978),
+                new Phaser.Math.Vector2(175.5775345939596, 1264.5622453617705),
+                new Phaser.Math.Vector2(89.28684433445555, 1374.6535467226774),
+                new Phaser.Math.Vector2(44.65372868298795, 1520.4501350114465),
+                new Phaser.Math.Vector2(92.26238537788673, 1657.3204015682497),
+                new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
+            ];
+            var curve = new Phaser.Curves.Spline(points);
+            var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'coin_sprite').setOrigin(0.5).setScale(2);
+            // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
+            coinEarned.anims.play('coin_rotate',true);
+            coinEarned.startFollow({
+                duration: 1000,
+                yoyo: false,
+                repeat: 0,
+                rotateToPath: false,
+                verticalAdjust: true
+            });
+            setTimeout((object)=>{
+                object.setVisible(false);
+            },1100,coinEarned);
 
         }
 
@@ -363,7 +404,7 @@ var GameMain = new Phaser.Class({
             switch(tileType){
                 case 'cobra':
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.popupSnakeContainer = this.add.container(960/2, 1780/2);
+                        this.popupSnakeContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
                         
                         var popup = this.add.image(0,0,'popupBG')
                                         .setScale(0.6,0.8);
@@ -402,8 +443,9 @@ var GameMain = new Phaser.Class({
                         break;
                 
                 case 'fairy':
+                    window.gameDescriptor.state = STATES.rapidTask;
                     this.sound.playAudioSprite('ui_sfx', 'spell');
-                    this.popupFairyContainer = this.add.container(960/2, 1780/2);
+                    this.popupFairyContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
                     
                     var popup = this.add.image(0,0,'popupBG')
                                     .setScale(0.6,0.8);
@@ -442,8 +484,9 @@ var GameMain = new Phaser.Class({
 
                         break;
                 case 'demon':
+                        window.gameDescriptor.state = STATES.rapidTask;
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.popupDemonContainer = this.add.container(960/2, 1780/2);
+                        this.popupDemonContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
                     
                         var popup = this.add.image(0,0,'popupBG')
                                         .setScale(0.6,0.8);
@@ -536,8 +579,29 @@ var GameMain = new Phaser.Class({
     popupFairyOk:function(){
         console.log('fairy popup closed');
         this.popupFairyContainer.destroy();
-        window.gameDescriptor.state = STATES.ideal;
-        this.dice.input.enabled = true;
+        // window.gameDescriptor.state = STATES.ideal;
+        // this.dice.input.enabled = true;
+        if(window.gameDescriptor.state == STATES.rapidTask){
+            this.music.setMute(MUTE);
+            if(this.scene.get('RapidTask')){
+                this.scene.get('RapidTask').refresh();
+                this.scene.setVisible(true,'RapidTask');
+            }else{
+                    let rapidTask = this.scene.add('RapidTask',RapidTask,true,{x:100,y:100});
+
+                    this.tweens.add({
+                        targets     : [ rapidTask ],
+                        scaleX: 1.2,
+                        scaleY: 1.2,
+                        ease        : 'Elastic',
+                        duration    : 3000,
+                        yoyo        : false,
+                        repeat      : 0,
+                        callbackScope   : this
+                    });
+                
+            }
+        }
     },
     popupDemonClose:function(){
         console.log('demon popup closed');
@@ -547,9 +611,31 @@ var GameMain = new Phaser.Class({
     },
     popupDemonOk:function(){
         console.log('demon popup closed');
-        window.gameDescriptor.state = STATES.ideal;
-        this.dice.input.enabled = true;
+        // window.gameDescriptor.state = STATES.ideal;
+        // this.dice.input.enabled = true;
         this.popupDemonContainer.destroy();
+
+        if(window.gameDescriptor.state == STATES.rapidTask){
+            this.music.setMute(MUTE);
+            if(this.scene.get('RapidTask')){
+                this.scene.get('RapidTask').refresh();
+                this.scene.setVisible(true,'RapidTask');
+            }else{
+                    let rapidTask = this.scene.add('RapidTask',RapidTask,true,{x:100,y:100});
+
+                    this.tweens.add({
+                        targets     : [ rapidTask ],
+                        scaleX: 1.2,
+                        scaleY: 1.2,
+                        ease        : 'Elastic',
+                        duration    : 3000,
+                        yoyo        : false,
+                        repeat      : 0,
+                        callbackScope   : this
+                    });
+                
+            }
+        }
     },
     updateCoins:function(){
         this.coins.setText(''+window.gameDescriptor.coins);

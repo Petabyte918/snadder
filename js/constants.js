@@ -47,6 +47,7 @@ let STATES = {
     task:6,
     taskPass:7,
     taskFail:8,
+    rapidTask:9,
 
 
 }
@@ -59,3 +60,9 @@ let MUSIC_STATES = {
     stoped:1,
 }
 
+
+
+let STRINGS = {
+    gameOver : 'Game Over',
+
+}
