@@ -200,8 +200,8 @@ var GameMain = new Phaser.Class({
         var cursors = this.input.keyboard.createCursorKeys();
         var controlConfig = {
             camera: this.cameras.main,
-            left: cursors.left,
-            right: cursors.right,
+            // left: cursors.left,
+            // right: cursors.right,
             up: cursors.up,
             down: cursors.down,
             zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
