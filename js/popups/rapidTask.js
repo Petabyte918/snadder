@@ -168,7 +168,7 @@ var RapidTask = new Phaser.Class({
 
     },
     timeout:function(){
-        this.countdown.stopByKey('ui_sfx');
+        // this.countdown.stopByKey('ui_sfx');
         this.sound.playAudioSprite('ui_sfx', 'count-down-end');
         console.log('Time out')
         this.scene.setVisible(false,'RapidTask');
