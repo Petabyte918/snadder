@@ -131,7 +131,7 @@ window.gameDescriptor = {
     questions:[
         {
             qid:1,
-            q:'Which of them are memals \nanswer it or die',
+            q:'Which of them are memals answer it or die',
             options:[
                 {
                     opid:6,
@@ -170,7 +170,7 @@ window.gameDescriptor = {
         },
         {
             qid:2,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'Is Education neccessary answer it or die',
             options:[
                 {
                     opid:6,
@@ -209,7 +209,7 @@ window.gameDescriptor = {
         },
         {
             qid:3,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'Who is called father of math answer it or die',
             options:[
                 {
                     opid:6,
@@ -248,7 +248,7 @@ window.gameDescriptor = {
         },
         {
             qid:4,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'Is apple a componey answer it or die',
             options:[
                 {
                     opid:6,
@@ -287,7 +287,7 @@ window.gameDescriptor = {
         },
         {
             qid:5,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'Who is murrfy answer it or die',
             options:[
                 {
                     opid:6,
@@ -326,7 +326,7 @@ window.gameDescriptor = {
         },
         {
             qid:6,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'How many state are in india answer it or die',
             options:[
                 {
                     opid:6,
@@ -365,7 +365,7 @@ window.gameDescriptor = {
         },
         {
             qid:7,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'Who is cheeku nanswer it or die',
             options:[
                 {
                     opid:6,
@@ -404,7 +404,7 @@ window.gameDescriptor = {
         },
         {
             qid:8,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'Chota bheem kon he answer it or die',
             options:[
                 {
                     opid:6,
@@ -443,7 +443,7 @@ window.gameDescriptor = {
         },
         {
             qid:9,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'which food you like answer it or die',
             options:[
                 {
                     opid:6,
@@ -482,7 +482,7 @@ window.gameDescriptor = {
         },
         {
             qid:10,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'which of them is food answer it or die',
             options:[
                 {
                     opid:6,
@@ -521,7 +521,7 @@ window.gameDescriptor = {
         },
         {
             qid:11,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'which of them is animal answer it or die',
             options:[
                 {
                     opid:6,
@@ -560,7 +560,7 @@ window.gameDescriptor = {
         },
         {
             qid:12,
-            q:'Is Education neccessary \nanswer it or die',
+            q:'Which of them eat and repet answer it or die',
             options:[
                 {
                     opid:6,

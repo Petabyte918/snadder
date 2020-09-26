@@ -34,8 +34,8 @@
             "loop":false
         },
         "count-down":{
-            "start":7,
-            "end":11.9,
+            "start":8.1,
+            "end":13,
             "loop":false
         },
         "count-down-end":{

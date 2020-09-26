@@ -25,7 +25,18 @@ var RapidTask = new Phaser.Class({
         
         this.task = null;
         this.task = getQuestionData();
-        this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
+        // this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
+        this.task['questionText'] = this.make.text({
+            x: 480,
+            y: 450,
+            text: '',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 45px Arial',
+                fill: 'green',
+                wordWrap: { width: 600 }
+            }
+        }).setOrigin(0.5,1);
         this.task['questionText'].setText(this.task.q);
         this.task['selectedOptions'] = [];
         this.task['optionTexts'] = [];
@@ -95,7 +106,9 @@ var RapidTask = new Phaser.Class({
         console.log(this.task);
         // timer = this.time.addEvent({ delay: this.task.counter, callback: this.reward, callbackScope: this });
         timer = this.time.addEvent({ delay: this.task.counter*1000, callback: this.timeout, callbackScope: this });
-        this.countdown = this.sound.playAudioSprite('ui_sfx', 'count-down',{loop:true});
+        this.countdown = this.sound.addAudioSprite('ui_sfx', 'count-down',{loop:true});
+        this.countdown.manager.playAudioSprite('ui_sfx','count-down',{loop:true});
+
 
     },
     update:function(){
@@ -106,7 +119,6 @@ var RapidTask = new Phaser.Class({
         this.task.counterText.setText( Math.floor(this.task.counter - timer.getElapsed()/1000));
     },
     refresh:function(){
-
         this.submit.input.enabled = true;
         let question = getQuestionData();
         this.task.qid = question.qid;
@@ -168,9 +180,11 @@ var RapidTask = new Phaser.Class({
 
     },
     timeout:function(){
-        // this.countdown.stopByKey('ui_sfx');
+        this.countdown.manager.stopAll();
+        this.countdown.pause();
         this.sound.playAudioSprite('ui_sfx', 'count-down-end');
-        console.log('Time out')
+        console.log('Time out');
+        this.submit.input.enabled = false;
         this.scene.setVisible(false,'RapidTask');
         window.gameDescriptor.coins += 100;
         window.gameDescriptor.state = STATES.rapidTaskPass;

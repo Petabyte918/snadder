@@ -195,14 +195,14 @@ var Splash = new Phaser.Class({
         // this.add.text(330, 1100,'START', { font: '100px Arial', fill: '#fff'});
         this.play = this.add.image(480,1200,'btn_play');
         this.play.setInteractive();
-        this.snadder = this.add.dynamicBitmapText(100,500,'fire','LOVELUDO',128);
+        this.snadder = this.add.dynamicBitmapText(960/2,500,'fire','LOVELUDO',128).setOrigin(0.5,0.5);
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         
         this.input.once('pointerdown', function () {
             // this.scene.start("GameMain");
             
         }, this);
-
+                
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
             this.sound.playAudioSprite('ui_sfx', 'game-start');

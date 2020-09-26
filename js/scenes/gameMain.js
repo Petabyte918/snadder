@@ -323,7 +323,7 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
             // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = getRandom(1,6);
+            window.gameDescriptor.diceNumber = 3;//getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -587,18 +587,19 @@ var GameMain = new Phaser.Class({
                 this.scene.get('RapidTask').refresh();
                 this.scene.setVisible(true,'RapidTask');
             }else{
-                    let rapidTask = this.scene.add('RapidTask',RapidTask,true,{x:100,y:100});
+                    // let rapidTask = 
+                    this.scene.add('RapidTask',RapidTask,true,{x:100,y:100});
 
-                    this.tweens.add({
-                        targets     : [ rapidTask ],
-                        scaleX: 1.2,
-                        scaleY: 1.2,
-                        ease        : 'Elastic',
-                        duration    : 3000,
-                        yoyo        : false,
-                        repeat      : 0,
-                        callbackScope   : this
-                    });
+                    // this.tweens.add({
+                    //     targets     : [ rapidTask ],
+                    //     scaleX: 1.2,
+                    //     scaleY: 1.2,
+                    //     ease        : 'Elastic',
+                    //     duration    : 3000,
+                    //     yoyo        : false,
+                    //     repeat      : 0,
+                    //     callbackScope   : this
+                    // });
                 
             }
         }
