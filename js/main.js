@@ -647,9 +647,9 @@ window.gameDescriptor = {
         {
             x:79.42560823181825,
             y:927.3752941740366,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'demon',
         },
         {
             x:162.07584320683478,

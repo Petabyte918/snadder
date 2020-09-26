@@ -294,9 +294,9 @@ var GameMain = new Phaser.Class({
                 new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
             ];
             var curve = new Phaser.Curves.Spline(points);
-            var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'coin_sprite').setOrigin(0.5).setScale(2);
+            var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'love_potion').setOrigin(0.5).setScale(0.3);
             // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
-            coinEarned.anims.play('coin_rotate',true);
+            // coinEarned.anims.play('coin_rotate',true);
             coinEarned.startFollow({
                 duration: 1000,
                 yoyo: false,

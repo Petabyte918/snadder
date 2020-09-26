@@ -36,13 +36,13 @@ var RapidTask = new Phaser.Class({
                 fill: 'green',
                 wordWrap: { width: 600 }
             }
-        }).setOrigin(0.5,1);
+        });
         this.task['questionText'].setText(this.task.q);
         this.task['selectedOptions'] = [];
         this.task['optionTexts'] = [];
         this.task['optionBlocks'] = [];
         this.task['questionCount'] = 1;
-        this.task['counter'] = 60;
+        this.task['counter'] = 6;
         this.task['questionAnsweredCorrect'] = 0;
         this.task['counterText'] = this.add.dynamicBitmapText(960/2-50,230,'fire','',120);
         this.task.counterText.setText(this.task.counter);
@@ -105,7 +105,7 @@ var RapidTask = new Phaser.Class({
         
         console.log(this.task);
         // timer = this.time.addEvent({ delay: this.task.counter, callback: this.reward, callbackScope: this });
-        timer = this.time.addEvent({ delay: this.task.counter*1000, callback: this.timeout, callbackScope: this });
+        this.timer = this.time.addEvent({ delay: this.task.counter*1000, callback: this.timeout, callbackScope: this });
         this.countdown = this.sound.addAudioSprite('ui_sfx', 'count-down',{loop:true});
         this.countdown.manager.playAudioSprite('ui_sfx','count-down',{loop:true});
 
@@ -116,9 +116,33 @@ var RapidTask = new Phaser.Class({
         //     this.sound.playAudioSprite('ui_sfx', 'count-down');
         // }
         
-        this.task.counterText.setText( Math.floor(this.task.counter - timer.getElapsed()/1000));
+        this.task.counterText.setText( Math.floor(this.task.counter - this.timer.getElapsed()/1000));
     },
     refresh:function(){
+        this.submit.input.enabled = true;
+        let question = getQuestionData();
+        this.task.qid = question.qid;
+        this.task.q = question.q;
+        this.task.options = question.options;
+        this.task.answers = question.answers;
+        this.task['questionText'].setText(this.task.q);
+        this.task['selectedOptions'] = [];
+        this.task['questionCount'] = 1;
+        this.task['counter'] = 6;
+        this.task['questionAnsweredCorrect'] = 0;
+        this.timer = this.time.addEvent({ delay: this.task.counter*1000, callback: this.timeout, callbackScope: this });
+
+        for(let i = 0;i<(this.task.options != null?this.task.options.length:0);i++){
+            this.task.optionTexts[i].setText(this.task.options[i].txt);
+        }
+        for(let opb of this.task.optionBlocks){
+            opb.input.enabled = true;
+            opb.setTint('0xffffff');
+        }
+        console.log(this.task);
+
+    },
+    refreshQuestion:function(){
         this.submit.input.enabled = true;
         let question = getQuestionData();
         this.task.qid = question.qid;
@@ -161,7 +185,7 @@ var RapidTask = new Phaser.Class({
             console.log(":-)");
             this.task.questionAnsweredCorrect++;
             console.log(this.task.questionCount,this.task.questionAnsweredCorrect)
-            this.refresh();
+            this.refreshQuestion();
             // setTimeout(this.reward,2000,this);
         }else{
             let answers = getAnswers(this.task.qid);
@@ -173,7 +197,7 @@ var RapidTask = new Phaser.Class({
                 }
             }
             console.log(this.task.questionCount,this.task.questionAnsweredCorrect)
-            this.refresh();
+            this.refreshQuestion();
             // setTimeout(this.punish,2000,this);
         }
         
@@ -184,6 +208,10 @@ var RapidTask = new Phaser.Class({
         this.countdown.pause();
         this.sound.playAudioSprite('ui_sfx', 'count-down-end');
         console.log('Time out');
+        for(let opb of this.task.optionBlocks){
+            opb.input.enabled = false;
+            opb.setTint('0xffffff');
+        }
         this.submit.input.enabled = false;
         this.scene.setVisible(false,'RapidTask');
         window.gameDescriptor.coins += 100;

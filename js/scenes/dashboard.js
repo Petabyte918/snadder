@@ -45,7 +45,7 @@ var Dashboard = new Phaser.Class({
 
         this.add.image(500,800,'popupBG').setScale(0.6,0.9);
         this.add.image(500,800,'popupBG0').setScale(0.6,0.9);
-        this.add.image(500,450,'popupBG3').setScale(0.6);
+        // this.add.image(500,450,'popupBG3').setScale(0.6);
         
         this.game = this.add.image(350,650,'wood_table').setScale(1,3);
         this.game.setInteractive();
