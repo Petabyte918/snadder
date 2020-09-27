@@ -264,8 +264,10 @@ var GameMain = new Phaser.Class({
         }
         if(window.gameDescriptor.state == STATES.taskFail){
             window.gameDescriptor.state = STATES.ideal;
+            this.showCorrectAnswer();
             this.dice.input.enabled = true;
             this.music.setMute(UNMUTE);
+            
 
         }
         if(window.gameDescriptor.state == STATES.rapidTaskPass){
@@ -277,36 +279,49 @@ var GameMain = new Phaser.Class({
 
                 }
             }
+            
+            
+            if(window.gameDescriptor.actionType == 'fairy'){
+                this.dice.input.enabled = true;
+                this.music.setMute(UNMUTE);
+                this.sound.playAudioSprite('ui_sfx', 'coins-gain');
+            
+                var points = [
+                    new Phaser.Math.Vector2(508.83813145825104, 853.9514456913603),
+                    new Phaser.Math.Vector2(479.0827210239393, 958.0918658976237),
+                    new Phaser.Math.Vector2(440.40068745933405, 1050.3305237946),
+                    new Phaser.Math.Vector2(380.88986659071054, 1130.667419382289),
+                    new Phaser.Math.Vector2(276.74593007061947, 1211.004314969978),
+                    new Phaser.Math.Vector2(175.5775345939596, 1264.5622453617705),
+                    new Phaser.Math.Vector2(89.28684433445555, 1374.6535467226774),
+                    new Phaser.Math.Vector2(44.65372868298795, 1520.4501350114465),
+                    new Phaser.Math.Vector2(92.26238537788673, 1657.3204015682497),
+                    new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
+                ];
+                var curve = new Phaser.Curves.Spline(points);
+                var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'love_potion').setOrigin(0.5).setScale(0.3);
+                // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
+                // coinEarned.anims.play('coin_rotate',true);
+                coinEarned.startFollow({
+                    duration: 1000,
+                    yoyo: false,
+                    repeat: 0,
+                    rotateToPath: false,
+                    verticalAdjust: true
+                });
+                setTimeout((object)=>{
+                    object.setVisible(false);
+                },1100,coinEarned);
+            }
+            else if(window.gameDescriptor.actionType == 'demon'){
+                console.log("You got saved");
+            }
+        }
+
+        if(window.gameDescriptor.state == STATES.rapidTaskFail){
+            window.gameDescriptor.state = STATES.ideal;
             this.dice.input.enabled = true;
             this.music.setMute(UNMUTE);
-            this.sound.playAudioSprite('ui_sfx', 'coins-gain');
-            
-            var points = [
-                new Phaser.Math.Vector2(508.83813145825104, 853.9514456913603),
-                new Phaser.Math.Vector2(479.0827210239393, 958.0918658976237),
-                new Phaser.Math.Vector2(440.40068745933405, 1050.3305237946),
-                new Phaser.Math.Vector2(380.88986659071054, 1130.667419382289),
-                new Phaser.Math.Vector2(276.74593007061947, 1211.004314969978),
-                new Phaser.Math.Vector2(175.5775345939596, 1264.5622453617705),
-                new Phaser.Math.Vector2(89.28684433445555, 1374.6535467226774),
-                new Phaser.Math.Vector2(44.65372868298795, 1520.4501350114465),
-                new Phaser.Math.Vector2(92.26238537788673, 1657.3204015682497),
-                new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
-            ];
-            var curve = new Phaser.Curves.Spline(points);
-            var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'love_potion').setOrigin(0.5).setScale(0.3);
-            // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
-            // coinEarned.anims.play('coin_rotate',true);
-            coinEarned.startFollow({
-                duration: 1000,
-                yoyo: false,
-                repeat: 0,
-                rotateToPath: false,
-                verticalAdjust: true
-            });
-            setTimeout((object)=>{
-                object.setVisible(false);
-            },1100,coinEarned);
 
         }
 
@@ -323,7 +338,7 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
             // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = 3;//getRandom(1,6);
+            window.gameDescriptor.diceNumber = 1;//getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -444,6 +459,7 @@ var GameMain = new Phaser.Class({
                 
                 case 'fairy':
                     window.gameDescriptor.state = STATES.rapidTask;
+                    window.gameDescriptor.actionType = 'fairy';
                     this.sound.playAudioSprite('ui_sfx', 'spell');
                     this.popupFairyContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
                     
@@ -485,6 +501,8 @@ var GameMain = new Phaser.Class({
                         break;
                 case 'demon':
                         window.gameDescriptor.state = STATES.rapidTask;
+                        window.gameDescriptor.actionType = 'demon';
+
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
                         this.popupDemonContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
                     
@@ -525,7 +543,7 @@ var GameMain = new Phaser.Class({
                         break;
 
                 case 'task':
-
+                    window.gameDescriptor.actionType = 'task';
                     if(window.gameDescriptor.state == STATES.task){
                         this.music.setMute(MUTE);
                         if(this.scene.get('Task')){
@@ -637,6 +655,108 @@ var GameMain = new Phaser.Class({
                 
             }
         }
+    },
+    popupAnswerClose:function(){
+
+    },
+    popupAnswerOk:function(){
+
+    },
+    showCorrectAnswer:function(){
+        var qid = window.gameDescriptor.questionAnswered[window.gameDescriptor.questionAnswered.length-1];
+        var data = getQuestionAnswerData(qid);
+
+        this.popupAnswerContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
+                    
+        var popup = this.add.image(0,0,'popupBG')
+                        .setScale(0.6,0.8);
+        var popup1 = this.add.image(0,0,'popupBG0')
+                        .setScale(0.6,0.8);
+        // var feature = this.add.image(0,100,'fairy_large')
+        //                 .setScale(0.6)
+        //                 .setOrigin(0.5,1);
+        var feature = null;
+        var popupClose = this.add.image(350,-350,'btn_close')
+                        .setScale(0.5)
+                        .setInteractive()
+                        .on('click',this.popupAnswerClose,this);
+        var popupOk = this.add.image(0,200,'btn_ok')
+                        .setScale(0.5)
+                        .setInteractive()
+                        .on('click',this.popupAnswerOk,this);
+        
+                        
+        this.load.onLoadStart.add(loadStart, this);
+        game.load.onFileComplete.add(fileComplete, this);
+        game.load.onLoadComplete.add(loadComplete, this);
+        
+        if(data.img != ''){
+            game.load.image('picture1', 'assets/images/answers_images/'+data.img);
+            feature = this.add.image(0,100,'picture1').setOrigin(0.5,1);
+        }   
+        else if(data.video != ''){
+            // var video = document.createElement('video');
+
+            // video.playsinline = true;
+            // video.src = 'assets/videos/answer_videos/' + data.video;
+            // video.width = 800;
+            // video.height = 450;
+            // video.autoplay = true;
+
+            // var element = this.add.dom(400, 300, video);
+
+            // video.addEventListener('ended', (event) => {
+
+            //     element.setVisible(false);
+
+            //     this.add.image(400, 300, 'logo');
+
+            // });
+        }
+        else{
+
+        }
+
+        this.popupAnswerContainer.add(popup);
+        this.popupAnswerContainer.add(popup1);
+        this.popupAnswerContainer.add(feature);
+        this.popupAnswerContainer.add(popupClose);
+        this.popupAnswerContainer.add(popupOk);
+
+        this.tweens.add({
+            targets     : [ this.popupAnswerContainer ],
+            scaleX: 1.2,
+            scaleY: 1.2,
+            ease        : 'Elastic',
+            duration    : 3000,
+            yoyo        : false,
+            repeat      : 0,
+            callbackScope   : this
+        });
+
+    },
+    loadStart:function() {
+        text.setText("Loading ...");
+    },
+    fileComplete:function(progress, cacheKey, success, totalLoaded, totalFiles) {
+
+        text.setText("File Complete: " + progress + "% - " + totalLoaded + " out of " + totalFiles);
+    
+        var newImage = game.add.image(x, y, cacheKey);
+    
+        newImage.scale.set(0.3);
+    
+        x += newImage.width + 20;
+    
+        if (x > 700)
+        {
+            x = 32;
+            y += 332;
+        }
+    
+    },
+    loadComplete:function() {
+        text.setText("Load Complete");
     },
     updateCoins:function(){
         this.coins.setText(''+window.gameDescriptor.coins);

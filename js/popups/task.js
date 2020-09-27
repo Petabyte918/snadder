@@ -34,7 +34,8 @@ var Task = new Phaser.Class({
         this.task['selectedOptions'] = [];
         this.task['optionTexts'] = [];
         this.task['optionBlocks'] = [];
-
+        window.gameDescriptor.questionAnswered.push(this.task.qid);
+        
         for(let i = 0,j=0,k=0;i<(this.task.options != null?this.task.options.length:0);i++){
             if(i%2 == 0){
                 j +=250;
@@ -154,7 +155,7 @@ var Task = new Phaser.Class({
     punish:function(task){
         console.log("InCorrect answer");
         task.scene.setVisible(false,'Task');
-        window.gameDescriptor.coins -= 50;
+        // window.gameDescriptor.coins -= 50;
         window.gameDescriptor.state = STATES.taskFail;
     }
 

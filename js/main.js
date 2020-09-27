@@ -6,8 +6,8 @@ var config = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         parent: 'phaser',
-        width: 980,
-        height: 1750
+        width: WIDTH,
+        height: HEIGHT
     },
     physics: {
         default: 'arcade',
@@ -63,6 +63,23 @@ window.gameDescriptor = {
     Hammers:1,
     activeSenene:'',
     selectedLevel:0,
+    inventory:[
+        {
+            assetName:'love_potion',
+            qty:1,
+            img:'',
+        },
+        {
+            assetName:'snake_blast',
+            qty:1,
+            img:'',
+        },
+        {
+            assetName:'demon_cover',
+            qty:1,
+            img:'',
+        }
+    ],
     levels:[
         {
             id:1,
@@ -166,7 +183,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 2,3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:2,
@@ -205,7 +226,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:3,
@@ -244,7 +269,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:4,
@@ -283,7 +312,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:5,
@@ -322,7 +355,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:6,
@@ -361,7 +398,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:7,
@@ -400,7 +441,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:8,
@@ -439,7 +484,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:9,
@@ -478,7 +527,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:10,
@@ -517,7 +570,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:11,
@@ -556,7 +613,11 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         },
         {
             qid:12,
@@ -595,9 +656,14 @@ window.gameDescriptor = {
             ],
             answers:[
                 3,4
-            ]
+            ],
+            answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
+            questionType:'awernace',
+            answerImg:'darkbg.png',
+            answerVideo:'aw.mp4',
         }
     ],
+    questionAnswered:[],
     diceNums:[1,2,3,4,5,6],
     blockedDiceNums:[],
     diceNumber:0,

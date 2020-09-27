@@ -2,6 +2,7 @@
  * Global constants 
  */
 
+
  
 /** Game keys */
 let LEFT = 0;
@@ -12,9 +13,9 @@ let BOTTOM = 3;
 /** Resolution of game tiles */
 let RESOLUTION = 50;
 
-/** board dimentions */
-let WIDTH = 500;
-let HEIGHT = 500;
+/** screen dimentions */
+let WIDTH = 980;
+let HEIGHT = 1750;
 
 /** translate board */
 let TRANSLATE_X = 100, TRANSLATE_Y = 50; 

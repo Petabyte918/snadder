@@ -43,6 +43,22 @@ function getAnswers(qid){
     }
     return answers;
 }
+function getQuestionAnswerData(qid){
+    let questions = window.gameDescriptor.questions;
+    let data = null;
+
+    for(question of questions){
+        if(question.qid == qid){
+            data = {
+                description: question.answerDesciption,
+                questionType: question.questionType,
+                img: question.answerImg,
+                video: question.answerVideo,
+            };
+        }
+    }
+    return data;
+}
 
 function checkOptAnswers(qid,answers){
     let questions = window.gameDescriptor.questions;
