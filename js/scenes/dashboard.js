@@ -38,9 +38,9 @@ var Dashboard = new Phaser.Class({
         this.add.image(700,1700,'wood_btn').setScale(0.6);
         this.add.image(800,1700,'wood_btn').setScale(0.6);
         this.add.image(900,1700,'wood_btn').setScale(0.6);
-        this.add.image(700,1700,'love_potion').setScale(0.2);
-        this.add.image(800,1700,'cup').setScale(0.2);
-        this.add.image(900,1700,'hammer').setScale(0.2);
+        this.add.image(700,1700,'snake_potion').setScale(0.2);
+        this.add.image(800,1700,'demon_potion').setScale(0.2);
+        this.add.image(900,1700,'heart').setScale(0.18);
 
 
         this.add.image(500,800,'popupBG').setScale(0.6,0.9);

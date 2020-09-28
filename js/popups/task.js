@@ -27,8 +27,12 @@ var Task = new Phaser.Class({
         this.add.image(500,870,'popupBG').setScale(0.6,1.3);
         this.add.image(500,820,'popupBG0').setScale(0.6,1.3);
         
-        this.task = null;
-        this.task = getQuestionData();
+        this.task = {};
+        let question = getQuestionData();
+        this.task['qid'] = question.qid;
+        this.task['q'] = question.q;
+        this.task['options'] = question.options;
+        this.task['answers'] = question.answers;
         this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
         this.task['questionText'].setText(this.task.q);
         this.task['selectedOptions'] = [];
@@ -103,6 +107,8 @@ var Task = new Phaser.Class({
         this.task.answers = question.answers;
         this.task['questionText'].setText(this.task.q);
         this.task['selectedOptions'] = [];
+        window.gameDescriptor.questionAnswered.push(this.task.qid);
+
         for(let i = 0;i<(this.task.options != null?this.task.options.length:0);i++){
             this.task.optionTexts[i].setText(this.task.options[i].txt);
         }

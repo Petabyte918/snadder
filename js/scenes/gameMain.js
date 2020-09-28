@@ -121,10 +121,12 @@ var GameMain = new Phaser.Class({
         this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
-        this.add.image(700,1700,'love_potion').setScale(0.2).setScrollFactor(0);
-        this.add.image(800,1700,'cup').setScale(0.2).setScrollFactor(0);
-        this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0);
-
+        this.add.image(700,1700,'snake_potion').setScale(0.2).setScrollFactor(0);
+        this.add.image(800,1700,'demon_potion').setScale(0.2).setScrollFactor(0);
+        this.add.image(900,1700,'heart').setScale(0.18).setScrollFactor(0);
+        this.snakeCover = this.add.dynamicBitmapText(720,1700,'fire',getBoonQtyFromInventory('snake_cover'),40).setScrollFactor(0);
+        this.demonCover = this.add.dynamicBitmapText(820,1700,'fire',getBoonQtyFromInventory('demon_cover'),40).setScrollFactor(0);
+        this.hearts = this.add.dynamicBitmapText(920,1700,'fire',getBoonQtyFromInventory('hearts'),40).setScrollFactor(0);
         
         
         this.userPinFake = this.add.image(
@@ -219,8 +221,13 @@ var GameMain = new Phaser.Class({
         
         this.controls.update(delta);
         // console.log(this.cameras.main._x)
-        
+        // updating UI 
         this.coins.setText(window.gameDescriptor.coins);
+        this.snakeCover.setText(getBoonQtyFromInventory('snake_cover'));
+        this.demonCover.setText(getBoonQtyFromInventory('demon_cover'));
+        this.hearts.setText(getBoonQtyFromInventory('hearts'));
+
+
         if(window.gameDescriptor.state == STATES.taskPass){
             window.gameDescriptor.state = STATES.ideal;
             if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
@@ -263,12 +270,8 @@ var GameMain = new Phaser.Class({
 
         }
         if(window.gameDescriptor.state == STATES.taskFail){
-            window.gameDescriptor.state = STATES.ideal;
+            window.gameDescriptor.state = STATES.taskConfirm;
             this.showCorrectAnswer();
-            this.dice.input.enabled = true;
-            this.music.setMute(UNMUTE);
-            
-
         }
         if(window.gameDescriptor.state == STATES.rapidTaskPass){
             window.gameDescriptor.state = STATES.ideal;
@@ -284,6 +287,7 @@ var GameMain = new Phaser.Class({
             if(window.gameDescriptor.actionType == 'fairy'){
                 this.dice.input.enabled = true;
                 this.music.setMute(UNMUTE);
+                this.music.play();
                 this.sound.playAudioSprite('ui_sfx', 'coins-gain');
             
                 var points = [
@@ -299,9 +303,12 @@ var GameMain = new Phaser.Class({
                     new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
                 ];
                 var curve = new Phaser.Curves.Spline(points);
-                var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'love_potion').setOrigin(0.5).setScale(0.3);
-                // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
-                // coinEarned.anims.play('coin_rotate',true);
+                var asset = getRandomBoon();
+                console.log(asset);
+                addBoonToInventory(asset);
+                var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, asset.img)
+                                        .setOrigin(0.5)
+                                        .setScale(0.2);
                 coinEarned.startFollow({
                     duration: 1000,
                     yoyo: false,
@@ -314,10 +321,12 @@ var GameMain = new Phaser.Class({
                 },1100,coinEarned);
             }
             else if(window.gameDescriptor.actionType == 'demon'){
+                this.dice.input.enabled = true;
+                this.music.setMute(UNMUTE);
+                this.music.play();
                 console.log("You got saved");
             }
         }
-
         if(window.gameDescriptor.state == STATES.rapidTaskFail){
             window.gameDescriptor.state = STATES.ideal;
             this.dice.input.enabled = true;
@@ -338,7 +347,7 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
             // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = 1;//getRandom(1,6);
+            window.gameDescriptor.diceNumber = 3;//getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -657,10 +666,16 @@ var GameMain = new Phaser.Class({
         }
     },
     popupAnswerClose:function(){
-
+        this.popupAnswerContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.music.setMute(UNMUTE);
     },
     popupAnswerOk:function(){
-
+        this.popupAnswerContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.music.setMute(UNMUTE);
     },
     showCorrectAnswer:function(){
         var qid = window.gameDescriptor.questionAnswered[window.gameDescriptor.questionAnswered.length-1];
@@ -676,8 +691,8 @@ var GameMain = new Phaser.Class({
         //                 .setScale(0.6)
         //                 .setOrigin(0.5,1);
         var feature = null;
-        var popupClose = this.add.image(350,-350,'btn_close')
-                        .setScale(0.5)
+        var popupClose = this.add.image(350,-350,'btn_close1')
+                        .setScale(0.7)
                         .setInteractive()
                         .on('click',this.popupAnswerClose,this);
         var popupOk = this.add.image(0,200,'btn_ok')
@@ -686,9 +701,9 @@ var GameMain = new Phaser.Class({
                         .on('click',this.popupAnswerOk,this);
         
                         
-        this.load.onLoadStart.add(loadStart, this);
-        game.load.onFileComplete.add(fileComplete, this);
-        game.load.onLoadComplete.add(loadComplete, this);
+        // this.load.onLoadStart.add(loadStart, this);
+        // game.load.onFileComplete.add(fileComplete, this);
+        // game.load.onLoadComplete.add(loadComplete, this);
         
         if(data.img != ''){
             game.load.image('picture1', 'assets/images/answers_images/'+data.img);
@@ -714,7 +729,17 @@ var GameMain = new Phaser.Class({
             // });
         }
         else{
-
+            feature = this.make.text({
+                x: 0,
+                y: -80,
+                text: data.description,
+                origin: { x: 0.5, y: 0.5 },
+                style: {
+                    font: 'bold 45px Arial',
+                    fill: 'green',
+                    wordWrap: { width: 500 }
+                }
+            });
         }
 
         this.popupAnswerContainer.add(popup);

@@ -48,13 +48,14 @@ let STATES = {
     task:6,
     taskPass:7,
     taskFail:8,
-    rapidTask:9,
+    taskConfirm:9,
+    rapidTask:10,
 
 
 }
 
-let MUTE = 1;
-let UNMUTE = 0;
+let MUTE = true;
+let UNMUTE = false;
 
 let MUSIC_STATES = {
     playing:0,

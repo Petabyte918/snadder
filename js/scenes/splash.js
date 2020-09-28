@@ -142,7 +142,11 @@ var Splash = new Phaser.Class({
         this.load.image('coins','assets/images/icons/3.png');
         this.load.image('cup','assets/images/icons/4.png');
         this.load.image('love_potion','assets/images/icons/potions5.png');
-        this.load.image('hammer','assets/images/icons/10.png');
+        this.load.image('snake_potion','assets/images/icons/potions3.png');
+        this.load.image('demon_potion','assets/images/icons/potions10.png');
+        this.load.image('heart','assets/images/icons/heart.png');
+        this.load.image('leaf', 'assets/images/icons/icon_back/8.png');
+
 
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');
         this.load.bitmapFont('green','assets/fonts/bitmap/shortStack.png','assets/fonts/bitmap/shortStack.xml');

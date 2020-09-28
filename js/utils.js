@@ -22,6 +22,7 @@ function getQuestionData(){
     let rand = getRandom(0,window.gameDescriptor.questions.length-1);
     return window.gameDescriptor.questions[rand];
 }
+
 function getOptions(qid){
     let questions = window.gameDescriptor.questions;
     let options = null;
@@ -39,6 +40,7 @@ function getAnswers(qid){
     for(question of questions){
         if(question.qid == qid){
             answers = question.answers;
+            break;
         }
     }
     return answers;
@@ -55,17 +57,54 @@ function getQuestionAnswerData(qid){
                 img: question.answerImg,
                 video: question.answerVideo,
             };
+            break;
         }
     }
     return data;
 }
 
+function getRandomBoon(){
+    let rand = getRandom(0,window.gameDescriptor.assets.length-1);
+    return window.gameDescriptor.assets[rand];
+}
+
+function addBoonToInventory(asset){
+    let found = false;
+    for(let ivt of window.gameDescriptor.inventory){
+        if(asset.assetName == ivt.assetName){
+            ivt.qty += asset.qty;
+            found=true;
+            break;
+        }
+    }
+
+    if(!found){
+        ivt.push({
+            assetName: asset.assetName,
+            assetType: asset.assetType,
+            qty: asset.qty,
+            img: asset.img,
+        });
+    }
+}
+function getBoonQtyFromInventory(assetName){
+
+    let qty = 0;
+    for(let ivt of window.gameDescriptor.inventory){
+        if(assetName == ivt.assetName){
+            qty = ivt.qty;
+            break;
+        }
+    }
+    return qty;
+}
 function checkOptAnswers(qid,answers){
     let questions = window.gameDescriptor.questions;
     let isMatched = false;
     for(question of questions){
         if(question.qid == qid){
             isMatched = arrayEquals(answers,question.answers);
+            break;
         }
     }
     return isMatched;
