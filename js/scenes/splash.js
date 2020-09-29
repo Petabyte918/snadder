@@ -88,6 +88,10 @@ var Splash = new Phaser.Class({
             'assets/images/sprites/coin_sprite.png',
             { frameWidth: 50, frameHeight: 50 }
         );
+        this.load.spritesheet('portal', 
+            'assets/images/sprites/portal.png',
+            { frameWidth: 80, frameHeight: 114 }
+        );
 
         this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
@@ -145,7 +149,7 @@ var Splash = new Phaser.Class({
         this.load.image('snake_potion','assets/images/icons/potions3.png');
         this.load.image('demon_potion','assets/images/icons/potions10.png');
         this.load.image('heart','assets/images/icons/heart.png');
-        this.load.image('leaf', 'assets/images/icons/icon_back/8.png');
+        this.load.image('leaf', 'assets/images/icons/8.png');
 
 
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');

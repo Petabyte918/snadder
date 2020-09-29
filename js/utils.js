@@ -98,6 +98,12 @@ function getBoonQtyFromInventory(assetName){
     }
     return qty;
 }
+
+function getRandomPunishment(){
+    let rand = getRandom(0,window.gameDescriptor.punishments.length-1);
+    return window.gameDescriptor.punishments[rand];
+}
+
 function checkOptAnswers(qid,answers){
     let questions = window.gameDescriptor.questions;
     let isMatched = false;

@@ -100,7 +100,19 @@ var GameMain = new Phaser.Class({
             frameRate: 8,
             repeat: -1
         });
-
+        /** portal */
+        this.anims.create({
+            key: 'portalRunning',
+            frames: this.anims.generateFrameNumbers('portal', { start: 0, end: 7 }),
+            frameRate: 5,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'portalIdeal',
+            frames: [{key:'portal',frame:6 }],
+            frameRate: 8,
+            repeat: -1
+        });
         /** Adding features to the tiles */
         this.addFeaturesToTile();
         
@@ -121,9 +133,19 @@ var GameMain = new Phaser.Class({
         this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
-        this.add.image(700,1700,'snake_potion').setScale(0.2).setScrollFactor(0);
-        this.add.image(800,1700,'demon_potion').setScale(0.2).setScrollFactor(0);
-        this.add.image(900,1700,'heart').setScale(0.18).setScrollFactor(0);
+        
+        this.snakeCoverBtn = this.add.image(700,1700,'snake_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.snakeCoverBtn.data.set('assetName','snake_cover');
+        this.snakeCoverBtn.on('click',this.blastSnakes,this);
+        
+        this.demonCoverBtn = this.add.image(800,1700,'demon_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.demonCoverBtn.data.set('assetName','demon_cover');
+        this.demonCoverBtn.on('click',this.blastDemons,this);
+
+        this.heartsBtn = this.add.image(900,1700,'heart').setScale(0.18).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.heartsBtn.data.set('assetName','snake_cover');
+        // this.heartsBtn.on('click',this.BlastDemons,this);
+
         this.snakeCover = this.add.dynamicBitmapText(720,1700,'fire',getBoonQtyFromInventory('snake_cover'),40).setScrollFactor(0);
         this.demonCover = this.add.dynamicBitmapText(820,1700,'fire',getBoonQtyFromInventory('demon_cover'),40).setScrollFactor(0);
         this.hearts = this.add.dynamicBitmapText(920,1700,'fire',getBoonQtyFromInventory('hearts'),40).setScrollFactor(0);
@@ -227,6 +249,11 @@ var GameMain = new Phaser.Class({
         this.demonCover.setText(getBoonQtyFromInventory('demon_cover'));
         this.hearts.setText(getBoonQtyFromInventory('hearts'));
 
+        if(this.userPin){
+            if(this.userPin.y < HEIGHT/2 ){
+                this.cameras.main.scrollY = this.userPin.y - HEIGHT/2;
+            }
+        }
 
         if(window.gameDescriptor.state == STATES.taskPass){
             window.gameDescriptor.state = STATES.ideal;
@@ -331,6 +358,25 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.ideal;
             this.dice.input.enabled = true;
             this.music.setMute(UNMUTE);
+            this.music.play();
+
+            window.gameDescriptor.state = STATES.ideal;
+            if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
+                window.gameDescriptor.tiles[window.gameDescriptor.playerPos].feature.destroy();
+                if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos].number){
+                    window.gameDescriptor.tiles[window.gameDescriptor.playerPos].number.setOrigin(0.5,1);
+
+                }
+            }
+            
+            
+            if(window.gameDescriptor.actionType == 'fairy'){
+                console.log('got nothing');
+            }else if(window.gameDescriptor.actionType == 'demon'){
+                let punishment = getRandomPunishment();
+                this.initPunishment(punishment);
+            }
+
 
         }
 
@@ -428,7 +474,7 @@ var GameMain = new Phaser.Class({
             switch(tileType){
                 case 'cobra':
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.popupSnakeContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
+                        this.popupSnakeContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
                         
                         var popup = this.add.image(0,0,'popupBG')
                                         .setScale(0.6,0.8);
@@ -465,12 +511,51 @@ var GameMain = new Phaser.Class({
                             callbackScope   : this
                           });
                         break;
-                
+                case 'portal':
+                        this.sound.playAudioSprite('ui_sfx', 'game-over');
+                        this.popupPortalContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
+                        
+                        var popup = this.add.image(0,0,'popupBG')
+                                        .setScale(0.6,0.8);
+                        var popup1 = this.add.image(0,0,'popupBG0')
+                                        .setScale(0.6,0.8);
+                        var feature = this.add.sprite(0,100,'portal')
+                                            .setScale(3)
+                                            .setOrigin(0.47,0.9);
+                        feature.anims.play('portalRunning',true);
+                        var popupClose = this.add.image(350,-350,'btn_close')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupPortalClose,this);
+                        var popupOk = this.add.image(0,200,'btn_ok')
+                                        .setScale(0.5)
+                                        .setInteractive()
+                                        .on('click',this.popupPortalOk,this);
+
+                    
+                        this.popupPortalContainer.add(popup);
+                        this.popupPortalContainer.add(popup1);
+                        this.popupPortalContainer.add(feature);
+                        this.popupPortalContainer.add(popupClose);
+                        this.popupPortalContainer.add(popupOk);
+
+                        // this.tween = game.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+                        this.tweens.add({
+                            targets     : [ this.popupPortalContainer ],
+                            scaleX: 1.2,
+                            scaleY: 1.2,
+                            ease        : 'Elastic',
+                            duration    : 3000,
+                            yoyo        : false,
+                            repeat      : 0,
+                            callbackScope   : this
+                        });
+                        break;
                 case 'fairy':
                     window.gameDescriptor.state = STATES.rapidTask;
                     window.gameDescriptor.actionType = 'fairy';
                     this.sound.playAudioSprite('ui_sfx', 'spell');
-                    this.popupFairyContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
+                    this.popupFairyContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
                     
                     var popup = this.add.image(0,0,'popupBG')
                                     .setScale(0.6,0.8);
@@ -513,7 +598,7 @@ var GameMain = new Phaser.Class({
                         window.gameDescriptor.actionType = 'demon';
 
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.popupDemonContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
+                        this.popupDemonContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
                     
                         var popup = this.add.image(0,0,'popupBG')
                                         .setScale(0.6,0.8);
@@ -594,6 +679,20 @@ var GameMain = new Phaser.Class({
         this.popupSnakeContainer.destroy();
         window.gameDescriptor.playerPos -= getRandom(1,6);
         window.gameDescriptor.playerDirection = -1;
+        this.movePlayer();
+    },
+    popupPortalClose:function(){
+        console.log('portal popup closed');
+        this.popupPortalContainer.destroy();
+        window.gameDescriptor.playerPos += getRandom(1,6);
+        window.gameDescriptor.playerDirection = 1;
+        this.movePlayer();
+    },
+    popupPortalOk:function(){
+        console.log('portal popup closed');
+        this.popupPortalContainer.destroy();
+        window.gameDescriptor.playerPos += getRandom(1,6);
+        window.gameDescriptor.playerDirection = 1;
         this.movePlayer();
     },
     popupFairyClose:function(){
@@ -786,6 +885,15 @@ var GameMain = new Phaser.Class({
     updateCoins:function(){
         this.coins.setText(''+window.gameDescriptor.coins);
     },
+    blastSnakes:function(){
+
+    },
+    blastDemons:function(){
+
+    },
+    initPunishment:function(punishment){
+        console.log(punishment);
+    },
     addFeaturesToTile:function(){
         let i=0;
         for(let tile of window.gameDescriptor.tiles){
@@ -810,6 +918,12 @@ var GameMain = new Phaser.Class({
                     tile.feature.setScale(2);
                     tile.feature.setOrigin(0.5,1);
                     tile.feature.anims.play('cobraHover',true);
+                }
+                if(tile.featureType == 'portal'){
+                    tile.feature = this.add.sprite(tile.x,tile.y,'portal');
+                    tile.feature.setScale(1.8);
+                    tile.feature.setOrigin(0.47,0.9);
+                    tile.feature.anims.play('portalRunning',true);
                 }
             }
             else{

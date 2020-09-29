@@ -63,6 +63,38 @@ window.gameDescriptor = {
     Hammers:1,
     activeSenene:'',
     selectedLevel:0,
+    punishments:[
+        {
+            name:'snake_wave',
+            type:'wave',
+            waveDuration:120,
+
+        },
+        {
+            name:'demon_wave',
+            type:'wave',
+            waveDuration:120,
+
+        },
+        {
+            name:'text_spouse',
+            type:'text',
+            waveDuration:0,
+
+        },
+        {
+            name:'pos_reasign',
+            type:'position',
+            waveDuration:0,
+
+        },
+        {
+            name:'frozen',
+            type:'frozen',
+            waveDuration:60,
+
+        }
+    ],
     assets:[
         {
             assetName:'hearts',
@@ -74,7 +106,7 @@ window.gameDescriptor = {
             assetName:'coins',
             assetType:'coin_gain',
             qty:1000,
-            img:'icon_back3',
+            img:'coins',
         },
         {
             assetName:'snake_cover',
@@ -781,9 +813,9 @@ window.gameDescriptor = {
         {
             x:453.78259816528595,
             y:958.9765441404006,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'portal',
         },
         {
             x:626.3757699466607,
@@ -879,9 +911,9 @@ window.gameDescriptor = {
         {
             x:465.9370961078507,
             y:271.0415985773132,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'portal',
         },
         {
             x:402.7339152811063,

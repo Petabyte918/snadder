@@ -140,6 +140,7 @@ var RapidTask = new Phaser.Class({
             opb.setTint('0xffffff');
         }
         console.log(this.task);
+        this.countdown.manager.playAudioSprite('ui_sfx','count-down',{loop:true});
 
     },
     refreshQuestion:function(){
@@ -214,19 +215,23 @@ var RapidTask = new Phaser.Class({
         }
         this.submit.input.enabled = false;
         this.scene.setVisible(false,'RapidTask');
-        window.gameDescriptor.coins += 100;
-        window.gameDescriptor.state = STATES.rapidTaskPass;
+        console.log("MATH",Math.floor(this.task.questionAnsweredCorrect/this.task.questionCount*100),this.task.questionCount,this.task.questionAnsweredCorrect);
+        if(Math.floor(this.task.questionAnsweredCorrect/this.task.questionCount*100) > 30 ){
+            this.reward();
+        }
+        else{
+            this.punish();
+        }
+        
     },
     reward:function(task){
-        console.log("Correct answer");
-        // task.scene.setVisible(false,'Task');
-        window.gameDescriptor.coins += 100;
+        console.log("Round pass");
+        // window.gameDescriptor.coins += 100;
         window.gameDescriptor.state = STATES.rapidTaskPass;
     },
     punish:function(task){
-        console.log("InCorrect answer");
+        console.log("Round fail");
         // task.scene.setVisible(false,'Task');
-        window.gameDescriptor.coins -= 50;
         window.gameDescriptor.state = STATES.rapidTaskFail;
     }
 

@@ -50,6 +50,8 @@ let STATES = {
     taskFail:8,
     taskConfirm:9,
     rapidTask:10,
+    rapidTaskPass:11,
+    rapidTaskFail:12,
 
 
 }
