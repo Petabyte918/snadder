@@ -83,7 +83,7 @@ window.gameDescriptor = {
 
         },
         {
-            name:'pos_reasign',
+            name:'pos_reassign',
             type:'position',
             waveDuration:0,
 

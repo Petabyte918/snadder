@@ -254,6 +254,9 @@ var GameMain = new Phaser.Class({
                 this.cameras.main.scrollY = this.userPin.y - HEIGHT/2;
             }
         }
+        if(this.counterText){
+            this.counterText.setText( Math.floor(this.counter - this.timer.getElapsed()/1000));
+        }
 
         if(window.gameDescriptor.state == STATES.taskPass){
             window.gameDescriptor.state = STATES.ideal;
@@ -393,7 +396,7 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
             // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = 3;//getRandom(1,6);
+            window.gameDescriptor.diceNumber = 6;//getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -893,6 +896,116 @@ var GameMain = new Phaser.Class({
     },
     initPunishment:function(punishment){
         console.log(punishment);
+        switch(punishment.name){
+            case 'snake_wave':
+                this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeout, callbackScope: this });
+                this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
+                this.counter = punishment.waveDuration;
+                this.counterText.setVisible(true);
+                for(let i=1;i< window.gameDescriptor.tiles.length;i++){
+                    let tile = window.gameDescriptor.tiles[i];
+                    if(i%5 == 0){
+                        if(tile.feature != null && i > window.gameDescriptor.playerPos)
+                        {
+                            tile.feature.destroy();
+                            tile.feature = this.add.sprite(tile.x,tile.y,'cobra');
+                            tile.feature.setScale(2);
+                            tile.feature.setOrigin(0.5,1);
+                            tile.feature.anims.play('cobraHover',true);
+                            tile['oldType'] = tile.featureType;
+                            tile.featureType = 'cobra';
+
+                        }
+                        
+                    }
+                }
+                break;
+
+            case 'demon_wave':
+                this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeout, callbackScope: this });
+                this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
+                this.counter = punishment.waveDuration;
+                this.counterText.setVisible(true);
+                for(let i=1;i< window.gameDescriptor.tiles.length;i++){
+                    let tile = window.gameDescriptor.tiles[i];
+                    if(i%5 == 0){
+                        if(tile.feature != null && i > window.gameDescriptor.playerPos)
+                        {
+                            tile.feature.destroy();
+                            tile.feature = this.add.sprite(tile.x,tile.y,'demon');
+                            tile.feature.setScale(2);
+                            tile.feature.setOrigin(0.5,1);
+                            tile.feature.anims.play('demonHover',true);
+                            tile['oldType'] = tile.featureType;
+                            tile.featureType = 'demon';
+                        }
+                        
+                    }
+                }
+                break;
+        }
+    },
+    punishmentTimeout:function(){
+        this.counterText.setVisible(false);
+        for(let i=1;i< window.gameDescriptor.tiles.length;i++){
+            let tile = window.gameDescriptor.tiles[i];
+            if(tile.feature != null && i > window.gameDescriptor.playerPos)
+            {
+                if(tile.oldType){
+                    switch(tile.oldType){
+                        case 'cobra':
+                            tile.feature.destroy();
+                            tile.feature = this.add.sprite(tile.x,tile.y,'cobra');
+                            tile.feature.setScale(2);
+                            tile.feature.setOrigin(0.5,1);
+                            tile.feature.anims.play('cobraHover',true);
+                            tile.featureType = tile.oldType;
+                            tile.oldType = null;
+                            break;
+                        case 'task':
+                            tile.feature.destroy();
+                            tile.feature = this.add.sprite(tile.x+5,tile.y,'coin_sprite');
+                            tile.feature.anims.play('coin_rotate',true);
+                            tile.feature.setOrigin(0.5,1.3);
+                            tile.featureType = tile.oldType;
+                            tile.oldType = null;
+                            break;
+                        case 'demon':
+                            tile.feature.destroy();
+                            tile.feature = this.add.sprite(tile.x,tile.y,'demon');
+                            tile.feature.setScale(2.4);
+                            tile.feature.setOrigin(0.5,1);
+                            tile.feature.anims.play('demonHover',true);
+                            tile.featureType = tile.oldType;
+                            tile.oldType = null;
+                            break;
+                        case 'fairy':
+                            tile.feature.destroy();
+                            tile.feature = this.add.sprite(tile.x,tile.y,'fairy');
+                            tile.feature.setScale(1.3);
+                            tile.feature.setOrigin(0.5,1.3);
+                            tile.feature.anims.play('fairyHover',true);
+                            tile.featureType = tile.oldType;
+                            tile.oldType = null;
+                            break;
+                        case 'portal':
+                            tile.feature.destroy();
+                            tile.feature = this.add.sprite(tile.x,tile.y,'portal');
+                            tile.feature.setScale(1.8);
+                            tile.feature.setOrigin(0.47,0.9);
+                            tile.feature.anims.play('portalRunning',true);
+                            tile.featureType = tile.oldType;
+                            tile.oldType = null;
+                            break;
+
+                    }
+                }
+                
+                
+
+            }
+                
+        }
     },
     addFeaturesToTile:function(){
         let i=0;
