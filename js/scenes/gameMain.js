@@ -173,7 +173,7 @@ var GameMain = new Phaser.Class({
                 this.graphics =  this.add.graphics();
                 this.graphics.fillStyle(0x00ff00, 1);
                 this.graphics.fillCircle(this.worldPoint.x, this.worldPoint.y, 4);
-                this.add.image(this.worldPoint.x, this.worldPoint.y,'stone').setScale(0.23);
+                // this.add.image(this.worldPoint.x, this.worldPoint.y,'stone').setScale(0.23);
             }
 
         }, this);
@@ -195,7 +195,26 @@ var GameMain = new Phaser.Class({
             gameObject.setTint('0xffffff');
         });
         
-        
+        /** Keyboard listners */
+        // key1 = this.input.keyboard.addKey(Phaser.Keyboard.G);
+        // key1.onDown.add(addPhaserDude, this);
+        this.input.keyboard.on('keydown', function (event) {
+
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.G)
+            {
+               if(window.gameDescriptor.debug){
+                   window.gameDescriptor.debug = false;
+                   console.log('Debug Disabled');
+                   alert('Debug Disabled');
+                   }
+               else{
+                   window.gameDescriptor.debug = true;
+                   console.log('Debug Enabled');
+                   alert('Debug Enabled');
+               }
+            }
+    
+        });
         //   lemming.pauseFollow();
         //   lemming.resumeFollow();
         
@@ -395,8 +414,7 @@ var GameMain = new Phaser.Class({
         if(window.gameDescriptor.state == STATES.ideal){
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
-            // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = getRandom(1,6);
+            window.gameDescriptor.diceNumber = window.gameDescriptor.debug==true?3:getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
