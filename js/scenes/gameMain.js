@@ -396,7 +396,7 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
             // this.dice.data.set('anim',true);
-            window.gameDescriptor.diceNumber = 6;//getRandom(1,6);
+            window.gameDescriptor.diceNumber = getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
