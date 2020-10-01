@@ -799,9 +799,9 @@ window.gameDescriptor = {
         {
             x:162.07584320683478,
             y:825.2789292625663,
-            tileType:1,
+            tileType:0,
             feature:null,
-            featureType:'cobra',
+            featureType:'task',
         },
         {
             x:307.9292360150745,
@@ -834,9 +834,9 @@ window.gameDescriptor = {
         {
             x:733.3350084713138,
             y:766.9381317944532,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'match',
         },
         {
             x:572.8962120003907,
@@ -855,9 +855,9 @@ window.gameDescriptor = {
         {
             x:298.2057051086849,
             y:638.1022806966893,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'quiz',
         },
         {
             x:305.49836095298417,
@@ -876,16 +876,16 @@ window.gameDescriptor = {
         {
             x:529.140154302482,
             y:501.9738759020029,
-            tileType:1,
+            tileType:0,
             feature:null,
-            featureType:'fairy',
+            featureType:'task',
         },
         {
             x:687.1480757113147,
             y:494.68126088962487,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'quiz',
         },
         {
             x:798.969003044092,
@@ -897,9 +897,9 @@ window.gameDescriptor = {
         {
             x:818.4160648568711,
             y:266.179804139515,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'cobra',
         },
         {
             x:631.2375200708414,

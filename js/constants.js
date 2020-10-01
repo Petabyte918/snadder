@@ -52,6 +52,7 @@ let STATES = {
     rapidTask:10,
     rapidTaskPass:11,
     rapidTaskFail:12,
+    frozen:13,
 
 
 }
@@ -67,6 +68,7 @@ let MUSIC_STATES = {
 
 
 let STRINGS = {
-    gameOver : 'Game Over',
-
+    gameOver    : 'Game Over',
+    levels      : 'Levels',
+    
 }

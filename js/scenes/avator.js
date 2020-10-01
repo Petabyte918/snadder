@@ -40,10 +40,10 @@ var Avator = new Phaser.Class({
         this.female.setInteractive();
         this.female.on('click',this.selectFemale,this);
         
-        this.add.image(500,450,'popupBG3').setScale(0.6);
+        // this.add.image(500,450,'popupBG3').setScale(0.6);
 
-        this.add.dynamicBitmapText(300,800,'green','Male',30);
-        this.add.dynamicBitmapText(590,800,'green','Female',30);
+        this.add.dynamicBitmapText(300,800,'green','Pati',30);
+        this.add.dynamicBitmapText(590,800,'green','Patni',30);
 
         this.input.on('gameobjectdown', function (pointer, gameObject)
         {
@@ -66,11 +66,13 @@ var Avator = new Phaser.Class({
     selectFemale:function(){
         window.gameDescriptor.avator = 'female';
         this.registry.set('avator','female');
+        setGameData();
         this.scene.start('Dashboard');
     },
     selectMale:function(){
         window.gameDescriptor.avator = 'male';
         this.registry.set('avator','male');
+        setGameData();
         this.scene.start('Dashboard');
     }
 

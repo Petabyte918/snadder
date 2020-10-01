@@ -377,8 +377,7 @@ var GameMain = new Phaser.Class({
             }
         }
         if(window.gameDescriptor.state == STATES.rapidTaskFail){
-            window.gameDescriptor.state = STATES.ideal;
-            this.dice.input.enabled = true;
+            
             this.music.setMute(UNMUTE);
             this.music.play();
 
@@ -394,6 +393,8 @@ var GameMain = new Phaser.Class({
             
             if(window.gameDescriptor.actionType == 'fairy'){
                 console.log('got nothing');
+                window.gameDescriptor.state = STATES.ideal;
+                this.dice.input.enabled = true;
             }else if(window.gameDescriptor.actionType == 'demon'){
                 let punishment = getRandomPunishment();
                 this.initPunishment(punishment);
@@ -920,6 +921,8 @@ var GameMain = new Phaser.Class({
                 this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
                 this.counter = punishment.waveDuration;
                 this.counterText.setVisible(true);
+                window.gameDescriptor.state = STATES.ideal;
+                this.dice.input.enabled = true;
                 for(let i=1;i< window.gameDescriptor.tiles.length;i++){
                     let tile = window.gameDescriptor.tiles[i];
                     if(i%5 == 0){
@@ -944,6 +947,8 @@ var GameMain = new Phaser.Class({
                 this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
                 this.counter = punishment.waveDuration;
                 this.counterText.setVisible(true);
+                window.gameDescriptor.state = STATES.ideal;
+                this.dice.input.enabled = true;
                 for(let i=1;i< window.gameDescriptor.tiles.length;i++){
                     let tile = window.gameDescriptor.tiles[i];
                     if(i%5 == 0){
@@ -961,7 +966,30 @@ var GameMain = new Phaser.Class({
                     }
                 }
                 break;
+            case 'pos_reassign':
+                    window.gameDescriptor.state = STATES.ideal;
+                    this.dice.input.enabled = true;
+        
+                    break;
+            case 'frozen':
+                    this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeoutFrozen, callbackScope: this });
+                    this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
+                    this.counter = punishment.waveDuration;
+                    this.counterText.setVisible(true);
+                    window.gameDescriptor.state = STATES.frozen;
+                    break;
+            case 'text_spouse':
+                    window.gameDescriptor.state = STATES.ideal;
+                    this.dice.input.enabled = true;
+        
+                break;
         }
+    },
+    punishmentTimeoutFrozen:function(){
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.counterText.setVisible(false);
+
     },
     punishmentTimeout:function(){
         this.counterText.setVisible(false);
@@ -1055,6 +1083,18 @@ var GameMain = new Phaser.Class({
                     tile.feature.setScale(1.8);
                     tile.feature.setOrigin(0.47,0.9);
                     tile.feature.anims.play('portalRunning',true);
+                }
+                if(tile.featureType == 'match'){
+                    tile.feature = this.add.image(tile.x,tile.y,'heart');
+                    tile.feature.setScale(0.12);
+                    tile.feature.setOrigin(0.47,1.1);
+                    // tile.feature.anims.play('portalRunning',true);
+                }
+                if(tile.featureType == 'quiz'){
+                    tile.feature = this.add.image(tile.x,tile.y,'lock_key');
+                    tile.feature.setScale(0.12);
+                    tile.feature.setOrigin(0.47,1.1);
+                    // tile.feature.anims.play('portalRunning',true);
                 }
             }
             else{

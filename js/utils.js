@@ -124,3 +124,13 @@ function arrayEquals(array1,array2){
         return false;
     }
 }
+
+
+function getGameData(){
+    var file = JSON.parse(localStorage.getItem('gamefile'));
+    return file;
+}
+
+function setGameData(){
+    localStorage.setItem('gamefile',JSON.stringify(window.gameDescriptor));
+}

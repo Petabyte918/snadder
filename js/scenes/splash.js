@@ -150,6 +150,7 @@ var Splash = new Phaser.Class({
         this.load.image('demon_potion','assets/images/icons/potions10.png');
         this.load.image('heart','assets/images/icons/heart.png');
         this.load.image('leaf', 'assets/images/icons/8.png');
+        this.load.image('lock_key', 'assets/images/icons/5.png');
 
 
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');
@@ -205,12 +206,14 @@ var Splash = new Phaser.Class({
         this.play.setInteractive();
         this.snadder = this.add.dynamicBitmapText(960/2,500,'fire','LOVELUDO',128).setOrigin(0.5,0.5);
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
-        
+        this.loadGamedata();
+
         this.input.once('pointerdown', function () {
             // this.scene.start("GameMain");
             
         }, this);
-                
+        
+        
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
             this.sound.playAudioSprite('ui_sfx', 'game-start');
@@ -223,6 +226,7 @@ var Splash = new Phaser.Class({
                 //     // onUpdate: this.transitionOut,
                 //     data: { x: 400, y: 300 }
                 // });
+                
                 this.scene.start('Avator');
             }else{
                 this.scene.start('Dashboard');
@@ -247,7 +251,7 @@ var Splash = new Phaser.Class({
     transitionOut: function (progress)
     {
         // this.scene.y = (600 * progress);
-    }
+    },
     // waveAnimation:function(data,phase){
     //     console.log("d",data);
     //     data.y = parseInt(Math.cos(phase+0.5) *10);
@@ -258,7 +262,13 @@ var Splash = new Phaser.Class({
     // update:function(){
         
     // }
-
+    loadGamedata:function(){
+        var file = getGameData();
+        // console.log(">>"+file.gamefile);
+        if(file != null && file != 'undeifned'){
+            window.gameDescriptor = file;
+        }
+    }
 
 });
 
