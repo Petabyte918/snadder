@@ -33,8 +33,20 @@ var Task = new Phaser.Class({
         this.task['q'] = question.q;
         this.task['options'] = question.options;
         this.task['answers'] = question.answers;
-        this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
+        // this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
+        this.task['questionText'] = this.make.text({
+            x: 480,
+            y: 450,
+            text: '',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 45px Arial',
+                fill: 'green',
+                wordWrap: { width: 600 }
+            }
+        });
         this.task['questionText'].setText(this.task.q);
+
         this.task['selectedOptions'] = [];
         this.task['optionTexts'] = [];
         this.task['optionBlocks'] = [];

@@ -43,7 +43,7 @@ var RapidTask = new Phaser.Class({
         this.task['optionBlocks'] = [];
         this.task['questionCount'] = 1;
         if(window.gameDescriptor.debug==true)
-            this.task['counter'] = 6;
+            this.task['counter'] = 10;
         else 
             this.task['counter'] = 60;
         this.task['questionAnsweredCorrect'] = 0;

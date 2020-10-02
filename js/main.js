@@ -995,9 +995,9 @@ window.gameDescriptor = {
         {
             x:117.20384287319754,
             y:-383.9657117766808,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'portal',
         },
         {
             x:152.62803439435663,
@@ -1100,9 +1100,9 @@ window.gameDescriptor = {
         {
             x:850.2121135802587,
             y:-1684.065862128611,
-            tileType:0,
+            tileType:1,
             feature:null,
-            featureType:'task',
+            featureType:'portal',
         },
         {
             x:749.3894146354213,

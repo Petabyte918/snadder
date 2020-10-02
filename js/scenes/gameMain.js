@@ -657,7 +657,12 @@ var GameMain = new Phaser.Class({
                         });
 
                         break;
-
+                case 'match':
+                        break;
+                case 'quiz':
+                        break;
+                case 'awareness':
+                        break;
                 case 'task':
                     window.gameDescriptor.actionType = 'task';
                     if(window.gameDescriptor.state == STATES.task){
@@ -1043,6 +1048,24 @@ var GameMain = new Phaser.Class({
                             tile.featureType = tile.oldType;
                             tile.oldType = null;
                             break;
+                        case 'match':
+                            tile.feature = this.add.image(tile.x,tile.y,'heart');
+                            tile.feature.setScale(0.12);
+                            tile.feature.setOrigin(0.47,1.1);
+                            // tile.feature.anims.play('portalRunning',true);
+                            break;
+                        case 'quiz':
+                            tile.feature = this.add.image(tile.x,tile.y,'lock_key');
+                            tile.feature.setScale(0.12);
+                            tile.feature.setOrigin(0.47,1.1);
+                            // tile.feature.anims.play('portalRunning',true);
+                            break;
+                        case 'awareness':
+                            tile.feature = this.add.image(tile.x,tile.y,'lock_key');
+                            tile.feature.setScale(0.12);
+                            tile.feature.setOrigin(0.47,1.1);
+                            // tile.feature.anims.play('portalRunning',true);
+                            break;
 
                     }
                 }
@@ -1091,6 +1114,12 @@ var GameMain = new Phaser.Class({
                     // tile.feature.anims.play('portalRunning',true);
                 }
                 if(tile.featureType == 'quiz'){
+                    tile.feature = this.add.image(tile.x,tile.y,'lock_key');
+                    tile.feature.setScale(0.12);
+                    tile.feature.setOrigin(0.47,1.1);
+                    // tile.feature.anims.play('portalRunning',true);
+                }
+                if(tile.featureType == 'awareness'){
                     tile.feature = this.add.image(tile.x,tile.y,'lock_key');
                     tile.feature.setScale(0.12);
                     tile.feature.setOrigin(0.47,1.1);

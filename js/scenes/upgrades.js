@@ -29,13 +29,15 @@ var Upgrades = new Phaser.Class({
     create: function ()
     {
 
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'sky').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg0').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 900, 'bg1').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.WIDTH/2, 1210, 'bg3').setScale(1);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
+        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
-        this.close = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.shop_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.shop_menu.setInteractive();
+        this.shop_menu.on('click',this.gotoMenu,this);
 
         this.add.image(500,870,'popupBG').setScale(0.6,1);
         this.add.image(500,820,'popupBG0').setScale(0.6,0.85);
@@ -62,17 +64,25 @@ var Upgrades = new Phaser.Class({
 
         this.add.image(500,450,'popupBG30').setScale(0.6);
 
-        // this.add.dynamicBitmapText(300,800,'ice','Male',30);
-        // this.add.dynamicBitmapText(590,800,'ice','Female',30);
-
-        // this.input.once('pointerdown', function () {
-        
-        //     this.scene.add('main', MainGame, true, { x: 400, y: 300 });
-
-        // }, this);
-
-        // window.splashScene = this;
-        // window.splashScene.get('Splash').myMethod();
+        this.input.on('gameobjectdown', function (pointer, gameObject)
+        {
+            this.sound.playAudioSprite('ui_button', 'button4');
+        }, this);
+        this.input.on('gameobjectover', function (pointer, gameObject)
+        {
+            gameObject.setTint('0x56f787');
+        });
+        this.input.on('gameobjectout', function (pointer, gameObject)
+        {
+            gameObject.setTint('0xffffff');
+        });
+        this.input.on('gameobjectup', function (pointer, gameObject)
+        {
+            gameObject.emit('click', gameObject);
+        });
+    },
+    gotoMenu:function(){
+        this.scene.start('Dashboard');
     }
 
 });

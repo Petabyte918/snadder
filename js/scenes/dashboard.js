@@ -38,10 +38,26 @@ var Dashboard = new Phaser.Class({
         this.add.image(700,1700,'wood_btn').setScale(0.6);
         this.add.image(800,1700,'wood_btn').setScale(0.6);
         this.add.image(900,1700,'wood_btn').setScale(0.6);
-        this.add.image(700,1700,'snake_potion').setScale(0.2);
-        this.add.image(800,1700,'demon_potion').setScale(0.2);
-        this.add.image(900,1700,'heart').setScale(0.18);
+        // this.add.image(700,1700,'snake_potion').setScale(0.2);
+        // this.add.image(800,1700,'demon_potion').setScale(0.2);
+        // this.add.image(900,1700,'heart').setScale(0.18);
 
+        this.snakeCoverBtn = this.add.image(700,1700,'snake_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.snakeCoverBtn.data.set('assetName','snake_cover');
+        // this.snakeCoverBtn.on('click',this.blastSnakes,this);
+        
+        this.demonCoverBtn = this.add.image(800,1700,'demon_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.demonCoverBtn.data.set('assetName','demon_cover');
+        // this.demonCoverBtn.on('click',this.blastDemons,this);
+
+        this.heartsBtn = this.add.image(900,1700,'heart').setScale(0.18).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.heartsBtn.data.set('assetName','snake_cover');
+        // this.heartsBtn.on('click',this.BlastDemons,this);
+
+        this.snakeCover = this.add.dynamicBitmapText(720,1700,'fire',getBoonQtyFromInventory('snake_cover'),40).setScrollFactor(0);
+        this.demonCover = this.add.dynamicBitmapText(820,1700,'fire',getBoonQtyFromInventory('demon_cover'),40).setScrollFactor(0);
+        this.hearts = this.add.dynamicBitmapText(920,1700,'fire',getBoonQtyFromInventory('hearts'),40).setScrollFactor(0);
+        
 
         this.add.image(500,800,'popupBG').setScale(0.6,0.9);
         this.add.image(500,800,'popupBG0').setScale(0.6,0.9);
@@ -50,14 +66,17 @@ var Dashboard = new Phaser.Class({
         this.game = this.add.image(350,650,'wood_table').setScale(1,3);
         this.game.setInteractive();
         this.game.on('click',this.selectLevel,this);
-        
+        this.add.image(350,650,'btn_leader').setScale(0.8);
+
         this.match = this.add.image(650,650,'wood_table').setScale(1,3);
         this.match.setInteractive();
         this.match.on('click',this.selectMatch,this);
+        this.add.image(650,650,'heart').setScale(0.3);
 
         this.upgrades = this.add.image(350,930,'wood_table').setScale(1,3);
         this.upgrades.setInteractive();
         this.upgrades.on('click',this.selectUpgrades,this);
+        this.add.image(350,930,'cup').setScale(0.3);
 
         this.shop = this.add.image(650,930,'wood_table').setScale(1,3);
         this.shop.setInteractive();
@@ -65,7 +84,7 @@ var Dashboard = new Phaser.Class({
 
         this.add.dynamicBitmapText(280,770,'green','Game',35);
         this.add.dynamicBitmapText(600,770,'green','Match',35);
-        this.add.dynamicBitmapText(250,1050,'green','Upgrades',35);
+        this.add.dynamicBitmapText(250,1050,'green','Inventory',35);
         this.add.dynamicBitmapText(600,1050,'green','shop',35);
 
         this.input.on('gameobjectdown', function (pointer, gameObject)
