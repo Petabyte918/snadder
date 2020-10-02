@@ -84,6 +84,7 @@ var Levels = new Phaser.Class({
             if(gameObject.data){
                 if(gameObject.data.get('state') != 'locked'){
                     window.gameDescriptor.selectedLevel = gameObject.data.get('id');
+                    setGameData();
                     this.scene.start("GameMain");
                 }
             }else{

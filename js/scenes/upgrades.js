@@ -62,7 +62,7 @@ var Upgrades = new Phaser.Class({
         this.add.image(700,1220,'btn_next').setScale(0.5);
 
 
-        this.add.image(500,450,'popupBG30').setScale(0.6);
+        // this.add.image(500,450,'popupBG30').setScale(0.6);
 
         this.input.on('gameobjectdown', function (pointer, gameObject)
         {

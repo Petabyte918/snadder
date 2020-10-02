@@ -26,8 +26,23 @@ var config = {
         Match,
         GameMain,
     ],
-    title: 'LoveLudo'
+    title: 'LoveLudo',
+    // plugins: {
+    //     global: [{
+    //         key: 'rexWebFontLoader',
+    //         plugin: WebFontLoaderPlugin,
+    //         start: true
+    //     },
+    //     // ...
+    //     ]
+    // }
+
 }; 
+
+
+
+
+
 
 
 // //  The Google WebFont Loader will look for this object, so create it before loading the script.
@@ -62,7 +77,7 @@ window.gameDescriptor = {
     cups:0,
     Hammers:1,
     activeSenene:'',
-    selectedLevel:0,
+    selectedLevel:1,
     punishments:[
         {
             name:'snake_wave',
@@ -1787,40 +1802,32 @@ window.gameDescriptor = {
 let game = new Phaser.Game(config);
 
 
-// class MyScene extends Phaser.Scene {
-
-//     preload ()
-//     {
-//         this.load.image('face', 'assets/pics/bw-face.png');
-//     }
-
-//     create (data)
-//     {
-//         this.face = this.add.image(data.x, data.y, 'face');
-//     }
-
-// }
-
-// class BootScene extends Phaser.Scene {
-
-//     create ()
-//     {
-//         this.add.text(0, 0, 'Click to add new Scene');
-
-//         this.input.once('pointerdown', function () {
+//  The Google WebFont Loader will look for this object, so create it before loading the script.
+WebFontConfig = {
+	
+    //  'active' means all requested fonts have finished loading
+    //  We set a 1 second delay before calling 'createText'.
+    //  For some reason if we don't the browser cannot render the text the first time it's created.
+    active: function() {
+        // game.time.events.add(Phaser.Timer.SECOND, createText, this);
         
-//             this.scene.add('myScene', MyScene, true, { x: 400, y: 300 });
+    },
+  
+    //  The Google Fonts we want to load (specify as many as you like in the array)
+    google: {
+      families: [ 'Freckle Face', 'Finger Paint', 'Nosifer' ,'Noto Sans', 'sans-serif','Revalia']
+    },
+    custom: {
+      families: ['FerrumExtracondensed'],
+      urls: ["https://fontlibrary.org/face/ferrum"]
+    }
+    //free font from fontlibrary
+    //https://fontlibrary.org/en/font/ferrum
+    //
+    //url can be a local url, link to your custom css generated from a font, from fontSquirrel for example!
+    //https://www.fontsquirrel.com/tools/webfont-generator
+    //just be sure that the font is LEGALLY ELEGIBLE for embedding! :)
+  
+  };
 
-//         }, this);
-//     }
-
-// }
-
-// var config = {
-//     type: Phaser.AUTO,
-//     parent: 'phaser',
-//     width: 800,
-//     height: 600,
-//     scene: BootScene
-// };
 

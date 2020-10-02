@@ -1,0 +1,75 @@
+{
+    "questions":[
+    
+        {
+            "qid":1,
+            "q":"इण्डिया गेट कहा पे स्थित है?",
+            "questionType":"awernace",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"रांची"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"दिल्ली"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"चेन्नई"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"कोलकाता"
+                }
+                
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":"इण्डिया गेट दिल्ली पे स्थित है? ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":2,
+            "q":"आगरा में कौन सा स्मारक है?",
+            "questionType":"awernace",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"लालकिला"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"कुतुब मीनार"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"बुलंद दरवाजा"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"ताजमहल"
+                }
+                
+            ],
+            "answers":[
+                4
+            ],
+            "answerDesciption":"आगरा में ताजमहल स्मारक है?",
+            "answerImg":"",
+            "answerVideo":""
+        }
+
+    ]
+}

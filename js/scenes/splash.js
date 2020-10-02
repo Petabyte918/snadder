@@ -2,8 +2,6 @@ var Splash = new Phaser.Class({
 
     Extends: Phaser.Scene,
     key:'Splash',
-    phase: 0,
-    num:20,
 
     initialize:
     
@@ -92,6 +90,10 @@ var Splash = new Phaser.Class({
             'assets/images/sprites/portal.png',
             { frameWidth: 80, frameHeight: 114 }
         );
+        this.load.spritesheet('avators', 
+            'assets/images/sprites/avators1.png',
+            { frameWidth: 577/6, frameHeight: 92 }
+        );
 
         this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
@@ -156,12 +158,13 @@ var Splash = new Phaser.Class({
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');
         this.load.bitmapFont('green','assets/fonts/bitmap/shortStack.png','assets/fonts/bitmap/shortStack.xml');
     
+        this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+
+
         // audios
         this.load.audio('music0',['assets/audio/music/music0.mp3']);
         this.load.audioSprite('ui_sfx','assets/audio/UI_sounds/sounds.json',['assets/audio/UI_sounds/sounds.mp3']);
         this.load.audioSprite('ui_button','assets/audio/UI_sounds/button.json',['assets/audio/UI_sounds/button.mp3']);
-
-
 
 
         this.load.on('progress', function (value) {
@@ -191,8 +194,9 @@ var Splash = new Phaser.Class({
 
     create: function ()
     {
-        
-        var spritemap = this.cache.json.get('ui_sfx').spritemap;
+        this.input.setDefaultCursor('url(assets/cursors/SC2-cursor-protoss.cur), pointer');
+
+        // var spritemap = this.cache.json.get('ui_sfx').spritemap;
         // console.log(spritemap);
         this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
         this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
@@ -213,7 +217,29 @@ var Splash = new Phaser.Class({
             
         }, this);
         
-        
+        // var add = this.add;
+        // WebFont.load(WebFontConfig);
+        // this.load.on('webfontactive', function(fileObj, familyName){
+        //     console.log('Fuckkkk');
+        // });
+
+        //     google: {
+        //         families: [ 'Freckle Face', 'Finger Paint', 'Nosifer' ,'Noto Sans', 'sans-serif']
+        //     },
+        //     active: function ()
+        //     {
+        //         add.text(16, 0, 'अगर हाँ तो वे कितने बच्चों की कल्पना किये थे?', { fontFamily: 'Noto Sans', fontSize: 80, color: '#ffffff' }).setShadow(2, 2, "#333333", 2, false, true);
+        //         add.text(250, 450, 'Waves flung themselves\nat the blue evening.', { fontFamily: 'Finger Paint', fontSize: 40, color: '#5656ee' });
+
+        //         var t = add.text(330, 200, 'R.I.P', { fontFamily: 'Nosifer', fontSize: 150, color: '#ff3434' });
+
+        //         // input.once('pointerdown', function () {
+        //         //     t.setFontSize(64);
+        //         // });
+        //     }
+        // });
+        // let message = createSpeechBubble(this,0, 100, 520, 160, 'right',"Another message from instructor");
+        // message.setInteractive({ cursor: 'url(assets/cursors/SC2-helpsel-protoss.cur), pointer' });
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
             this.sound.playAudioSprite('ui_sfx', 'game-start');
@@ -269,7 +295,7 @@ var Splash = new Phaser.Class({
             window.gameDescriptor = file;
         }
     }
-
+    
 });
 
 

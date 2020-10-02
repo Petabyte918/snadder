@@ -40,13 +40,13 @@ var Task = new Phaser.Class({
             text: '',
             origin: { x: 0.5, y: 0.5 },
             style: {
+                fontFamily: 'Finger Paint', 
                 font: 'bold 45px Arial',
                 fill: 'green',
                 wordWrap: { width: 600 }
             }
         });
         this.task['questionText'].setText(this.task.q);
-
         this.task['selectedOptions'] = [];
         this.task['optionTexts'] = [];
         this.task['optionBlocks'] = [];
