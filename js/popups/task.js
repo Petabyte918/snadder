@@ -69,7 +69,6 @@ var Task = new Phaser.Class({
                 optxt.setText(this.task.options[i].txt);
             this.task.optionTexts.push(optxt);
         }
-        this.add.image(500,280,'popupBG3').setScale(0.6);
         this.submit = this.add.image(500,1380,'btn_next').setScale(0.8);
         this.submit.setInteractive();
         this.submit.on('click',this.checkSubmit,this);

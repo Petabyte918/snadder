@@ -71,4 +71,11 @@ let STRINGS = {
     str_gameOver    : 'Game Over',
     str_levels      : 'Levels',
     str_welcome_message : 'नमस्कार, आप को इस गेम में स्वागत है | आप बहुत धन्यवाद की अपने इस गेम को चुना और मै ये बताना चाहता हूँ की ये एक ऐसा गेम है जो सिर्फ और सिर्फ दम्पति के बीच में खेले जाने वाला है | आप इस गेम द्वार बहुत कुछ विषय न केवल सीखेंगे बल्कि आप और आपके जीवनसाथी एक दुसरे को और अच्छे से समझने लगेंगे | उम्मीन्द है की आप आगे इस गेम को अच्छा से खेलेंगे |',
+    str_match_game : 'Tell about your likes and dislikes, you will be asked some questions which you need to answers',
+
+    hint_quit : 'Quit the game',
+
+
 }
+
+

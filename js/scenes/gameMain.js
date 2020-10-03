@@ -123,32 +123,46 @@ var GameMain = new Phaser.Class({
         this.menu.on('click',this.gotoMenu,this);
         this.menu.setScrollFactor(0);
 
-        this.add.image(500,1680,'wood_down').setScale(0.65).setScrollFactor(0);
+        this.add.image(500,1680,'wood_down1').setScale(0.65).setScrollFactor(0);
         
         this.add.image(170,1700,'wood_table').setScale(1,0.8).setScrollFactor(0);
         this.add.image(100,1700,'coins').setScale(0.15).setScrollFactor(0);
         this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35).setScrollFactor(0);
 
 
+        this.add.image(600,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
         
+        this.heartBtn = this.add.image(600,1700,'heart').setScale(0.18).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.heartBtn.data.set('assetName','heart');
+        this.heartBtn.data.set('hint','These are your herts');
+        // this.heartBtn.on('over',this.showHint,this);
+        // this.snakeCoverBtn.on('click',this.blastSnakes,this);
+        
         this.snakeCoverBtn = this.add.image(700,1700,'snake_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
         this.snakeCoverBtn.data.set('assetName','snake_cover');
-        this.snakeCoverBtn.on('click',this.blastSnakes,this);
+        this.snakeCoverBtn.data.set('hint','protects you from snakes');
+        // this.snakeCoverBtn.on('over',this.showHint,this);
+        // this.snakeCoverBtn.on('click',this.blastSnakes,this);
         
         this.demonCoverBtn = this.add.image(800,1700,'demon_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
         this.demonCoverBtn.data.set('assetName','demon_cover');
-        this.demonCoverBtn.on('click',this.blastDemons,this);
+        this.demonCoverBtn.data.set('hint','protects you from demons');
+        // this.demonCoverBtn.on('over',this.showHint,this);
+        // this.demonCoverBtn.on('click',this.blastDemons,this);
 
-        this.heartsBtn = this.add.image(900,1700,'heart').setScale(0.18).setScrollFactor(0).setInteractive().setDataEnabled();
-        this.heartsBtn.data.set('assetName','snake_cover');
+        this.freezeCoverBtn = this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.freezeCoverBtn.data.set('assetName','snake_cover');
+        this.freezeCoverBtn.data.set('hint','Breaks the ice');
+        // this.freezeCoverBtn.on('over',this.showHint,this);
         // this.heartsBtn.on('click',this.BlastDemons,this);
 
+        this.hearts = this.add.dynamicBitmapText(620,1700,'fire',window.gameDescriptor.hearts,40).setScrollFactor(0);
         this.snakeCover = this.add.dynamicBitmapText(720,1700,'fire',getBoonQtyFromInventory('snake_cover'),40).setScrollFactor(0);
         this.demonCover = this.add.dynamicBitmapText(820,1700,'fire',getBoonQtyFromInventory('demon_cover'),40).setScrollFactor(0);
-        this.hearts = this.add.dynamicBitmapText(920,1700,'fire',getBoonQtyFromInventory('hearts'),40).setScrollFactor(0);
+        this.freezeCover = this.add.dynamicBitmapText(920,1700,'fire',getBoonQtyFromInventory('hammer'),40).setScrollFactor(0);
         
         
         this.userPinFake = this.add.image(
@@ -255,7 +269,7 @@ var GameMain = new Phaser.Class({
         };
     
         this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
-        
+        this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#a0c449");
 
     },
     update:function(time,delta){

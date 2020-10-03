@@ -23,6 +23,17 @@ function getQuestionData(){
     return window.gameDescriptor.questions[rand];
 }
 
+function getQuestionByType(questionType){
+    let question ={};
+    for(let i =0 ;i<window.gameDescriptor.questions.length;i++){
+        let q = window.gameDescriptor.questions[i];
+        if(q.questionType == questionType && !window.gameDescriptor.questionAnswered.includes(q.qid) ){
+            question = q;
+        }
+    }
+    return question;
+}
+
 function getOptions(qid){
     let questions = window.gameDescriptor.questions;
     let options = null;

@@ -110,6 +110,8 @@ var Avator = new Phaser.Class({
         let width = object.width*object._scaleX*2;
         let height = 100*object._scaleY;
 
+        if(height <80)height = 80;
+
         if(object.x > WIDTH/3 && object.x < ((WIDTH/3)*2) ){
             arrowDir = 'center';
             x -= width/2;
@@ -122,10 +124,11 @@ var Avator = new Phaser.Class({
         if(object.y < HEIGHT/4){
             dir = 'top';
             y += height/2;
+        }else if(object.y > ((HEIGHT/4)*3) ){
+            y -= height;            
         }
 
         if(height >180)height=180;
-
         
         let message = createSpeechBubble(this,x,y ,width, height, arrowDir,dir,object.data.get('hint'));
         setTimeout((message)=>{

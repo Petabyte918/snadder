@@ -8,14 +8,14 @@ var Match = new Phaser.Class({
     {
         Phaser.Scene.call(this, { key: 'Match', active: false });
     },
-
-    preload: function ()
-    {
-        
-  
-
+    preload:function(){
+        this.load.image('popupBG','assets/images/UI/settings/bg.png');
+        this.load.image('popupBG0','assets/images/UI/level_select/table2.png');
+        this.load.image('popupBG1','assets/images/UI/settings/92.png');
+        this.load.image('popupBG2','assets/images/UI/rating/face.png');
+        this.load.image('popupBG3','assets/images/UI/level_select/header.png');
+        this.load.image('popupBG4','assets/images/UI/level_select/table.png');
     },
-
     create: function ()
     {
 
@@ -24,42 +24,244 @@ var Match = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
-        this.shop_close = this.add.image(900,80,'btn_close').setScale(0.4);
         
-        this.shop_menu = this.add.image(80,80,'btn_prew').setScale(0.4);
-        this.shop_menu.setInteractive();
-        // this.shop_menu.on('click',this.gotoMenu,this);
-        this.shop_menu.on('click',this.gotoMenu,this);
-
-        
-
+        this.close = this.add.image(900,80,'btn_close').setScale(0.4);
+        this.close.setInteractive();
+        this.close.setDataEnabled();
+        this.close.data.set('hint','Quit game');
+        this.close.on('over',this.showHint,this);
 
 
-        this.input.on('gameobjectup', function (pointer, gameObject)
-        {
-            gameObject.emit('click', gameObject);
-        }, this);
+       
         this.input.on('gameobjectdown', function (pointer, gameObject)
         {
             this.sound.playAudioSprite('ui_button', 'button4');
         }, this);
         this.input.on('gameobjectover', function (pointer, gameObject)
         {
-            gameObject.setTint('0x56f787');
+            if(gameObject.data){
+                if(!gameObject.data.get('isSelected')){
+                    gameObject.setTint('0x56f787');
+                }
+            }
+            else{
+                gameObject.setTint('0x56f787');
+            }
+            gameObject.emit('over',gameObject);
         });
         this.input.on('gameobjectout', function (pointer, gameObject)
         {
-            gameObject.setTint('0xffffff');
+            if(gameObject.data){
+                if(gameObject.data.get('isSelected')){
+
+                }else{
+                    gameObject.setTint('0xffffff');
+                }
+            }
+            else{
+                gameObject.setTint('0xffffff');
+            }
         });
+        this.input.on('gameobjectup', function (pointer, gameObject)
+        {
+            gameObject.emit('click', gameObject);
+        });
+        
+        var cursors = this.input.keyboard.createCursorKeys();
+        var controlConfig = {
+            camera: this.cameras.main,
+            left: cursors.left,
+            right: cursors.right,
+            up: cursors.up,
+            down: cursors.down,
+            zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
+            zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
+            acceleration: 0.06,
+            drag: 0.0005,
+            maxSpeed: 1.0
+        };
+    
+        this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
+        this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#a0c449");
 
-
-        // window.splashScene = this;
-        // window.splashScene.get('Splash').myMethod();
+        this.showInstructionPopup();
     },
-    gotoMenu:function(){
-        this.scene.start('Dashboard');
-    }
+    update:function(time,delta){
+        this.controls.update(delta);
 
+    },
+    showHint:function(object){
+        let dir = 'bottom';
+        let arrowDir = 'left';
+        let x = object.x;
+        let y = object.y;
+        let width = object.width*object._scaleX*2;
+        let height = 100*object._scaleY;
+
+        if(height <80)height = 80;
+
+        if(object.x > WIDTH/3 && object.x < ((WIDTH/3)*2) ){
+            arrowDir = 'center';
+            x -= width/2;
+            y -= height;
+        }else if(object.x > ((WIDTH/3)*2)){
+            arrowDir = 'right';
+            x -= width;
+        }
+
+        if(object.y < HEIGHT/4){
+            dir = 'top';
+            y += height/2;
+        }else if(object.y > ((HEIGHT/4)*3) ){
+            y -= height;            
+        }
+
+        if(height >180)height=180;
+        
+        let message = createSpeechBubble(this,x,y ,width, height, arrowDir,dir,object.data.get('hint'));
+        setTimeout((message)=>{
+            message[0].setVisible(false);
+            message[1].setVisible(false);
+        },5000,message);
+    },
+    showInstructionPopup:function(){
+        this.popupContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
+        
+        var popup = this.add.image(0,0,'popupBG')
+                        .setScale(0.6,0.8);
+        var popup1 = this.add.image(0,0,'popupBG0')
+                        .setScale(0.6,0.8);
+        var feature = this.make.text({
+            x: 0,
+            y: 0,
+            text: STRINGS.str_match_game,
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 45px Arial',
+                fill: 'green',
+                align: 'center',
+                wordWrap: { width: 500 }
+            }
+        });
+        // var b = feature.getBounds();
+        var popupClose = this.add.image(350,-350,'btn_close')
+                        .setScale(0.5)
+                        .setInteractive()
+                        .on('click',this.popupClose,this);
+        var popupOk = this.add.image(0,200,'btn_ok')
+                        .setScale(0.5)
+                        .setInteractive()
+                        .on('click',this.popupOk,this);
+
+        
+        this.popupContainer.add(popup);
+        this.popupContainer.add(popup1);
+        this.popupContainer.add(feature);
+        this.popupContainer.add(popupClose);
+        this.popupContainer.add(popupOk);
+
+        this.tweens.add({
+            targets     : [ this.popupContainer ],
+            scaleX: 1.2,
+            scaleY: 1.2,
+            ease        : 'Elastic',
+            duration    : 3000,
+            yoyo        : false,
+            repeat      : 0,
+            callbackScope   : this
+            });
+
+    },
+    popupClose:function(){
+        this.popupContainer.destroy();
+        this.showQuestion();
+    },
+    popupOk:function(){
+        this.popupContainer.destroy();
+        this.showQuestion();
+    },
+    showQuestion:function(){
+        this.add.image(500,870,'popupBG').setScale(0.6,1.3);
+        this.add.image(500,820,'popupBG0').setScale(0.6,1.3);
+        
+        this.task = {};
+        let question = getQuestionByType('match');
+        this.task['qid'] = question.qid;
+        this.task['q'] = question.q;
+        this.task['options'] = question.options;
+        this.task['answers'] = question.answers;
+        // this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
+        this.task['questionText'] = this.make.text({
+            x: 480,
+            y: 450,
+            text: '',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                fontFamily: 'Finger Paint', 
+                font: 'bold 45px Arial',
+                fill: 'green',
+                wordWrap: { width: 600 }
+            }
+        });
+        this.task['questionText'].setText(this.task.q);
+        this.task['selectedOptions'] = [];
+        this.task['optionTexts'] = [];
+        this.task['optionBlocks'] = [];
+        window.gameDescriptor.questionAnswered.push(this.task.qid);
+        
+        for(let i = 0,j=0,k=0;i<(this.task.options != null?this.task.options.length:0);i++){
+            if(i%2 == 0){
+                j +=250;
+                k=0;
+            }
+            k++;
+            let op = this.add.image(100+ (k*260),400+j,'popupBG4').setScale(0.8);
+                op.setInteractive();
+                op.on('click',this.makeSelected,this);
+                op.setDataEnabled();
+                op.data.set('opid',this.task.options[i].opid);
+            this.task.optionBlocks.push(op);
+            
+            let optxt = this.add.dynamicBitmapText(60+ (k*270),495+j,'green','',35);
+                optxt.setText(this.task.options[i].txt);
+            this.task.optionTexts.push(optxt);
+        }
+        this.submit = this.add.image(500,1380,'btn_next').setScale(0.8);
+        this.submit.setInteractive();
+        this.submit.on('click',this.checkSubmit,this);
+
+    },
+    makeSelected:function(object){
+        if(!this.task.selectedOptions.includes(object.data.get('opid')) ){
+            this.task.selectedOptions.push(object.data.get('opid'));
+            object.setTint('0x00ff00');
+            object.data.set('isSelected',true);
+        }else{
+            object.setTint('0xffffff');
+            object.data.set('isSelected',false);
+            this.task.selectedOptions.remove(object.data.get('opid'));
+        }
+        console.log(this.task.selectedOptions);
+
+    },
+    checkSubmit:function(){
+        this.submit.input.enabled = false;
+        for(let opb of this.task.optionBlocks){
+            opb.input.enabled = false;
+        }
+        
+        let answers = getAnswers(this.task.qid);
+            for(let opb of this.task.optionBlocks){
+                if(answers.includes(""+opb.data.get('opid')) ){
+                    opb.setTint('0x00ff00');
+                }else{
+                    opb.setTint('0xff0000');
+                }
+            }
+            setTimeout(this.punish,2000,this);
+        
+    },
+    
 });
 
 

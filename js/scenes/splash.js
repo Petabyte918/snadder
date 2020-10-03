@@ -134,7 +134,10 @@ var Splash = new Phaser.Class({
         this.load.image('popupBG3','assets/images/UI/level_select/header.png');
 
         this.load.image('wood_down','assets/images/UI/bubble/down.png');
+        this.load.image('wood_down1','assets/images/UI/match3/down.png');
         this.load.image('wood_up','assets/images/UI/bubble/up.png');
+        this.load.image('wood_up1','assets/images/UI/match3/up.png');
+
         this.load.image('wood_table','assets/images/UI/bubble/table.png');
         this.load.image('wood_level_text','assets/images/UI/bubble/level.png');
         this.load.image('wood_clock','assets/images/UI/bubble/clock.png');
@@ -151,7 +154,7 @@ var Splash = new Phaser.Class({
         this.load.image('snake_potion','assets/images/icons/potions3.png');
         this.load.image('demon_potion','assets/images/icons/potions10.png');
         this.load.image('heart','assets/images/icons/heart.png');
-        this.load.image('leaf', 'assets/images/icons/8.png');
+        this.load.image('hammer', 'assets/images/icons/10.png');
         this.load.image('lock_key', 'assets/images/icons/5.png');
 
 
@@ -208,6 +211,9 @@ var Splash = new Phaser.Class({
         // this.add.text(330, 1100,'START', { font: '100px Arial', fill: '#fff'});
         this.play = this.add.image(480,1200,'btn_play');
         this.play.setInteractive();
+        this.play.setDataEnabled();
+        this.play.data.set('hint','Click to Start');
+        this.play.on('over',this.showHint,this)
         this.snadder = this.add.dynamicBitmapText(960/2,500,'fire','LOVELUDO',128).setOrigin(0.5,0.5);
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         this.loadGamedata();
@@ -265,6 +271,8 @@ var Splash = new Phaser.Class({
         this.input.on('gameobjectover', function (pointer, gameObject)
         {
             gameObject.setTint('0x56f787');
+            gameObject.emit('over', gameObject);
+
         });
         this.input.on('gameobjectout', function (pointer, gameObject)
         {
@@ -294,6 +302,40 @@ var Splash = new Phaser.Class({
         if(file != null && file != 'undeifned'){
             window.gameDescriptor = file;
         }
+    },
+    showHint:function(object){
+        let dir = 'bottom';
+        let arrowDir = 'left';
+        let x = object.x;
+        let y = object.y;
+        let width = object.width*object._scaleX*2;
+        let height = 100*object._scaleY;
+
+        if(height <80)height = 80;
+
+        if(object.x > WIDTH/3 && object.x < ((WIDTH/3)*2) ){
+            arrowDir = 'center';
+            x -= width/2;
+            y -= height+(object.height/2);
+        }else if(object.x > ((WIDTH/3)*2)){
+            arrowDir = 'right';
+            x -= width;
+        }
+
+        if(object.y < HEIGHT/4){
+            dir = 'top';
+            y += height/2;
+        }else if(object.y > ((HEIGHT/4)*3) ){
+            y -= height;            
+        }
+
+        if(height >180)height=180;
+        
+        let message = createSpeechBubble(this,x,y ,width, height, arrowDir,dir,object.data.get('hint'));
+        setTimeout((message)=>{
+            message[0].setVisible(false);
+            message[1].setVisible(false);
+        },5000,message);
     }
     
 });

@@ -63,6 +63,13 @@ var config = {
 
 window.gameDescriptor = {
     debug:false,
+    user:{
+        name:'',
+        phone:'',
+        pass:'',
+        token:'',
+        profileImg:'',
+    },
     state:STATES.ideal,
     playerLastPos:0,
     playerPos:0,
@@ -73,9 +80,6 @@ window.gameDescriptor = {
     lives:3,
     coins:100,
     hearts:3,
-    lovePotions:1,
-    cups:0,
-    Hammers:1,
     activeSenene:'',
     selectedLevel:1,
     punishments:[
@@ -136,25 +140,13 @@ window.gameDescriptor = {
             img:'demon_potion',
         },
         {
-            assetName:'skip_swap',
-            assetType:'swap_shield',
+            assetName:'hammer',
+            assetType:'hammer',
             qty:1,
-            img:'leaf',
+            img:'hammer',
         },
     ],
     inventory:[
-        {
-            assetName:'hearts',
-            assetType:'heart_gain',
-            qty:1,
-            img:'',
-        },
-        {
-            assetName:'coins',
-            assetType:'coin_gain',
-            qty:1,
-            img:'',
-        },
         {
             assetName:'snake_cover',
             assetType:'snake_shield',
@@ -168,10 +160,10 @@ window.gameDescriptor = {
             img:'',
         },
         {
-            assetName:'skip_swap',
-            assetType:'swap_shield',
-            qty:0,
-            img:'leaf',
+            assetName:'hammer',
+            assetType:'wapon',
+            qty:1,
+            img:'hammer',
         },
     ],
     levels:[
@@ -279,7 +271,7 @@ window.gameDescriptor = {
                 2,3,4
             ],
             answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
-            questionType:'awernace',
+            questionType:'match',
             answerImg:'',
             answerVideo:'',
         },
@@ -494,7 +486,7 @@ window.gameDescriptor = {
                 3,4
             ],
             answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
-            questionType:'awernace',
+            questionType:'match',
             answerImg:'',
             answerVideo:'',
         },
@@ -623,7 +615,7 @@ window.gameDescriptor = {
                 3,4
             ],
             answerDesciption:'this is the decription of answer and tell you why this answer is correct and why others are not.',
-            questionType:'awernace',
+            questionType:'match',
             answerImg:'',
             answerVideo:'',
         },
@@ -758,6 +750,8 @@ window.gameDescriptor = {
         }
     ],
     questionAnswered:[],
+    matchQuestions:[],
+    matchQuestionAnswered:[],
     diceNums:[1,2,3,4,5,6],
     blockedDiceNums:[],
     diceNumber:0,
