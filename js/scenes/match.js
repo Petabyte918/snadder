@@ -32,6 +32,47 @@ var Match = new Phaser.Class({
         this.close.on('over',this.showHint,this);
 
 
+        this.add.image(500,1680,'wood_down1').setScale(0.65).setScrollFactor(0);
+        
+        this.add.image(170,1700,'wood_table').setScale(1,0.8).setScrollFactor(0);
+        this.add.image(100,1700,'coins').setScale(0.15).setScrollFactor(0);
+        this.coins = this.add.dynamicBitmapText(150,1677,'fire',window.gameDescriptor.coins,35).setScrollFactor(0);
+
+
+        this.add.image(600,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(700,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(800,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        this.add.image(900,1700,'wood_btn').setScale(0.6).setScrollFactor(0);
+        
+        this.heartBtn = this.add.image(600,1700,'heart').setScale(0.18).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.heartBtn.data.set('assetName','heart');
+        this.heartBtn.data.set('hint','These are your herts');
+        // this.heartBtn.on('over',this.showHint,this);
+        // this.snakeCoverBtn.on('click',this.blastSnakes,this);
+        
+        this.snakeCoverBtn = this.add.image(700,1700,'snake_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.snakeCoverBtn.data.set('assetName','snake_cover');
+        this.snakeCoverBtn.data.set('hint','protects you from snakes');
+        // this.snakeCoverBtn.on('over',this.showHint,this);
+        // this.snakeCoverBtn.on('click',this.blastSnakes,this);
+        
+        this.demonCoverBtn = this.add.image(800,1700,'demon_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.demonCoverBtn.data.set('assetName','demon_cover');
+        this.demonCoverBtn.data.set('hint','protects you from demons');
+        // this.demonCoverBtn.on('over',this.showHint,this);
+        // this.demonCoverBtn.on('click',this.blastDemons,this);
+
+        this.freezeCoverBtn = this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
+        this.freezeCoverBtn.data.set('assetName','snake_cover');
+        this.freezeCoverBtn.data.set('hint','Breaks the ice');
+        // this.freezeCoverBtn.on('over',this.showHint,this);
+        // this.heartsBtn.on('click',this.BlastDemons,this);
+
+        this.hearts = this.add.dynamicBitmapText(620,1700,'fire',window.gameDescriptor.hearts,40).setScrollFactor(0);
+        this.snakeCover = this.add.dynamicBitmapText(720,1700,'fire',getBoonQtyFromInventory('snake_cover'),40).setScrollFactor(0);
+        this.demonCover = this.add.dynamicBitmapText(820,1700,'fire',getBoonQtyFromInventory('demon_cover'),40).setScrollFactor(0);
+        this.freezeCover = this.add.dynamicBitmapText(920,1700,'fire',getBoonQtyFromInventory('hammer'),40).setScrollFactor(0);
+        
        
         this.input.on('gameobjectdown', function (pointer, gameObject)
         {
@@ -84,11 +125,11 @@ var Match = new Phaser.Class({
         this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
         this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#a0c449");
 
-        this.showInstructionPopup();
+        this.showInstructionPopup(STRINGS.str_match_game,this.popupClose,this.popupOk);
     },
     update:function(time,delta){
         this.controls.update(delta);
-
+        this.hearts.setText(window.gameDescriptor.hearts)
     },
     showHint:function(object){
         let dir = 'bottom';
@@ -124,7 +165,7 @@ var Match = new Phaser.Class({
             message[1].setVisible(false);
         },5000,message);
     },
-    showInstructionPopup:function(){
+    showInstructionPopup:function(str,closeCallback,okCallback){
         this.popupContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
         
         var popup = this.add.image(0,0,'popupBG')
@@ -134,7 +175,7 @@ var Match = new Phaser.Class({
         var feature = this.make.text({
             x: 0,
             y: 0,
-            text: STRINGS.str_match_game,
+            text: str,
             origin: { x: 0.5, y: 0.5 },
             style: {
                 font: 'bold 45px Arial',
@@ -147,11 +188,11 @@ var Match = new Phaser.Class({
         var popupClose = this.add.image(350,-350,'btn_close')
                         .setScale(0.5)
                         .setInteractive()
-                        .on('click',this.popupClose,this);
+                        .on('click',closeCallback,this);
         var popupOk = this.add.image(0,200,'btn_ok')
                         .setScale(0.5)
                         .setInteractive()
-                        .on('click',this.popupOk,this);
+                        .on('click',okCallback,this);
 
         
         this.popupContainer.add(popup);
@@ -181,16 +222,22 @@ var Match = new Phaser.Class({
         this.showQuestion();
     },
     showQuestion:function(){
-        this.add.image(500,870,'popupBG').setScale(0.6,1.3);
-        this.add.image(500,820,'popupBG0').setScale(0.6,1.3);
+        
         
         this.task = {};
         let question = getQuestionByType('match');
+        if(question.qid == undefined) {
+            textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
+            setGameData();
+            return;
+        }
         this.task['qid'] = question.qid;
         this.task['q'] = question.q;
         this.task['options'] = question.options;
         this.task['answers'] = question.answers;
         // this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
+        this.add.image(500,870,'popupBG').setScale(0.6,1.3);
+        this.add.image(500,820,'popupBG0').setScale(0.6,1.3);
         this.task['questionText'] = this.make.text({
             x: 480,
             y: 450,
@@ -229,17 +276,25 @@ var Match = new Phaser.Class({
         this.submit = this.add.image(500,1380,'btn_next').setScale(0.8);
         this.submit.setInteractive();
         this.submit.on('click',this.checkSubmit,this);
-
+        this.submit.input.enabled = false;
     },
     makeSelected:function(object){
         if(!this.task.selectedOptions.includes(object.data.get('opid')) ){
             this.task.selectedOptions.push(object.data.get('opid'));
             object.setTint('0x00ff00');
             object.data.set('isSelected',true);
+            if(this.task.selectedOptions.length>=1){
+                this.submit.input.enabled = true;
+            }
         }else{
             object.setTint('0xffffff');
             object.data.set('isSelected',false);
             this.task.selectedOptions.remove(object.data.get('opid'));
+            if(this.task.selectedOptions.length>=1){
+                this.submit.input.enabled = true;
+            }else{
+                this.submit.input.enabled = false;
+            }
         }
         console.log(this.task.selectedOptions);
 
@@ -249,19 +304,83 @@ var Match = new Phaser.Class({
         for(let opb of this.task.optionBlocks){
             opb.input.enabled = false;
         }
-        
-        let answers = getAnswers(this.task.qid);
-            for(let opb of this.task.optionBlocks){
-                if(answers.includes(""+opb.data.get('opid')) ){
-                    opb.setTint('0x00ff00');
-                }else{
-                    opb.setTint('0xff0000');
-                }
-            }
-            setTimeout(this.punish,2000,this);
+        q = {
+            qid:this.task.qid,
+            answers:this.task.selectedOptions
+        }
+        window.gameDescriptor.matchQuestionAnswered.push(q);
+        setTimeout(this.changeQuestion,200,this);
         
     },
-    
+    changeQuestion:function(context){
+            context.sound.playAudioSprite('ui_sfx', 'coins-gain');
+            
+            var points = [
+                new Phaser.Math.Vector2(508.83813145825104, 853.9514456913603),
+                new Phaser.Math.Vector2(479.0827210239393, 958.0918658976237),
+                new Phaser.Math.Vector2(440.40068745933405, 1050.3305237946),
+                new Phaser.Math.Vector2(380.88986659071054, 1130.667419382289),
+                new Phaser.Math.Vector2(276.74593007061947, 1211.004314969978),
+                new Phaser.Math.Vector2(175.5775345939596, 1264.5622453617705),
+                new Phaser.Math.Vector2(89.28684433445555, 1374.6535467226774),
+                new Phaser.Math.Vector2(44.65372868298795, 1520.4501350114465),
+                new Phaser.Math.Vector2(92.26238537788673, 1657.3204015682497),
+                new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
+            ];
+            var curve = new Phaser.Curves.Spline(points);
+            // var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'coin_sprite').setOrigin(0.5).setScale(2);
+            var coinEarned = context.add.follower(curve, 508.83813145825104,853.9514456913603, 'heart')
+                                        .setOrigin(0.5)
+                                        .setScale(0.2);
+            coinEarned.startFollow({
+                duration: 1000,
+                yoyo: false,
+                repeat: 0,
+                rotateToPath: false,
+                verticalAdjust: true
+            });
+            setTimeout((object)=>{
+                object.setVisible(false);
+                window.gameDescriptor.hearts++;
+
+            },1100,coinEarned);
+            context.refresh();
+
+    },
+    rolloutClose:function(){
+        this.popupContainer.destroy();
+        this.scene.start('Dashboard');
+    },
+    rolloutOk:function(){
+        this.popupContainer.destroy();
+        this.scene.start('Dashboard');
+    },
+    refresh:function(){
+        let question = getQuestionByType('match');
+        if(question.qid == undefined) {
+            textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
+            setGameData();
+            return;
+        }
+        this.task.qid = question.qid;
+        this.task.q = question.q;
+        this.task.options = question.options;
+        this.task.answers = question.answers;
+        this.task['questionText'].setText(this.task.q);
+        this.task['selectedOptions'] = [];
+        window.gameDescriptor.questionAnswered.push(this.task.qid);
+        this.submit.input.enabled = true;
+
+        for(let i = 0;i<(this.task.options != null?this.task.options.length:0);i++){
+            this.task.optionTexts[i].setText(this.task.options[i].txt);
+        }
+        for(let opb of this.task.optionBlocks){
+            opb.input.enabled = true;
+            opb.setTint('0xffffff');
+        }
+        console.log(this.task);
+
+    },
 });
 
 

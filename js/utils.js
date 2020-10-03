@@ -244,3 +244,53 @@ function createSpeechBubble(context,x, y, width, height, arrowPos,direction='bot
 
     return [bubble,content];
 }
+
+function textPopup(str,closeCallback,okCallback,context){
+    context.popupContainer = context.add.container(WIDTH/2, HEIGHT/2);
+    
+    var popup = context.add.image(0,0,'popupBG')
+                    .setScale(0.6,0.8);
+    var popup1 = context.add.image(0,0,'popupBG0')
+                    .setScale(0.6,0.8);
+    var feature = context.make.text({
+        x: 0,
+        y: 0,
+        text: str,
+        origin: { x: 0.5, y: 0.5 },
+        style: {
+            font: 'bold 45px Arial',
+            fill: 'green',
+            align: 'center',
+            wordWrap: { width: 500 }
+        }
+    });
+    // var b = feature.getBounds();
+    var popupClose = context.add.image(350,-350,'btn_close')
+                    .setScale(0.5)
+                    .setInteractive()
+                    .on('click',closeCallback,context);
+    var popupOk = context.add.image(0,200,'btn_ok')
+                    .setScale(0.5)
+                    .setInteractive()
+                    .on('click',okCallback,context);
+
+    
+    context.popupContainer.add(popup);
+    context.popupContainer.add(popup1);
+    context.popupContainer.add(feature);
+    context.popupContainer.add(popupClose);
+    context.popupContainer.add(popupOk);
+
+    context.tweens.add({
+        targets     : [ context.popupContainer ],
+        scaleX: 1.2,
+        scaleY: 1.2,
+        ease        : 'Elastic',
+        duration    : 3000,
+        yoyo        : false,
+        repeat      : 0,
+        callbackScope   : context
+        });
+
+    return context.popupContainer;
+}   

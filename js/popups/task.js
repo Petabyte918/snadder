@@ -150,7 +150,7 @@ var Task = new Phaser.Class({
         }
         if(checkOptAnswers(this.task.qid,this.task.selectedOptions) == true){
             console.log(":-)");
-            setTimeout(this.reward,2000,this);
+            setTimeout(this.reward,200,this);
         }else{
             let answers = getAnswers(this.task.qid);
             for(let opb of this.task.optionBlocks){
@@ -160,7 +160,7 @@ var Task = new Phaser.Class({
                     opb.setTint('0xff0000');
                 }
             }
-            setTimeout(this.punish,2000,this);
+            setTimeout(this.punish,200,this);
         }
     },
     reward:function(task){
