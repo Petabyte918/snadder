@@ -12,7 +12,6 @@ var Levels = new Phaser.Class({
     preload: function ()
     {
         
-        this.load.image('popupBG','assets/images/UI/settings/bg.png');
         this.load.image('popupBG0','assets/images/UI/level_select/table2.png');
         this.load.image('popupBG1','assets/images/UI/settings/92.png');
         this.load.image('popupBG2','assets/images/UI/rating/face.png');
@@ -34,10 +33,18 @@ var Levels = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
-        this.level_close = this.add.image(900,80,'btn_close').setScale(0.4);
-        this.level_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
-        this.level_menu.setInteractive();
-        this.level_menu.on('click',this.gotoMenu,this);
+        this.close = this.add.image(900,80,'btn_close').setScale(0.4);
+        this.close.setInteractive();
+        this.close.setDataEnabled();
+        this.close.data.set('hint','Quit game');
+        this.close.on('over',this.showHint,this);
+        
+        this.back = this.add.image(80,80,'btn_prew').setScale(0.4);
+        this.back.setInteractive();
+        this.back.setDataEnabled();
+        this.back.data.set('hint','Go back');
+        this.back.on('over',this.showHint,this);
+        this.back.on('click',this.gotoMenu,this);
         
         this.add.dynamicBitmapText(250,100,'fire','SELECT LEVEL',60);
 
@@ -56,7 +63,8 @@ var Levels = new Phaser.Class({
             this.level_num.setDataEnabled();
             this.level_num.data.set('id',window.gameDescriptor.levels[i].id);
             this.level_num.data.set('state',window.gameDescriptor.levels[i].state);
-
+            this.level_num.data.set('hint',window.gameDescriptor.levels[i].state=='locked'?'Locked':'Unlocked');
+            // this.level_num.on('over',this.showHint,this);
             if(window.gameDescriptor.levels[i].state == 'locked'){
                 this.add.image(100+ (k*200),400+j,'lock').setScale(0.5);
             }
@@ -73,7 +81,7 @@ var Levels = new Phaser.Class({
         this.add.image(700,1220,'btn_next').setScale(0.5);
 
 
-        this.add.image(500,450,'popupBG3').setScale(0.6);
+        // this.add.image(500,450,'popupBG3').setScale(0.6);
 
         this.input.on('gameobjectdown', function (pointer, gameObject)
         {
@@ -95,6 +103,7 @@ var Levels = new Phaser.Class({
         this.input.on('gameobjectover', function (pointer, gameObject)
         {
             gameObject.setTint('0x56f787');
+            gameObject.emit('over',gameObject);
         });
         this.input.on('gameobjectout', function (pointer, gameObject)
         {
@@ -108,6 +117,40 @@ var Levels = new Phaser.Class({
     },
     gotoMenu:function(){
         this.scene.start('Dashboard');
+    },
+    showHint:function(object){
+        let dir = 'bottom';
+        let arrowDir = 'left';
+        let x = object.x;
+        let y = object.y;
+        let width = object.width*object._scaleX*2;
+        let height = 100*object._scaleY;
+
+        if(height <80)height = 80;
+
+        if(object.x > WIDTH/3 && object.x < ((WIDTH/3)*2) ){
+            arrowDir = 'center';
+            x -= width/2;
+            y -= height;
+        }else if(object.x > ((WIDTH/3)*2)){
+            arrowDir = 'right';
+            x -= width;
+        }
+
+        if(object.y < HEIGHT/4){
+            dir = 'top';
+            y += height/2;
+        }else if(object.y > ((HEIGHT/4)*3) ){
+            y -= height;            
+        }
+
+        if(height >180)height=180;
+        
+        let message = createSpeechBubble(this,x,y ,width, height, arrowDir,dir,object.data.get('hint'));
+        setTimeout((message)=>{
+            message[0].setVisible(false);
+            message[1].setVisible(false);
+        },5000,message);
     }
 
 });

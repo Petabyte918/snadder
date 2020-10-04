@@ -107,28 +107,11 @@ var Match = new Phaser.Class({
         {
             gameObject.emit('click', gameObject);
         });
-        
-        var cursors = this.input.keyboard.createCursorKeys();
-        var controlConfig = {
-            camera: this.cameras.main,
-            left: cursors.left,
-            right: cursors.right,
-            up: cursors.up,
-            down: cursors.down,
-            zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
-            zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
-            acceleration: 0.06,
-            drag: 0.0005,
-            maxSpeed: 1.0
-        };
-    
-        this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
         this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#a0c449");
 
         this.showInstructionPopup(STRINGS.str_match_game,this.popupClose,this.popupOk);
     },
     update:function(time,delta){
-        this.controls.update(delta);
         this.hearts.setText(window.gameDescriptor.hearts)
     },
     showHint:function(object){

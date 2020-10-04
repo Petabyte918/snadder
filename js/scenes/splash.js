@@ -156,6 +156,7 @@ var Splash = new Phaser.Class({
         this.load.image('heart','assets/images/icons/heart.png');
         this.load.image('hammer', 'assets/images/icons/10.png');
         this.load.image('lock_key', 'assets/images/icons/5.png');
+        this.load.image('badge', 'assets/images/icons/7.png');
 
 
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');

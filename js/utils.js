@@ -90,7 +90,7 @@ function addBoonToInventory(asset){
     }
 
     if(!found){
-        ivt.push({
+        window.gameDescriptor.inventory.push({
             assetName: asset.assetName,
             assetType: asset.assetType,
             qty: asset.qty,
@@ -294,3 +294,95 @@ function textPopup(str,closeCallback,okCallback,context){
 
     return context.popupContainer;
 }   
+
+function imgPopup(img,closeCallback,okCallback,context){
+    context.popupContainer = context.add.container(WIDTH/2, HEIGHT/2);
+    
+    var popup = context.add.image(0,0,'popupBG')
+                    .setScale(0.6,0.8);
+    var popup1 = context.add.image(0,0,'popupBG0')
+                    .setScale(0.6,0.8);
+    var feature = context.add.image(0,100,img)
+                    .setScale(0.6)
+                    .setOrigin(0.5,1);
+    var popupClose = context.add.image(350,-350,'btn_close')
+                    .setScale(0.5)
+                    .setInteractive()
+                    .on('click',closeCallback,context);
+    var popupOk = context.add.image(0,200,'btn_ok')
+                    .setScale(0.5)
+                    .setInteractive()
+                    .on('click',okCallback,context);
+
+    
+    context.popupContainer.add(popup);
+    context.popupContainer.add(popup1);
+    context.popupContainer.add(feature);
+    context.popupContainer.add(popupClose);
+    context.popupContainer.add(popupOk);
+
+    context.tweens.add({
+        targets     : [ context.popupContainer ],
+        scaleX: 1.2,
+        scaleY: 1.2,
+        ease        : 'Elastic',
+        duration    : 3000,
+        yoyo        : false,
+        repeat      : 0,
+        callbackScope   : context
+        });
+
+    return context.popupContainer;
+}  
+
+function imgTextPopup(img,str,closeCallback,okCallback,context){
+    context.popupContainer = context.add.container(WIDTH/2, HEIGHT/2);
+    
+    var popup = context.add.image(0,0,'popupBG')
+                    .setScale(0.6,0.8);
+    var popup1 = context.add.image(0,0,'popupBG0')
+                    .setScale(0.6,0.8);
+    var feature = context.add.image(0,100,img)
+                    .setScale(0.6)
+                    .setOrigin(0.5,1);
+    var featureText = context.make.text({
+        x: 0,
+        y: 0,
+        text: str,
+        origin: { x: 0.5, y: 0.5 },
+        style: {
+            font: 'bold 35px Arial',
+            fill: 'green',
+            align: 'center',
+            wordWrap: { width: 500 }
+        }
+    });
+    var popupClose = context.add.image(350,-350,'btn_close')
+                    .setScale(0.5)
+                    .setInteractive()
+                    .on('click',closeCallback,context);
+    var popupOk = context.add.image(0,200,'btn_ok')
+                    .setScale(0.5)
+                    .setInteractive()
+                    .on('click',okCallback,context);
+
+    
+    context.popupContainer.add(popup);
+    context.popupContainer.add(popup1);
+    context.popupContainer.add(feature);
+    context.popupContainer.add(popupClose);
+    context.popupContainer.add(popupOk);
+
+    context.tweens.add({
+        targets     : [ context.popupContainer ],
+        scaleX: 1.2,
+        scaleY: 1.2,
+        ease        : 'Elastic',
+        duration    : 3000,
+        yoyo        : false,
+        repeat      : 0,
+        callbackScope   : context
+        });
+
+    return context.popupContainer;
+}  

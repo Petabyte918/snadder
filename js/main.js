@@ -74,6 +74,22 @@ window.gameDescriptor = {
     playerLastPos:0,
     playerPos:0,
     playerDirection:1,
+    playerProgress:{
+        levels:[
+            {
+                level:1,
+                levelStatus:0,
+                diceNums:[],
+                playerPos:0,
+                stars:0,
+                demonAttacks:[],
+                snakeBites:[],
+                punishments:[],
+                questionAnswered:[],
+            }
+        ]
+
+    },
     actionType:'task',
     avator:'',
     score:0,
@@ -752,7 +768,6 @@ window.gameDescriptor = {
     questionAnswered:[],
     matchQuestions:[],
     matchQuestionAnswered:[],
-    diceNums:[1,2,3,4,5,6],
     blockedDiceNums:[],
     diceNumber:0,
     tiles:[
@@ -866,7 +881,7 @@ window.gameDescriptor = {
             y:638.1022806966893,
             tileType:1,
             feature:null,
-            featureType:'quiz',
+            featureType:'awareness',
         },
         {
             x:305.49836095298417,
@@ -894,7 +909,7 @@ window.gameDescriptor = {
             y:494.68126088962487,
             tileType:1,
             feature:null,
-            featureType:'quiz',
+            featureType:'awareness',
         },
         {
             x:798.969003044092,

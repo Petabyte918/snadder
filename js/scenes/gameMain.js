@@ -117,7 +117,10 @@ var GameMain = new Phaser.Class({
         this.addFeaturesToTile();
         
         // this.add.image(500,100,'wood_up').setScale(0.65,1);
-        this.shop_close = this.add.image(900,80,'btn_pause').setScale(0.4).setScrollFactor(0);
+        this.pause = this.add.image(900,80,'btn_pause').setScale(0.4).setScrollFactor(0);
+        this.pause.setInteractive();
+        this.pause.on('click',this.pauseGame,this);
+
         this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
         this.menu.setInteractive();
         this.menu.on('click',this.gotoMenu,this);
@@ -280,7 +283,8 @@ var GameMain = new Phaser.Class({
         this.coins.setText(window.gameDescriptor.coins);
         this.snakeCover.setText(getBoonQtyFromInventory('snake_cover'));
         this.demonCover.setText(getBoonQtyFromInventory('demon_cover'));
-        this.hearts.setText(getBoonQtyFromInventory('hearts'));
+        this.freezeCover.setText(getBoonQtyFromInventory('hammer'));
+        this.hearts.setText(window.gameDescriptor.hearts);
 
         if(this.userPin){
             if(this.userPin.y < HEIGHT/2 ){
@@ -380,15 +384,17 @@ var GameMain = new Phaser.Class({
                     rotateToPath: false,
                     verticalAdjust: true
                 });
-                setTimeout((object)=>{
+                setTimeout((object,context)=>{
                     object.setVisible(false);
-                },1100,coinEarned);
+                    imgPopup(object.texture.key,context.popupClose,context.popupClose,context);
+                },1100,coinEarned,this);
             }
             else if(window.gameDescriptor.actionType == 'demon'){
                 this.dice.input.enabled = true;
                 this.music.setMute(UNMUTE);
                 this.music.play();
-                console.log("You got saved");
+                textPopup(STRINGS.str_got_saved,this.popupClose,this.popupClose,this);
+                
             }
         }
         if(window.gameDescriptor.state == STATES.rapidTaskFail){
@@ -410,8 +416,14 @@ var GameMain = new Phaser.Class({
                 console.log('got nothing');
                 window.gameDescriptor.state = STATES.ideal;
                 this.dice.input.enabled = true;
+                textPopup(STRINGS.str_got_nothing,this.popupClose,this.popupClose,this);
+
             }else if(window.gameDescriptor.actionType == 'demon'){
                 let punishment = getRandomPunishment();
+                console.log(punishment);
+                setTimeout((object,context)=>{
+                    // imgPopup(object.texture.key,context.popupClose,context.popupClose,context);
+                },1100,punishment,this);
                 this.initPunishment(punishment);
             }
 
@@ -604,7 +616,7 @@ var GameMain = new Phaser.Class({
                     var popupClose = this.add.image(350,-350,'btn_close')
                                     .setScale(0.5)
                                     .setInteractive()
-                                    .on('click',this.popupFairyClose,this);
+                                    .on('click',this.popupFairyOk,this);
                     var popupOk = this.add.image(0,200,'btn_ok')
                                     .setScale(0.5)
                                     .setInteractive()
@@ -627,7 +639,11 @@ var GameMain = new Phaser.Class({
                         repeat      : 0,
                         callbackScope   : this
                       });
-
+                      var message = createSpeechBubble(this,WIDTH/2-100,HEIGHT/4,300,150,'center','bottom',STRINGS.str_fairy_instructions);
+                        setTimeout((message)=>{
+                            message[0].setVisible(false);
+                            message[1].setVisible(false);
+                        },10000,message);
 
                         break;
                 case 'demon':
@@ -670,13 +686,63 @@ var GameMain = new Phaser.Class({
                             repeat      : 0,
                             callbackScope   : this
                         });
-
+                        var message = createSpeechBubble(this,WIDTH/2-100,HEIGHT/4,300,150,'center','bottom',STRINGS.str_demon_instructions);
+                        setTimeout((message)=>{
+                            message[0].setVisible(false);
+                            message[1].setVisible(false);
+                        },10000,message);
                         break;
                 case 'match':
-                        break;
-                case 'quiz':
+                    window.gameDescriptor.actionType = 'match';
+                    if(window.gameDescriptor.state == STATES.task){
+                        this.music.setMute(MUTE);
+                        if(this.scene.get('Task')){
+                            this.scene.get('Task').refresh();
+                            this.scene.setVisible(true,'Task');
+                        }else{
+                                // let task = this.scene.get('Task');
+                                let task = this.scene.add('Task',Task,true,{x:100,y:100});
+
+                                this.tweens.add({
+                                    targets     : [ task ],
+                                    scaleX: 1.2,
+                                    scaleY: 1.2,
+                                    ease        : 'Elastic',
+                                    duration    : 3000,
+                                    yoyo        : false,
+                                    repeat      : 0,
+                                    callbackScope   : this
+                                });
+                            
+                            // this.scene.add('Task',Task,true,{x:100,y:100});
+                        }
+                    }
                         break;
                 case 'awareness':
+                    window.gameDescriptor.actionType = 'awareness';
+                    if(window.gameDescriptor.state == STATES.task){
+                        this.music.setMute(MUTE);
+                        if(this.scene.get('Task')){
+                            this.scene.get('Task').refresh();
+                            this.scene.setVisible(true,'Task');
+                        }else{
+                                // let task = this.scene.get('Task');
+                                let task = this.scene.add('Task',Task,true,{x:100,y:100});
+
+                                this.tweens.add({
+                                    targets     : [ task ],
+                                    scaleX: 1.2,
+                                    scaleY: 1.2,
+                                    ease        : 'Elastic',
+                                    duration    : 3000,
+                                    yoyo        : false,
+                                    repeat      : 0,
+                                    callbackScope   : this
+                                });
+                            
+                            // this.scene.add('Task',Task,true,{x:100,y:100});
+                        }
+                    }
                         break;
                 case 'task':
                     window.gameDescriptor.actionType = 'task';
@@ -708,6 +774,9 @@ var GameMain = new Phaser.Class({
 
         
         
+    },
+    popupClose:function(){
+        this.popupContainer.destroy();
     },
     popupSnakeClose:function(){
         console.log('cobra popup closed');
@@ -1128,15 +1197,15 @@ var GameMain = new Phaser.Class({
                     tile.feature.setOrigin(0.47,1.1);
                     // tile.feature.anims.play('portalRunning',true);
                 }
-                if(tile.featureType == 'quiz'){
-                    tile.feature = this.add.image(tile.x,tile.y,'lock_key');
-                    tile.feature.setScale(0.12);
-                    tile.feature.setOrigin(0.47,1.1);
-                    // tile.feature.anims.play('portalRunning',true);
-                }
+                // if(tile.featureType == 'quiz'){
+                //     tile.feature = this.add.image(tile.x,tile.y,'lock_key');
+                //     tile.feature.setScale(0.12);
+                //     tile.feature.setOrigin(0.47,1.1);
+                //     // tile.feature.anims.play('portalRunning',true);
+                // }
                 if(tile.featureType == 'awareness'){
-                    tile.feature = this.add.image(tile.x,tile.y,'lock_key');
-                    tile.feature.setScale(0.12);
+                    tile.feature = this.add.image(tile.x,tile.y,'badge');
+                    tile.feature.setScale(0.15);
                     tile.feature.setOrigin(0.47,1.1);
                     // tile.feature.anims.play('portalRunning',true);
                 }
@@ -1187,6 +1256,9 @@ var GameMain = new Phaser.Class({
             message[0].setVisible(false);
             message[1].setVisible(false);
         },5000,message);
+    },
+    pauseGame:function(){
+        this.scene.pause()
     }
 
 
