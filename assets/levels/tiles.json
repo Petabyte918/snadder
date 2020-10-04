@@ -659,7 +659,7 @@
           "frameKey": 29,
           "data": {}
         },
-        "featureType": "cobra",
+        "featureType": "awareness",
         "texture": {
           "name": "",
           "type": "Image",
@@ -1067,7 +1067,7 @@
           "frameKey": "__BASE",
           "data": {}
         },
-        "featureType": "awareness",
+        "featureType": "cobra",
         "texture": {
           "name": "",
           "type": "Image",
