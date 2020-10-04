@@ -420,11 +420,32 @@ var GameMain = new Phaser.Class({
 
             }else if(window.gameDescriptor.actionType == 'demon'){
                 let punishment = getRandomPunishment();
+                window.gameDescriptor.activePunishment = {
+                    name: punishment.name,
+                    type: punishment.type,
+                    waveDuration: punishment.waveDuration,
+                }
                 console.log(punishment);
                 setTimeout((object,context)=>{
-                    // imgPopup(object.texture.key,context.popupClose,context.popupClose,context);
+                    var text = STRINGS.str_punishment_starts;
+                    if(object.name == 'snake_wave'){
+                        text = `PUNISHMENT\nYou will face more snkes for ${object.waveDuration/60} mins`;
+                    }
+                    else if(object.name == 'demon_wave'){
+                        text = `PUNISHMENT\nYou will face more demons for ${object.waveDuration/60} minutes`;
+                    }
+                    else if(object.name == 'frozen'){
+                        text = `PUNISHMENT\nYou will get froze to your point for ${object.waveDuration/60} minuts`;
+                    }
+                    else if(object.name == 'pos_reassign'){
+                        text = 'PUNISHMENT\nYour position will be reassigned';
+                    }
+                    else if(object.name = 'text_spouse'){
+                        text = 'PUNISHMENT\nYou have to text your spouse somthing';
+                    }
+                    textPopup(text,context.popupClose,context.popupClose,context);
                 },1100,punishment,this);
-                this.initPunishment(punishment);
+                // this.initPunishment(punishment);
             }
 
 
@@ -777,6 +798,9 @@ var GameMain = new Phaser.Class({
     },
     popupClose:function(){
         this.popupContainer.destroy();
+        if(window.gameDescriptor.activePunishment != null){
+            this.initPunishment(window.gameDescriptor.activePunishment);
+        }
     },
     popupSnakeClose:function(){
         console.log('cobra popup closed');
@@ -1056,9 +1080,9 @@ var GameMain = new Phaser.Class({
                 }
                 break;
             case 'pos_reassign':
-                    window.gameDescriptor.state = STATES.ideal;
-                    this.dice.input.enabled = true;
-        
+                    window.gameDescriptor.playerPos -= getRandom(1,10);
+                    window.gameDescriptor.playerDirection = -1;
+                    this.movePlayer();
                     break;
             case 'frozen':
                     this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeoutFrozen, callbackScope: this });
@@ -1073,6 +1097,7 @@ var GameMain = new Phaser.Class({
         
                 break;
         }
+        window.gameDescriptor.activePunishment = null;
     },
     punishmentTimeoutFrozen:function(){
         window.gameDescriptor.state = STATES.ideal;

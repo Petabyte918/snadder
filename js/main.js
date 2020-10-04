@@ -1,6 +1,9 @@
 var config = {
     type: Phaser.AUTO,
     backgroundColor:'#000',
+    dom: {
+        createContainer: true
+    },
     scale: {
         // mode: Phaser.Scale.RESIZE,
         mode: Phaser.Scale.FIT,
@@ -24,6 +27,7 @@ var config = {
         Upgrades,
         Levels,
         Match,
+        Register,
         GameMain,
     ],
     title: 'LoveLudo',
@@ -69,6 +73,7 @@ window.gameDescriptor = {
         pass:'',
         token:'',
         profileImg:'',
+        
     },
     state:STATES.ideal,
     playerLastPos:0,
@@ -98,36 +103,32 @@ window.gameDescriptor = {
     hearts:3,
     activeSenene:'',
     selectedLevel:1,
+    activePunishment:null,
     punishments:[
         {
             name:'snake_wave',
             type:'wave',
             waveDuration:120,
-
         },
         {
             name:'demon_wave',
             type:'wave',
             waveDuration:120,
-
         },
         {
             name:'text_spouse',
             type:'text',
             waveDuration:0,
-
         },
         {
             name:'pos_reassign',
             type:'position',
             waveDuration:0,
-
         },
         {
             name:'frozen',
             type:'frozen',
             waveDuration:60,
-
         }
     ],
     assets:[

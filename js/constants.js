@@ -77,6 +77,12 @@ let STRINGS = {
     str_demon_instructions: 'I am Demon from the hell i will start a rapid question round if you fail i will punish you else nothing.',
     str_got_saved: 'You passed the rapid round',
     str_got_nothing: 'You failed the rapid round',
+    str_punishment_starts:'You will a punishment',
+
+
+
+
+
 
     hint_quit : 'Quit the game',
 

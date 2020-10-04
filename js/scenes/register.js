@@ -1,22 +1,17 @@
-var Avator = new Phaser.Class({
+var Register = new Phaser.Class({
 
     Extends: Phaser.Scene,
-    key:'Avator',
+    key:'Register',
     initialize:
 
-    function Avator ()
+    function Register ()
     {
-        Phaser.Scene.call(this, { key: 'Avator', active: false });
+        Phaser.Scene.call(this, { key: 'Register', active: false });
     },
 
     preload: function ()
     {
-        this.load.image('popupBG','assets/images/UI/settings/bg.png');
-        this.load.image('popupBG0','assets/images/UI/settings/table.png');
-        this.load.image('popupBG1','assets/images/UI/settings/92.png');
-        this.load.image('popupBG3','assets/images/UI/level_select/header.png');
-        this.load.image('face','assets/images/UI/rating/face.png');
-
+        this.load.html('register', 'assets/forms/loginform.html');
     },
 
     create: function ()
@@ -27,19 +22,6 @@ var Avator = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
-        this.anims.create({
-            key: 'male',
-            frames: [{key:'avators',frame:0 }],
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'female',
-            frames: [{key:'avators',frame:7 }],
-            frameRate: 10,
-            repeat: -1
-        });
-        
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
         this.close.setInteractive();
         this.close.setDataEnabled();
@@ -47,31 +29,9 @@ var Avator = new Phaser.Class({
         this.close.on('over',this.showHint,this);
 
         // this.menu = this.add.image(80,80,'btn_menu').setScale(0.4);
-        this.add.dynamicBitmapText(WIDTH/2,100,'fire','SELECT AVATOR',60).setOrigin(0.5);
-
-        this.add.image(500,770,'popupBG').setScale(0.6,0.8);
-        this.add.image(500,770,'popupBG0').setScale(0.6,0.8);
+        this.add.dynamicBitmapText(WIDTH/2,100,'fire','REGISTER',60).setOrigin(0.5);
         
-        this.male = this.add.sprite(350,700,'avators').setScale(2.5);
-        this.male.setInteractive();
-        this.male.setDataEnabled();
-        this.male.on('click',this.selectMale,this);
-        this.male.on('over',this.showHint,this);
-        this.male.data.set('hint','Select if you are husband');
 
-        this.female = this.add.sprite(650,700,'avators').setScale(2.5);
-        this.female.anims.play('female',true);
-        this.female.setInteractive();
-        this.female.setDataEnabled();
-        this.female.on('click',this.selectFemale,this);
-        this.female.on('over',this.showHint,this);
-        this.female.data.set('hint','Select if you are wife');
-        
-        // this.add.image(500,450,'popupBG3').setScale(0.6);
-
-        this.add.dynamicBitmapText(300,830,'green','Pati',30);
-        this.add.dynamicBitmapText(590,830,'green','Patni',30);
-        var context = this;
         this.input.on('gameobjectdown', function (pointer, gameObject)
         {
             this.sound.playAudioSprite('ui_button', 'button4');
@@ -90,18 +50,55 @@ var Avator = new Phaser.Class({
             gameObject.emit('click', gameObject);
         });
 
-    },
-    selectFemale:function(){
-        window.gameDescriptor.avator = 'female';
-        this.registry.set('avator','female');
-        setGameData();
-        this.scene.start('Register');
-    },
-    selectMale:function(){
-        window.gameDescriptor.avator = 'male';
-        this.registry.set('avator','male');
-        setGameData();
-        this.scene.start('Register');
+        var context = this;
+        var element = this.add.dom(WIDTH/2, HEIGHT).createFromCache('register');
+        element.setScale(2.3,2);
+        element.setPerspective(800);
+        element.addListener('click');
+        element.on('click', function (event) {
+    
+            if (event.target.name === 'loginButton')
+            {
+                var inputPhone = this.getChildByName('phone');
+                var inputPassword = this.getChildByName('password');
+    
+                //  Have they entered anything?
+                if (inputPhone.value !== '' && inputPassword.value !== '')
+                {
+                    //  Turn off the click events
+                    this.removeListener('click');
+                    window.gameDescriptor.user.phone = inputPhone.value;
+                    window.gameDescriptor.user.pass = inputPassword.value;
+                    setGameData();
+                    //  Tween the login form out
+                    this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 3000, ease: 'Power3' });
+    
+                    this.scene.tweens.add({ targets: element, scaleX: 2, scaleY: 2, y: 700, duration: 3000, ease: 'Power3',
+                        onComplete: function ()
+                        {
+                            element.setVisible(false);
+                            context.scene.start('Dashboard');
+                        }
+                    });
+    
+                    //  Populate the text with whatever they typed in as the username!
+                    // text.setText('Welcome ' + inputUsername.value);
+                }
+                else
+                {
+                    //  Flash the prompt
+                    this.scene.tweens.add({ targets: text, alpha: 0.1, duration: 200, ease: 'Power3', yoyo: true });
+                }
+            }
+    
+        });
+     
+        this.tweens.add({
+            targets: element,
+            y: HEIGHT/2,
+            duration: 3000,
+            ease: 'Power3'
+        });
     },
     showHint:function(object){
         let dir = 'bottom';
