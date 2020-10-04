@@ -170,6 +170,8 @@ var Splash = new Phaser.Class({
         this.load.audioSprite('ui_sfx','assets/audio/UI_sounds/sounds.json',['assets/audio/UI_sounds/sounds.mp3']);
         this.load.audioSprite('ui_button','assets/audio/UI_sounds/button.json',['assets/audio/UI_sounds/button.mp3']);
 
+        this.load.json('questionsData', 'assets/levels/questions.json');
+        this.load.json('tilesData', 'assets/levels/tiles.json');
 
         this.load.on('progress', function (value) {
             // console.log(value);
@@ -218,10 +220,14 @@ var Splash = new Phaser.Class({
         this.snadder = this.add.dynamicBitmapText(960/2,500,'fire','LOVELUDO',128).setOrigin(0.5,0.5);
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
         this.loadGamedata();
+        var qs = this.cache.json.get('questionsData');
+        var ts = this.cache.json.get('tilesData');
+
+        window.gameDescriptor.questions = qs.questions;
+        window.gameDescriptor.tiles = ts.tiles;
 
         this.input.once('pointerdown', function () {
             // this.scene.start("GameMain");
-            
         }, this);
         
         // var add = this.add;

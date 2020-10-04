@@ -3,73 +3,2580 @@
     
         {
             "qid":1,
-            "q":"इण्डिया गेट कहा पे स्थित है?",
-            "questionType":"awernace",
+            "q":"बिहार की राजधानी कहाँ है?",
+            "questionType":"quiz",
             "options":[
                 {
                     "opid":1,
                     "img":"",
-                    "txt":"रांची"
+                    "txt":"समतिपुर"
                 },
                 {
                     "opid":2,
                     "img":"",
-                    "txt":"दिल्ली"
+                    "txt":"पटना"
                 },
                 {
                     "opid":3,
                     "img":"",
-                    "txt":"चेन्नई"
-                },
-                {
-                    "opid":4,
-                    "img":"",
-                    "txt":"कोलकाता"
+                    "txt":"मुज़फरपुर"
                 }
-                
+              
             ],
             "answers":[
                 2
             ],
-            "answerDesciption":"इण्डिया गेट दिल्ली पे स्थित है? ",
+            "answerDesciption":" ",
             "answerImg":"",
             "answerVideo":""
         },
 
         {
             "qid":2,
-            "q":"आगरा में कौन सा स्मारक है?",
-            "questionType":"awernace",
+            "q":"बिहार दिवस कब मनाया जाता है?",
+            "questionType":"quiz",
             "options":[
                 {
                     "opid":1,
                     "img":"",
-                    "txt":"लालकिला"
+                    "txt":"26 जनवरी"
                 },
                 {
                     "opid":2,
                     "img":"",
-                    "txt":"कुतुब मीनार"
+                    "txt":"22 ऑगस्ट"
                 },
                 {
                     "opid":3,
                     "img":"",
-                    "txt":"बुलंद दरवाजा"
+                    "txt":"22 मार्च"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":3,
+            "q":"बिहार के मुख्यमंत्री कौन है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"नितीश कुमार"
                 },
                 {
-                    "opid":4,
+                    "opid":2,
                     "img":"",
-                    "txt":"ताजमहल"
+                    "txt":"लालू यादव"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"बुतेजश्वी यादव"
+                }
+               
+                
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":4,
+            "q":"बिहार का प्रशिद्ध खाना क्या है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"ढोषा"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"चाऊमीन"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"लिट्टी-चोखा "
                 }
                 
             ],
             "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":5,
+            "q":"चाठ का पूजा किस भगवन के लिए करते है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"माँ दुर्गा"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सूर्या भगवान"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"गणेश भगवान"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+       
+       {
+            "qid":6,
+            "q":"बोद्ध गया सहर किस लिए प्रसिद्ध है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"गौतम बुद्ध के मंदिर"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"माँ कलि के मंदिर के लिए"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"लाल किला के लिए"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	    {
+            "qid":7,
+            "q":"सलमान खान कौन है? (पत्रकार, खिलाडी, कलाकार, राजनीतिज्ञ)",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"पत्रकार"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"खिलाडी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"कलाकार"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":8,
+            "q":"लालू यादव  किस पेशे से जुड़े है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"पत्रकार"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"राजनीतिज्ञ"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"खिलाडी"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":9,
+            "q":"तेजस्वी यादव से लालू यादव का क्या रिश्ता है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"भाई"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"चाचा"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"बेटा"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+	    {
+            "qid":10,
+            "q":"ऐसा कौन सा खेल है जो बैट और बॉल द्वारा खेला जाता है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"क्रिकेट"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"फुटबॉल"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"कितकित"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	    {
+            "qid":11,
+            "q":"“तुझे देखा तो यह जाना सनम प्यार होता है दीवाना सनम” गाने कौन सी अभिनेता है ?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"दिलवाले दुल्हनिया ले जाएंगे"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"दबंग"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"शोले"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	    {
+            "qid":12,
+            "q":"“कबुतर जा जा जा” गाने में कौन सी अभिनेत्री है ?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"ग़दर"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"मैंने प्यार किया"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"गोलमाल"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":13,
+            "q":"“कबुतर जा जा जा” गाने में कौन सी अभिनेत्री है ?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"शोले"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"दबंग"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"ग़दर"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":14,
+            "q":"बड़े-बड़े सहरों में ऐसे छोटी-छोटी बातें होती रहती है “यह प्रसिद्ध दैलौग कौन से सिनेमा से है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"सुल्तान"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"ॐ शांति ओम"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"दिलवाले दुल्हनिया ले जाएंगे "
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":15,
+            "q":"सरस्वती पूजा किस देवी की पूजा के लिए किया जाता है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"काली माँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"संतोषी माँ"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"सरस्वती माँ"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":16,
+            "q":"शादी में कितने फेरे लेते है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"चार"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सात"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"दस"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":17,
+            "q":"भारत के प्रधानमंत्री कौन है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मनमोहन सिंह"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नरेन्द्र मोदी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"राहुल गाँधी"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+	{
+            "qid":18,
+            "q":"भारत का राष्ट्रीय पशु क्या है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"बाघ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हाथी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"भालू"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":19,
+            "q":"भारत का राष्ट्रीय पक्षी क्या है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मोर"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"कबूतर"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"कौआ"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+ 
+        {
+            "qid":20,
+            "q":"भारत का राष्ट्रीगान क्या है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हमको मान की शक्ति देना"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हम होंगे कामियाब"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"जन गण मन अधिनायक जय है"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+ 	{
+            "qid":21,
+            "q":"स्वतंत्रता दिवस कब मनाया जाता है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"14 जनवरी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"15 ऑगस्ट "
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"26 जनवरी"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":22,
+            "q":"भारत का राष्ट्रीय भाषा क्या है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"अंग्रेजी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"भोजपुरी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"हिंदी"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+	{
+            "qid":23,
+            "q":"ताज महल कहाँ स्थित है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"आगरा"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"कोलकाता"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"पटना"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":24,
+            "q":"अशोक चक्र में कितनी तीलियाँ होती है?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"20"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"22"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"24"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":25,
+            "q":"Fair & Lovely लगाने से क्या होता है? (गोरा, काला, नाटा, मोटा)",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मोटा"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"गोरा"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"नाटा"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+ 	{
+            "qid":26,
+            "q":"कौन से खाने में नमक नही डलता ? (खिचड़ी, दाल, गाजर की हल्वा)",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"खिचड़ी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"दाल"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"गाजर की हल्वा"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+	{
+            "qid":27,
+            "q":"काला चश्मा हम क्यों पहनते है ? (आँखों को धुप से बचने के लिए, वर्षा से बचने के लिए, झगड़ा से बचने के लिए )",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"आँखों को धुप से बचने के लिए"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"वर्षा से बचने के लिए"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"झगड़ा से बचने के लिए"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+	{
+            "qid":28,
+            "q":"पहली भारतीय महिला जिन्होंने नोबेल पुरस्कार जीता क्या नाम था?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मैरी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"महात्मा गाँधी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"मदर टेरेसा"
+                }
+              
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+	{
+            "qid":29,
+            "q":"प्रकाश बल्ब का आविष्कारक करने वाले कौन थे?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हेनरी फोर्ड"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"थॉमस एडिसन"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"अल्बर्ट आइंस्टीन"
+                }
+              
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+	    {
+            "qid":30,
+            "q":"संयुक्त राज्य अमेरिका का राष्ट्रीय खेल का नाम क्या है ?",
+            "questionType":"quiz",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"बेसबॉल"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"कबड्डी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":" क्रिकेट"
+                }
+              
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+
+        {
+            "qid":1,
+            "q":"आप की शादी कैसे हुई..?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"प्रेम विवाह"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सुसंगत विवाह"
+                }
+
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":2,
+            "q":"आपके पति क्या करते हैं ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"खेत में काम करते है "
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"बाहर किसी फैक्ट्री में काम करते है "
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"इसमें से कोई नही"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"नही पता"
+                }  
+            ],
+            "answers":[
+               
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":3,
+            "q":"आप दोनों के उम्र मे क्या अंतर है ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"1 से 3 साल"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"-4-7 साल"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":" 8 साल या अधिक"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"पता नही"
+                }    
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":4,
+            "q":"आप अपना  जीवन संगिनी  कैसा  चाहते थे...?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"शहरी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"ग्रामीण"
+                }
+ 	
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":5,
+            "q":"आपके जीवन साथी का बोल  कैसा है  ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"करैला जैसा "
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"रसगुल्ले जैसा "
+                },
+                
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":" हीरो जैसा"
+                }
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":6,
+            "q":"आपके जीवन साथी कैसे हैं ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"छडी जैसे सीधे"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"जलेबी जैसे टेड़े"
+                }
+                
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":7,
+            "q":"आपके साथ कौन कौन रहते है?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मम्मी-पापा"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"रिश्तेदार"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"कोई नहीं"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+{
+            "qid":8,
+            "q":"शादी की बाद अपने जीवनसाथी आपको  किस नाम से पुकारते है ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"बाबु"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सोना"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"ऐजी / ओजी "
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":9,
+            "q":"पहली बार अपनी शादी के बारे में सुन कर आप दोनों कैसा महसूस किये थे ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"अच्छा"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"बहुत अच्छा"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"कुछ खास नही"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"साधारण"
+                }      
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":10,
+            "q":"वो कौन सी जगह है जहाँ आप अपने जीवनसाथी के साथ सबसे पहले जाना पसंद करेंगी ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"फिल्म"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"मंदिर"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"मॉल"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":",किसी परिवार के घर"
+                }  
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":11,
+            "q":"कभी आपके जीवनसाथी आपको मजाकं  करते है तो आपको क्या कहकर बुलाते है",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"अरे काली बिल्ली"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सुंदरी"
+                }
+                
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":12,
+            "q":"आज आपके जीवन साथी कि ससुराल मे पहली रसोई  है और वो सोच मे है कि  ऐसा क्या बनाउ कि सब उनकी तारीफ करे ? आप उनको क्या सलाह देगे",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"तुम बहुत अच्छी खाना बनती हो"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"कुछ भी बना दो"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"घर मे किसी से मदद  ले लो"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":13,
+            "q":"आप अपने जीवनसाथी को एम्प्रेस करने के लिए  किस वाक्य का उपयोग  करते है  ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"तुम बहुत सुंदर  हो"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"तुम ही मेरी जीवन हो"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"तुम मेरी रसमलाई हो"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":14,
+            "q":"क्या आप दोनो पति पत्नी के अलावा  एक अच्छे दोस्त  भी है",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हा"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+                
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":15,
+            "q":"आपको अपने जीवन साथी का कौन सा बात ऐसा है जो आपको बहुत पसंद है ?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"अपनी जिम्मेदारी का ध्यान है"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सबका ख्याल रखते हैं"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"अच्छा खाना पकाते है"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":16,
+            "q":"आपकी कौन-सी बात आपके जीवनसाथी को बहुत अच्छी लगती है",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"आवाज"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"घर में सबसे मिलकर रहना"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"काम करना"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"खुद भी बच्चों को पढ़ाना "
+                } 
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":17,
+            "q":"आपके जीवनसाथी आप पर कब ज्यादा गुस्सा करते है ।",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"देर से जगने पर"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":" देर से खाने पर"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"बच्चों को डांटने पर "
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"फोन से ज्यादा देर तक बात करने पर"
+                }     
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":18,
+            "q":"आपकी मुलाकात आपके साथी से पहली बार कब हुई थी क्या वो तारीख आपके याद है ।",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नहीं"
+                }
+                
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":19,
+            "q":"आपके साथी आपको पिछली बार कब I Love You बोले है",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"आज"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"कल"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"दिन पूर्व "
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"एक सप्ताह पूर्व"
+                }        
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":20,
+            "q":"आप दोंनो में से एक दूसरे से मिलने के लिए कौन ज्यादा उतबला रहता है ।",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मैं"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"मेरा साथी"
+                }
+                
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":21,
+            "q":"एक दूसरे से मोबाइल पर बात करने के लिए कौन ज्यादा बार फ़ोन   करता है ।",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मैं"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":" मेरा साथी"
+                }
+
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":22,
+            "q":"आप दोनों में कौन सी बात एक जैसी है  है ।",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"पढ़ाई"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"बात करने का स्टाइल "
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"सोच"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"व्यवहार"
+                }  
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":23,
+            "q":"आपके साथी किस क्लास तक पढ़े है",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"मैट्रिक से कम"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"मैट्रिक"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"इंटर"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"स्नातक"
+                },
+  	            {
+                    "opid":5,
+                    "img":"",
+                    "txt":"स्नातकोत्तर"
+                }
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":24,
+            "q":"आपके साथी का पसंदीदा रंग कौन है ।",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"लाल"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हरा"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"काला"
+                },
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"आसमानी"
+                },
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"गुलाबी"
+                },
+	            {
+                    "opid":1,
+                    "img":"",
+                    "txt":"नीला"
+                }, {
+                    "opid":1,
+                    "img":"",
+                    "txt":"नारंगी"
+                }, {
+                    "opid":1,
+                    "img":"",
+                    "txt":"पीला"
+                }, {
+                    "opid":1,
+                    "img":"",
+                    "txt":"अन्य"
+                }
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":25,
+            "q":"आपके साथी को कौन सा भोजन ज्यादा पसंद है",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"स्थानीय भोजन"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"फास्ट फ़ूड "
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"साउथ इंडियन"
+                }
+              
+            ],
+            "answers":[
                 4
             ],
-            "answerDesciption":"आगरा में ताजमहल स्मारक है?",
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":26,
+            "q":"जब भी आप अपने साथी के साथ होटल में जाते है तो आपके साथी क्या खाना पसंद करते है ।",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"शाकाहारी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"माँसाहारी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"दोनों"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":27,
+            "q":"आपके जीवन साथी आपको  कौन से  कपड़े में ज्यादा देखना चाहते हैं?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"साडी में "
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सलवार शूट मे"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"जींस टाप में"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":28,
+            "q":"आपके जीवन साथी कौन सी  भाषा की फिल्म ज्यादा- तर देखते है? ",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हिन्दी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"भोजपुरी"
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"साउथ"
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+	    {
+            "qid":29,
+            "q":"क्या आपको लगता है कि आपका जीवनसाथी आपका सहयोग करते है?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+               
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":30,
+            "q":"आपके जीवनसाथी का स्वभाव कैसा है?",
+            "questionType":"match",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"शांत है"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हुत गुस्सैल है "
+                },
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"हँसमुख हैं "
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"मजाकिया है  "
+                }
+              
+            ],
+            "answers":[
+                
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+
+	    {
+            "qid":1,
+            "q":"क्आपके अनुसार लडका/लडकी मे अंतर होना चाहिए ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ होना चाहिये "
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही होना चाहिए"
+                }
+                ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+       {
+            "qid":2,
+            "q":"क्आपके अनुसार लडकियो को लड़को के बराबर मौका मिलना चाहिए ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":3,
+            "q":"क्या लड़कियों को शिक्षा/उच्च शिक्षा देना चाहिए?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":4,
+            "q":"बेटी को इतना पढ़ाओ की वो अपने पैरों पर खड़ी हो सके",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"सही"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"ग़लत"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":5,
+            "q":"आप लडकियो के शिक्षा के बारे मे क्या सोचती हैं ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"थोडा बहुत पढ़ ले,  हिसाब किताब जान ले, कहीं आना जाना हो तो दो अक्षर  पढ़ ले अपना नाम लिख ले "
+                },
+		        {
+                    "opid":2,
+                    "img":"",
+                    "txt":"अच्छे से पढाना चाहिए और कामयाब  इंसान बनाना चाहिए |"
+                },
+
+                {
+                    "opid":3,
+                    "img":"",
+                    "txt":"बिलकुल नहीं पढना चाहिए, क्या फायदा  जब ससुराल चली जाएगी|"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":6,
+            "q":"लडकियो को शिक्षा देने के क्या फायदे हो सकते हैं ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"कोई फायदा नहीं"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"फिजूल के पैसा खर्च होते हैं"
+                },
+		        {
+                    "opid":3,
+                    "img":"",
+                    "txt":" लड़की आगे जाकर आत्म निर्भर बनेगी"
+                }],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":7,
+            "q":"क्या लड़कियों को यौन शिक्षा देनी चाहिए ? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"नही शादी के बाद स्वयं जान जाएगी"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हाँ देनी चाहिए ताकि वो अपनी देखभाल कर सकेगी"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":8,
+            "q":"सरकार द्वारा लड़कियो को बढावा देने के लिए कोई योजना बनाईं गयी है ?               ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":9,
+            "q":"बिहार मे लड़कियों को शिक्षा प्राप्त करने में बहुत सारी बाधाएं होती है ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":10,
+            "q":"आपके अनुसार क्या हर लड़कियों को स्कूल जाना चाहिए ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":11,
+            "q":"लडकियों के शिक्षा के लिए क्या-क्या बाधाएं है?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"बाल-विवाह"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":" पुरानी सोच"
+                },
+		        {
+                    "opid":3,
+                    "img":"",
+                    "txt":"दवाव"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"ऊपर के तीनो विकल्प सही है "
+                }
+            ],
+            "answers":[
+                4
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":12,
+            "q":"या सरकार के तरफ से महिलाओं की  शिक्षा को बढ़ावा देने के लिये जोर दिया जा रहा है ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":13,
+            "q":"क्या लडकियों के शिक्षा  पर खर्च करना बेकार है ? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":14,
+            "q":"क्याक्या गाव में अधिकांश बाल बिवाह होने का एक कारण यह हों सकता है की माता-पिता को डर रहता है कि अगर लड़की की शादी जल्दी नही करेंगे तो कुछ गलत कदम उठाएगी और उनकी इज्जत चली जायेगी । ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"ये सही नही हैं।"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"ये सही बात है"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":15,
+            "q":"हम बालिकाओं/लड़कियो  को कैसे बढ़ावा दे सकते हैं?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"शिक्षा दे कर "
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"घर पर लड़की के काम के बोझ को कम करना "
+                }, 
+		        {
+                    "opid":3,
+                    "img":"",
+                    "txt":" निर्णय लेने की स्वतंत्रता प्रदान करके"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"उपरोक्त सभी।"
+                }
+            ],
+            "answers":[
+                4
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":16,
+            "q":"लड़कियो को बढावा/ प्रोत्साहन देने में  चुनौतियां क्या हैं? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"सामाजिक सोंच"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"गरीबी"
+                },
+		        {
+                    "opid":3,
+                    "img":"",
+                    "txt":"बाल विवाह।"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"निरक्षरता"
+                },
+		        {
+                    "opid":5,
+                    "img":"",
+                    "txt":"उपरोक्त सभी"
+                }
+            ],
+            "answers":[
+                5
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+ {
+            "qid":17,
+            "q":"क्क्या बेटी के साथ माता पिता को दोस्तों जैसा व्यवहार रखना चाहिए?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":18,
+            "q":"बुरा /ख़राब स्पर्श और अच्छा स्पर्श(Bad touch and Good touch) की जानकारी क्या छोटे बच्चों को देनी चाहिए?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        }, 
+        {
+            "qid":19,
+            "q":"क्क्या मासिक चक्र के विषय में उन्हें  माहवारी शुरू होने से पहले ही बतानी चाहिए",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"नही"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हाँ"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":20,
+            "q":"आपके अनुसार क्या लडकियो को पढ़ाने से दो कुल  शिक्षित होगा ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":21,
+            "q":"क्लडकिया माहवारी से सम्बंधित चर्चा केवल माँ से ही क्यों करती है इसका क्या कारण हो सकता है ?",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"शर्म"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"माँ भी कभी एक लड़की थी इसलिए"
+                }, 
+		        {
+                    "opid":3,
+                    "img":"",
+                    "txt":"माँ बेटी के लिए एक दोस्त की तरह होती है"
+                },
+                {
+                    "opid":4,
+                    "img":"",
+                    "txt":"माँ भी इस दौर से गुजरती है इसलिए"
+                },
+		        {
+                    "opid":5,
+                    "img":"",
+                    "txt":"उपर्युक्त सभी"
+                }
+            ],
+            "answers":[
+                5
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":22,
+            "q":"क्क्या लड़कियों को माहवारी के समय किसी पुरुष  को खाना नही परोसना चाहिए ।",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"गलत है"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"सही है"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":23,
+            "q":"क्या माहवारी के दौरान महिलाओं को अचार नही छूना चाहिये । ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+        {
+            "qid":24,
+            "q":"माहवारी के समय यौनांगों पर पानी पड़ने से बीमारी हो जाता है-",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"नही इस समय सफाई से रहनी चाहिए "
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हाँ पानी पड़ने से बीमार हो जाता है "
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":25,
+            "q":"क्या मासिक धर्म के दौरान रोज नहाने से स्वास्थ्य पर बुरा प्रभाव पड़ता है ? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"नही"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+		        {
+                    "opid":3,
+                    "img":"",
+                    "txt":"नही मालूम"
+                }
+
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+        {
+            "qid":26,
+            "q":"आपके अनुसार माहवारी के दौरान गन्दा खून  निकलता है ? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+
+		{
+
+            "qid":27,
+            "q":"मासिक धर्म आने पर परिवार के सदस्यों से अलग रहना चाहिए? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+ 
+        {
+            "qid":28,
+            "q":"किन कारणों से  माहवारी के दौरान इ स्तेमाल किया गया कपड़ा को जलाना नही चाहिए ? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"संतान नही होता है"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"यह एक भ्रम है"
+                }
+            ],
+            "answers":[
+                2
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+	    {
+            "qid":29,
+            "q":"किशोरियों / महिलाओं को यौन संक्रमण से बचने के लिए क्या करनी चाहिए ? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"साफ जगह पर पेशाब करनी चाहिए"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"शौच के बाद हाथ आगे से पीछे की तरफ करके धोनी चाहिए"
+                },
+		        {
+                    "opid":3,
+                    "img":"",
+                    "txt":"A  और  B दोनों"
+                }
+            ],
+            "answers":[
+                3
+            ],
+            "answerDesciption":" ",
+            "answerImg":"",
+            "answerVideo":""
+        },
+		{
+            "qid":30,
+            "q":"क्या महिलाओ मे सफेद पानी का आना किसी बीमारी का लक्षण है ? ",
+            "questionType":"awareness",
+            "options":[
+                {
+                    "opid":1,
+                    "img":"",
+                    "txt":"हाँ अगर पानी बदबूदार हो"
+                },
+                {
+                    "opid":2,
+                    "img":"",
+                    "txt":"नही"
+                }
+            ],
+            "answers":[
+                1
+            ],
+            "answerDesciption":" ",
             "answerImg":"",
             "answerVideo":""
         }
-
     ]
 }

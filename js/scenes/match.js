@@ -219,11 +219,11 @@ var Match = new Phaser.Class({
         this.task['options'] = question.options;
         this.task['answers'] = question.answers;
         // this.task['questionText'] = this.add.dynamicBitmapText(240,400,'green','',35);
-        this.add.image(500,870,'popupBG').setScale(0.6,1.3);
-        this.add.image(500,820,'popupBG0').setScale(0.6,1.3);
+        this.task['bg0'] = this.add.image(500,870,'popupBG').setScale(0.6,1.3);
+        this.task['bg1'] = this.add.image(500,820,'popupBG0').setScale(0.6,1.3);
         this.task['questionText'] = this.make.text({
             x: 480,
-            y: 450,
+            y: 470,
             text: '',
             origin: { x: 0.5, y: 0.5 },
             style: {
@@ -239,21 +239,35 @@ var Match = new Phaser.Class({
         this.task['optionBlocks'] = [];
         window.gameDescriptor.questionAnswered.push(this.task.qid);
         
+        
         for(let i = 0,j=0,k=0;i<(this.task.options != null?this.task.options.length:0);i++){
             if(i%2 == 0){
                 j +=250;
                 k=0;
             }
             k++;
-            let op = this.add.image(100+ (k*260),400+j,'popupBG4').setScale(0.8);
+            let op = this.add.image(100+ (k*260),(this.task.options.length<=4?500:400) +j,'popupBG4').setScale(0.8);
                 op.setInteractive();
                 op.on('click',this.makeSelected,this);
                 op.setDataEnabled();
                 op.data.set('opid',this.task.options[i].opid);
             this.task.optionBlocks.push(op);
             
-            let optxt = this.add.dynamicBitmapText(60+ (k*270),495+j,'green','',35);
-                optxt.setText(this.task.options[i].txt);
+            // let optxt = this.add.dynamicBitmapText(60+ (k*270),495+j,'green','',35);
+            let optxt = this.make.text({
+                    x: 60+(k*270),
+                    y: (this.task.options.length<=4?515:415)+j,
+                    text: '',
+                    origin: { x: 0.5, y: 0.5 },
+                    style: {
+                        fontFamily: 'Finger Paint', 
+                        font: 'bold 30px Arial',
+                        fill: 'green',
+                        align:'center',
+                        wordWrap: { width: 250 }
+                    }
+                });
+            optxt.setText(this.task.options[i].txt);
             this.task.optionTexts.push(optxt);
         }
         this.submit = this.add.image(500,1380,'btn_next').setScale(0.8);
@@ -283,6 +297,9 @@ var Match = new Phaser.Class({
 
     },
     checkSubmit:function(){
+        if(this.task.selectedOptions.length <=0){
+            return;
+        }
         this.submit.input.enabled = false;
         for(let opb of this.task.optionBlocks){
             opb.input.enabled = false;
@@ -292,6 +309,17 @@ var Match = new Phaser.Class({
             answers:this.task.selectedOptions
         }
         window.gameDescriptor.matchQuestionAnswered.push(q);
+        for(var ob of this.task.optionBlocks){
+            ob.destroy();
+        }
+        for(var ob of this.task.optionTexts){
+            ob.destroy();
+        }
+        this.task.questionText.destroy();
+        this.submit.destroy();
+        this.task.bg0.destroy();
+        this.task.bg1.destroy();
+        
         setTimeout(this.changeQuestion,200,this);
         
     },
@@ -322,12 +350,12 @@ var Match = new Phaser.Class({
                 rotateToPath: false,
                 verticalAdjust: true
             });
-            setTimeout((object)=>{
+            setTimeout((object,context)=>{
                 object.setVisible(false);
                 window.gameDescriptor.hearts++;
-
-            },1100,coinEarned);
-            context.refresh();
+                context.showQuestion();
+            },1100,coinEarned,context);
+            
 
     },
     rolloutClose:function(){
@@ -347,6 +375,8 @@ var Match = new Phaser.Class({
         }
         this.task.qid = question.qid;
         this.task.q = question.q;
+        this.task.optionBlocks.length
+        this.task.options.splice(0, this.task.options.length);
         this.task.options = question.options;
         this.task.answers = question.answers;
         this.task['questionText'].setText(this.task.q);
