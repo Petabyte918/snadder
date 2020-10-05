@@ -110,6 +110,17 @@ function getBoonQtyFromInventory(assetName){
     return qty;
 }
 
+function useBoonFromInventory(assetName){
+
+    for(let ivt of window.gameDescriptor.inventory){
+        if(assetName == ivt.assetName){
+            ivt.qty--;
+            break;
+        }
+    }
+    return qty;
+}
+
 function getRandomPunishment(){
     let rand = getRandom(0,window.gameDescriptor.punishments.length-1);
     return window.gameDescriptor.punishments[rand];

@@ -148,19 +148,19 @@ var GameMain = new Phaser.Class({
         this.snakeCoverBtn.data.set('assetName','snake_cover');
         this.snakeCoverBtn.data.set('hint','protects you from snakes');
         // this.snakeCoverBtn.on('over',this.showHint,this);
-        // this.snakeCoverBtn.on('click',this.blastSnakes,this);
+        this.snakeCoverBtn.on('click',this.blastSnakes,this);
         
         this.demonCoverBtn = this.add.image(800,1700,'demon_potion').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
         this.demonCoverBtn.data.set('assetName','demon_cover');
         this.demonCoverBtn.data.set('hint','protects you from demons');
         // this.demonCoverBtn.on('over',this.showHint,this);
-        // this.demonCoverBtn.on('click',this.blastDemons,this);
+        this.demonCoverBtn.on('click',this.blastDemons,this);
 
         this.freezeCoverBtn = this.add.image(900,1700,'hammer').setScale(0.2).setScrollFactor(0).setInteractive().setDataEnabled();
         this.freezeCoverBtn.data.set('assetName','snake_cover');
         this.freezeCoverBtn.data.set('hint','Breaks the ice');
         // this.freezeCoverBtn.on('over',this.showHint,this);
-        // this.heartsBtn.on('click',this.BlastDemons,this);
+        this.freezeCoverBtn.on('click',this.breakIce,this);
 
         this.hearts = this.add.dynamicBitmapText(620,1700,'fire',window.gameDescriptor.hearts,40).setScrollFactor(0);
         this.snakeCover = this.add.dynamicBitmapText(720,1700,'fire',getBoonQtyFromInventory('snake_cover'),40).setScrollFactor(0);
@@ -473,6 +473,11 @@ var GameMain = new Phaser.Class({
         if(window.gameDescriptor.state == STATES.ideal){
             this.music.setMute(MUTE);
             this.scene.start('Dashboard');
+        }
+    },
+    pauseGame:function(){
+        if(window.gameDescriptor.state == STATES.ideal){
+            this.scene.pause()
         }
     },
     rollDice:function(){
@@ -1037,12 +1042,6 @@ var GameMain = new Phaser.Class({
     updateCoins:function(){
         this.coins.setText(''+window.gameDescriptor.coins);
     },
-    blastSnakes:function(){
-
-    },
-    blastDemons:function(){
-
-    },
     initPunishment:function(punishment){
         console.log(punishment);
         switch(punishment.name){
@@ -1299,9 +1298,82 @@ var GameMain = new Phaser.Class({
             message[1].setVisible(false);
         },5000,message);
     },
-    pauseGame:function(){
-        this.scene.pause()
-    }
+    breakIce:function(){
+        if(getBoonQtyFromInventory('hammer') >0){
+            if(window.gameDescriptor.state == STATES.frozen)
+            {
+                let hammer = this.add.image(WIDTH/2,HEIGHT,'hammer');
+                this.tweens.add({
+                    targets: hammer,
+                    y: HEIGHT/2,
+                    duration: 1000,
+                    ease: 'Power3'
+                });
+                setTimeout((hammer)=>{
+                    hammer.destroy();
+                },1200,hammer);
+                useBoonFromInventory('hammer');
+                window.gameDescriptor.state = STATES.ideal;
+                this.dice.input.enabled = true;
+                this.counterText.setVisible(false);
+            }else{
+                textPopup("Player not frozen",this.popupClose,this.popupClose,this);
+            }
+        }else{
+            textPopup("No hammer availible",this.popupClose,this.popupClose,this);
+        }
+        
+    },
+    blastSnakes:function(){
+        if(getBoonQtyFromInventory('snake_cover') >0){
+            if(window.gameDescriptor.state == STATES.frozen)
+            {
+                let snake_cover = this.add.image(WIDTH/2,HEIGHT,'snake_potion');
+                this.tweens.add({
+                    targets: snake_cover,
+                    y: HEIGHT/2,
+                    duration: 1000,
+                    ease: 'Power3'
+                });
+                setTimeout((snake_cover)=>{
+                    snake_cover.destroy();
+                },1200,snake_cover);
+                useBoonFromInventory('snake_cover');
+                window.gameDescriptor.state = STATES.ideal;
+                this.dice.input.enabled = true;
+                this.counterText.setVisible(false);
+            }else{
+                textPopup("Player not frozen",this.popupClose,this.popupClose,this);
+            }
+        }else{
+            textPopup("No snake cover availible",this.popupClose,this.popupClose,this);
+        }
+    },
+    blastDemons:function(){
+        if(getBoonQtyFromInventory('demon_cover') >0){
+            if(window.gameDescriptor.state == STATES.frozen)
+            {
+                let demon_cover = this.add.image(WIDTH/2,HEIGHT,'demon_potion');
+                this.tweens.add({
+                    targets: demon_cover,
+                    y: HEIGHT/2,
+                    duration: 1000,
+                    ease: 'Power3'
+                });
+                setTimeout((demon_cover)=>{
+                    demon_cover.destroy();
+                },1200,demon_cover);
+                useBoonFromInventory('demon_cover');
+                window.gameDescriptor.state = STATES.ideal;
+                this.dice.input.enabled = true;
+                this.counterText.setVisible(false);
+            }else{
+                textPopup("Player not frozen",this.popupClose,this.popupClose,this);
+            }
+        }else{
+            textPopup("No demon cover availible",this.popupClose,this.popupClose,this);
+        }
+    },
 
 
 });
