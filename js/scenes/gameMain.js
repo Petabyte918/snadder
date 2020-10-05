@@ -565,6 +565,8 @@ var GameMain = new Phaser.Class({
             console.log(tileType);
             switch(tileType){
                 case 'cobra':
+                        window.gameDescriptor.actionType = 'cobra';
+                        window.gameDescriptor.state = STATES.snadder;
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
                         this.popupSnakeContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
                         
@@ -578,7 +580,7 @@ var GameMain = new Phaser.Class({
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
                                         .setInteractive()
-                                        .on('click',this.popupSnakeClose,this);
+                                        .on('click',this.popupSnakeOk,this);
                         var popupOk = this.add.image(0,200,'btn_ok')
                                         .setScale(0.5)
                                         .setInteractive()
@@ -618,7 +620,7 @@ var GameMain = new Phaser.Class({
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
                                         .setInteractive()
-                                        .on('click',this.popupPortalClose,this);
+                                        .on('click',this.popupPortalOk,this);
                         var popupOk = this.add.image(0,200,'btn_ok')
                                         .setScale(0.5)
                                         .setInteractive()
@@ -706,7 +708,7 @@ var GameMain = new Phaser.Class({
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
                                         .setInteractive()
-                                        .on('click',this.popupDemonClose,this);
+                                        .on('click',this.popupDemonOk,this);
                         var popupOk = this.add.image(0,200,'btn_ok')
                                         .setScale(0.5)
                                         .setInteractive()
@@ -827,13 +829,13 @@ var GameMain = new Phaser.Class({
     popupSnakeClose:function(){
         console.log('cobra popup closed');
         this.popupSnakeContainer.destroy();
-        window.gameDescriptor.playerPos -= getRandom(1,6);
-        window.gameDescriptor.playerDirection = -1;
-        this.movePlayer();
+        window.gameDescriptor.state = STATES.ideal;
+
     },
     popupSnakeOk:function(){
         console.log('cobra popup closed');
         this.popupSnakeContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
         window.gameDescriptor.playerPos -= getRandom(1,6);
         window.gameDescriptor.playerDirection = -1;
         this.movePlayer();
@@ -892,6 +894,10 @@ var GameMain = new Phaser.Class({
         window.gameDescriptor.state = STATES.ideal;
         this.dice.input.enabled = true;
         this.popupDemonContainer.destroy();
+        if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
+            window.gameDescriptor.tiles[window.gameDescriptor.playerPos].feature.destroy();
+        }
+
     },
     popupDemonOk:function(){
         console.log('demon popup closed');
@@ -1099,14 +1105,14 @@ var GameMain = new Phaser.Class({
                     window.gameDescriptor.playerPos -= getRandom(1,10);
                     window.gameDescriptor.playerDirection = -1;
                     this.movePlayer();
-                    break;
+                break;
             case 'frozen':
                     this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeoutFrozen, callbackScope: this });
                     this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
                     this.counter = punishment.waveDuration;
                     this.counterText.setVisible(true);
                     window.gameDescriptor.state = STATES.frozen;
-                    break;
+                break;
             case 'text_spouse':
                     window.gameDescriptor.state = STATES.ideal;
                     this.dice.input.enabled = true;
@@ -1116,10 +1122,11 @@ var GameMain = new Phaser.Class({
         window.gameDescriptor.activePunishment = null;
     },
     punishmentTimeoutFrozen:function(){
-        window.gameDescriptor.state = STATES.ideal;
-        this.dice.input.enabled = true;
-        this.counterText.setVisible(false);
-
+        if(window.gameDescriptor.state == STATES.frozen){
+            window.gameDescriptor.state = STATES.ideal;
+            this.dice.input.enabled = true;
+            this.counterText.setVisible(false);
+        }
     },
     punishmentTimeout:function(){
         this.counterText.setVisible(false);
@@ -1326,7 +1333,7 @@ var GameMain = new Phaser.Class({
     },
     blastSnakes:function(){
         if(getBoonQtyFromInventory('snake_cover') >0){
-            if(window.gameDescriptor.state == STATES.frozen)
+            if(window.gameDescriptor.actionType = 'demon' && window.gameDescriptor.state == STATES.rapidTask)
             {
                 let snake_cover = this.add.image(WIDTH/2,HEIGHT,'snake_potion');
                 this.tweens.add({
@@ -1351,7 +1358,7 @@ var GameMain = new Phaser.Class({
     },
     blastDemons:function(){
         if(getBoonQtyFromInventory('demon_cover') >0){
-            if(window.gameDescriptor.state == STATES.frozen)
+            if(window.gameDescriptor.actionType = 'demon' && window.gameDescriptor.state == STATES.rapidTask)
             {
                 let demon_cover = this.add.image(WIDTH/2,HEIGHT,'demon_potion');
                 this.tweens.add({
@@ -1364,9 +1371,7 @@ var GameMain = new Phaser.Class({
                     demon_cover.destroy();
                 },1200,demon_cover);
                 useBoonFromInventory('demon_cover');
-                window.gameDescriptor.state = STATES.ideal;
-                this.dice.input.enabled = true;
-                this.counterText.setVisible(false);
+                this.popupDemonClose();
             }else{
                 textPopup("Player not frozen",this.popupClose,this.popupClose,this);
             }

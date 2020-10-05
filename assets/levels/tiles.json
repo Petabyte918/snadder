@@ -5,31 +5,7 @@
         "y": 1530.2300787136282,
         "tileType": 0,
         "feature": null,
-        "featureType": "task",
-        "texture": {
-          "name": "",
-          "type": "Image",
-          "x": 606.928646817825,
-          "y": 1530.2300787136282,
-          "depth": 0,
-          "scale": {
-            "x": 0.23,
-            "y": 0.23
-          },
-          "origin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "flipX": false,
-          "flipY": false,
-          "rotation": 0,
-          "alpha": 1,
-          "visible": false,
-          "blendMode": 0,
-          "textureKey": "stone",
-          "frameKey": "__BASE",
-          "data": {}
-        }
+        "featureType": "task"
       },
       {
         "x": 529.140154302482,
@@ -59,59 +35,8 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task",
-        "texture": {
-          "name": "",
-          "type": "Image",
-          "x": 529.140154302482,
-          "y": 1415.979396325165,
-          "depth": 0,
-          "scale": {
-            "x": 0.23,
-            "y": 0.23
-          },
-          "origin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "flipX": false,
-          "flipY": false,
-          "rotation": 0,
-          "alpha": 1,
-          "visible": false,
-          "blendMode": 0,
-          "textureKey": "stone",
-          "frameKey": "__BASE",
-          "data": {}
-        },
-        "number": {
-          "name": "",
-          "type": "DynamicBitmapText",
-          "x": 529.140154302482,
-          "y": 1415.979396325165,
-          "depth": 0,
-          "scale": {
-            "x": 1,
-            "y": 1
-          },
-          "origin": {
-            "x": 0.5,
-            "y": 2.2
-          },
-          "rotation": 0,
-          "alpha": 1,
-          "visible": false,
-          "blendMode": 0,
-          "textureKey": "fire",
-          "frameKey": "__BASE",
-          "data": {
-            "font": "fire",
-            "text": "1",
-            "fontSize": 35,
-            "letterSpacing": 0,
-            "align": 0
-          }
-        }
+        "featureType": "task"
+        
       },
       {
         "x": 427.0427885341227,
@@ -141,59 +66,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task",
-        "texture": {
-          "name": "",
-          "type": "Image",
-          "x": 427.0427885341227,
-          "y": 1326.0373488906878,
-          "depth": 0,
-          "scale": {
-            "x": 0.23,
-            "y": 0.23
-          },
-          "origin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "flipX": false,
-          "flipY": false,
-          "rotation": 0,
-          "alpha": 1,
-          "visible": false,
-          "blendMode": 0,
-          "textureKey": "stone",
-          "frameKey": "__BASE",
-          "data": {}
-        },
-        "number": {
-          "name": "",
-          "type": "DynamicBitmapText",
-          "x": 427.0427885341227,
-          "y": 1326.0373488906878,
-          "depth": 0,
-          "scale": {
-            "x": 1,
-            "y": 1
-          },
-          "origin": {
-            "x": 0.5,
-            "y": 2.2
-          },
-          "rotation": 0,
-          "alpha": 1,
-          "visible": false,
-          "blendMode": 0,
-          "textureKey": "fire",
-          "frameKey": "__BASE",
-          "data": {
-            "font": "fire",
-            "text": "2",
-            "fontSize": 35,
-            "letterSpacing": 0,
-            "align": 0
-          }
-        }
+        "featureType": "task"
       },
       {
         "x": 320.08373395763925,
@@ -277,59 +150,8 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task",
-        "texture": {
-          "name": "",
-          "type": "Image",
-          "x": 181.5229663356705,
-          "y": 1155.8767815818742,
-          "depth": 0,
-          "scale": {
-            "x": 0.23,
-            "y": 0.23
-          },
-          "origin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "flipX": false,
-          "flipY": false,
-          "rotation": 0,
-          "alpha": 1,
-          "visible": false,
-          "blendMode": 0,
-          "textureKey": "stone",
-          "frameKey": "__BASE",
-          "data": {}
-        },
-        "number": {
-          "name": "",
-          "type": "DynamicBitmapText",
-          "x": 181.5229663356705,
-          "y": 1155.8767815818742,
-          "depth": 0,
-          "scale": {
-            "x": 1,
-            "y": 1
-          },
-          "origin": {
-            "x": 0.5,
-            "y": 2.2
-          },
-          "rotation": 0,
-          "alpha": 1,
-          "visible": false,
-          "blendMode": 0,
-          "textureKey": "fire",
-          "frameKey": "__BASE",
-          "data": {
-            "font": "fire",
-            "text": "4",
-            "fontSize": 35,
-            "letterSpacing": 0,
-            "align": 0
-          }
-        }
+        "featureType": "task"
+        
       },
       {
         "x": 101.30361408725138,

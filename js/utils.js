@@ -118,7 +118,6 @@ function useBoonFromInventory(assetName){
             break;
         }
     }
-    return qty;
 }
 
 function getRandomPunishment(){
