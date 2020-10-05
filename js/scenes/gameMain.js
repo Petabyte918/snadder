@@ -390,7 +390,14 @@ var GameMain = new Phaser.Class({
                 var curve = new Phaser.Curves.Spline(points);
                 var asset = getRandomBoon();
                 console.log(asset);
-                addBoonToInventory(asset);
+                if(asset.name == 'coins'){
+                    window.gameDescriptor.coins += asset.qty;
+                }
+                else if(asset.name == 'hearts'){
+                    window.gameDescriptor.hearts += asset.qty;
+                }else{
+                    addBoonToInventory(asset);
+                }
                 var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, asset.img)
                                         .setOrigin(0.5)
                                         .setScale(0.2);
@@ -1209,10 +1216,30 @@ var GameMain = new Phaser.Class({
         }
     },
     addFeaturesToTile:function(){
-        let i=0;
+        var points = [];
+        var tiles = window.gameDescriptor.tiles;
+        
+        for(let tile of window.gameDescriptor.tiles){
+            points.push(new Phaser.Math.Vector2(tile.x,tile.y));
+        }
+        // var path = new Phaser.Curves.Path(609,1560);
+        var curve = new Phaser.Curves.Spline(points);
+        // path.splineTo(points);
+        var graphics =  this.add.graphics();
+        graphics.lineStyle(140, 0xffe0b9, 1);
+        // path.draw(graphics);
+        curve.draw(graphics, 200);
+
+        // graphics.fillStyle(0x00ff00, 1);
+        // for (var i = 0; i < points.length; i++)
+        // {
+        //     graphics.fillCircle(points[i].x, points[i].y, 50);
+        // }
+
         for(let tile of window.gameDescriptor.tiles){
             tile['texture'] = this.add.image(tile.x,tile.y,'stone').setScale(0.23);
         }
+        var i=0;
         for(let tile of window.gameDescriptor.tiles){
             if(tile.tileType == 1){
                 if(tile.featureType == 'fairy'){

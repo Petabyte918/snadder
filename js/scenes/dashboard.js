@@ -117,6 +117,7 @@ var Dashboard = new Phaser.Class({
         this.shop.data.set('hint','Game Shop where you can buy powers and wapons');
         this.shop.on('over',this.showHint,this);
         this.shop.on('click',this.selectShop,this);
+        this.add.image(650,930,'shop_icon').setScale(0.4);
 
         this.add.dynamicBitmapText(280,770,'green','Game',35);
         this.add.dynamicBitmapText(600,770,'green','Match',35);

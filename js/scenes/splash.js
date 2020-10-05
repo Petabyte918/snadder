@@ -158,6 +158,7 @@ var Splash = new Phaser.Class({
         this.load.image('lock_key', 'assets/images/icons/5.png');
         this.load.image('badge', 'assets/images/icons/7.png');
 
+        this.load.image('shop_icon','assets/images/shop.png');
 
         this.load.bitmapFont('fire','assets/fonts/bitmap/azo-fire.png','assets/fonts/bitmap/azo-fire.xml');
         this.load.bitmapFont('green','assets/fonts/bitmap/shortStack.png','assets/fonts/bitmap/shortStack.xml');
