@@ -49,10 +49,17 @@ var Upgrades = new Phaser.Class({
             }
             k++;
             this.add.image(100+ (k*200),360+j,'popupBG40').setScale(0.5);
-            this.add.image(100+ (k*200),360+j,'love_potion').setScale(0.3);
-            this.add.image(100+(k*200),510+j,'popupBG50').setScale(0.5);
+            switch(i){
+                case 0:this.add.image(100+ (k*200),360+j,'love_potion').setScale(0.3);break;
+                case 1:this.add.image(100+ (k*200),360+j,'snake_potion').setScale(0.3);break;
+                case 2:this.add.image(100+ (k*200),360+j,'demon_potion').setScale(0.3);break;
+                case 3:this.add.image(100+ (k*200),360+j,'hammer').setScale(0.3);break;
+                case 4:this.add.image(100+ (k*200),360+j,'lock_key').setScale(0.3);break;
+                case 5:this.add.image(100+ (k*200),360+j,'cup').setScale(0.3);break;
+            }
+            // this.add.image(100+(k*200),510+j,'popupBG50').setScale(0.5);
             // this.add.dynamicBitmapText(50+ (k*200),490+j,'fire','$ 1.9',30);
-            this.add.text(50+ (k*200),490+j,'$ 1.9', { font: '30px Arial', fill: '#fff' })
+            // this.add.text(50+ (k*200),490+j,'$ 1.9', { font: '30px Arial', fill: '#fff' })
         }
 
         this.add.image(300,1220,'btn_prew').setScale(0.5);

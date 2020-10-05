@@ -50,7 +50,14 @@ var Shop = new Phaser.Class({
             }
             k++;
             this.add.image(100+ (k*200),360+j,'popupBG40').setScale(0.5);
-            this.add.image(100+ (k*200),360+j,'love_potion').setScale(0.3);
+            switch(i){
+                case 0:this.add.image(100+ (k*200),360+j,'love_potion').setScale(0.3);break;
+                case 1:this.add.image(100+ (k*200),360+j,'snake_potion').setScale(0.3);break;
+                case 2:this.add.image(100+ (k*200),360+j,'demon_potion').setScale(0.3);break;
+                case 3:this.add.image(100+ (k*200),360+j,'hammer').setScale(0.3);break;
+                case 4:this.add.image(100+ (k*200),360+j,'lock_key').setScale(0.3);break;
+                case 5:this.add.image(100+ (k*200),360+j,'cup').setScale(0.3);break;
+            }
             this.shop_buy = this.add.image(100+(k*200),510+j,'popupBG50').setScale(0.5);
             this.shop_buy.setInteractive();
             this.shop_buy.on('click',this.gotoMenu,this);
