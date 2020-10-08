@@ -246,17 +246,17 @@ function createSpeechBubble(context,x, y, width, height, arrowPos,direction='bot
     bubble.lineStyle(2, 0x565656, 1);
     bubble.lineBetween(point2X, point2Y, point3X, point3Y);
     bubble.lineBetween(point1X, point1Y, point3X, point3Y);
-    bubble.setInteractive();
+    bubble.setScrollFactor(0);
 
     var content = context.add.text(0, 0, quote, { fontFamily: 'Arial', fontSize: 20, color: '#000000', align: 'center', wordWrap: { width: bubbleWidth - (bubblePadding * 2) } });
     var b = content.getBounds();
     content.setPosition(bubble.x + (bubbleWidth / 2) - (b.width / 2), bubble.y + (bubbleHeight / 2) - (b.height / 2));
-
+    content.setScrollFactor(0);
     return [bubble,content];
 }
 
 function textPopup(str,closeCallback,okCallback,context){
-    context.popupContainer = context.add.container(WIDTH/2, HEIGHT/2);
+    context.popupContainer = context.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
     
     var popup = context.add.image(0,0,'popupBG')
                     .setScale(0.6,0.8);
@@ -275,13 +275,13 @@ function textPopup(str,closeCallback,okCallback,context){
         }
     });
     // var b = feature.getBounds();
-    var popupClose = context.add.image(350,-350,'btn_close')
+    var popupClose = context.add.image(350,-350,'btn_close').setScrollFactor(0)
                     .setScale(0.5)
                     .setInteractive()
                     .on('click',closeCallback,context);
     var popupOk = context.add.image(0,200,'btn_ok')
                     .setScale(0.5)
-                    .setInteractive()
+                    .setInteractive().setScrollFactor(0)
                     .on('click',okCallback,context);
 
     
@@ -306,7 +306,7 @@ function textPopup(str,closeCallback,okCallback,context){
 }   
 
 function imgPopup(img,closeCallback,okCallback,context){
-    context.popupContainer = context.add.container(WIDTH/2, HEIGHT/2);
+    context.popupContainer = context.add.container(WIDTH/2, HEIGHT/2).setScrollfactor(0);
     
     var popup = context.add.image(0,0,'popupBG')
                     .setScale(0.6,0.8);
@@ -317,11 +317,11 @@ function imgPopup(img,closeCallback,okCallback,context){
                     .setOrigin(0.5,1);
     var popupClose = context.add.image(350,-350,'btn_close')
                     .setScale(0.5)
-                    .setInteractive()
+                    .setInteractive().setScrollFactor(0)
                     .on('click',closeCallback,context);
     var popupOk = context.add.image(0,200,'btn_ok')
                     .setScale(0.5)
-                    .setInteractive()
+                    .setInteractive().setScrollFactor(0)
                     .on('click',okCallback,context);
 
     

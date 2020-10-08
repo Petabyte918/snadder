@@ -492,7 +492,7 @@ var GameMain = new Phaser.Class({
         if(window.gameDescriptor.state == STATES.ideal){
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
-            window.gameDescriptor.diceNumber = window.gameDescriptor.debug==true?3:getRandom(1,6);
+            window.gameDescriptor.diceNumber = window.gameDescriptor.debug==true?28:getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -950,7 +950,7 @@ var GameMain = new Phaser.Class({
         var qid = window.gameDescriptor.questionAnswered[window.gameDescriptor.questionAnswered.length-1];
         var data = getQuestionAnswerData(qid);
 
-        this.popupAnswerContainer = this.add.container(960/2, 1780/2+this.cameras.main.scrollY);
+        this.popupAnswerContainer = this.add.container(960/2, 1780/2).setScrollFactor(0);
                     
         var popup = this.add.image(0,0,'popupBG')
                         .setScale(0.6,0.8);
@@ -963,7 +963,7 @@ var GameMain = new Phaser.Class({
         var popupClose = this.add.image(350,-350,'btn_close1')
                         .setScale(0.7)
                         .setInteractive()
-                        .on('click',this.popupAnswerClose,this);
+                        .on('click',this.popupAnswerOk,this);
         var popupOk = this.add.image(0,200,'btn_ok')
                         .setScale(0.5)
                         .setInteractive()
@@ -1000,8 +1000,8 @@ var GameMain = new Phaser.Class({
         else{
             feature = this.make.text({
                 x: 0,
-                y: -80,
-                text: data.description,
+                y: -100,
+                text: 'CORRECT ANSWER IS\n'+data.description,
                 origin: { x: 0.5, y: 0.5 },
                 style: {
                     font: 'bold 45px Arial',
@@ -1060,7 +1060,7 @@ var GameMain = new Phaser.Class({
         switch(punishment.name){
             case 'snake_wave':
                 this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeout, callbackScope: this });
-                this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
+                this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120).setScrollFactor(0);
                 this.counter = punishment.waveDuration;
                 this.counterText.setVisible(true);
                 window.gameDescriptor.state = STATES.ideal;
@@ -1086,7 +1086,7 @@ var GameMain = new Phaser.Class({
 
             case 'demon_wave':
                 this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeout, callbackScope: this });
-                this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
+                this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120).setScrollFactor(0);
                 this.counter = punishment.waveDuration;
                 this.counterText.setVisible(true);
                 window.gameDescriptor.state = STATES.ideal;
@@ -1115,7 +1115,7 @@ var GameMain = new Phaser.Class({
                 break;
             case 'frozen':
                     this.timer = this.time.addEvent({ delay: punishment.waveDuration*1000, callback: this.punishmentTimeoutFrozen, callbackScope: this });
-                    this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120);
+                    this.counterText = this.add.dynamicBitmapText(WIDTH/2-50,20,'fire','',120).setScrollFactor(0);
                     this.counter = punishment.waveDuration;
                     this.counterText.setVisible(true);
                     window.gameDescriptor.state = STATES.frozen;
@@ -1336,7 +1336,7 @@ var GameMain = new Phaser.Class({
         if(getBoonQtyFromInventory('hammer') >0){
             if(window.gameDescriptor.state == STATES.frozen)
             {
-                let hammer = this.add.image(WIDTH/2,HEIGHT,'hammer');
+                let hammer = this.add.image(WIDTH/2,HEIGHT,'hammer').setScrollFactor(0);
                 this.tweens.add({
                     targets: hammer,
                     y: HEIGHT/2,
@@ -1360,9 +1360,9 @@ var GameMain = new Phaser.Class({
     },
     blastSnakes:function(){
         if(getBoonQtyFromInventory('snake_cover') >0){
-            if(window.gameDescriptor.actionType = 'demon' && window.gameDescriptor.state == STATES.rapidTask)
+            if(window.gameDescriptor.actionType = 'cobra' && window.gameDescriptor.state == STATES.snadder)
             {
-                let snake_cover = this.add.image(WIDTH/2,HEIGHT,'snake_potion');
+                let snake_cover = this.add.image(WIDTH/2,HEIGHT,'snake_potion').setScrollFactor(0);
                 this.tweens.add({
                     targets: snake_cover,
                     y: HEIGHT/2,
@@ -1377,7 +1377,7 @@ var GameMain = new Phaser.Class({
                 this.dice.input.enabled = true;
                 this.counterText.setVisible(false);
             }else{
-                textPopup("Player not frozen",this.popupClose,this.popupClose,this);
+                textPopup("Player not at snake",this.popupClose,this.popupClose,this);
             }
         }else{
             textPopup("No snake cover availible",this.popupClose,this.popupClose,this);
@@ -1387,7 +1387,7 @@ var GameMain = new Phaser.Class({
         if(getBoonQtyFromInventory('demon_cover') >0){
             if(window.gameDescriptor.actionType = 'demon' && window.gameDescriptor.state == STATES.rapidTask)
             {
-                let demon_cover = this.add.image(WIDTH/2,HEIGHT,'demon_potion');
+                let demon_cover = this.add.image(WIDTH/2,HEIGHT,'demon_potion').setScrollFactor(0);
                 this.tweens.add({
                     targets: demon_cover,
                     y: HEIGHT/2,
@@ -1400,7 +1400,7 @@ var GameMain = new Phaser.Class({
                 useBoonFromInventory('demon_cover');
                 this.popupDemonClose();
             }else{
-                textPopup("Player not frozen",this.popupClose,this.popupClose,this);
+                textPopup("Player not attacked by demon",this.popupClose,this.popupClose,this);
             }
         }else{
             textPopup("No demon cover availible",this.popupClose,this.popupClose,this);
