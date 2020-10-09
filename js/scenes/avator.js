@@ -94,13 +94,13 @@ var Avator = new Phaser.Class({
     selectFemale:function(){
         window.gameDescriptor.avator = 'female';
         this.registry.set('avator','female');
-        // setGameData();
+        setGameData();
         this.scene.start('Register');
     },
     selectMale:function(){
         window.gameDescriptor.avator = 'male';
         this.registry.set('avator','male');
-        // setGameData();
+        setGameData();
         this.scene.start('Register');
     },
     showHint:function(object){

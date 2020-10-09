@@ -69,7 +69,7 @@ var Register = new Phaser.Class({
                     this.removeListener('click');
                     window.gameDescriptor.user.phone = inputPhone.value;
                     window.gameDescriptor.user.pass = inputPassword.value;
-                    // setGameData();
+                    setGameData();
                     //  Tween the login form out
                     this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 3000, ease: 'Power3' });
     

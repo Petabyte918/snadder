@@ -217,7 +217,7 @@ var Splash = new Phaser.Class({
         this.play.on('over',this.showHint,this)
         this.snadder = this.add.dynamicBitmapText(960/2,500,'fire','LOVELUDO',128).setOrigin(0.5,0.5);
         // this.snadder.setDisplayCallback(this.waveAnimation,this.phase);
-        this.loadGamedata();
+        // this.loadGamedata();
         var qs = this.cache.json.get('questionsData');
         var ts = this.cache.json.get('tilesData');
 
