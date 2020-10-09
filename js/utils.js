@@ -23,12 +23,17 @@ function getQuestionData(){
     return window.gameDescriptor.questions[rand];
 }
 
-function getQuestionByType(questionType){
+function getQuestionByType(questionType,gender=null){
     let question ={};
     for(let i =0 ;i<window.gameDescriptor.questions.length;i++){
         let q = window.gameDescriptor.questions[i];
         if(q.questionType == questionType && !window.gameDescriptor.questionAnswered.includes(q.qid) ){
-            question = q;
+            if(gender != null)
+                question = q;
+            else if(q.gender == gender || q.gender == 'both'){
+                question = q;
+            }
+
         }
     }
     return question;
@@ -155,7 +160,24 @@ function getGameData(){
 function setGameData(){
     localStorage.setItem('gamefile',JSON.stringify(window.gameDescriptor));
 }
+function ajaxRequest(method){
+    var xhr = new XMLHttpRequest();
 
+    xhr.onreadystatechange = function () {
+        var DONE = 4; // readyState 4 means the request is done.
+        var OK = 200; // status 200 is a successful return.
+        if (xhr.readyState === DONE) {
+          if (xhr.status === OK) {
+            console.log(xhr.responseText); // 'This is the returned text.'
+          } else {
+            console.log('Error: ' + xhr.status); // An error occurred during the request.
+          }
+        }
+    };
+
+    xhr.open(method, 'send-ajax-data.php');
+    xhr.send(null);
+}
 
 function createSpeechBubble(context,x, y, width, height, arrowPos,direction='bottom',quote){
     var bubbleWidth = width;

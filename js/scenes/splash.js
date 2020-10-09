@@ -57,10 +57,7 @@ var Splash = new Phaser.Class({
         this.load.image('bg2','assets/images/Foreground.png');
         this.load.image('bg3','assets/images/Ground.png');
         
-        this.load.image('gamebg1','assets/images/bg_1.png');
-        this.load.image('gamebg2','assets/images/bg_2.png');
         this.load.image('gamebg3','assets/images/bg_3.png');
-        this.load.image('gamebg4','assets/images/bg_4.png');
 
         this.load.spritesheet('dice',
             'assets/images/sprites/dice.png',
@@ -98,22 +95,22 @@ var Splash = new Phaser.Class({
         this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
 
-        this.load.image('icon_back1', 'assets/images/UI/icon_back/1.png');
-        this.load.image('icon_back2', 'assets/images/UI/icon_back/2.png');
+        // this.load.image('icon_back1', 'assets/images/UI/icon_back/1.png');
+        // this.load.image('icon_back2', 'assets/images/UI/icon_back/2.png');
         this.load.image('icon_back3', 'assets/images/UI/icon_back/3.png');
-        this.load.image('icon_back4', 'assets/images/UI/icon_back/4.png');
-        this.load.image('icon_back5', 'assets/images/UI/icon_back/5.png');
-        this.load.image('icon_back6', 'assets/images/UI/icon_back/6.png');
-        this.load.image('icon_back7', 'assets/images/UI/icon_back/7.png');
+        // this.load.image('icon_back4', 'assets/images/UI/icon_back/4.png');
+        // this.load.image('icon_back5', 'assets/images/UI/icon_back/5.png');
+        // this.load.image('icon_back6', 'assets/images/UI/icon_back/6.png');
+        // this.load.image('icon_back7', 'assets/images/UI/icon_back/7.png');
 
-        this.load.image('btn_blank','assets/images/UI/btn/01.png');
+        // this.load.image('btn_blank','assets/images/UI/btn/01.png');
         this.load.image('btn_about','assets/images/UI/btn/about.png');
         this.load.image('btn_close','assets/images/UI/btn/close.png');
         this.load.image('btn_close1','assets/images/UI/btn/close_2.png');
         this.load.image('btn_faq','assets/images/UI/btn/faq.png');
         this.load.image('btn_leader','assets/images/UI/btn/leader.png');
         this.load.image('btn_menu','assets/images/UI/btn/menu.png');
-        this.load.image('btn_misic','assets/images/UI/btn/misic.png');
+        // this.load.image('btn_misic','assets/images/UI/btn/misic.png');
         // this.load.image('btn_misic_off','assets/images/UI/btn/misic_off.png');
         this.load.image('btn_next','assets/images/UI/btn/next.png');
         this.load.image('btn_ok','assets/images/UI/btn/ok.png');
@@ -123,10 +120,10 @@ var Splash = new Phaser.Class({
         this.load.image('btn_prize','assets/images/UI/btn/prize.png');
         this.load.image('btn_restart','assets/images/UI/btn/restart.png');
         this.load.image('btn_settings','assets/images/UI/btn/settings.png');
-        this.load.image('btn_shop','assets/images/UI/btn/shop.png');
-        this.load.image('btn_sound','assets/images/UI/btn/sound.png');
-        this.load.image('btn_sound_off','assets/images/UI/btn/sound_off.png');
-        this.load.image('btn_upgrade','assets/images/UI/btn/upgrade.png');
+        // this.load.image('btn_shop','assets/images/UI/btn/shop.png');
+        // this.load.image('btn_sound','assets/images/UI/btn/sound.png');
+        // this.load.image('btn_sound_off','assets/images/UI/btn/sound_off.png');
+        // this.load.image('btn_upgrade','assets/images/UI/btn/upgrade.png');
 
         this.load.image('popupBG','assets/images/UI/settings/bg.png');
         this.load.image('popupBG0','assets/images/UI/settings/table.png');

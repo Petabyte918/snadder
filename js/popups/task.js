@@ -82,7 +82,7 @@ var Task = new Phaser.Class({
             case 'awareness':qType = 'awareness';break;
             case 'match':qType = 'match';break;
         }
-        let question = getQuestionByType(qType);
+        let question = getQuestionByType(qType,window.gameDescriptor.avator);
         if(question.qid == undefined) {
             textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
             setGameData();
