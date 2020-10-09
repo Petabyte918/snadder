@@ -133,7 +133,7 @@ var RapidTask = new Phaser.Class({
         let question = getQuestionByType('quiz');
         if(question.qid == undefined) {
             textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
-            setGameData();
+            // setGameData();
             return;
         }
         this.task['qid'] = question.qid;

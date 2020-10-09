@@ -85,7 +85,7 @@ var Task = new Phaser.Class({
         let question = getQuestionByType(qType,window.gameDescriptor.avator);
         if(question.qid == undefined) {
             textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
-            setGameData();
+            // setGameData();
             return;
         }
         this.task['qid'] = question.qid;

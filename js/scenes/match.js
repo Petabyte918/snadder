@@ -211,7 +211,7 @@ var Match = new Phaser.Class({
         let question = getQuestionByType('match');
         if(question.qid == undefined) {
             textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
-            setGameData();
+            // setGameData();
             return;
         }
         this.task['qid'] = question.qid;
@@ -370,7 +370,7 @@ var Match = new Phaser.Class({
         let question = getQuestionByType('match');
         if(question.qid == undefined) {
             textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
-            setGameData();
+            // setGameData();
             return;
         }
         this.task.qid = question.qid;
