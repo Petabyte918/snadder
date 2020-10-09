@@ -73,7 +73,7 @@ window.gameDescriptor = {
         pass:'',
         token:'',
         profileImg:'',
-        
+        gender:''
     },
     state:STATES.ideal,
     playerLastPos:0,

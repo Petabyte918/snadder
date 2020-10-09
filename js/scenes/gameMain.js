@@ -587,10 +587,12 @@ var GameMain = new Phaser.Class({
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
                                         .setInteractive()
+                                        .setScrollFactor(0)
                                         .on('click',this.popupSnakeOk,this);
                         var popupOk = this.add.image(0,200,'btn_ok')
                                         .setScale(0.5)
                                         .setInteractive()
+                                        .setScrollFactor(0)
                                         .on('click',this.popupSnakeOk,this);
 
                         
@@ -627,10 +629,12 @@ var GameMain = new Phaser.Class({
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
                                         .setInteractive()
+                                        .setScrollFactor(0)
                                         .on('click',this.popupPortalOk,this);
                         var popupOk = this.add.image(0,200,'btn_ok')
                                         .setScale(0.5)
                                         .setInteractive()
+                                        .setScrollFactor(0)
                                         .on('click',this.popupPortalOk,this);
 
                     
@@ -668,10 +672,12 @@ var GameMain = new Phaser.Class({
                     var popupClose = this.add.image(350,-350,'btn_close')
                                     .setScale(0.5)
                                     .setInteractive()
+                                    .setScrollFactor(0)
                                     .on('click',this.popupFairyOk,this);
                     var popupOk = this.add.image(0,200,'btn_ok')
                                     .setScale(0.5)
                                     .setInteractive()
+                                    .setScrollFactor(0)
                                     .on('click',this.popupFairyOk,this);
 
                     
@@ -715,10 +721,12 @@ var GameMain = new Phaser.Class({
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
                                         .setInteractive()
+                                        .setScrollFactor(0)
                                         .on('click',this.popupDemonOk,this);
                         var popupOk = this.add.image(0,200,'btn_ok')
                                         .setScale(0.5)
                                         .setInteractive()
+                                        .setScrollFactor(0)
                                         .on('click',this.popupDemonOk,this);
 
                         
@@ -963,10 +971,12 @@ var GameMain = new Phaser.Class({
         var popupClose = this.add.image(350,-350,'btn_close1')
                         .setScale(0.7)
                         .setInteractive()
+                        .setScrollFactor(0)
                         .on('click',this.popupAnswerOk,this);
         var popupOk = this.add.image(0,200,'btn_ok')
                         .setScale(0.5)
                         .setInteractive()
+                        .setScrollFactor(0)
                         .on('click',this.popupAnswerOk,this);
         
                         

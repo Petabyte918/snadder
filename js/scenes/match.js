@@ -208,7 +208,7 @@ var Match = new Phaser.Class({
         
         
         this.task = {};
-        let question = getQuestionByType('match');
+        let question = getQuestionByType('match',window.gameDescriptor.user.gender);
         if(question.qid == undefined) {
             textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
             setGameData();

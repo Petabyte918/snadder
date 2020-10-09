@@ -921,7 +921,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -955,7 +955,7 @@
                 }  
             ],
             "answers":[
-               
+               1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -989,7 +989,7 @@
                 }    
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1015,7 +1015,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1045,7 +1045,7 @@
                 }
             ],
             "answers":[
-                
+                3
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1071,7 +1071,7 @@
               
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1101,13 +1101,13 @@
               
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
             "answerVideo":""
         },
-{
+        {
             "qid":8,
             "q":"शादी की बाद अपने जीवनसाथी आपको  किस नाम से पुकारते है ?",
             "questionType":"match",
@@ -1131,7 +1131,7 @@
               
             ],
             "answers":[
-                
+                3
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1165,7 +1165,7 @@
                 }      
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1199,7 +1199,7 @@
                 }  
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1225,7 +1225,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1255,7 +1255,7 @@
               
             ],
             "answers":[
-                
+                3
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1285,7 +1285,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1311,7 +1311,7 @@
               
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1341,7 +1341,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1375,7 +1375,7 @@
                 } 
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1410,7 +1410,7 @@
               
             ],
             "answers":[
-                
+                4
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1436,7 +1436,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1471,7 +1471,7 @@
               
             ],
             "answers":[
-                
+                4
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1497,7 +1497,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1523,7 +1523,7 @@
               
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1551,13 +1551,13 @@
                     "txt":"सोच"
                 },
                 {
-                    "opid":3,
+                    "opid":4,
                     "img":"",
                     "txt":"व्यवहार"
                 }  
             ],
             "answers":[
-                
+                4
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1596,7 +1596,7 @@
                 }
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1621,38 +1621,26 @@
                 {
                     "opid":3,
                     "img":"",
-                    "txt":"काला"
-                },
-                {
-                    "opid":1,
-                    "img":"",
                     "txt":"आसमानी"
                 },
                 {
-                    "opid":1,
+                    "opid":4,
                     "img":"",
                     "txt":"गुलाबी"
                 },
 	            {
-                    "opid":1,
+                    "opid":5,
                     "img":"",
                     "txt":"नीला"
-                }, {
-                    "opid":1,
-                    "img":"",
-                    "txt":"नारंगी"
-                }, {
-                    "opid":1,
-                    "img":"",
-                    "txt":"पीला"
-                }, {
-                    "opid":1,
+                },
+                {
+                    "opid":6,
                     "img":"",
                     "txt":"अन्य"
                 }
             ],
             "answers":[
-                
+                4
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1682,7 +1670,7 @@
               
             ],
             "answers":[
-                4
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1712,7 +1700,7 @@
               
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1722,7 +1710,7 @@
             "qid":27,
             "q":"आपके जीवन साथी आपको  कौन से  कपड़े में ज्यादा देखना चाहते हैं?",
             "questionType":"match",
-            "gender":"male",
+            "gender":"female",
             "options":[
                 {
                     "opid":1,
@@ -1742,7 +1730,7 @@
               
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1772,7 +1760,7 @@
               
             ],
             "answers":[
-                
+                2
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1799,7 +1787,7 @@
               
             ],
             "answers":[
-                
+                1
             ],
             "answerDesciption":" ",
             "answerImg":"",
@@ -1834,7 +1822,7 @@
               
             ],
             "answers":[
-                
+                3
             ],
             "answerDesciption":" ",
             "answerImg":"",

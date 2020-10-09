@@ -68,8 +68,19 @@ var Register = new Phaser.Class({
                     //  Turn off the click events
                     this.removeListener('click');
                     window.gameDescriptor.user.phone = inputPhone.value;
-                    window.gameDescriptor.user.pass = inputPassword.value;
+                    // window.gameDescriptor.user.pass = inputPassword.value;
                     setGameData();
+                    fetch("http://lovegame.frappypie.com", {
+                            method:"POST",
+                            body: JSON.stringify({
+                                phone: inputPhone.value,
+                                password: inputPassword.value,
+                            })
+                    })
+                    .then(result => {
+                        // do something with the result
+                        console.log("Completed with result:", result);
+                    });
                     //  Tween the login form out
                     this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 3000, ease: 'Power3' });
     

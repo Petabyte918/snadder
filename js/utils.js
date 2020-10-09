@@ -160,9 +160,9 @@ function getGameData(){
 function setGameData(){
     localStorage.setItem('gamefile',JSON.stringify(window.gameDescriptor));
 }
-function ajaxRequest(method){
+function ajaxRequest(method,url,payload){
     var xhr = new XMLHttpRequest();
-
+    // xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         var DONE = 4; // readyState 4 means the request is done.
         var OK = 200; // status 200 is a successful return.
@@ -174,9 +174,12 @@ function ajaxRequest(method){
           }
         }
     };
-
-    xhr.open(method, 'send-ajax-data.php');
-    xhr.send(null);
+ 
+    xhr.open(method, url);
+    if(method == 'GET')
+        xhr.send(null);
+    else 
+        xhr.send(JSON.stringify(payload));
 }
 
 function createSpeechBubble(context,x, y, width, height, arrowPos,direction='bottom',quote){
@@ -418,3 +421,29 @@ function imgTextPopup(img,str,closeCallback,okCallback,context){
 
     return context.popupContainer;
 }  
+
+
+function temp(){
+    var url ="http://127.0.0.1:5500/phaser/public/assets/animations/gems.json";
+//   fetch(url, {
+//     method:"GET",
+//     // body: JSON.stringify({
+//     //     name: "Deska",
+//     //     email: "deska@gmail.com",
+//     //     phone: "342234553"
+//     //     })
+//     })
+//     .then(result => {
+//         // do something with the result
+//         console.log("Completed with result:", result);
+//     });
+
+    fetch(url,{method:"GET"})
+    // .then(result => {
+    //     let json =  result.json();
+    //     console.log(json);
+    //     console.log(result.text());
+    // })
+    .then(response => response.json())
+    .then(result => console.log(JSON.stringify(result)))
+}
