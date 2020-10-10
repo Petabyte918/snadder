@@ -575,7 +575,7 @@ var GameMain = new Phaser.Class({
                         window.gameDescriptor.actionType = 'cobra';
                         window.gameDescriptor.state = STATES.snadder;
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.popupSnakeContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
+                        this.popupSnakeContainer = this.add.container(WIDTH/2, HEIGHT/2);
                         
                         var popup = this.add.image(0,0,'popupBG')
                                         .setScale(0.6,0.8);
@@ -616,7 +616,7 @@ var GameMain = new Phaser.Class({
                         break;
                 case 'portal':
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.popupPortalContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
+                        this.popupPortalContainer = this.add.container(WIDTH/2, HEIGHT/2);
                         
                         var popup = this.add.image(0,0,'popupBG')
                                         .setScale(0.6,0.8);
@@ -660,7 +660,7 @@ var GameMain = new Phaser.Class({
                     window.gameDescriptor.state = STATES.rapidTask;
                     window.gameDescriptor.actionType = 'fairy';
                     this.sound.playAudioSprite('ui_sfx', 'spell');
-                    this.popupFairyContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
+                    this.popupFairyContainer = this.add.container(WIDTH/2, HEIGHT/2);
                     
                     var popup = this.add.image(0,0,'popupBG')
                                     .setScale(0.6,0.8);
@@ -709,7 +709,7 @@ var GameMain = new Phaser.Class({
                         window.gameDescriptor.actionType = 'demon';
 
                         this.sound.playAudioSprite('ui_sfx', 'game-over');
-                        this.popupDemonContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
+                        this.popupDemonContainer = this.add.container(WIDTH/2, HEIGHT/2);
                     
                         var popup = this.add.image(0,0,'popupBG')
                                         .setScale(0.6,0.8);
