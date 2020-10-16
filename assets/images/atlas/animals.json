@@ -1,0 +1,166 @@
+{
+	"textures": [
+		{
+			"image": "animals.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2026,
+				"h": 1996
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "goat.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 820,
+						"h": 895
+					},
+					"spriteSourceSize": {
+						"x": 21,
+						"y": 21,
+						"w": 780,
+						"h": 852
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 780,
+						"h": 852
+					}
+				},
+				{
+					"filename": "goat1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 810,
+						"h": 841
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 809,
+						"h": 840
+					},
+					"frame": {
+						"x": 0,
+						"y": 852,
+						"w": 809,
+						"h": 840
+					}
+				},
+				{
+					"filename": "rabit1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 758,
+						"h": 816
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 758,
+						"h": 816
+					},
+					"frame": {
+						"x": 780,
+						"y": 0,
+						"w": 758,
+						"h": 816
+					}
+				},
+				{
+					"filename": "cow.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 769,
+						"h": 508
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 768,
+						"h": 508
+					},
+					"frame": {
+						"x": 809,
+						"y": 816,
+						"w": 768,
+						"h": 508
+					}
+				},
+				{
+					"filename": "hen.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 576,
+						"h": 520
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 576,
+						"h": 520
+					},
+					"frame": {
+						"x": 809,
+						"y": 1324,
+						"w": 576,
+						"h": 520
+					}
+				},
+				{
+					"filename": "fish.png",
+					"rotated": true,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 488
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 488
+					},
+					"frame": {
+						"x": 1538,
+						"y": 0,
+						"w": 680,
+						"h": 488
+					}
+				},
+				{
+					"filename": "rabit.png",
+					"rotated": true,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 672,
+						"h": 489
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 672,
+						"h": 489
+					},
+					"frame": {
+						"x": 1385,
+						"y": 1324,
+						"w": 672,
+						"h": 489
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

@@ -113,6 +113,9 @@ var GameMain = new Phaser.Class({
             frameRate: 8,
             repeat: -1
         });
+
+        /** Adding background assets */
+        this.addAssetsToLevel();
         /** Adding features to the tiles */
         this.addFeaturesToTile();
         
@@ -186,11 +189,11 @@ var GameMain = new Phaser.Class({
         this.input.on('pointerdown', function (pointer) {
             this.worldPoint = this.input.activePointer.positionToCamera(this.cameras.main);
             console.log(pointer.downX,pointer.downY,this.worldPoint,this.cameras.main.scrollX,this.cameras.main.scrollY);
-            if(window.gameDescriptor.debug){
+            if(window.gameDescriptor.draw.enabled){
                 this.graphics =  this.add.graphics();
                 this.graphics.fillStyle(0x00ff00, 1);
                 this.graphics.fillCircle(this.worldPoint.x, this.worldPoint.y, 4);
-                // this.add.image(this.worldPoint.x, this.worldPoint.y,'stone').setScale(0.23);
+                this.add.image(this.worldPoint.x, this.worldPoint.y,'animals','hen.png').setScale(0.25);
             }
 
         }, this);
@@ -217,7 +220,7 @@ var GameMain = new Phaser.Class({
         // key1.onDown.add(addPhaserDude, this);
         this.input.keyboard.on('keydown', function (event) {
 
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.G)
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D)
             {
                if(window.gameDescriptor.debug){
                    window.gameDescriptor.debug = false;
@@ -229,6 +232,21 @@ var GameMain = new Phaser.Class({
                    console.log('Debug Enabled');
                    alert('Debug Enabled');
                }
+            }
+            if(event.keyCode === Phaser.Input.Keyboard.KeyCodes.G){
+                if(window.gameDescriptor.draw.enabled){
+                    window.gameDescriptor.draw.enabled = false;
+                    console.log('Draw Disabled');
+                    alert('Draw Disabled');
+                    }
+                else{
+                    window.gameDescriptor.draw.enabled = true;
+                    console.log('Draw Enabled');
+                    alert('Draw Enabled');
+                }
+            }
+            if(event.keyCode == Phaser.Input.Keyboard.KeyCodes.C){
+
             }
     
         });
@@ -1223,6 +1241,12 @@ var GameMain = new Phaser.Class({
 
             }
                 
+        }
+    },
+    addAssetsToLevel(){
+        for(let asset of window.gameDescriptor.levelAssets){
+            this.add.image(asset.x,asset.y,asset.texture,asset.frame)
+                    .setScale(asset.scaleX,asset.scaleY);
         }
     },
     addFeaturesToTile:function(){

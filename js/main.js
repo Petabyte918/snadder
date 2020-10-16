@@ -255,8 +255,15 @@ window.gameDescriptor = {
     blockedDiceNums:[],
     diceNumber:0,
     tiles:[],
+    draw:{
+        enabled:false,
+        activeTexture:'',
+        activeFrame:'',
+        data:[]
+    },
     screenWidth:document.documentElement.clientWidth,
     screenHeight:document.documentElement.clientHeight,
+
 }
 
 

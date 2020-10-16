@@ -92,6 +92,9 @@ var Splash = new Phaser.Class({
             { frameWidth: 577/6, frameHeight: 92 }
         );
 
+        this.load.atlas('animals', 'assets/images/atlas/animals.png', 'assets/images/atlas/animals.json');
+        this.load.atlas('trees', 'assets/images/atlas/trees.png', 'assets/images/atlas/trees.json');
+
         this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
 
@@ -170,6 +173,7 @@ var Splash = new Phaser.Class({
 
         this.load.json('questionsData', 'assets/levels/questions.json');
         this.load.json('tilesData', 'assets/levels/tiles.json');
+        this.load.json('levelData', 'assets/levels/levelmap.json');
 
         this.load.on('progress', function (value) {
             // console.log(value);
@@ -220,9 +224,11 @@ var Splash = new Phaser.Class({
         // this.loadGamedata();
         var qs = this.cache.json.get('questionsData');
         var ts = this.cache.json.get('tilesData');
+        var ld = this.cache.json.get('levelData');
 
         window.gameDescriptor.questions = qs.questions;
         window.gameDescriptor.tiles = ts.tiles;
+        window.gameDescriptor.levelAssets = ld.assets;
 
         this.input.once('pointerdown', function () {
             // this.scene.start("GameMain");

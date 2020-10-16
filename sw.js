@@ -4,9 +4,9 @@ var filesToCache = [
     '/index.html',
     '/css/main.css',
 
-    // '/assets/images/icon-192.png',
-    // '/assets/images/icon-256.png',
-    // '/assets/images/icon-512.png',
+    '/assets/images/icon-192.png',
+    '/assets/images/icon-256.png',
+    '/assets/images/icon-512.png',
 
     '/js/phaser.min.js', 
     '/js/prototype.js', 
@@ -90,6 +90,7 @@ var filesToCache = [
     '/assets/images/icons/7.png',
 
     // '/assets/images/shop.png',
+    'assets/images/UI/rating/face.png', 
 
     '/assets/images/UI/bubble/down.png',
     '/assets/images/UI/match3/down.png',
@@ -102,20 +103,33 @@ var filesToCache = [
     '/assets/audio/UI_sounds/sounds.json',
     '/assets/audio/UI_sounds/sounds.mp3',
 
-    // '/assets/fonts/azo-fire.png',
-    // '/assets/fonts/azo-fire.xml',
-    // '/assets/fonts/shortStack.png',
-    // '/assets/fonts/shortStack.xml',
+    '/assets/fonts/bitmap/azo-fire.png',
+    '/assets/fonts/bitmap/azo-fire.xml',
+    '/assets/fonts/bitmap/shortStack.png',
+    '/assets/fonts/bitmap/shortStack.xml',
 
     '/assets/levels/questions.json',
     '/assets/levels/tiles.json',
     
+    '/assets/images/UI/level_select/table2.png',
+    '/assets/images/UI/level_select/table.png',
+    '/assets/images/UI/level_select/lock.png',
+    '/assets/images/UI/level_select/dot_a.png',
+    '/assets/images/UI/level_select/dot_d.png',
+
+
     // '/assets/images/demon-large.png',
     // '/assets/images/fairy-large.png',
     // '/assets/images/snake-large.png',
     // '/assets/images/snakes0.png',
     '/assets/images/stone.png',
 
+    '/assets/forms/loginform.html',
+    '/assets/forms/register.html',
+    
+    '/assets/cursors/SC2-cursor-busy-protoss.cur',
+    '/assets/cursors/SC2-cursor-protoss.cur',
+    '/assets/cursors/SC2-helpsel-protoss.cur',
     
 ];
 
