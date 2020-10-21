@@ -596,11 +596,14 @@ var GameMain = new Phaser.Class({
                         this.popupSnakeContainer = this.add.container(WIDTH/2, HEIGHT/2);
                         
                         var popup = this.add.image(0,0,'popupBG')
+                                        .setScrollFactor(0)
                                         .setScale(0.6,0.8);
                         var popup1 = this.add.image(0,0,'popupBG0')
+                                        .setScrollFactor(0)
                                         .setScale(0.6,0.8);
                         var feature = this.add.image(0,100,'snake_large')
                                         .setScale(0.6)
+                                        .setScrollFactor(0)
                                         .setOrigin(0.5,1);
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
@@ -637,13 +640,16 @@ var GameMain = new Phaser.Class({
                         this.popupPortalContainer = this.add.container(WIDTH/2, HEIGHT/2);
                         
                         var popup = this.add.image(0,0,'popupBG')
+                                        .setScrollFactor(0)
                                         .setScale(0.6,0.8);
                         var popup1 = this.add.image(0,0,'popupBG0')
+                                        .setScrollFactor(0)
                                         .setScale(0.6,0.8);
                         var feature = this.add.sprite(0,100,'portal')
-                                            .setScale(3)
-                                            .setOrigin(0.47,0.9);
-                        feature.anims.play('portalRunning',true);
+                                        .setScale(3)
+                                        .setScrollFactor(0)
+                                        .setOrigin(0.47,0.9);
+                            feature.anims.play('portalRunning',true);
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
                                         .setInteractive()
@@ -678,14 +684,17 @@ var GameMain = new Phaser.Class({
                     window.gameDescriptor.state = STATES.rapidTask;
                     window.gameDescriptor.actionType = 'fairy';
                     this.sound.playAudioSprite('ui_sfx', 'spell');
-                    this.popupFairyContainer = this.add.container(WIDTH/2, HEIGHT/2);
+                    this.popupFairyContainer = this.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
                     
                     var popup = this.add.image(0,0,'popupBG')
+                                    .setScrollFactor(0)
                                     .setScale(0.6,0.8);
                     var popup1 = this.add.image(0,0,'popupBG0')
+                                    .setScrollFactor(0)
                                     .setScale(0.6,0.8);
                     var feature = this.add.image(0,100,'fairy_large')
                                     .setScale(0.6)
+                                    .setScrollFactor(0)
                                     .setOrigin(0.5,1);
                     var popupClose = this.add.image(350,-350,'btn_close')
                                     .setScale(0.5)
@@ -730,11 +739,14 @@ var GameMain = new Phaser.Class({
                         this.popupDemonContainer = this.add.container(WIDTH/2, HEIGHT/2);
                     
                         var popup = this.add.image(0,0,'popupBG')
+                                        .setScrollFactor(0)
                                         .setScale(0.6,0.8);
                         var popup1 = this.add.image(0,0,'popupBG0')
+                                        .setScrollFactor(0)
                                         .setScale(0.6,0.8);
                         var feature = this.add.image(0,100,'demon_large')
                                         .setScale(0.6)
+                                        .setScrollFactor(0)
                                         .setOrigin(0.5,1);
                         var popupClose = this.add.image(350,-350,'btn_close')
                                         .setScale(0.5)
