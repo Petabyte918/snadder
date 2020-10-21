@@ -113,6 +113,19 @@ var GameMain = new Phaser.Class({
             frameRate: 8,
             repeat: -1
         });
+        /** avators*/
+        this.anims.create({
+            key: 'male',
+            frames: [{key:'avators',frame:0 }],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'female',
+            frames: [{key:'avators',frame:7 }],
+            frameRate: 10,
+            repeat: -1
+        });
 
         /** Adding background assets */
         this.addAssetsToLevel();
@@ -176,7 +189,40 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,
             'user_pin'
         ).setScale(0.9).setOrigin(0.5,1);
+        this.userAvatorFake = this.add.sprite(
+            window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
+            window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,'avators')
+            .setScale(1)
+            .setOrigin(0.5,1.7)
+            .setAlpha(0.8);
+        this.userAvatorFake.anims.play(window.gameDescriptor.user.gender,true);
+
+
+        let rnd = getRandom(5,20);
+        this.seconUserPinFake = this.add.image(
+            window.gameDescriptor.tiles[rnd].x,
+            window.gameDescriptor.tiles[rnd].y,
+            'user_pin'
+        ).setScale(0.9).setOrigin(0.5,1).setAlpha(0.75);
         
+
+        if(window.gameDescriptor.user.gender == 'male'){
+            var seconUserAvatorFake = this.add.sprite(
+                window.gameDescriptor.tiles[rnd].x,
+                window.gameDescriptor.tiles[rnd].y,'avators')
+                .setScale(1)
+                .setOrigin(0.5,1.7)
+                .setAlpha(0.8);
+            seconUserAvatorFake.anims.play('female',true);
+        }else{
+            var seconUserAvatorFake = this.add.sprite(
+                window.gameDescriptor.tiles[rnd].x,
+                window.gameDescriptor.tiles[rnd].y,'avators')
+                .setScale(1)
+                .setOrigin(0.5,1.7)
+                .setAlpha(0.8);
+            seconUserAvatorFake.anims.play('male',true);
+        }
         this.add.image(900,1500,'icon_back3').setScale(1).setScrollFactor(0);
         this.dice = this.add.sprite(900,1505,'dice').setScale(2);
         this.dice.setInteractive();
@@ -561,8 +607,17 @@ var GameMain = new Phaser.Class({
         }
         else{
             this.userPin = this.add.follower(this.curve, tiles[window.gameDescriptor.playerLastPos].x, tiles[window.gameDescriptor.playerLastPos].y, 'user_pin').setOrigin(0.5,1);
+            // this.userAvatorFake = this.add.sprite(
+            //     window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
+            //     window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,'avators')
+            //     .setScale(1)
+            //     .setOrigin(0.5,1.7)
+            //     .setAlpha(0.8);
+            // this.userAvatorFake.anims.play(window.gameDescriptor.user.gender,true);
+    
         }
         this.userPinFake.setVisible(false);
+        this.userAvatorFake.setVisible(false);
         this.userPin.startFollow({
             duration: 3000,
             yoyo: false,

@@ -105,6 +105,14 @@
             "scaleY":0.25
         },
         {
+            "x":170.80961336048262,
+            "y":-82.4918770041379,
+            "texture":"trees",
+            "frame":"tree3.png",
+            "scaleX":0.5,
+            "scaleY":0.5
+        },
+        {
             "x":130.80961336048262,
             "y":-142.4918770041379,
             "texture":"animals",
@@ -114,15 +122,31 @@
         },
         {
             "x":940.1161427285018,
-            "y":-627.5351863432547,
-            "texture":"animals",
-            "frame":"hen.png",
-            "scaleX":0.18,
-            "scaleY":0.18
+            "y":-687.5351863432547,
+            "texture":"trees",
+            "frame":"tree1.png",
+            "scaleX":0.5,
+            "scaleY":0.5
         },
         {
             "x":32.711852224965135,
+            "y":-912.0374416222041,
+            "texture":"trees",
+            "frame":"tree4.png",
+            "scaleX":0.5,
+            "scaleY":0.5
+        },
+        {
+            "x":72.711852224965135,
             "y":-812.0374416222041,
+            "texture":"trees",
+            "frame":"tree1.png",
+            "scaleX":0.5,
+            "scaleY":0.5
+        },
+        {
+            "x":32.711852224965135,
+            "y":-712.0374416222041,
             "texture":"animals",
             "frame":"hen.png",
             "scaleX":0.18,
@@ -130,7 +154,7 @@
         },
         {
             "x":49.061479080884716,
-            "y":-871.9866146865894,
+            "y":-771.9866146865894,
             "texture":"animals",
             "frame":"hen.png",
             "scaleX":0.18,
@@ -139,10 +163,10 @@
         {
             "x":825.6687547370648,
             "y":-1054.1869153904495,
-            "texture":"animals",
-            "frame":"hen.png",
-            "scaleX":0.18,
-            "scaleY":0.18
+            "texture":"trees",
+            "frame":"tree7.png",
+            "scaleX":0.5,
+            "scaleY":0.5
         },
         {
             "x":324.28019782219764,

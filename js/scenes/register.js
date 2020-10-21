@@ -82,9 +82,9 @@ var Register = new Phaser.Class({
                         console.log("Completed with result:", result);
                     });
                     //  Tween the login form out
-                    this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 3000, ease: 'Power3' });
+                    this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 2000, ease: 'Power3' });
     
-                    this.scene.tweens.add({ targets: element, scaleX: 2, scaleY: 2, y: 700, duration: 3000, ease: 'Power3',
+                    this.scene.tweens.add({ targets: element, scaleX: 2, scaleY: 2, y: 700, duration: 2000, ease: 'Power3',
                         onComplete: function ()
                         {
                             element.setVisible(false);
@@ -107,7 +107,7 @@ var Register = new Phaser.Class({
         this.tweens.add({
             targets: element,
             y: HEIGHT/2,
-            duration: 3000,
+            duration: 2000,
             ease: 'Power3'
         });
     },
