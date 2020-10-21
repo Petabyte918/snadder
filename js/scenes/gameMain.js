@@ -1252,9 +1252,12 @@ var GameMain = new Phaser.Class({
     addFeaturesToTile:function(){
         var points = [];
         var tiles = window.gameDescriptor.tiles;
-        
+        var j=0;
         for(let tile of window.gameDescriptor.tiles){
-            points.push(new Phaser.Math.Vector2(tile.x,tile.y));
+            if(j>24){
+                points.push(new Phaser.Math.Vector2(tile.x,tile.y));
+            }
+            j++;
         }
         // var path = new Phaser.Curves.Path(609,1560);
         var curve = new Phaser.Curves.Spline(points);
