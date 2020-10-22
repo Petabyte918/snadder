@@ -10,9 +10,9 @@
       {
         "x": 529.140154302482,
         "y": 1415.979396325165,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null,
-        "featureType": "task"
+        "featureType": "match"
         
       },
       {
@@ -63,9 +63,9 @@
       {
         "x": 307.9292360150745,
         "y": 873.8963218014494,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null,
-        "featureType": "task"
+        "featureType": "match"
         
       },
       {
@@ -127,9 +127,9 @@
       {
         "x": 305.49836095298417,
         "y": 523.8516596236814,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null,
-        "featureType": "task"
+        "featureType": "awareness"
         
       },
       {

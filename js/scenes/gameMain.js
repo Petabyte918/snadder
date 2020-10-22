@@ -222,16 +222,24 @@ var GameMain = new Phaser.Class({
                 .setScale(1)
                 .setOrigin(0.5,1.5)
                 .setAlpha(0.8);
+            secondUserAvatorFake.setInteractive();
+            secondUserAvatorFake.setDataEnabled()
+            secondUserAvatorFake.data.set('hint','your wife');
             secondUserAvatorFake.anims.play('female',true);
+            secondUserAvatorFake.on('over',this.showHint,this);
             secondUserAvatorFake.setMask(geomask2);
         }else{
             var secondUserAvatorFake = this.add.sprite(
                 window.gameDescriptor.tiles[rnd].x,
                 window.gameDescriptor.tiles[rnd].y,'avators')
-                .setScale(3)
+                .setScale(1)
                 .setOrigin(0.5,1.5)
                 .setAlpha(0.8);
+            secondUserAvatorFake.setInteractive();
+            secondUserAvatorFake.setDataEnabled()
+            secondUserAvatorFake.data.set('hint','your husband');
             secondUserAvatorFake.anims.play('male',true);
+            secondUserAvatorFake.on('over',this.showHint,this);
             secondUserAvatorFake.setMask(geomask2);
         }
         
@@ -269,6 +277,7 @@ var GameMain = new Phaser.Class({
         this.input.on('gameobjectover', function (pointer, gameObject)
         {
             gameObject.setTint('0x56f787');
+            gameObject.emit('over',gameObject);
         });
         this.input.on('gameobjectout', function (pointer, gameObject)
         {
