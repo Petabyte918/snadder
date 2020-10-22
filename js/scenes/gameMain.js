@@ -205,24 +205,38 @@ var GameMain = new Phaser.Class({
             'user_pin'
         ).setScale(0.9).setOrigin(0.5,1).setAlpha(0.75);
         
+        // var debug = this.add.graphics();
+        // debug.fillStyle(0xff00f0, 0.2);
+        // debug.fillCircle(window.gameDescriptor.tiles[rnd].x,
+        //     window.gameDescriptor.tiles[rnd].y-90, 40);
+        var shape2 = this.make.graphics()
+                    .fillCircle(window.gameDescriptor.tiles[rnd].x,window.gameDescriptor.tiles[rnd].y-90,40);
+            
+        var geomask2 = shape2.createGeometryMask();
 
         if(window.gameDescriptor.user.gender == 'male'){
-            var seconUserAvatorFake = this.add.sprite(
+            
+            var secondUserAvatorFake = this.add.sprite(
                 window.gameDescriptor.tiles[rnd].x,
                 window.gameDescriptor.tiles[rnd].y,'avators')
                 .setScale(1)
-                .setOrigin(0.5,1.7)
+                .setOrigin(0.5,1.5)
                 .setAlpha(0.8);
-            seconUserAvatorFake.anims.play('female',true);
+            secondUserAvatorFake.anims.play('female',true);
+            secondUserAvatorFake.setMask(geomask2);
         }else{
-            var seconUserAvatorFake = this.add.sprite(
+            var secondUserAvatorFake = this.add.sprite(
                 window.gameDescriptor.tiles[rnd].x,
                 window.gameDescriptor.tiles[rnd].y,'avators')
-                .setScale(1)
-                .setOrigin(0.5,1.7)
+                .setScale(3)
+                .setOrigin(0.5,1.5)
                 .setAlpha(0.8);
-            seconUserAvatorFake.anims.play('male',true);
+            secondUserAvatorFake.anims.play('male',true);
+            secondUserAvatorFake.setMask(geomask2);
         }
+        
+
+
         this.add.image(900,1500,'icon_back3').setScale(1).setScrollFactor(0);
         this.dice = this.add.sprite(900,1505,'dice').setScale(2);
         this.dice.setInteractive();
