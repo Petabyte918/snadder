@@ -130,6 +130,11 @@ function getRandomPunishment(){
     return window.gameDescriptor.punishments[rand];
 }
 
+function getRandomCommonPunishment(){
+    let rand = getRandom(0,window.gameDescriptor.commonPunishents.length-1);
+    return window.gameDescriptor.commonPunishents[rand];
+}
+
 function checkOptAnswers(qid,answers){
     let questions = window.gameDescriptor.questions;
     let isMatched = false;

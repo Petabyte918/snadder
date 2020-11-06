@@ -163,7 +163,7 @@ var RapidTask = new Phaser.Class({
         if(window.gameDescriptor.debug==true)
             this.task['counter'] = 10;
         else 
-            this.task['counter'] = 60;
+            this.task['counter'] = 30;
         this.task['questionAnsweredCorrect'] = 0;
         this.task['counterText'] = this.add.dynamicBitmapText(960/2-50,230,'fire','',120);
         this.task.counterText.setText(this.task.counter);

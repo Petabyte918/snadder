@@ -131,6 +131,32 @@ window.gameDescriptor = {
             waveDuration:60,
         }
     ],
+    commonPunishents:[
+        {
+            q:"Write a message to your spouse about how feel.",
+            type:"message"
+        },
+        {
+            q:"What you like most in your spouse.",
+            type:"message"
+        },
+        {
+            q:"Where do you like go with your spouse for outing.",
+            type:"message"
+        },
+        {
+            q:"Do like when your spouse tease you and tell you that the like you.",
+            type:"message"
+        },
+        {
+            q:"Do you like walking hand in hand with your spouse.",
+            type:"message"
+        },
+        {
+            q:"What you hate most in you spouse.",
+            type:"message"
+        }
+    ],
     assets:[
         {
             assetName:'hearts',

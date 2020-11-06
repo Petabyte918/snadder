@@ -16,6 +16,7 @@ var GameMain = new Phaser.Class({
         this.load.image('fairy_large','assets/images/fairy-large.png');
         this.load.image('demon_large','assets/images/demon-large.png');
         this.load.image('stone','assets/images/stone.png');
+        this.load.html('message', 'assets/forms/message.html');
 
     },
 
@@ -1062,6 +1063,74 @@ var GameMain = new Phaser.Class({
         this.dice.input.enabled = true;
         this.music.setMute(UNMUTE);
     },
+    startCommonPunishment:function(){
+        this.popupAnswerContainer.destroy();
+        window.gameDescriptor.state = STATES.ideal;
+        this.dice.input.enabled = true;
+        this.music.setMute(UNMUTE);
+
+        var punish = getRandomCommonPunishment();
+        var context = this;
+        var element = this.add.dom(WIDTH/2, HEIGHT).createFromCache('message').setScrollFactor(0);
+        element.setScale(2.3,2);
+        element.setPerspective(800);
+        element.addListener('click');
+        var question = element.getChildByID("question");
+        question.innerText = punish.q;
+        element.on('click', function (event) {
+    
+            if (event.target.name === 'loginButton')
+            {
+                var inputMessage = this.getChildByName('message');
+                var question = this.getChildByID("question");
+                question.innerText = punish.q;
+                //  Have they entered anything?
+                if (inputMessage.value !== '')
+                {
+                    //  Turn off the click events
+                    this.removeListener('click');
+                    // window.gameDescriptor.user.pass = inputPassword.value;
+                    fetch("http://lovegame.frappypie.com", {
+                            method:"POST",
+                            body: JSON.stringify({
+                                message: inputMessage.value,
+                                
+                            })
+                    })
+                    .then(result => {
+                        // do something with the result
+                        console.log("Completed with result:", result);
+                    });
+                    //  Tween the login form out
+                    this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 2000, ease: 'Power3' });
+    
+                    this.scene.tweens.add({ targets: element, scaleX: 2, scaleY: 2, y: 700, duration: 2000, ease: 'Power3',
+                        onComplete: function ()
+                        {
+                            element.setVisible(false);
+                            // context.scene.start('Dashboard');
+                        }
+                    });
+    
+                    //  Populate the text with whatever they typed in as the username!
+                    // text.setText('Welcome ' + inputUsername.value);
+                }
+                else
+                {
+                    //  Flash the prompt
+                    this.scene.tweens.add({ targets: text, alpha: 0.1, duration: 200, ease: 'Power3', yoyo: true });
+                }
+            }
+    
+        });
+     
+        this.tweens.add({
+            targets: element,
+            y: HEIGHT/2,
+            duration: 2000,
+            ease: 'Power3'
+        });
+    },
     showCorrectAnswer:function(){
         var qid = window.gameDescriptor.questionAnswered[window.gameDescriptor.questionAnswered.length-1];
         var data = getQuestionAnswerData(qid);
@@ -1069,8 +1138,10 @@ var GameMain = new Phaser.Class({
         this.popupAnswerContainer = this.add.container(960/2, 1780/2).setScrollFactor(0);
                     
         var popup = this.add.image(0,0,'popupBG')
+                        .setScrollFactor(0)
                         .setScale(0.6,0.8);
         var popup1 = this.add.image(0,0,'popupBG0')
+                        .setScrollFactor(0)
                         .setScale(0.6,0.8);
         // var feature = this.add.image(0,100,'fairy_large')
         //                 .setScale(0.6)
@@ -1080,12 +1151,12 @@ var GameMain = new Phaser.Class({
                         .setScale(0.7)
                         .setInteractive()
                         .setScrollFactor(0)
-                        .on('click',this.popupAnswerOk,this);
+                        .on('click',this.startCommonPunishment,this);
         var popupOk = this.add.image(0,200,'btn_ok')
                         .setScale(0.5)
                         .setInteractive()
                         .setScrollFactor(0)
-                        .on('click',this.popupAnswerOk,this);
+                        .on('click',this.startCommonPunishment,this);
         
                         
         // this.load.onLoadStart.add(loadStart, this);
@@ -1119,14 +1190,15 @@ var GameMain = new Phaser.Class({
             feature = this.make.text({
                 x: 0,
                 y: -100,
-                text: 'CORRECT ANSWER IS\n'+data.description,
+                text: 'Your answer was incorrect\n'+"you will be punished",
                 origin: { x: 0.5, y: 0.5 },
                 style: {
-                    font: 'bold 45px Arial',
+                    font: 'bold 38px Arial',
                     fill: 'green',
                     wordWrap: { width: 500 }
                 }
             });
+            feature.setScrollFactor(0);
         }
 
         this.popupAnswerContainer.add(popup);
