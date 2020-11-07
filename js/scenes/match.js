@@ -109,6 +109,7 @@ var Match = new Phaser.Class({
         });
         this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#a0c449");
 
+        this.count = 1;
         this.showInstructionPopup(STRINGS.str_match_game,this.popupClose,this.popupOk);
     },
     update:function(time,delta){
@@ -234,6 +235,7 @@ var Match = new Phaser.Class({
             }
         });
         this.task['questionText'].setText(this.task.q);
+        this.task['counter'] = this.count++;
         this.task['selectedOptions'] = [];
         this.task['optionTexts'] = [];
         this.task['optionBlocks'] = [];
@@ -320,7 +322,12 @@ var Match = new Phaser.Class({
         this.task.bg0.destroy();
         this.task.bg1.destroy();
         
-        setTimeout(this.changeQuestion,200,this);
+        if(this.count <5){
+            setTimeout(this.changeQuestion,200,this);
+        }
+        else{
+            this.showInstructionPopup("Great Job\n You can come back later and answer some other question till play the game",this.jobEndClose,this.jobEndClose)
+        }
         
     },
     changeQuestion:function(context){
@@ -357,6 +364,10 @@ var Match = new Phaser.Class({
             },1100,coinEarned,context);
             
 
+    },
+    jobEndClose:function(){
+        this.popupContainer.destroy();
+        this.scene.start('Dashboard');
     },
     rolloutClose:function(){
         this.popupContainer.destroy();
