@@ -1696,7 +1696,7 @@ var GameMain = new Phaser.Class({
 
         setTimeout(function(context){
             context.popupNotificationContainer.destroy();
-        },4000,context1)
+        },10*1000,context1)
 
     }
 
