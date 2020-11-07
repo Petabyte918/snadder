@@ -157,6 +157,16 @@ window.gameDescriptor = {
             type:"message"
         }
     ],
+    textMessages:[
+        "Your spouse like your message ",
+        "Your spouse likes to go out with you",
+        "Your spouse like when you give a hug",
+        "Your spouse doesn't like when you smoke",
+        "Your spouse like to have two children",
+        "Your spouse want to take you dinner out tonight",
+        "Your spouse say he/she love you most",
+        "Your spouse like when you cuddle"
+    ],
     assets:[
         {
             assetName:'hearts',

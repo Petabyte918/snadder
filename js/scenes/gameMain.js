@@ -17,6 +17,8 @@ var GameMain = new Phaser.Class({
         this.load.image('demon_large','assets/images/demon-large.png');
         this.load.image('stone','assets/images/stone.png');
         this.load.html('message', 'assets/forms/message.html');
+        this.load.image('noti_ui','assets/images/UI/notification.png');
+
 
     },
 
@@ -251,8 +253,10 @@ var GameMain = new Phaser.Class({
         this.dice.setInteractive();
         this.dice.on('click',this.rollDice,this);
         this.dice.setScrollFactor(0);
+
         // this.dice.data.set('objectType','dice');
 
+        setInterval(this.notification,1000*10,this);
        
         
         this.input.on('pointerdown', function (pointer) {
@@ -1069,10 +1073,21 @@ var GameMain = new Phaser.Class({
         this.dice.input.enabled = true;
         this.music.setMute(UNMUTE);
 
+        this.popupMessageContainer = this.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
+                    
+        var popup = this.add.image(0,0,'popupBG')
+                        .setScrollFactor(0)
+                        .setScale(0.6,0.8);
+        var popup1 = this.add.image(0,0,'popupBG0')
+                        .setScrollFactor(0)
+                        .setScale(0.6,0.8);
+  
+        
         var punish = getRandomCommonPunishment();
         var context = this;
-        var element = this.add.dom(WIDTH/2, HEIGHT).createFromCache('message').setScrollFactor(0);
-        element.setScale(2.3,2);
+        var element = this.add.dom(-120,10).createFromCache('message').setScrollFactor(0);
+        element.setScale(1.8,1.7);
+        element.setOrigin(0.5);
         element.setPerspective(800);
         element.addListener('click');
         var question = element.getChildByID("question");
@@ -1102,12 +1117,13 @@ var GameMain = new Phaser.Class({
                         console.log("Completed with result:", result);
                     });
                     //  Tween the login form out
-                    this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 2000, ease: 'Power3' });
+                    // this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 2000, ease: 'Power3' });
     
-                    this.scene.tweens.add({ targets: element, scaleX: 2, scaleY: 2, y: 700, duration: 2000, ease: 'Power3',
+                    this.scene.tweens.add({ targets: element, scaleX: 2, scaleY: 2, y: 100, duration: 1000, ease: 'Power3',
                         onComplete: function ()
                         {
                             element.setVisible(false);
+                            context.popupMessageContainer.destroy();
                             // context.scene.start('Dashboard');
                         }
                     });
@@ -1124,11 +1140,26 @@ var GameMain = new Phaser.Class({
     
         });
      
+        // this.tweens.add({
+        //     targets: element,
+        //     y: HEIGHT/2,
+        //     duration: 2000,
+        //     ease: 'Power3'
+        // });
+
+        this.popupMessageContainer.add(popup);
+        this.popupMessageContainer.add(popup1);
+        this.popupMessageContainer.add(element);
+
         this.tweens.add({
-            targets: element,
-            y: HEIGHT/2,
-            duration: 2000,
-            ease: 'Power3'
+            targets     : [ this.popupMessageContainer ],
+            scaleX: 1.2,
+            scaleY: 1.2,
+            ease        : 'Elastic',
+            duration    : 3000,
+            yoyo        : false,
+            repeat      : 0,
+            callbackScope   : this
         });
     },
     showCorrectAnswer:function(){
@@ -1190,7 +1221,7 @@ var GameMain = new Phaser.Class({
             feature = this.make.text({
                 x: 0,
                 y: -100,
-                text: 'Your answer was incorrect\n'+"you will be punished",
+                text: 'Your answer was incorrect\n'+"your punishment is to write a \n message to your spouse.",
                 origin: { x: 0.5, y: 0.5 },
                 style: {
                     font: 'bold 38px Arial',
@@ -1605,7 +1636,66 @@ var GameMain = new Phaser.Class({
             textPopup("No demon cover availible",this.popupClose,this.popupClose,this);
         }
     },
+    notification:function(context){
+        context.popupNotificationContainer = context.add.container(WIDTH/2, 110).setScrollFactor(0);
+                    
+        var popup = context.add.image(0,0,'noti_ui')
+                        .setScrollFactor(0)
+                        .setScale(0.6,0.6);
+        var popup1  = context.add.sprite(-130,100,'avators')
+                                .setScale(1)
+                                .setOrigin(0.5,1.5)
+                                .setAlpha(0.8);
+        if(window.gameDescriptor.user.gender == 'male'){
+            popup1.anims.play('female',true);
+        }else{
+            popup1.anims.play('male',true);
+        }
 
+        var feature = context.make.text({
+            x: -40,
+            y: 0,
+            text: window.gameDescriptor.textMessages[getRandom(0,7)],
+            origin: { x: 0, y: 0 },
+            style: {
+                font: 'bold 20px Arial',
+                fill: 'white',
+                wordWrap: { width: 250 }
+            }
+        });
+        context.bounds = new Phaser.Geom.Rectangle();
+        feature.getBounds(context.bounds);
+        // feature.setPosition(0)
+        feature.setScrollFactor(0);
+        var context1 = context;
+        
+        // this.tweens.add({
+        //     targets: element,
+        //     y: HEIGHT/2,
+        //     duration: 2000,
+        //     ease: 'Power3'
+        // });
+
+        context.popupNotificationContainer.add(popup);
+        context.popupNotificationContainer.add(popup1);
+        context.popupNotificationContainer.add(feature);
+
+        context.tweens.add({
+            targets     : [ context.popupNotificationContainer ],
+            scaleX: 1.2,
+            scaleY: 1.2,
+            ease        : 'Elastic',
+            duration    : 3000,
+            yoyo        : false,
+            repeat      : 0,
+            callbackScope   : this
+        });
+
+        setTimeout(function(context){
+            context.popupNotificationContainer.destroy();
+        },4000,context1)
+
+    }
 
 });
 
