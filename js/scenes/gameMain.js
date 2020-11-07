@@ -18,6 +18,7 @@ var GameMain = new Phaser.Class({
         this.load.image('stone','assets/images/stone.png');
         this.load.html('message', 'assets/forms/message.html');
         this.load.image('noti_ui','assets/images/UI/notification.png');
+        this.load.image('love1','assets/images/love1.png');
 
 
     },
@@ -256,8 +257,7 @@ var GameMain = new Phaser.Class({
 
         // this.dice.data.set('objectType','dice');
 
-        setInterval(this.notification,1000*10,this);
-       
+        setInterval(this.notification,1000*70,this);
         
         this.input.on('pointerdown', function (pointer) {
             this.worldPoint = this.input.activePointer.positionToCamera(this.cameras.main);
@@ -1081,13 +1081,15 @@ var GameMain = new Phaser.Class({
         var popup1 = this.add.image(0,0,'popupBG0')
                         .setScrollFactor(0)
                         .setScale(0.6,0.8);
-  
+        var bglove = this.add.image(0,0,'love1')
+                        .setScrollFactor(0)
+                        .setScale(0.4);
         
         var punish = getRandomCommonPunishment();
         var context = this;
-        var element = this.add.dom(-120,10).createFromCache('message').setScrollFactor(0);
+        var element = this.add.dom(-300,10).createFromCache('message').setScrollFactor(0);
         element.setScale(1.8,1.7);
-        element.setOrigin(0.5);
+        element.setOrigin(0,0.5);
         element.setPerspective(800);
         element.addListener('click');
         var question = element.getChildByID("question");
@@ -1149,6 +1151,7 @@ var GameMain = new Phaser.Class({
 
         this.popupMessageContainer.add(popup);
         this.popupMessageContainer.add(popup1);
+        this.popupMessageContainer.add(bglove);
         this.popupMessageContainer.add(element);
 
         this.tweens.add({
@@ -1221,7 +1224,7 @@ var GameMain = new Phaser.Class({
             feature = this.make.text({
                 x: 0,
                 y: -100,
-                text: 'Your answer was incorrect\n'+"your punishment is to write a \n message to your spouse.",
+                text: 'Your answer was incorrect\n'+"your punishment is to write a message to your spouse.",
                 origin: { x: 0.5, y: 0.5 },
                 style: {
                     font: 'bold 38px Arial',
