@@ -25,6 +25,9 @@ var GameMain = new Phaser.Class({
 
     create: function ()
     {
+
+        var smileys = [ '😀','😁','😂','🤣','😃','😄','😅','😆','😉','😊','😋','😎','😍','😘','😗','😙','😚','️🙂','🤗','🤩','🤔','🤨','😐','😑','😶','🙄','😏','😣','😥','😮','🤐','😯','😪','😫','😴','😌','😛','😜','😝','🤤','😒','😓','😔','😕','🙃','🤑','😲','☹️','🙁','😖','😞','😟','😤','😢','😭','😦','😧','😨','😩','🤯','😬','😰','😱','😳','🤪','😵','😡','😠','🤬','😷','🤒','🤕','🤢','🤮','🤧','😇','🤠','🤡','🤥','🤫','🤭','🧐','🤓','😈','👿','👹','👺','💀','👻','👽','🤖','💩','😺','😸','😹','😻','😼','😽','🙀','😿','😾' ];
+
         this.cameras.main.fadeFrom(2000, Phaser.Math.Between(50, 255), Phaser.Math.Between(50, 255), Phaser.Math.Between(50, 255));
         
         this.bg0 = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
@@ -86,7 +89,7 @@ var GameMain = new Phaser.Class({
         /** cobras */
         this.anims.create({
             key: 'cobraHover',
-            frames: this.anims.generateFrameNumbers('cobra', { start: 12, end: 35 }),
+            frames: this.anims.generateFrameNumbers('cobra', { start: 0, end: 11 }),
             frameRate: 8,
             repeat: -1
         });
@@ -383,6 +386,19 @@ var GameMain = new Phaser.Class({
                 this.cameras.main.scrollY = this.userPin.y - HEIGHT/2;
                 // this.cameras.main.startFollow(this.player);
             }
+            if(window.gameDescriptor.state == STATES.ideal){
+                // var yy=window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y-10;
+                // this.tweens.add({
+                //     targets: this.userPin,
+                //     props: {
+                //         y: { value: yy, duration: 200,  },
+                //     },
+                //     ease: 'Sine.easeInOut',
+                //     yoyo: true,
+                //     repeat: 1
+                // });
+            }
+            
         }
         if(this.counterText){
             this.counterText.setText( Math.floor(this.counter - this.timer.getElapsed()/1000));
@@ -584,7 +600,7 @@ var GameMain = new Phaser.Class({
         if(window.gameDescriptor.state == STATES.ideal){
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
-            window.gameDescriptor.diceNumber = window.gameDescriptor.debug==true?2:getRandom(1,6);
+            window.gameDescriptor.diceNumber = window.gameDescriptor.debug==true?3:getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -776,7 +792,7 @@ var GameMain = new Phaser.Class({
                                     .setScrollFactor(0)
                                     .setScale(0.6,0.8);
                     var feature = this.add.image(0,100,'fairy_large')
-                                    .setScale(0.6)
+                                    .setScale(0.2)
                                     .setScrollFactor(0)
                                     .setOrigin(0.5,1);
                     var popupClose = this.add.image(350,-350,'btn_close')
@@ -828,7 +844,7 @@ var GameMain = new Phaser.Class({
                                         .setScrollFactor(0)
                                         .setScale(0.6,0.8);
                         var feature = this.add.image(0,100,'demon_large')
-                                        .setScale(0.6)
+                                        .setScale(0.18)
                                         .setScrollFactor(0)
                                         .setOrigin(0.5,1);
                         var popupClose = this.add.image(350,-350,'btn_close')
@@ -1073,6 +1089,11 @@ var GameMain = new Phaser.Class({
         this.dice.input.enabled = true;
         this.music.setMute(UNMUTE);
 
+        var qid = window.gameDescriptor.questionAnswered[window.gameDescriptor.questionAnswered.length-1];
+        var question = getQuestion(qid);
+        if(question.questionType != 'quiz')
+            return;
+            
         this.popupMessageContainer = this.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
                     
         var popup = this.add.image(0,0,'popupBG')
@@ -1087,6 +1108,12 @@ var GameMain = new Phaser.Class({
         
         var punish = getRandomCommonPunishment();
         var context = this;
+
+        
+        // emitter.setPosition(WIDTH/2, HEIGHT/2);
+        // emitter.setEmitZone(emitZones[emitZoneIndex]);
+        // emitter.explode();
+        
         var element = this.add.dom(-300,10).createFromCache('message').setScrollFactor(0);
         element.setScale(1.8,1.7);
         element.setOrigin(0,0.5);
@@ -1121,11 +1148,26 @@ var GameMain = new Phaser.Class({
                     //  Tween the login form out
                     // this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 2000, ease: 'Power3' });
     
-                    this.scene.tweens.add({ targets: element, scaleX: 2, scaleY: 2, y: 100, duration: 1000, ease: 'Power3',
+                    this.scene.tweens.add({ targets: element, scaleX: 1.8, scaleY: 2, duration: 1000, ease: 'Power3',
                         onComplete: function ()
                         {
                             element.setVisible(false);
                             context.popupMessageContainer.destroy();
+                            var emitter = context.add.particles('heart').createEmitter({
+                                x: WIDTH/2,
+                                y: HEIGHT/2,
+                                // blendMode: 'SCREEN',
+                                scale: { start: 0.1, end: 0 },
+                                speed: { min: 10, max: 350 },
+                                angle: { min: 180, max: 360 },
+                                gravityY: 50,
+                                lifespan: 10000,
+                                quantity: 10
+                            });
+                            setTimeout((em)=>{
+                                em.explode();
+                            },200,emitter);
+
                             // context.scene.start('Dashboard');
                         }
                     });
@@ -1296,8 +1338,8 @@ var GameMain = new Phaser.Class({
                         {
                             tile.feature.destroy();
                             tile.feature = this.add.sprite(tile.x,tile.y,'cobra');
-                            tile.feature.setScale(2);
-                            tile.feature.setOrigin(0.5,1);
+                            tile.feature.setScale(1.2);
+                            tile.feature.setOrigin(0.6,1);
                             tile.feature.anims.play('cobraHover',true);
                             tile['oldType'] = tile.featureType;
                             tile.featureType = 'cobra';
@@ -1370,8 +1412,8 @@ var GameMain = new Phaser.Class({
                         case 'cobra':
                             tile.feature.destroy();
                             tile.feature = this.add.sprite(tile.x,tile.y,'cobra');
-                            tile.feature.setScale(2);
-                            tile.feature.setOrigin(0.5,1);
+                            tile.feature.setScale(0.8);
+                            tile.feature.setOrigin(0.6,1);
                             tile.feature.anims.play('cobraHover',true);
                             tile.featureType = tile.oldType;
                             tile.oldType = null;
@@ -1489,8 +1531,8 @@ var GameMain = new Phaser.Class({
                 }
                 if(tile.featureType == 'cobra'){
                     tile.feature = this.add.sprite(tile.x,tile.y,'cobra');
-                    tile.feature.setScale(2);
-                    tile.feature.setOrigin(0.5,1);
+                    tile.feature.setScale(0.8);
+                    tile.feature.setOrigin(0.6,1);
                     tile.feature.anims.play('cobraHover',true);
                 }
                 if(tile.featureType == 'portal'){

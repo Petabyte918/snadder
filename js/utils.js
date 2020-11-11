@@ -49,6 +49,17 @@ function getOptions(qid){
     }
     return options;
 }
+function getQuestion(qid){
+    let questions = window.gameDescriptor.questions;
+    let q = null;
+    for(question of questions){
+        if(question.qid == qid){
+            q = question;
+            break;
+        }
+    }
+    return q;
+}
 
 function getAnswers(qid){
     let questions = window.gameDescriptor.questions;

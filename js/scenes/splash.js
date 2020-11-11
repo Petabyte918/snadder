@@ -72,8 +72,8 @@ var Splash = new Phaser.Class({
             { frameWidth: 48, frameHeight: 48 }
         );
         this.load.spritesheet('cobra', 
-            'assets/images/sprites/cobras.png',
-            { frameWidth: 48, frameHeight: 48 }
+            'assets/images/sprites/cobras1.png',
+            { frameWidth: 250, frameHeight: 143.3 }
         );
         this.load.spritesheet('demon', 
             'assets/images/sprites/demons.png',
@@ -91,7 +91,7 @@ var Splash = new Phaser.Class({
             'assets/images/sprites/avators1.png',
             { frameWidth: 577/6, frameHeight: 92 }
         );
-
+        this.load.image('star_blue','assets/images/particles/blue.png');
         this.load.atlas('animals', 'assets/images/atlas/animals.png', 'assets/images/atlas/animals.json');
         this.load.atlas('trees', 'assets/images/atlas/trees.png', 'assets/images/atlas/trees.json');
 
