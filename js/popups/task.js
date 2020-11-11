@@ -102,7 +102,7 @@ var Task = new Phaser.Class({
             origin: { x: 0.5, y: 0.5 },
             style: {
                 fontFamily: 'Finger Paint', 
-                font: 'bold 45px Arial',
+                font: 'bold 30px Arial',
                 fill: 'green',
                 wordWrap: { width: 600 }
             }

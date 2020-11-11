@@ -431,20 +431,42 @@ var GameMain = new Phaser.Class({
             ];
             var curve = new Phaser.Curves.Spline(points);
             var coinEarned;
+            var imageName,sl;
             if(window.gameDescriptor.actionType == 'task'){
                 coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'coin_sprite').setOrigin(0.5).setScale(2);
                 // this.add.sprite(window.gameDescriptor.screenWidth/2,window.gameDescriptor.screenHeight/2,'coin_sprite');
                 coinEarned.anims.play('coin_rotate',true);
+                imageName= 'coin_sprite';
+                sl=2;
             }else if(window.gameDescriptor.actionType == 'match'){
                 coinEarned = coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'hearts')
                                                 .setOrigin(0.5)
                                                 .setScale(0.2);
+                imageName= 'hearts';
+                sl=0.2;
             }else if(window.gameDescriptor.actionType == 'awareness'){
                 coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'badge')
                                         .setOrigin(0.5)
                                         .setScale(0.2);
+                imageName= 'badge';
+                sl=0.2;
             }
             
+            var emitter = this.add.particles(imageName).createEmitter({
+                x: WIDTH/2,
+                y: HEIGHT/2,
+                // blendMode: 'SCREEN',
+                scale: { start: sl, end: 0 },
+                speed: { min: 10, max: 350 },
+                angle: { min: 0, max: 180 },
+                gravityY: 150,
+                lifespan: 10000,
+                quantity: 10
+            });
+            setTimeout((em)=>{
+                em.explode();
+            },100,emitter);
+
             coinEarned.startFollow({
                 duration: 1000,
                 yoyo: false,
@@ -1166,7 +1188,7 @@ var GameMain = new Phaser.Class({
                             });
                             setTimeout((em)=>{
                                 em.explode();
-                            },200,emitter);
+                            },100,emitter);
 
                             // context.scene.start('Dashboard');
                         }
