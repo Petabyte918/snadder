@@ -902,7 +902,7 @@
 
 
         {
-            "qid":1,
+            "qid":31,
             "q":"आप की शादी कैसे हुई..?",
             "questionType":"match",
             "gender":"both",
@@ -928,7 +928,7 @@
             "answerVideo":""
         },
         {
-            "qid":2,
+            "qid":32,
             "q":"आपके पति क्या करते हैं ?",
             "questionType":"match",
             "gender":"female",
@@ -962,7 +962,7 @@
             "answerVideo":""
         },
         {
-            "qid":3,
+            "qid":33,
             "q":"आप दोनों के उम्र मे क्या अंतर है ?",
             "questionType":"match",
             "gender":"both",
@@ -996,7 +996,7 @@
             "answerVideo":""
         },
         {
-            "qid":4,
+            "qid":34,
             "q":"आप अपना  जीवन संगिनी  कैसा  चाहते थे...?",
             "questionType":"match",
             "gender":"both",
@@ -1022,7 +1022,7 @@
             "answerVideo":""
         },
         {
-            "qid":5,
+            "qid":35,
             "q":"आपके जीवन साथी का बोल  कैसा है  ?",
             "questionType":"match",
             "gender":"both",
@@ -1052,7 +1052,7 @@
             "answerVideo":""
         },
         {
-            "qid":6,
+            "qid":36,
             "q":"आपके जीवन साथी कैसे हैं ?",
             "questionType":"match",
             "gender":"both",
@@ -1078,7 +1078,7 @@
             "answerVideo":""
         },
         {
-            "qid":7,
+            "qid":37,
             "q":"आपके साथ कौन कौन रहते है?",
             "questionType":"match",
             "gender":"both",
@@ -1108,7 +1108,7 @@
             "answerVideo":""
         },
         {
-            "qid":8,
+            "qid":38,
             "q":"शादी की बाद अपने जीवनसाथी आपको  किस नाम से पुकारते है ?",
             "questionType":"match",
             "gender":"both",
@@ -1138,7 +1138,7 @@
             "answerVideo":""
         },
         {
-            "qid":9,
+            "qid":39,
             "q":"पहली बार अपनी शादी के बारे में सुन कर आप दोनों कैसा महसूस किये थे ?",
             "questionType":"match",
             "gender":"both",
@@ -1172,7 +1172,7 @@
             "answerVideo":""
         },
         {
-            "qid":10,
+            "qid":41,
             "q":"वो कौन सी जगह है जहाँ आप अपने जीवनसाथी के साथ सबसे पहले जाना पसंद करेंगी ?",
             "questionType":"match",
             "gender":"female",
@@ -1206,7 +1206,7 @@
             "answerVideo":""
         },
         {
-            "qid":11,
+            "qid":42,
             "q":"कभी आपके जीवनसाथी आपको मजाकं  करते है तो आपको क्या कहकर बुलाते है",
             "questionType":"match",
             "gender":"both",
@@ -1232,7 +1232,7 @@
             "answerVideo":""
         },
         {
-            "qid":12,
+            "qid":43,
             "q":"आज आपके जीवन साथी कि ससुराल मे पहली रसोई  है और वो सोच मे है कि  ऐसा क्या बनाउ कि सब उनकी तारीफ करे ? आप उनको क्या सलाह देगे",
             "questionType":"match",
             "gender":"male",
@@ -1262,7 +1262,7 @@
             "answerVideo":""
         },
         {
-            "qid":13,
+            "qid":44,
             "q":"आप अपने जीवनसाथी को एम्प्रेस करने के लिए किस वाक्य का उपयोग  करते है  ?",
             "questionType":"match",
             "gender":"both",
@@ -1292,7 +1292,7 @@
             "answerVideo":""
         },
         {
-            "qid":14,
+            "qid":45,
             "q":"क्या आप दोनो पति पत्नी के अलावा एक अच्छे दोस्त भी है",
             "questionType":"match",
             "gender":"both",
@@ -1318,7 +1318,7 @@
             "answerVideo":""
         },
         {
-            "qid":15,
+            "qid":46,
             "q":"आपको अपने जीवन साथी का कौन सा बात ऐसा है जो आपको बहुत पसंद है ?",
             "questionType":"match",
             "gender":"both",
@@ -1348,7 +1348,7 @@
             "answerVideo":""
         },
         {
-            "qid":16,
+            "qid":47,
             "q":"आपकी कौन-सी बात आपके जीवनसाथी को बहुत अच्छी लगती है",
             "questionType":"match",
             "gender":"both",
@@ -1382,7 +1382,7 @@
             "answerVideo":""
         },
         {
-            "qid":17,
+            "qid":48,
             "q":"आपके जीवनसाथी आप पर कब ज्यादा गुस्सा करते है ।",
             "questionType":"match",
             "gender":"both",
@@ -1417,7 +1417,7 @@
             "answerVideo":""
         },
         {
-            "qid":18,
+            "qid":49,
             "q":"आपकी मुलाकात आपके साथी से पहली बार कब हुई थी क्या वो तारीख आपके याद है ।",
             "questionType":"match",
             "gender":"both",
@@ -1443,7 +1443,7 @@
             "answerVideo":""
         },
         {
-            "qid":19,
+            "qid":50,
             "q":"आपके साथी आपको पिछली बार कब I Love You बोले है",
             "questionType":"match",
             "gender":"both",
@@ -1478,7 +1478,7 @@
             "answerVideo":""
         },
         {
-            "qid":20,
+            "qid":51,
             "q":"आप दोंनो में से एक दूसरे से मिलने के लिए कौन ज्यादा उतबला रहता है ।",
             "questionType":"match",
             "gender":"both",
@@ -1504,7 +1504,7 @@
             "answerVideo":""
         },
         {
-            "qid":21,
+            "qid":52,
             "q":"एक दूसरे से मोबाइल पर बात करने के लिए कौन ज्यादा बार फ़ोन करता है ।",
             "questionType":"match",
             "gender":"both",
@@ -1530,7 +1530,7 @@
             "answerVideo":""
         },
         {
-            "qid":22,
+            "qid":53,
             "q":"आप दोनों में कौन सी बात एक जैसी है।",
             "questionType":"match",
             "gender":"both",
@@ -1564,7 +1564,7 @@
             "answerVideo":""
         },
         {
-            "qid":23,
+            "qid":54,
             "q":"आपके साथी किस क्लास तक पढ़े है",
             "questionType":"match",
             "gender":"both",
@@ -1603,7 +1603,7 @@
             "answerVideo":""
         },
         {
-            "qid":24,
+            "qid":55,
             "q":"आपके साथी का पसंदीदा रंग कौन है ।",
             "questionType":"match",
             "gender":"both",
@@ -1647,7 +1647,7 @@
             "answerVideo":""
         },
         {
-            "qid":25,
+            "qid":56,
             "q":"आपके साथी को कौन सा भोजन ज्यादा पसंद है",
             "questionType":"match",
             "gender":"both",
@@ -1677,7 +1677,7 @@
             "answerVideo":""
         },
         {
-            "qid":26,
+            "qid":57,
             "q":"जब भी आप अपने साथी के साथ होटल में जाते है तो आपके साथी क्या खाना पसंद करते है ।",
             "questionType":"match",
             "gender":"both",
@@ -1707,7 +1707,7 @@
             "answerVideo":""
         },
         {
-            "qid":27,
+            "qid":58,
             "q":"आपके जीवन साथी आपको  कौन से  कपड़े में ज्यादा देखना चाहते हैं?",
             "questionType":"match",
             "gender":"female",
@@ -1737,7 +1737,7 @@
             "answerVideo":""
         },
         {
-            "qid":28,
+            "qid":59,
             "q":"आपके जीवन साथी कौन सी  भाषा की फिल्म ज्यादा- तर देखते है? ",
             "questionType":"match",
             "gender":"both",
@@ -1768,7 +1768,7 @@
         },
 
 	    {
-            "qid":29,
+            "qid":60,
             "q":"क्या आपको लगता है कि आपका जीवनसाथी आपका सहयोग करते है?",
             "questionType":"match",
             "gender":"both",
@@ -1794,7 +1794,7 @@
             "answerVideo":""
         },
         {
-            "qid":30,
+            "qid":61,
             "q":"आपके जीवनसाथी का स्वभाव कैसा है?",
             "questionType":"match",
             "gender":"both",
@@ -1831,7 +1831,7 @@
 
 
 	    {
-            "qid":1,
+            "qid":62,
             "q":"क्आपके अनुसार लडका/लडकी मे अंतर होना चाहिए ?",
             "questionType":"awareness",
             "options":[
@@ -1854,7 +1854,7 @@
             "answerVideo":""
         },
        {
-            "qid":2,
+            "qid":63,
             "q":"क्आपके अनुसार लडकियो को लड़को के बराबर मौका मिलना चाहिए ?",
             "questionType":"awareness",
             "options":[
@@ -1877,7 +1877,7 @@
             "answerVideo":""
         },
         {
-            "qid":3,
+            "qid":64,
             "q":"क्या लड़कियों को शिक्षा/उच्च शिक्षा देना चाहिए?",
             "questionType":"awareness",
             "options":[
@@ -1900,7 +1900,7 @@
             "answerVideo":""
         },
         {
-            "qid":4,
+            "qid":65,
             "q":"बेटी को इतना पढ़ाओ की वो अपने पैरों पर खड़ी हो सके",
             "questionType":"awareness",
             "options":[
@@ -1923,7 +1923,7 @@
             "answerVideo":""
         },
         {
-            "qid":5,
+            "qid":66,
             "q":"आप लडकियो के शिक्षा के बारे मे क्या सोचती हैं ?",
             "questionType":"awareness",
             "options":[
@@ -1952,7 +1952,7 @@
             "answerVideo":""
         },
         {
-            "qid":6,
+            "qid":67,
             "q":"लडकियो को शिक्षा देने के क्या फायदे हो सकते हैं ?",
             "questionType":"awareness",
             "options":[
@@ -1979,7 +1979,7 @@
             "answerVideo":""
         },
         {
-            "qid":7,
+            "qid":68,
             "q":"क्या लड़कियों को यौन शिक्षा देनी चाहिए ? ",
             "questionType":"awareness",
             "options":[
@@ -2002,7 +2002,7 @@
             "answerVideo":""
         },
         {
-            "qid":8,
+            "qid":69,
             "q":"सरकार द्वारा लड़कियो को बढावा देने के लिए कोई योजना बनाईं गयी है ?               ",
             "questionType":"awareness",
             "options":[
@@ -2025,7 +2025,7 @@
             "answerVideo":""
         },
         {
-            "qid":9,
+            "qid":70,
             "q":"बिहार मे लड़कियों को शिक्षा प्राप्त करने में बहुत सारी बाधाएं होती है ?",
             "questionType":"awareness",
             "options":[
@@ -2048,7 +2048,7 @@
             "answerVideo":""
         },
         {
-            "qid":10,
+            "qid":71,
             "q":"आपके अनुसार क्या हर लड़कियों को स्कूल जाना चाहिए ?",
             "questionType":"awareness",
             "options":[
@@ -2071,7 +2071,7 @@
             "answerVideo":""
         },
         {
-            "qid":11,
+            "qid":72,
             "q":"लडकियों के शिक्षा के लिए क्या-क्या बाधाएं है?",
             "questionType":"awareness",
             "options":[
@@ -2104,7 +2104,7 @@
             "answerVideo":""
         },
         {
-            "qid":12,
+            "qid":73,
             "q":"या सरकार के तरफ से महिलाओं की  शिक्षा को बढ़ावा देने के लिये जोर दिया जा रहा है ?",
             "questionType":"awareness",
             "options":[
@@ -2127,7 +2127,7 @@
             "answerVideo":""
         },
         {
-            "qid":13,
+            "qid":74,
             "q":"क्या लडकियों के शिक्षा  पर खर्च करना बेकार है ? ",
             "questionType":"awareness",
             "options":[
@@ -2150,7 +2150,7 @@
             "answerVideo":""
         },
         {
-            "qid":14,
+            "qid":75,
             "q":"क्याक्या गाव में अधिकांश बाल बिवाह होने का एक कारण यह हों सकता है की माता-पिता को डर रहता है कि अगर लड़की की शादी जल्दी नही करेंगे तो कुछ गलत कदम उठाएगी और उनकी इज्जत चली जायेगी । ",
             "questionType":"awareness",
             "options":[
@@ -2173,7 +2173,7 @@
             "answerVideo":""
         },
         {
-            "qid":15,
+            "qid":76,
             "q":"हम बालिकाओं/लड़कियो  को कैसे बढ़ावा दे सकते हैं?",
             "questionType":"awareness",
             "options":[
@@ -2206,7 +2206,7 @@
             "answerVideo":""
         },
         {
-            "qid":16,
+            "qid":77,
             "q":"लड़कियो को बढावा/ प्रोत्साहन देने में  चुनौतियां क्या हैं? ",
             "questionType":"awareness",
             "options":[
@@ -2244,7 +2244,7 @@
             "answerVideo":""
         },
  {
-            "qid":17,
+            "qid":78,
             "q":"क्क्या बेटी के साथ माता पिता को दोस्तों जैसा व्यवहार रखना चाहिए?",
             "questionType":"awareness",
             "options":[
@@ -2267,7 +2267,7 @@
             "answerVideo":""
         },
         {
-            "qid":18,
+            "qid":79,
             "q":"बुरा /ख़राब स्पर्श और अच्छा स्पर्श(Bad touch and Good touch) की जानकारी क्या छोटे बच्चों को देनी चाहिए?",
             "questionType":"awareness",
             "options":[
@@ -2290,7 +2290,7 @@
             "answerVideo":""
         }, 
         {
-            "qid":19,
+            "qid":80,
             "q":"क्क्या मासिक चक्र के विषय में उन्हें  माहवारी शुरू होने से पहले ही बतानी चाहिए",
             "questionType":"awareness",
             "options":[
@@ -2314,7 +2314,7 @@
         },
 
         {
-            "qid":20,
+            "qid":81,
             "q":"आपके अनुसार क्या लडकियो को पढ़ाने से दो कुल  शिक्षित होगा ?",
             "questionType":"awareness",
             "options":[
@@ -2337,7 +2337,7 @@
             "answerVideo":""
         },
         {
-            "qid":21,
+            "qid":82,
             "q":"क्लडकिया माहवारी से सम्बंधित चर्चा केवल माँ से ही क्यों करती है इसका क्या कारण हो सकता है ?",
             "questionType":"awareness",
             "options":[
@@ -2375,7 +2375,7 @@
             "answerVideo":""
         },
         {
-            "qid":22,
+            "qid":83,
             "q":"क्क्या लड़कियों को माहवारी के समय किसी पुरुष  को खाना नही परोसना चाहिए ।",
             "questionType":"awareness",
             "options":[
@@ -2399,7 +2399,7 @@
         },
 
         {
-            "qid":23,
+            "qid":84,
             "q":"क्या माहवारी के दौरान महिलाओं को अचार नही छूना चाहिये । ",
             "questionType":"awareness",
             "options":[
@@ -2423,7 +2423,7 @@
         },
 
         {
-            "qid":24,
+            "qid":85,
             "q":"माहवारी के समय यौनांगों पर पानी पड़ने से बीमारी हो जाता है-",
             "questionType":"awareness",
             "options":[
@@ -2446,7 +2446,7 @@
             "answerVideo":""
         },
         {
-            "qid":25,
+            "qid":86,
             "q":"क्या मासिक धर्म के दौरान रोज नहाने से स्वास्थ्य पर बुरा प्रभाव पड़ता है ? ",
             "questionType":"awareness",
             "options":[
@@ -2475,7 +2475,7 @@
             "answerVideo":""
         },
         {
-            "qid":26,
+            "qid":87,
             "q":"आपके अनुसार माहवारी के दौरान गन्दा खून  निकलता है ? ",
             "questionType":"awareness",
             "options":[
@@ -2499,7 +2499,7 @@
 
 		{
 
-            "qid":27,
+            "qid":89,
             "q":"मासिक धर्म आने पर परिवार के सदस्यों से अलग रहना चाहिए? ",
             "questionType":"awareness",
             "options":[
@@ -2523,7 +2523,7 @@
         },
  
         {
-            "qid":28,
+            "qid":90,
             "q":"किन कारणों से  माहवारी के दौरान इ स्तेमाल किया गया कपड़ा को जलाना नही चाहिए ? ",
             "questionType":"awareness",
             "options":[
@@ -2546,7 +2546,7 @@
             "answerVideo":""
         },
 	    {
-            "qid":29,
+            "qid":91,
             "q":"किशोरियों / महिलाओं को यौन संक्रमण से बचने के लिए क्या करनी चाहिए ? ",
             "questionType":"awareness",
             "options":[
@@ -2574,7 +2574,7 @@
             "answerVideo":""
         },
 		{
-            "qid":30,
+            "qid":92,
             "q":"क्या महिलाओ मे सफेद पानी का आना किसी बीमारी का लक्षण है ? ",
             "questionType":"awareness",
             "options":[

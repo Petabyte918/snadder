@@ -470,10 +470,10 @@ var GameMain = new Phaser.Class({
                 coinEarned = coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'hearts')
                                                 .setOrigin(0.5)
                                                 .setScale(0.2);
-                imageName= 'hearts';
+                imageName= 'heart';
                 sl=0.2;
             }else if(window.gameDescriptor.actionType == 'awareness'){
-                coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'badge')
+                coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, 'badges')
                                         .setOrigin(0.5)
                                         .setScale(0.2);
                 imageName= 'badge';
@@ -489,7 +489,7 @@ var GameMain = new Phaser.Class({
                 angle: { min: 0, max: 180 },
                 gravityY: 150,
                 lifespan: 10000,
-                quantity: 10
+                quantity: 2
             });
             setTimeout((em)=>{
                 em.explode();
@@ -650,7 +650,7 @@ var GameMain = new Phaser.Class({
         if(window.gameDescriptor.state == STATES.ideal){
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
-            window.gameDescriptor.diceNumber = window.gameDescriptor.debug==true?3:getRandom(1,6);
+            window.gameDescriptor.diceNumber = 3;//window.gameDescriptor.debug==true?3:getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -1138,11 +1138,6 @@ var GameMain = new Phaser.Class({
         window.gameDescriptor.state = STATES.ideal;
         this.dice.input.enabled = true;
         this.music.setMute(UNMUTE);
-
-        var qid = window.gameDescriptor.questionAnswered[window.gameDescriptor.questionAnswered.length-1];
-        var question = getQuestion(qid);
-        if(question.questionType != 'quiz')
-            return;
             
         this.popupMessageContainer = this.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
                     
@@ -1260,6 +1255,9 @@ var GameMain = new Phaser.Class({
     showCorrectAnswer:function(){
         var qid = window.gameDescriptor.questionAnswered[window.gameDescriptor.questionAnswered.length-1];
         var data = getQuestionAnswerData(qid);
+        var question = getQuestion(qid);
+        if(question.questionType != 'quiz')
+            return;
 
         this.popupAnswerContainer = this.add.container(960/2, 1780/2).setScrollFactor(0);
                     

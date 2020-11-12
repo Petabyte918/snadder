@@ -96,15 +96,15 @@ var Task = new Phaser.Class({
         this.task['bg0'] = this.add.image(500,870,'popupBG').setScale(0.6,1.3);
         this.task['bg1'] = this.add.image(500,820,'popupBG0').setScale(0.6,1.3);
         this.task['questionText'] = this.make.text({
-            x: 480,
+            x: 260,
             y: 470,
             text: '',
-            origin: { x: 0.5, y: 0.5 },
+            origin: { x: 0, y: 0.5 },
             style: {
                 fontFamily: 'Finger Paint', 
                 font: 'bold 30px Arial',
                 fill: 'green',
-                wordWrap: { width: 600 }
+                wordWrap: { width: 500 }
             }
         });
         this.task['questionText'].setText(this.task.q);
@@ -129,15 +129,15 @@ var Task = new Phaser.Class({
             
             // let optxt = this.add.dynamicBitmapText(60+ (k*270),495+j,'green','',35);
             let optxt = this.make.text({
-                    x: 60+(k*270),
+                    x: (k*270),
                     y: (this.task.options.length<=4?515:415)+j,
                     text: '',
-                    origin: { x: 0.5, y: 0.5 },
+                    origin: { x: 0, y: 0.5 },
                     style: {
                         fontFamily: 'Finger Paint', 
-                        font: 'bold 30px Arial',
+                        font: 'bold 28px Arial',
                         fill: 'green',
-                        align:'center',
+                        // align:'center',
                         wordWrap: { width: 250 }
                     }
                 });
@@ -151,6 +151,7 @@ var Task = new Phaser.Class({
     },
     makeSelected:function(object){
         if(!this.task.selectedOptions.includes(object.data.get('opid')) ){
+            if(this.task.selectedOptions.length >0)return;
             this.task.selectedOptions.push(object.data.get('opid'));
             object.setTint('0x00ff00');
             object.data.set('isSelected',true);
@@ -181,7 +182,7 @@ var Task = new Phaser.Class({
         }else{
             let answers = getAnswers(this.task.qid);
             for(let opb of this.task.optionBlocks){
-                if(answers.includes(""+opb.data.get('opid')) ){
+                if(answers.includes(opb.data.get('opid')) ){
                     opb.setTint('0x00ff00');
                 }else{
                     opb.setTint('0xff0000');
