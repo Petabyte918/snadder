@@ -35,7 +35,7 @@ var Upgrades = new Phaser.Class({
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
-        this.shop_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.shop_menu = this.add.image(80,80,'btn_prew').setScale(0.4);
         this.shop_menu.setInteractive();
         this.shop_menu.on('click',this.gotoMenu,this);
 

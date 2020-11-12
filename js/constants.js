@@ -71,7 +71,7 @@ let STRINGS = {
     str_gameOver    : 'Game Over',
     str_levels      : 'Levels',
     str_welcome_message : 'नमस्कार, आप को इस गेम में स्वागत है | आप बहुत धन्यवाद की अपने इस गेम को चुना और मै ये बताना चाहता हूँ की ये एक ऐसा गेम है जो सिर्फ और सिर्फ दम्पति के बीच में खेले जाने वाला है | आप इस गेम द्वार बहुत कुछ विषय न केवल सीखेंगे बल्कि आप और आपके जीवनसाथी एक दुसरे को और अच्छे से समझने लगेंगे | उम्मीन्द है की आप आगे इस गेम को अच्छा से खेलेंगे |',
-    str_match_game : 'Here you will be asked some questions about your likes and dislikes which you need to answer',
+    str_match_game : 'Here you can check messages and your spouse thoughts about you',
     str_question_rollout: 'All questions answered successfully.',
     str_fairy_instructions: 'Hi i will start a rapid question round if you pass i will reward you else nothing.',
     str_demon_instructions: 'I am Demon from the hell i will start a rapid question round if you fail i will punish you else nothing.',

@@ -17,7 +17,6 @@ var GameMain = new Phaser.Class({
         this.load.image('demon_large','assets/images/demon-large.png');
         this.load.image('stone','assets/images/stone.png');
         this.load.html('message', 'assets/forms/message.html');
-        this.load.image('noti_ui','assets/images/UI/notification.png');
         this.load.image('love1','assets/images/love1.png');
 
 

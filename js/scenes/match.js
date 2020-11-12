@@ -18,13 +18,42 @@ var Match = new Phaser.Class({
     },
     create: function ()
     {
+        this.smileys = [ 
+            '😀','😁','😂','🤣','😃','😄','😅','😆','😉','😾',
+            '😊','😋','😎','😍','😘','😗','😙','😚','️🙂','😿',
+            '🤗','🤩','🤔','🤨','😐','😑','😶','😌','😛','👺',
+            '🙄','😏','😣','😥','😮','🤐','😯','😪','😫','😴',
+            '😜','😝','🤤','😒','😓','😔','😕','🙃','🤑','😲',
+            '☹️','🙁','😖','😞','😟','😤','😢','😭','😦','😧',
+            '🤯','😬','😰','😱','😳','🤪','😵','😡','😠','👹',
+            '🤬','😷','🤒','🤕','🤢','🤮','🤧','😨','😩','👿',
+            '😇','🤠','🤡','🤥','🤫','🤭','🧐','🤓','😈','🙀',
+            '💀','👻','👽','🤖','💩','😺','😸','😹','😻','😼', ];
+
 
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
         this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
-        
+        /** avators*/
+        this.anims.create({
+            key: 'male',
+            frames: [{key:'avators',frame:0 }],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'female',
+            frames: [{key:'avators',frame:7 }],
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.shop_menu = this.add.image(80,80,'btn_prew').setScale(0.4);
+        this.shop_menu.setInteractive();
+        this.shop_menu.on('click',this.gotoMenu,this);
+
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
         this.close.setInteractive();
         this.close.setDataEnabled();
@@ -199,11 +228,123 @@ var Match = new Phaser.Class({
     },
     popupClose:function(){
         this.popupContainer.destroy();
-        this.showQuestion();
+        this.showMessageList();
     },
     popupOk:function(){
         this.popupContainer.destroy();
-        this.showQuestion();
+        this.showMessageList();
+    },
+    showMessageList:function(){
+        
+        this.task = {};
+        this.messages = this.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
+        
+        var bg0 = this.add.image(0,0,'popupBG').setScale(0.6,1.3);
+        var bg1 = this.add.image(0,0,'popupBG0').setScale(0.6,1.3);
+        this.messages.add(bg0);
+        this.messages.add(bg1);
+
+        this.task['messages'] = window.gameDescriptor.commonMessagesEntered;
+
+        for(let i = 0,j=0;i<(this.task.messages != null?this.task.messages.length:0);i++){
+            
+            if(this.task.messages[i].read)continue;
+            var cnt = this.add.container(0, -380+(i*150));
+            var img = this.add.sprite(-200, 10,'avators').setScale(1.4);
+            var txt = this.make.text({
+                x: -120,
+                y: 10,
+                text: this.task.messages[i].m,
+                origin: { x: 0, y: 0.5 },
+                style: {
+                    fontFamily: 'Finger Paint', 
+                    font: 'bold 25px Arial',
+                    fill: 'green',
+                    wordWrap: { width: 350 }
+                }
+            });
+            var btn = this.add.image(200,10,'btn_plane').setScale(0.5);
+            btn.setInteractive();
+            btn.setDataEnabled();
+            btn.on('click',this.showReactionPopup,this);
+            var action = this.make.text({
+                x: 160,
+                y: 10,
+                text: 'Action',
+                origin: { x: 0, y: 0.5 },
+                style: {
+                    fontFamily: 'Finger Paint', 
+                    font: 'bold 25px Arial',
+                    fill: 'white',
+                    wordWrap: { width: 350 }
+                }
+            });
+            cnt.add(img);
+            cnt.add(txt);
+            cnt.add(btn);
+            cnt.add(action);
+
+            this.messages.add(cnt);
+        }
+        
+
+    },
+    showReactionPopup:function(){
+
+        var cnt = this.add.container(WIDTH/2,HEIGHT/2);
+        
+        var ui = this.add.image(0,0,'noti_ui');
+
+        var sf = 0.5;
+        var px = 64;
+    
+        for (var i = 1; i <= 7; i++)
+        {
+            var x = i*100;
+            var y = 0;
+            var element = this.add.dom(-360+x, y, 'div', 'font-size: ' + px + 'px', Phaser.Utils.Array.GetRandom(this.smileys)).setScrollFactor(sf);
+    
+            element.setPerspective(800);
+            element.rotate3d.set(Math.random(), Math.random(), Math.random(), 0);
+            element.addListener('click');
+            element.on('click', function (event) {
+                
+                    this.removeListener('click');
+                    cnt.destroy();
+                    // window.gameDescriptor.user.pass = inputPassword.value;
+                    fetch("http://lovegame.frappypie.com", {
+                            method:"POST",
+                            body: JSON.stringify({
+                                message: "",
+                            })
+                    })
+                    .then(result => {
+                        // do something with the result
+                        console.log("Completed with result:", result);
+                    });
+        
+        
+            });
+         
+            this.tweens.add({
+                targets: element.rotate3d,
+                w: {start:-30,end:30},
+                duration: 2000,
+                ease: 'Sine.easeInOut',
+                loop: -1,
+                yoyo: true
+            });
+    
+            if (i % 50 === 0)
+            {
+                sf += 0.1;
+                px += 32;
+            }
+
+            cnt.add(element);
+        }
+    
+        cnt.add(ui);
     },
     showQuestion:function(){
         
@@ -405,6 +546,9 @@ var Match = new Phaser.Class({
         console.log(this.task);
 
     },
+    gotoMenu:function(){
+        this.scene.start('Dashboard');
+    }
 });
 
 

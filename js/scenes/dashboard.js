@@ -98,10 +98,10 @@ var Dashboard = new Phaser.Class({
         this.match = this.add.image(650,650,'wood_table').setScale(1,3);
         this.match.setInteractive();
         this.match.setDataEnabled();        
-        this.match.data.set('hint','Tell your Likes and dislikes');
+        this.match.data.set('hint','Messages from your spouse');
         this.match.on('over',this.showHint,this);
         this.match.on('click',this.selectMatch,this);
-        this.add.image(650,650,'heart').setScale(0.3);
+        this.add.image(650,650,'noti').setScale(0.6);
 
         this.upgrades = this.add.image(350,930,'wood_table').setScale(1,3);
         this.upgrades.setInteractive();

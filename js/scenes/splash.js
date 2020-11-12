@@ -116,6 +116,10 @@ var Splash = new Phaser.Class({
         this.load.image('demon18','assets/images/sprites/demon/__demon_walk_flames_008.png');
         this.load.image('demon19','assets/images/sprites/demon/__demon_walk_flames_009.png');
 
+        this.load.image('noti','assets/images/noti2.png');
+        this.load.image('noti_ui','assets/images/UI/notification.png');
+
+
 
         this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
@@ -129,6 +133,8 @@ var Splash = new Phaser.Class({
         // this.load.image('icon_back7', 'assets/images/UI/icon_back/7.png');
 
         // this.load.image('btn_blank','assets/images/UI/btn/01.png');
+        this.load.image('btn_plane','assets/images/UI/shop/btn.png');
+        
         this.load.image('btn_about','assets/images/UI/btn/about.png');
         this.load.image('btn_close','assets/images/UI/btn/close.png');
         this.load.image('btn_close1','assets/images/UI/btn/close_2.png');

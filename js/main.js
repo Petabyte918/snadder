@@ -99,7 +99,7 @@ window.gameDescriptor = {
     avator:'',
     score:0,
     lives:3,
-    coins:100,
+    coins:500,
     hearts:3,
     activeSenene:'',
     selectedLevel:1,
@@ -156,6 +156,51 @@ window.gameDescriptor = {
             q:"What you hate most in you spouse.",
             type:"message"
         }
+    ],
+    commonMessagesEntered:[
+        {
+            mid:1,
+            m:"I feel awsome when he/she is around",
+            reply:'',
+            read:false,
+
+        },
+        {            
+            mid:1,
+            m:"I feel awsome when he/she is around",
+            reply:'',
+            read:false,
+
+        },
+        {            
+            mid:1,
+            m:"I feel awsome when he/she is around",
+            reply:'',
+            read:false,
+
+        },
+        {            
+            mid:1,
+            m:"I feel awsome when he/she is around",
+            reply:'',
+            read:false,
+
+        },
+        {            
+            mid:1,
+            m:"I feel awsome when he/she is around",
+            reply:'',
+            read:true,
+
+        },
+        {            
+            mid:1,
+            m:"I feel awsome when he/she is around",
+            reply:'',
+            read:true,
+
+        },
+
     ],
     textMessages:[
         "Your spouse like your message ",

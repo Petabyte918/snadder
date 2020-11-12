@@ -36,7 +36,7 @@ var Shop = new Phaser.Class({
 
         this.shop_close = this.add.image(900,80,'btn_close').setScale(0.4);
         
-        this.shop_menu = this.add.image(80,80,'btn_menu').setScale(0.4);
+        this.shop_menu = this.add.image(80,80,'btn_prew').setScale(0.4);
         this.shop_menu.setInteractive();
         this.shop_menu.on('click',this.gotoMenu,this);
 
