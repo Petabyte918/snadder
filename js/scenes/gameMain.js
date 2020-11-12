@@ -36,6 +36,7 @@ var GameMain = new Phaser.Class({
         this.bg3 = this.add.image(980/2, 1742/2, 'gamebg3').setScale(2.06,2.2);
         this.bg4 = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
+
         /** dice */
         this.anims.create({
             key: 'diceRoll',
@@ -94,9 +95,36 @@ var GameMain = new Phaser.Class({
             repeat: -1
         });
         /** demons */
+        // this.anims.create({
+        //     key: 'demonHover',
+        //     frames: this.anims.generateFrameNumbers('demon', { start: 0, end: 11 }),
+        //     frameRate: 8,
+        //     repeat: -1
+        // });
         this.anims.create({
             key: 'demonHover',
-            frames: this.anims.generateFrameNumbers('demon', { start: 0, end: 11 }),
+            frames: [
+                { key: 'demon0' },
+                { key: 'demon1' },
+                { key: 'demon2' },
+                { key: 'demon3' },
+                { key: 'demon4' },
+                { key: 'demon5' },
+                { key: 'demon6' },
+                { key: 'demon7' },
+                { key: 'demon8' },
+                { key: 'demon9' },
+                { key: 'demon10' },
+                { key: 'demon11' },
+                { key: 'demon12' },
+                { key: 'demon13' },
+                { key: 'demon14' },
+                { key: 'demon15' },
+                { key: 'demon16' },
+                { key: 'demon17' },
+                { key: 'demon18' },
+                { key: 'demon19' },
+            ],
             frameRate: 8,
             repeat: -1
         });
@@ -1385,10 +1413,9 @@ var GameMain = new Phaser.Class({
                         if(tile.feature != null && i > window.gameDescriptor.playerPos)
                         {
                             tile.feature.destroy();
-                            tile.feature = this.add.sprite(tile.x,tile.y,'demon');
-                            tile.feature.setScale(2);
-                            tile.feature.setOrigin(0.5,1);
-                            tile.feature.anims.play('demonHover',true);
+                            tile.feature = this.add.sprite(tile.x,tile.y,'demon1').play('demonHover',true);
+                            tile.feature.setScale(0.35);
+                            tile.feature.setOrigin(0.6,0.95);
                             tile['oldType'] = tile.featureType;
                             tile.featureType = 'demon';
                         }
@@ -1450,10 +1477,9 @@ var GameMain = new Phaser.Class({
                             break;
                         case 'demon':
                             tile.feature.destroy();
-                            tile.feature = this.add.sprite(tile.x,tile.y,'demon');
-                            tile.feature.setScale(2.4);
-                            tile.feature.setOrigin(0.5,1);
-                            tile.feature.anims.play('demonHover',true);
+                            tile.feature = this.add.sprite(tile.x,tile.y,'demon1').play('demonHover',true);
+                            tile.feature.setScale(0.35);
+                            tile.feature.setOrigin(0.6,0.95);
                             tile.featureType = tile.oldType;
                             tile.oldType = null;
                             break;
@@ -1546,10 +1572,10 @@ var GameMain = new Phaser.Class({
                     tile.feature.anims.play('fairyHover',true);
                 }
                 if(tile.featureType == 'demon'){
-                    tile.feature = this.add.sprite(tile.x,tile.y,'demon');
-                    tile.feature.setScale(2.4);
-                    tile.feature.setOrigin(0.5,1);
-                    tile.feature.anims.play('demonHover',true);
+                    tile.feature = this.add.sprite(tile.x,tile.y,'demon1').play('demonHover',true);
+                    tile.feature.setScale(0.35);
+                    tile.feature.setOrigin(0.6,0.95);
+                    // tile.feature.anims.play('demonHover',true);
                 }
                 if(tile.featureType == 'cobra'){
                     tile.feature = this.add.sprite(tile.x,tile.y,'cobra');

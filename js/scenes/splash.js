@@ -95,6 +95,28 @@ var Splash = new Phaser.Class({
         this.load.atlas('animals', 'assets/images/atlas/animals.png', 'assets/images/atlas/animals.json');
         this.load.atlas('trees', 'assets/images/atlas/trees.png', 'assets/images/atlas/trees.json');
 
+        this.load.image('demon0','assets/images/sprites/demon/__demon_jump_flames_000.png');
+        this.load.image('demon1','assets/images/sprites/demon/__demon_jump_flames_001.png');
+        this.load.image('demon2','assets/images/sprites/demon/__demon_jump_flames_002.png');
+        this.load.image('demon3','assets/images/sprites/demon/__demon_jump_flames_003.png');
+        this.load.image('demon4','assets/images/sprites/demon/__demon_jump_flames_004.png');
+        this.load.image('demon5','assets/images/sprites/demon/__demon_jump_flames_005.png');
+        this.load.image('demon6','assets/images/sprites/demon/__demon_jump_flames_006.png');
+        this.load.image('demon7','assets/images/sprites/demon/__demon_jump_flames_007.png');
+        this.load.image('demon8','assets/images/sprites/demon/__demon_jump_flames_008.png');
+        this.load.image('demon9','assets/images/sprites/demon/__demon_jump_flames_009.png');
+        this.load.image('demon10','assets/images/sprites/demon/__demon_walk_flames_000.png');
+        this.load.image('demon11','assets/images/sprites/demon/__demon_walk_flames_001.png');
+        this.load.image('demon12','assets/images/sprites/demon/__demon_walk_flames_002.png');
+        this.load.image('demon13','assets/images/sprites/demon/__demon_walk_flames_003.png');
+        this.load.image('demon14','assets/images/sprites/demon/__demon_walk_flames_004.png');
+        this.load.image('demon15','assets/images/sprites/demon/__demon_walk_flames_005.png');
+        this.load.image('demon16','assets/images/sprites/demon/__demon_walk_flames_006.png');
+        this.load.image('demon17','assets/images/sprites/demon/__demon_walk_flames_007.png');
+        this.load.image('demon18','assets/images/sprites/demon/__demon_walk_flames_008.png');
+        this.load.image('demon19','assets/images/sprites/demon/__demon_walk_flames_009.png');
+
+
         this.load.image('user_pin','assets/images/userpin.png');
         this.load.image('snakes', 'assets/images/snakes0.png');
 
