@@ -145,7 +145,17 @@ function getRandomCommonPunishment(){
     let rand = getRandom(0,window.gameDescriptor.commonPunishents.length-1);
     return window.gameDescriptor.commonPunishents[rand];
 }
-
+function getCommonMessageById(mid){
+    let messages = window.gameDescriptor.commonMessagesEntered;
+    let q = null;
+    for(message of messages){
+        if(message.mid == mid){
+            q = message;
+            break;
+        }
+    }
+    return q;
+}
 function checkOptAnswers(qid,answers){
     let questions = window.gameDescriptor.questions;
     let isMatched = false;
