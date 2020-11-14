@@ -75,6 +75,10 @@ var Splash = new Phaser.Class({
             'assets/images/sprites/cobras1.png',
             { frameWidth: 250, frameHeight: 143.3 }
         );
+        this.load.spritesheet('cobraRed', 
+            'assets/images/sprites/cobras2.png',
+            { frameWidth: 250, frameHeight: 143.3 }
+        );
         this.load.spritesheet('demon', 
             'assets/images/sprites/demons.png',
             { frameWidth: 48, frameHeight: 48 }

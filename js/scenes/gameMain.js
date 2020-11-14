@@ -93,6 +93,13 @@ var GameMain = new Phaser.Class({
             frameRate: 8,
             repeat: -1
         });
+        /** cobras red */
+        this.anims.create({
+            key: 'cobraRedHover',
+            frames: this.anims.generateFrameNumbers('cobraRed', { start: 0, end: 11 }),
+            frameRate: 8,
+            repeat: -1
+        });
         /** demons */
         // this.anims.create({
         //     key: 'demonHover',
@@ -1146,9 +1153,9 @@ var GameMain = new Phaser.Class({
         var popup1 = this.add.image(0,0,'popupBG0')
                         .setScrollFactor(0)
                         .setScale(0.6,0.8);
-        var bglove = this.add.image(0,0,'love1')
-                        .setScrollFactor(0)
-                        .setScale(0.4);
+        // var bglove = this.add.image(0,0,'love1')
+        //                 .setScrollFactor(0)
+        //                 .setScale(0.4);
         
         var punish = getRandomCommonPunishment();
         var context = this;
@@ -1237,7 +1244,7 @@ var GameMain = new Phaser.Class({
 
         this.popupMessageContainer.add(popup);
         this.popupMessageContainer.add(popup1);
-        this.popupMessageContainer.add(bglove);
+        // this.popupMessageContainer.add(bglove);
         this.popupMessageContainer.add(element);
 
         this.tweens.add({
@@ -1384,10 +1391,10 @@ var GameMain = new Phaser.Class({
                         if(tile.feature != null && i > window.gameDescriptor.playerPos)
                         {
                             tile.feature.destroy();
-                            tile.feature = this.add.sprite(tile.x,tile.y,'cobra');
+                            tile.feature = this.add.sprite(tile.x,tile.y,'cobraRed');
                             tile.feature.setScale(1.2);
                             tile.feature.setOrigin(0.6,1);
-                            tile.feature.anims.play('cobraHover',true);
+                            tile.feature.anims.play('cobraRedHover',true);
                             tile['oldType'] = tile.featureType;
                             tile.featureType = 'cobra';
 
