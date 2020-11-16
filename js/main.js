@@ -103,6 +103,71 @@ window.gameDescriptor = {
     hearts:3,
     activeSenene:'',
     selectedLevel:1,
+    levels:[
+        {
+            id:1,
+            state:'unlocked',
+            stars:0,
+            progress:0,
+
+        },
+        {
+            id:2,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        },
+        {
+            id:3,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        },
+        {
+            id:4,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        },
+        {
+            id:5,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        },
+        {
+            id:6,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        },
+        {
+            id:7,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        },
+        {
+            id:8,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        },
+        {
+            id:9,
+            state:"locked",
+            stars:0,
+            progress:0,
+            
+        }
+    ],
     activePunishment:null,
     punishments:[
         {
@@ -263,71 +328,6 @@ window.gameDescriptor = {
             qty:1,
             img:'hammer',
         },
-    ],
-    levels:[
-        {
-            id:1,
-            state:'unlocked',
-            stars:0,
-            progress:0,
-
-        },
-        {
-            id:2,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        },
-        {
-            id:3,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        },
-        {
-            id:4,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        },
-        {
-            id:5,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        },
-        {
-            id:6,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        },
-        {
-            id:7,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        },
-        {
-            id:8,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        },
-        {
-            id:9,
-            state:"locked",
-            stars:0,
-            progress:0,
-            
-        }
     ],
     questions:[],
     questionAnswered:[],

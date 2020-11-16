@@ -438,6 +438,21 @@ var GameMain = new Phaser.Class({
             this.counterText.setText( Math.floor(this.counter - this.timer.getElapsed()/1000));
         }
 
+        if(window.gameDescriptor.playerPos && window.gameDescriptor.state == STATES.ideal){
+            var pos = window.gameDescriptor.playerPos;
+
+            if(pos >= window.gameDescriptor.selectedLevel*10){
+                window.gameDescriptor.levels[window.gameDescriptor.selectedLevel-1].stars = 3;
+                
+                window.gameDescriptor.selectedLevel++;
+                window.gameDescriptor.levels[window.gameDescriptor.selectedLevel-1].state = "unlocked";
+                setTimeout((context)=>{
+                    context.showMileStonePopup();
+                },3000,this)
+                
+            }
+        }
+
         if(window.gameDescriptor.state == STATES.taskPass){
             window.gameDescriptor.state = STATES.ideal;
             if(window.gameDescriptor.tiles[window.gameDescriptor.playerPos]){
@@ -656,7 +671,7 @@ var GameMain = new Phaser.Class({
         if(window.gameDescriptor.state == STATES.ideal){
             window.gameDescriptor.state = STATES.rolling;
             this.dice.anims.play('diceRoll',true);
-            window.gameDescriptor.diceNumber = 3;//window.gameDescriptor.debug==true?3:getRandom(1,6);
+            window.gameDescriptor.diceNumber = window.gameDescriptor.debug==true?3:getRandom(1,6);
             this.dice.input.enabled = false;
             // dragon.on("animationcomplete", () => {
             //     dragon.anims.play('dragon-fly');
@@ -1019,6 +1034,9 @@ var GameMain = new Phaser.Class({
 
         
         
+    },
+    popupMilestoneClose:function(){
+        this.popupMilestoneContainer.destroy();
     },
     popupClose:function(){
         this.popupContainer.destroy();
@@ -1792,7 +1810,81 @@ var GameMain = new Phaser.Class({
             context.popupNotificationContainer.destroy();
         },10*1000,context1)
 
+    },
+    showMileStonePopup:function(){
+        this.popupMilestoneContainer = this.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
+                    
+        var popup = this.add.image(0,0,'popupBG')
+                        .setScrollFactor(0)
+                        .setScale(0.6,0.8);
+        var popup1 = this.add.image(0,0,'popupBG0')
+                        .setScrollFactor(0)
+                        .setScale(0.6,0.8);
+        
+        var popupClose = this.add.image(350,-350,'btn_close')
+                        .setScale(0.5)
+                        .setInteractive()
+                        .setScrollFactor(0)
+                        .on('click',this.popupMilestoneClose,this);
+        var popupOk = this.add.image(0,200,'btn_ok')
+                        .setScale(0.5)
+                        .setInteractive()
+                        .setScrollFactor(0)
+                        .on('click',this.popupMilestoneClose,this);
+
+        var text = this.make.text({
+            x: 0,
+            y: -210,
+            text: 'Milestone achived',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 45px Arial',
+                fill: 'green',
+                wordWrap: { width: 600 }
+            }
+        });
+       
+        text.setScrollFactor(0);
+        var text2 = this.add.dynamicBitmapText(-20,0,'fire',window.gameDescriptor.selectedLevel,120).setScrollFactor(0);
+        
+        var emitter = this.add.particles('cup').createEmitter({
+            x: WIDTH/2,
+            y: HEIGHT/2,
+            // blendMode: 'SCREEN',
+            scale: { start: 0.2, end: 0 },
+            speed: { min: 10, max: 350 },
+            angle: { min: 0, max: 360 },
+            gravityY: 150,
+            lifespan: 10000,
+            quantity: 3
+        });
+        setTimeout((em)=>{
+            em.explode();
+        },300,emitter);
+                
+
+        this.popupMilestoneContainer.add(popup);
+        this.popupMilestoneContainer.add(popup1);
+        this.popupMilestoneContainer.add(popupClose);
+        this.popupMilestoneContainer.add(popupOk);
+        this.popupMilestoneContainer.add(text);
+        this.popupMilestoneContainer.add(text2);
+
+        this.tweens.add({
+            targets     : [ this.popupMilestoneContainer ],
+            scaleX: 1.2,
+            scaleY: 1.2,
+            ease        : 'Elastic',
+            duration    : 3000,
+            yoyo        : false,
+            repeat      : 0,
+            callbackScope   : this
+        });
+
+        
+        
     }
+
 
 });
 

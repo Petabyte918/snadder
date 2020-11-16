@@ -219,7 +219,38 @@ var Match = new Phaser.Class({
         var action2 = this.make.text({
             x: 0,
             y: -200,
-            text: 'Recive',
+            text: 'Recived',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                fontFamily: 'Finger Paint', 
+                font: 'bold 45px Arial',
+                fill: 'white',
+                wordWrap: { width: 550 }
+            }
+        });
+
+        // match questions
+        var matchText = this.make.text({
+            x: 0,
+            y: 0,
+            text: "Questions",
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 85px Arial',
+                fill: 'white',
+                align: 'center',
+                wordWrap: { width: 500 }
+            }
+        });
+
+        var btnRecive2 = this.add.image(0,200,'btn_plane').setScale(1);
+        btnRecive2.setInteractive();
+        btnRecive2.setDataEnabled();
+        // btnRecive2.on('click',this.menuAction1,this);
+        var action3 = this.make.text({
+            x: 0,
+            y: 200,
+            text: 'Recived',
             origin: { x: 0.5, y: 0.5 },
             style: {
                 fontFamily: 'Finger Paint', 
@@ -234,6 +265,11 @@ var Match = new Phaser.Class({
         this.menuContainer.add(action1)
         this.menuContainer.add(btnRecive1)
         this.menuContainer.add(action2)
+
+        this.menuContainer.add(matchText);
+        this.menuContainer.add(btnRecive2);
+        this.menuContainer.add(action3);
+
     },
     menuAction1:function(){
         this.menuContainer.destroy();

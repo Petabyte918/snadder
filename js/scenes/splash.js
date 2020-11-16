@@ -51,12 +51,18 @@ var Splash = new Phaser.Class({
         assetText.setOrigin(0.5, 0.5);
         
 
-        this.load.image('sky', 'assets/images/sky.png');
-        this.load.image('bg0','assets/images/BG_Decor.png');
-        this.load.image('bg1','assets/images/Middle_Decor.png');
-        this.load.image('bg2','assets/images/Foreground.png');
-        this.load.image('bg3','assets/images/Ground.png');
+        // this.load.image('sky', 'assets/images/sky.png');
+        // this.load.image('bg0','assets/images/BG_Decor.png');
+        // this.load.image('bg1','assets/images/Middle_Decor.png');
+        // this.load.image('bg2','assets/images/Foreground.png');
+        // this.load.image('bg3','assets/images/Ground.png');
         
+        this.load.image('sky', 'assets/images/6.png');
+        this.load.image('bg0','assets/images/5.png');
+        this.load.image('bg1','assets/images/4.png');
+        this.load.image('bg2','assets/images/2.png');
+        this.load.image('bg3','assets/images/1.png');
+
         this.load.image('gamebg3','assets/images/bg_3.png');
 
         this.load.spritesheet('dice',

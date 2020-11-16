@@ -129,7 +129,7 @@
         "y": 523.8516596236814,
         "tileType": 1,
         "feature": null,
-        "featureType": "awareness"
+        "featureType": "match"
         
       },
       {
@@ -158,9 +158,9 @@
       {
         "x": 798.969003044092,
         "y": 399.8775109905326,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null,
-        "featureType": "task"
+        "featureType": "match"
       },
       {
         "x": 818.4160648568711,
@@ -389,7 +389,7 @@
       {
         "x": 820.2377976777394,
         "y": -492.9642082573812,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -414,7 +414,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task"
+        "featureType": "match"
       },
       {
         "x": 648.5667156905839,

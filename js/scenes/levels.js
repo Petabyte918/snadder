@@ -46,7 +46,7 @@ var Levels = new Phaser.Class({
         this.back.on('over',this.showHint,this);
         this.back.on('click',this.gotoMenu,this);
         
-        this.add.dynamicBitmapText(250,100,'fire','SELECT LEVEL',60);
+        this.add.dynamicBitmapText(WIDTH/2,100,'fire','MILESTONES',60).setOrigin(0.5);
 
         this.add.image(500,870,'popupBG').setScale(0.6,1);
         this.add.image(500,820,'popupBG0').setScale(0.6,0.85);
