@@ -28,10 +28,18 @@ var Levels = new Phaser.Class({
     create: function ()
     {
 
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
-        this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
+        // this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'sky').setScale(1.7);
+        // this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg0').setScale(1.7);
+        // this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 900, 'bg1').setScale(1.7);
+        // this.bg = this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
+
+        this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'sky').setScale(1);
+        this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg0').setScale(1);
+        this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg1').setScale(1);
+        this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg2').setScale(1);
+        this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg4').setScale(1);
+        this.add.image(window.gameDescriptor.screenWidth/2-400, 1130, 'bg3').setScale(0.5);
+
 
         this.close = this.add.image(900,80,'btn_close').setScale(0.4);
         this.close.setInteractive();
