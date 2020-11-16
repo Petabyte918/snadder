@@ -39,8 +39,8 @@ var Shop = new Phaser.Class({
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg1').setScale(1);
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg2').setScale(1);
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg4').setScale(1);
-        this.add.image(window.gameDescriptor.screenWidth/2-400, 1130, 'bg3').setScale(0.5);
-
+        this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
+        
 
         this.shop_close = this.add.image(900,80,'btn_close').setScale(0.4);
         

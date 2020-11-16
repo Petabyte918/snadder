@@ -61,7 +61,7 @@ var Splash = new Phaser.Class({
         this.load.image('bg0','assets/images/5.png');
         this.load.image('bg1','assets/images/4.png');
         this.load.image('bg2','assets/images/3.png');
-        this.load.image('bg3','assets/images/1.png');
+        this.load.image('bg3','assets/images/Ground.png');
         this.load.image('bg4','assets/images/2.png');
 
         this.load.image('gamebg3','assets/images/bg_3.png');
@@ -268,7 +268,7 @@ var Splash = new Phaser.Class({
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg1').setScale(1);
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg2').setScale(1);
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg4').setScale(1);
-        this.add.image(window.gameDescriptor.screenWidth/2-400, 1130, 'bg3').setScale(0.5);
+        this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
         this.snake = this.add.image(480, 900, 'snakes').setScale(0.7);
         // this.add.text(330, 1100,'START', { font: '100px Arial', fill: '#fff'});
@@ -407,7 +407,7 @@ var Splash = new Phaser.Class({
         setTimeout((message)=>{
             message[0].setVisible(false);
             message[1].setVisible(false);
-        },5000,message);
+        },1000,message);
     }
     
 });

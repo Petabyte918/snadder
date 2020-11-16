@@ -76,13 +76,13 @@ var Task = new Phaser.Class({
         
         
         this.task = {};
-        var qType = '';
+        this.qType = '';
         switch(window.gameDescriptor.actionType){
-            case 'task':qType = 'quiz';break;
-            case 'awareness':qType = 'awareness';break;
-            case 'match':qType = 'match';break;
+            case 'task':this.qType = 'quiz';break;
+            case 'awareness':this.qType = 'awareness';break;
+            case 'match':this.qType = 'match';break;
         }
-        let question = getQuestionByType(qType,window.gameDescriptor.user.gender);
+        let question = getQuestionByType(this.qType,window.gameDescriptor.user.gender);
         if(question.qid == undefined) {
             textPopup(STRINGS.str_question_rollout,this.rolloutClose,this.rolloutOk,this);
             setGameData();
@@ -175,6 +175,10 @@ var Task = new Phaser.Class({
         this.submit.input.enabled = false;
         for(let opb of this.task.optionBlocks){
             opb.input.enabled = false;
+        }
+        if(this.qType=="match"){
+            setTimeout(this.reward,200,this);
+            return;
         }
         if(checkOptAnswers(this.task.qid,this.task.selectedOptions) == true){
             console.log(":-)");

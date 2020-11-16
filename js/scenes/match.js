@@ -40,7 +40,7 @@ var Match = new Phaser.Class({
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg1').setScale(1);
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg2').setScale(1);
         this.add.image(window.gameDescriptor.screenWidth/2, 1000, 'bg4').setScale(1);
-        this.add.image(window.gameDescriptor.screenWidth/2-400, 1130, 'bg3').setScale(0.5);
+        this.add.image(window.gameDescriptor.screenWidth/2, 1210, 'bg3').setScale(1);
 
 
         /** avators*/
@@ -254,7 +254,7 @@ var Match = new Phaser.Class({
         var btnRecive2 = this.add.image(0,200,'btn_plane').setScale(1);
         btnRecive2.setInteractive();
         btnRecive2.setDataEnabled();
-        // btnRecive2.on('click',this.menuAction1,this);
+        btnRecive2.on('click',this.menuAction3,this);
         var action3 = this.make.text({
             x: 0,
             y: 200,
@@ -286,6 +286,10 @@ var Match = new Phaser.Class({
     menuAction2:function(){
         this.menuContainer.destroy();
         this.showMessageReciveList();
+    },
+    menuAction3:function(){
+        this.menuContainer.destroy();
+        this.showQuestionReciveList();
     },
     showInstructionPopup:function(str,closeCallback,okCallback){
         this.popupContainer = this.add.container(WIDTH/2, HEIGHT/2+this.cameras.main.scrollY);
@@ -450,6 +454,66 @@ var Match = new Phaser.Class({
         
 
     },
+    showQuestionReciveList:function(){
+        
+        this.task = {};
+        this.messages = this.add.container(WIDTH/2, HEIGHT/2).setScrollFactor(0);
+        
+        var bg0 = this.add.image(0,0,'popupBG').setScale(0.6,1.3);
+        var bg1 = this.add.image(0,0,'popupBG0').setScale(0.6,1.3);
+        var btnClose = this.add.image(320,-500,'btn_close1').setInteractive();
+        btnClose.on('click',this.closeMessage,this);
+        
+        this.messages.add(bg0);
+        this.messages.add(bg1);
+        this.messages.add(btnClose);
+
+        this.task['messages'] = window.gameDescriptor.commonMessagesEntered;
+
+        for(let i = 0,j=0;i<(this.task.messages != null?this.task.messages.length:0);i++){
+            
+            if(this.task.messages[i].read)continue;
+            var cnt = this.add.container(0, -370+(i*150));
+            var img = this.add.sprite(-200, 10,'avators').setScale(1.4);
+            var txt = this.make.text({
+                x: -120,
+                y: -15,
+                text: `आपके जीवनसाथी का स्वभाव कैसा है?`,
+                origin: { x: 0, y: 0.5 },
+                style: {
+                    fontFamily: 'Finger Paint', 
+                    font: 'bold 25px Arial',
+                    fill: 'green',
+                    wordWrap: { width: 350 }
+                }
+            });
+            var btn = this.add.image(200,10,'btn_plane').setScale(0.4,0.5);
+            btn.setInteractive();
+            btn.setDataEnabled();
+            btn.data.set('mid',this.task.messages[i].mid);
+            btn.on('click',this.showQuestionReactionPopup,this);
+            var action = this.make.text({
+                x: 160,
+                y: 10,
+                text: 'View',
+                origin: { x: 0, y: 0.5 },
+                style: {
+                    fontFamily: 'Finger Paint', 
+                    font: 'bold 25px Arial',
+                    fill: 'white',
+                    wordWrap: { width: 350 }
+                }
+            });
+            cnt.add(img);
+            cnt.add(txt);
+            cnt.add(btn);
+            cnt.add(action);
+
+            this.messages.add(cnt);
+        }
+        
+
+    },
     closeMessage:function(){
         this.messages.destroy();
         this.showMenu();
@@ -514,6 +578,40 @@ var Match = new Phaser.Class({
         }
     
         cnt.add(ui);
+    },
+    showQuestionReactionPopup:function(obj){
+        this.popupQuestionReply = this.add.container(WIDTH/2,HEIGHT/2);
+        
+        var ui = this.add.image(0,0,'noti_ui');
+        var answer = this.make.text({
+            x: 0,
+            y: -40,
+            text: 'Choosed :'+"हुत गुस्सैल है",
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                fontFamily: 'Finger Paint', 
+                font: 'bold 40px Arial',
+                fill: 'white',
+                wordWrap: { width: 550 }
+            }
+        });
+        var right = this.add.image(-80,80,"btn_ok");
+            right.setScale(0.5);
+            right.setInteractive();
+            right.on("click",this.questionReplySend,this);
+        var wrong = this.add.image(80,80,"btn_close");
+            wrong.setInteractive();
+            wrong.setScale(0.5);
+            wrong.on("click",this.questionReplySend,this);
+   
+        this.popupQuestionReply.add(ui);
+        this.popupQuestionReply.add(answer);
+        this.popupQuestionReply.add(right);
+        this.popupQuestionReply.add(wrong);
+    },
+    questionReplySend:function(){
+        this.popupQuestionReply.destroy();
+        this.showQuestionReactionPopup();
     },
     showQuestion:function(){
         

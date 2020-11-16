@@ -137,7 +137,7 @@ var GameMain = new Phaser.Class({
         /** Coins */
         this.anims.create({
             key: 'coin_rotate',
-            frames: this.anims.generateFrameNumbers('coin_sprite', { start: 0, end: 8 }),
+            frames: this.anims.generateFrameNumbers('coin_sprite', { start: 0, end: 7 }),
             frameRate: 8,
             repeat: -1
         });
@@ -566,12 +566,12 @@ var GameMain = new Phaser.Class({
             
                 var points = [
                     new Phaser.Math.Vector2(508.83813145825104, 853.9514456913603),
-                    new Phaser.Math.Vector2(479.0827210239393, 958.0918658976237),
-                    new Phaser.Math.Vector2(440.40068745933405, 1050.3305237946),
-                    new Phaser.Math.Vector2(380.88986659071054, 1130.667419382289),
-                    new Phaser.Math.Vector2(276.74593007061947, 1211.004314969978),
-                    new Phaser.Math.Vector2(175.5775345939596, 1264.5622453617705),
-                    new Phaser.Math.Vector2(89.28684433445555, 1374.6535467226774),
+                    new Phaser.Math.Vector2(579.0827210239393, 958.0918658976237),
+                    new Phaser.Math.Vector2(540.40068745933405, 1050.3305237946),
+                    new Phaser.Math.Vector2(580.88986659071054, 1130.667419382289),
+                    new Phaser.Math.Vector2(576.74593007061947, 1211.004314969978),
+                    new Phaser.Math.Vector2(575.5775345939596, 1264.5622453617705),
+                    new Phaser.Math.Vector2(59.28684433445555, 1374.6535467226774),
                     new Phaser.Math.Vector2(44.65372868298795, 1520.4501350114465),
                     new Phaser.Math.Vector2(92.26238537788673, 1657.3204015682497),
                     new Phaser.Math.Vector2(116.06671372533611, 1707.9028913827206),
@@ -589,7 +589,7 @@ var GameMain = new Phaser.Class({
                 }
                 var coinEarned = this.add.follower(curve, 508.83813145825104,853.9514456913603+this.cameras.main.scrollY, asset.img)
                                         .setOrigin(0.5)
-                                        .setScale(0.2);
+                                        .setScale(0.3);
                 coinEarned.startFollow({
                     duration: 1000,
                     yoyo: false,
@@ -1654,6 +1654,11 @@ var GameMain = new Phaser.Class({
                     tile.feature.setScale(0.8);
                     tile.feature.setOrigin(0.6,1);
                     tile.feature.anims.play('cobraHover',true);
+                    var t = tile;
+                    tile.feature.on('animationrepeat', ()=>{
+                        // t.feature.flipX?t.feature.flipX = false:t.feature.flipX=true;
+                        // console.log("dddd--");
+                    }, this);
                 }
                 if(tile.featureType == 'portal'){
                     tile.feature = this.add.sprite(tile.x,tile.y,'portal');
