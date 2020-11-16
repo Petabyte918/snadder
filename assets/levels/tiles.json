@@ -33,17 +33,17 @@
       {
         "x": 181.5229663356705,
         "y": 1155.8767815818742,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null ,
-        "featureType": "task"
+        "featureType": "match"
         
       },
       {
         "x": 101.30361408725138,
         "y": 1048.9187142057888,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null,
-        "featureType": "task"
+        "featureType": "match"
         
       },
       {
@@ -56,9 +56,9 @@
       {
         "x": 162.07584320683478,
         "y": 825.2789292625663,
-        "tileType": 0,
+        "tileType": 1,
         "feature":null,
-        "featureType": "task"
+        "featureType": "match"
       },
       {
         "x": 307.9292360150745,
@@ -87,9 +87,9 @@
       {
         "x": 733.3350084713138,
         "y": 883.6197267306794,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null,
-        "featureType": "task"
+        "featureType": "awareness"
         
       },
       {
@@ -111,9 +111,9 @@
       {
         "x": 400.30307087704426,
         "y": 723.1826256665515,
-        "tileType": 0,
+        "tileType": 1,
         "feature": null,
-        "featureType": "task"
+        "featureType": "match"
         
       },
       {
@@ -239,7 +239,7 @@
       {
         "x": 461.0752540095852,
         "y": 54.694482297492215,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -264,7 +264,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task"
+        "featureType": "awareness"
       },
       {
         "x": 561.3687057923461,
@@ -299,7 +299,7 @@
       {
         "x": 659.4664669278636,
         "y": -165.96871881528,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -324,7 +324,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task"
+        "featureType": "match"
       },
       {
         "x": 790.2634817752203,
@@ -553,7 +553,7 @@
       {
         "x": 275.2502358137535,
         "y": -612.8625543861517,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -578,7 +578,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task"
+        "featureType": "awareness"
       },
       {
         "x": 414.22206408906993,
@@ -613,7 +613,7 @@
       {
         "x": 545.0190789364266,
         "y": -675.5366898625543,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -638,7 +638,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task"
+        "featureType": "awareness"
       },
       {
         "x": 719.415098732902,
@@ -673,7 +673,7 @@
       {
         "x": 801.1632330125,
         "y": -858.1091714677276,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -698,7 +698,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task"
+        "featureType": "match"
       },
       {
         "x": 624.0422754067046,
@@ -733,7 +733,7 @@
       {
         "x": 441.4714421822692,
         "y": -972.557592772463,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -758,7 +758,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task",
+        "featureType": "match",
         "texture": {
           "name": "",
           "type": "Image",
@@ -869,7 +869,7 @@
       {
         "x": 228.92629305531466,
         "y": -1174.2048112617588,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -894,7 +894,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task",
+        "featureType": "match",
         "texture": {
           "name": "",
           "type": "Image",
@@ -1115,7 +1115,7 @@
       {
         "x": 604.967710741465,
         "y": -1479.40060140772,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -1140,7 +1140,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task",
+        "featureType": "match",
         "texture": {
           "name": "",
           "type": "Image",
@@ -1523,7 +1523,7 @@
       {
         "x": 228.92629305531466,
         "y": -2002.8864643346594,
-        "tileType": 0,
+        "tileType": 1,
         "feature": {
           "name": "",
           "type": "Sprite",
@@ -1548,7 +1548,7 @@
           "frameKey": 8,
           "data": {}
         },
-        "featureType": "task",
+        "featureType": "awareness",
         "texture": {
           "name": "",
           "type": "Image",
