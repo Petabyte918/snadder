@@ -302,7 +302,7 @@ var Splash = new Phaser.Class({
                 //     data: { x: 400, y: 300 }
                 // });
                 
-                this.scene.start('Match');
+                this.scene.start('Avator');
             }else{
                 this.scene.start('Dashboard');
             }
