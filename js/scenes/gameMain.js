@@ -234,9 +234,19 @@ var GameMain = new Phaser.Class({
             window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
             window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,'avators')
             .setScale(1)
-            .setOrigin(0.5,1.7)
+            .setOrigin(0.5,1.4)
             .setAlpha(0.8);
         this.userAvatorFake.anims.play(window.gameDescriptor.user.gender,true);
+        // var debug = this.add.graphics();
+        // debug.fillStyle(0xff00f0, 0.2);
+        // debug.fillCircle(window.gameDescriptor.tiles[0].x,
+        //     window.gameDescriptor.tiles[0].y-90, 40);
+        var shape1 = this.make.graphics()
+                    .fillCircle(window.gameDescriptor.tiles[0].x,window.gameDescriptor.tiles[0].y-90,40);
+        var geomask1 = shape1.createGeometryMask();
+        this.userAvatorFake.setMask(geomask1);
+
+
 
 
         let rnd = getRandom(5,20);
@@ -716,12 +726,36 @@ var GameMain = new Phaser.Class({
                 this.graphics.fillCircle(points[i].x, points[i].y, 4);
             }
         }
+        
+
 
         if(this.userPin){
             this.userPin.setPath(this.curve);
+            this.userAvator.setPath(this.curve);
+            // this.shape1 = this.make.graphics()
+            //                 .fillCircle(window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y-90,40);
+            // this.geomask1 = this.shape1.createGeometryMask();
+            // this.userAvator.setMask(this.geomask1);
         }
         else{
             this.userPin = this.add.follower(this.curve, tiles[window.gameDescriptor.playerLastPos].x, tiles[window.gameDescriptor.playerLastPos].y, 'user_pin').setOrigin(0.5,1);
+            this.userAvator = this.add.follower(this.curve,
+                window.gameDescriptor.tiles[window.gameDescriptor.playerLastPos].x,
+                window.gameDescriptor.tiles[window.gameDescriptor.playerLastPos].y,'avators')
+                .setScale(1)
+                .setOrigin(0.5,1.4)
+                .setAlpha(1);
+            this.userAvator.anims.play(window.gameDescriptor.user.gender,true);
+            // var debug = this.add.graphics();
+            // debug.fillStyle(0xff00f0, 0.2);
+            // debug.fillCircle(window.gameDescriptor.tiles[0].x,
+            //     window.gameDescriptor.tiles[0].y-90, 40);
+            // this.shape1 = this.make.graphics()
+            //             .fillCircle(window.gameDescriptor.tiles[window.gameDescriptor.playerLastPos].x,window.gameDescriptor.tiles[window.gameDescriptor.playerLastPos].y-90,40);
+            // this.geomask1 = this.shape1.createGeometryMask();
+            // this.userAvator.setMask(this.geomask1);
+
+
             // this.userAvatorFake = this.add.sprite(
             //     window.gameDescriptor.tiles[window.gameDescriptor.playerPos].x,
             //     window.gameDescriptor.tiles[window.gameDescriptor.playerPos].y,'avators')
@@ -740,6 +774,22 @@ var GameMain = new Phaser.Class({
             rotateToPath: false,
             verticalAdjust: true
         });
+        this.userAvator.startFollow({
+            duration: 3000,
+            yoyo: false,
+            repeat: 0,
+            rotateToPath: false,
+            verticalAdjust: true
+        });
+
+        // this.geomask1.startFollow({
+        //     duration: 3000,
+        //     yoyo: false,
+        //     repeat: 0,
+        //     rotateToPath: false,
+        //     verticalAdjust: true
+        // });
+
         window.gameDescriptor.playerLastPos = window.gameDescriptor.playerPos;
         setTimeout(function(context){
             if(window.gameDescriptor.playerDirection == 1){
